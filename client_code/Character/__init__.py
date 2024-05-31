@@ -22,7 +22,7 @@ class Character(CharacterTemplate):
   def populate_class_drop_down(self):
     item_list = []
     for row in app_tables.classes.search():
-      item_list.append((row['Name'], row['Name']))
+      item_list.append((row['Name'], row))
     self.class_drop_down.items = item_list
 
 
