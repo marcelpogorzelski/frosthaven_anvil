@@ -1,0 +1,78 @@
+correct_dependency_ids: {}
+dependencies: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {enable_v2: true}
+  server_config: {}
+startup: {type: form, module: Campaign}
+package_name: Frosthaven2
+allow_embedding: false
+name: Clone of Frosthaven2
+runtime_options:
+  version: 3
+  client_version: '3'
+  server_version: python3-sandbox
+  server_spec: {base: python310-standard}
+  legacy_features: {class_names: true, bootstrap3: true, __dict__: true, root_container: true}
+startup_form: null
+native_deps: null
+db_schema:
+  characters:
+    client: full
+    server: full
+    columns:
+    - name: Class
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: Experience
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Player
+      admin_ui: {order: -1, width: 200}
+      type: string
+    - name: Lumber
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: Metal
+      admin_ui: {width: 200, order: 3}
+      type: number
+    - name: Hide
+      admin_ui: {width: 200, order: 4}
+      type: number
+    - name: Arrowvine
+      admin_ui: {width: 200, order: 5}
+      type: number
+    - name: Axenut
+      admin_ui: {width: 200, order: 6}
+      type: number
+    - name: Corpsecap
+      admin_ui: {width: 200, order: 7}
+      type: number
+    - name: Flamefruit
+      admin_ui: {width: 200, order: 8}
+      type: number
+    - name: Rockroot
+      admin_ui: {width: 200, order: 9}
+      type: number
+    - name: Snowthistle
+      admin_ui: {width: 200, order: 10}
+      type: number
+    - name: Notes
+      admin_ui: {width: 200, order: 11}
+      type: string
+    - name: Name
+      admin_ui: {order: 0.5, width: 200}
+      type: string
+    - name: Gold
+      admin_ui: {order: 1.5, width: 200}
+      type: number
+    title: Characters
+  classes:
+    client: search
+    server: full
+    columns:
+    - name: Name
+      admin_ui: {width: 200, order: 0}
+      type: string
+    title: Classes
+renamed: true
