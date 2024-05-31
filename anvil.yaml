@@ -102,4 +102,57 @@ db_schema:
       admin_ui: {order: 5, width: 200}
       type: bool
     title: Users
+  frosthaven:
+    client: full
+    server: full
+    columns:
+    - name: Name
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: Inspiration
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Moral
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: Defense
+      admin_ui: {order: 3, width: 200}
+      type: number
+    - name: Soldiers
+      admin_ui: {order: 4, width: 200}
+      type: number
+    - name: Barracks Level
+      admin_ui: {width: 200, order: 5}
+      type: number
+    - name: Gold
+      admin_ui: {width: 200, order: 6}
+      type: number
+    - name: Lumber
+      admin_ui: {width: 200, order: 7}
+      type: number
+    - name: Metal
+      admin_ui: {width: 200, order: 8}
+      type: number
+    - name: Hide
+      admin_ui: {width: 200, order: 9}
+      type: number
+    - name: Arrowvine
+      admin_ui: {width: 200, order: 10}
+      type: number
+    - name: Axenut
+      admin_ui: {width: 200, order: 11}
+      type: number
+    - name: Corpsecap
+      admin_ui: {order: 12, width: 200}
+      type: number
+    - name: Flamefruit
+      admin_ui: {width: 200, order: 13}
+      type: number
+    - name: Rockroot
+      admin_ui: {width: 200, order: 14}
+      type: number
+    - name: Snowthistle
+      admin_ui: {width: 200, order: 15}
+      type: number
+    title: Frosthaven
 renamed: true

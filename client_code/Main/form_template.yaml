@@ -49,6 +49,11 @@ components:
     layout_properties: {grid_position: 'ZWYOUQ,EDAGAJ'}
     event_bindings: {click: navbar_link_click}
     data_bindings: []
+  - name: logout_button
+    properties: {text: Logout, role: outlined-button}
+    type: Button
+    layout_properties: {grid_position: 'GPGDDJ,IWMEOK'}
+    event_bindings: {click: logout_button_click}
 - name: label_1
   properties: {text: Homepage}
   type: Label
