@@ -1,0 +1,425 @@
+layout: {type: 'form:Main'}
+is_package: true
+components_by_slot:
+  content_slot:
+  - name: character_info_outlined_card
+    properties: {role: outlined-card, col_widths: '{}', wrap_on: never}
+    type: ColumnPanel
+    layout_properties: {}
+    components:
+    - name: class_outlined_card
+      properties: {role: outlined-card, col_widths: '{"EMTEVL":10,"IFWDRX":50}'}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'FXKDBB,OVSJJQ'}
+      components:
+      - name: class_label
+        properties: {text: 'Class:', align: right}
+        type: Label
+        layout_properties: {grid_position: 'NJFWTQ,EMTEVL'}
+      - name: class_drop_down
+        properties: {}
+        type: DropDown
+        layout_properties: {grid_position: 'NJFWTQ,IFWDRX'}
+        event_bindings: {change: class_drop_down_change}
+        data_bindings:
+        - {property: tag, code: '''Class''', writeback: false}
+    - name: name_outlined_card
+      properties: {role: outlined-card, col_widths: '{"UELJKE":20,"PGAHRN":40}'}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'FXKDBB,NFUNUC'}
+      components:
+      - name: name_label
+        properties: {text: 'Name:'}
+        type: Label
+        layout_properties: {grid_position: 'TUYMUI,UELJKE'}
+      - name: name_text_box
+        properties: {}
+        type: TextBox
+        layout_properties: {grid_position: 'TUYMUI,PGAHRN'}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_change}
+        data_bindings:
+        - {property: tag, code: '''Name''', writeback: false}
+    - name: experience_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'TLZCYG,ZDTYBB'}
+      components:
+      - name: experience_label
+        properties: {text: 'Experiance:', align: right}
+        type: Label
+        layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+      - name: experience_text_box
+        properties: {type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+        data_bindings:
+        - {property: tag, code: '''Experience''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: inc_exp_button
+        properties: {text: '', icon: 'fa:plus'}
+        type: Button
+        layout_properties: {grid_position: 'BYSQTJ,GOJLJI'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.experience_text_box, writeback: false}
+      - name: dec_exp_button
+        properties: {text: '', icon: 'fa:minus'}
+        type: Button
+        layout_properties: {grid_position: 'BYSQTJ,HWQLMJ'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.experience_text_box, writeback: false}
+    - name: level_outlined_card
+      properties: {role: outlined-card, col_widths: '{"JYFFLE":15,"UZTZFQ":45}'}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'TLZCYG,PMAHXS'}
+      components:
+      - name: level_label
+        properties: {align: right, text: 'Level:'}
+        type: Label
+        layout_properties: {grid_position: 'HOUEKS,JYFFLE'}
+      - name: level_text_box
+        properties: {type: number, enabled: false}
+        type: TextBox
+        layout_properties: {grid_position: 'HOUEKS,UZTZFQ'}
+  - name: resources_column_panel
+    properties: {}
+    type: ColumnPanel
+    layout_properties: {}
+    components:
+    - name: gold_spacer_1
+      properties: {height: 32}
+      type: Spacer
+      layout_properties: {grid_position: 'UVATLO,MYNYXH'}
+    - name: gold_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'UVATLO,YZBUPC'}
+      components:
+      - name: gold_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-money-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: gold_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Gold''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: gold_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        data_bindings:
+        - {property: tag, code: self.gold_text_box, writeback: false}
+        event_bindings: {click: inc_button_click}
+      - name: gold_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        data_bindings:
+        - {property: tag, code: self.gold_text_box, writeback: false}
+        event_bindings: {click: dec_button_click}
+    - name: gold_spacer_2
+      properties: {height: 32}
+      type: Spacer
+      layout_properties: {grid_position: 'UVATLO,WGEVHH'}
+    - name: lumber_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,HSDHWY GTTJFG,AQGQXU'}
+      components:
+      - name: lumber_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-lumber-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: lumber_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Lumber''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: lumber_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.lumber_text_box, writeback: false}
+      - name: lumber_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.lumber_text_box, writeback: false}
+    - name: arrowvine_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,HSDHWY UFMNAN,XSTWTN'}
+      components:
+      - name: arrowvine_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: arrowvine_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Arrowvine''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: arrowvine_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.arrowvine_text_box, writeback: false}
+      - name: arrowvine_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.arrowvine_text_box, writeback: false}
+    - name: flamefruit_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,HSDHWY SKWNPM,BITZUF'}
+      components:
+      - name: flamefruit_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: flamefruit_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Flamefruit''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: flamefruit_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.flamefruit_text_box, writeback: false}
+      - name: flamefruit_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.flamefruit_text_box, writeback: false}
+    - name: metal_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,NONKIH NCNBIJ,EMJQAJ'}
+      components:
+      - name: metal_image
+        properties: {height: 57.51953125, source: _/theme/resource_images/fh-metal-bw-icon.png,
+          display_mode: shrink_to_fit}
+        type: Image
+        layout_properties: {grid_position: 'SRDWPE,FLMFDI'}
+      - name: metal_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'SRDWPE,UATBAF'}
+        data_bindings:
+        - {property: tag, code: '''Metal''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: metal_pust_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'SRDWPE,JTRCFD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.metal_text_box, writeback: false}
+      - name: metal_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'SRDWPE,SDJVUQ'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.metal_text_box, writeback: false}
+    - name: axenut_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,NONKIH QLGKJY,NWCKJG'}
+      components:
+      - name: axenut_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-axenut-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: axenut_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Axenut''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: axenut_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.axenut_text_box, writeback: false}
+      - name: axenut_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.axenut_text_box, writeback: false}
+    - name: rockroot_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,NONKIH UTWHZT,JCCRBW'}
+      components:
+      - name: rockroot_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-rockroot-bw-icon.png,
+          visible: true}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: rockroot_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Rockroot''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: rockroot_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.rockroot_text_box, writeback: false}
+      - name: rockroot_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.rockroot_text_box, writeback: false}
+    - name: hide_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,PRFQZA PYDEIT,MGLDBX'}
+      components:
+      - name: hide_image
+        properties: {height: 56.22265625, source: _/theme/resource_images/fh-hide-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'SRDWPE,VGJVTU'}
+      - name: hide_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'SRDWPE,UATBAF'}
+        data_bindings:
+        - {property: tag, code: '''Hide''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: hide_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'SRDWPE,JTRCFD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.hide_text_box, writeback: false}
+      - name: hide_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'SRDWPE,SDJVUQ'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.hide_text_box, writeback: false}
+    - name: corpsecap_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,PRFQZA TOKEHF,XOITTB'}
+      components:
+      - name: corpsecap_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: corpsecap_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Corpsecap''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: corpsecap_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.corpsecap_text_box, writeback: false}
+      - name: corpsecap_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.corpsecap_text_box, writeback: false}
+    - name: snowthistle_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'PLZSEO,PRFQZA TVURAE,UJOGOT'}
+      components:
+      - name: snowthistle_image
+        properties: {height: 52.5234375, source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
+      - name: snowthistle_text_box
+        properties: {spacing_above: large, type: number}
+        type: TextBox
+        layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
+        data_bindings:
+        - {property: tag, code: '''Snowthistle''', writeback: false}
+        event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      - name: snowthistle_plus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
+          align: full}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
+        event_bindings: {click: inc_button_click}
+        data_bindings:
+        - {property: tag, code: self.snowthistle_text_box, writeback: false}
+      - name: snowthistle_minus_button
+        properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
+        type: Button
+        layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
+        event_bindings: {click: dec_button_click}
+        data_bindings:
+        - {property: tag, code: self.snowthistle_text_box, writeback: false}
+  - name: notes_card
+    properties: {role: outlined-card}
+    type: ColumnPanel
+    layout_properties: {}
+    components:
+    - name: label_1
+      properties: {align: center, text: Notes}
+      type: Label
+      layout_properties: {grid_position: 'LLIAGN,BJYWYY'}
+    - name: notes_text_area
+      properties: {height: 147.109375}
+      type: TextArea
+      layout_properties: {grid_position: 'XAZDWX,BXNCMR'}
+      event_bindings: {change: text_box_change}
+      data_bindings:
+      - {property: tag, code: '''Notes''', writeback: false}

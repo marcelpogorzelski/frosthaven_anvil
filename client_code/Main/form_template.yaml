@@ -46,9 +46,4 @@ components:
   properties: {text: Homepage}
   type: Label
   layout_properties: {slot: title}
-slots:
-  content_slot:
-    index: 0
-    set_layout_properties: {grid_position: 'WATYYJ,XKASKB'}
-    target: {type: container, name: content_panel}
 layout_metadata: {title: Campaign}

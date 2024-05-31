@@ -1,4 +1,4 @@
-from ._anvil_designer import CharacterTemplate
+from ._anvil_designer import Character_oldTemplate
 from anvil import *
 import anvil.users
 import anvil.server
@@ -7,9 +7,8 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Utilites
 
-
-class Character(CharacterTemplate):
-  def __init__(self, player,**properties):
+class Character_old(Character_oldTemplate):
+  def __init__(self, player, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.player = player
@@ -68,6 +67,3 @@ class Character(CharacterTemplate):
 
   def text_box_change(self, **event_args):
     self.change_character_value(event_args['sender'].text, event_args['sender'].tag)
-
-
-    # Any code you write here will run before the form opens.
