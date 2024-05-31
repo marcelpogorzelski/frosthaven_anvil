@@ -20,7 +20,7 @@ components:
     layout_properties: {grid_position: 'QFCHJC,CMAXHE SOQXUU,YJMSMI'}
     components:
     - name: name_label
-      properties: {text: 'Party Name:'}
+      properties: {text: 'Party Name:', align: right}
       type: Label
       layout_properties: {grid_position: 'TUYMUI,UELJKE'}
     - name: name_text_box
@@ -75,19 +75,19 @@ components:
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings:
       - {property: tag, code: '''Defense''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      event_bindings: {change: bonus_defense_text_box_change, pressed_enter: bonus_defense_text_box_pressed_enter}
     - name: inc_bonus_defense_button
       properties: {text: '', icon: 'fa:plus'}
       type: Button
       layout_properties: {grid_position: 'BYSQTJ,GOJLJI'}
-      event_bindings: {click: inc_button_click}
+      event_bindings: {click: bonus_defense_inc_button_click}
       data_bindings:
       - {property: tag, code: self.bonus_defense_text_box, writeback: false}
     - name: dec_bonus_defense_button
       properties: {text: '', icon: 'fa:minus'}
       type: Button
       layout_properties: {grid_position: 'BYSQTJ,HWQLMJ'}
-      event_bindings: {click: dec_button_click}
+      event_bindings: {click: bonus_defense_dec_button_click}
       data_bindings:
       - {property: tag, code: self.bonus_defense_text_box, writeback: false}
   - name: inspiration_outlined_card
@@ -151,7 +151,7 @@ components:
       data_bindings:
       - {property: tag, code: self.soldiers_text_box, writeback: false}
   - name: total_defense_outlined_card
-    properties: {role: outlined-card}
+    properties: {role: outlined-card, col_widths: '{"QIGRXS":15,"SMCXRL":45}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,VNHSZI QPYIZK,ALHKUQ'}
     components:
@@ -500,7 +500,7 @@ components:
     type: Label
     layout_properties: {grid_position: 'LLIAGN,BJYWYY'}
   - name: notes_text_area
-    properties: {height: 147.109375}
+    properties: {height: 307.884521484375}
     type: TextArea
     layout_properties: {grid_position: 'XAZDWX,BXNCMR'}
     event_bindings: {change: text_box_change}

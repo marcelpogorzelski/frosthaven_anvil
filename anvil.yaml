@@ -154,5 +154,8 @@ db_schema:
     - name: Snowthistle
       admin_ui: {width: 200, order: 15}
       type: number
+    - name: Notes
+      admin_ui: {width: 200, order: 16}
+      type: string
     title: Frosthaven
 renamed: true

@@ -15,7 +15,7 @@ components:
   layout_properties: {grid_position: 'KGQBOR,OMEDBA'}
   components:
   - name: class_outlined_card
-    properties: {role: outlined-card, col_widths: '{"EMTEVL":10,"IFWDRX":50}'}
+    properties: {role: outlined-card, col_widths: '{"EMTEVL":15,"IFWDRX":45}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'FXKDBB,OVSJJQ'}
     components:
@@ -31,12 +31,12 @@ components:
       data_bindings:
       - {property: tag, code: '''Class''', writeback: false}
   - name: name_outlined_card
-    properties: {role: outlined-card, col_widths: '{"UELJKE":20,"PGAHRN":40}'}
+    properties: {role: outlined-card, col_widths: '{"UELJKE":10,"PGAHRN":50}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'FXKDBB,NFUNUC'}
     components:
     - name: name_label
-      properties: {text: 'Name:'}
+      properties: {text: 'Name:', align: right}
       type: Label
       layout_properties: {grid_position: 'TUYMUI,UELJKE'}
     - name: name_text_box
@@ -77,7 +77,7 @@ components:
       data_bindings:
       - {property: tag, code: self.experience_text_box, writeback: false}
   - name: level_outlined_card
-    properties: {role: outlined-card, col_widths: '{"JYFFLE":15,"UZTZFQ":45}'}
+    properties: {role: outlined-card, col_widths: '{"JYFFLE":10,"UZTZFQ":50}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'TLZCYG,PMAHXS'}
     components:

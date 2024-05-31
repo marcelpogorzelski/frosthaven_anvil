@@ -54,3 +54,23 @@ class Frosthaven(FrosthavenTemplate):
 
   def text_box_change(self, **event_args):
     self.change_frosthaven_value(event_args["sender"].text, event_args["sender"].tag)
+
+  def bonus_defense_text_box_change(self, **event_args):
+    self.change_frosthaven_value(event_args["sender"].text, event_args["sender"].tag)
+    self.total_defense_text_box.text = Utilites.get_total_defense(moral=self.frosthaven['Moral'], defense=self.frosthaven['Defense'])
+
+  def bonus_defense_text_box_pressed_enter(self, **event_args):
+    self.change_frosthaven_value(event_args["sender"].text, event_args["sender"].tag)
+    self.total_defense_text_box.text = Utilites.get_total_defense(moral=self.frosthaven['Moral'], defense=self.frosthaven['Defense'])
+
+  def bonus_defense_inc_button_click(self, **event_args):
+    new_value = event_args["sender"].tag.text + 1
+    event_args["sender"].tag.text = new_value
+    self.change_frosthaven_value(new_value, event_args["sender"].tag.tag)
+    self.total_defense_text_box.text = Utilites.get_total_defense(moral=self.frosthaven['Moral'], defense=self.frosthaven['Defense'])
+
+  def bonus_defense_dec_button_click(self, **event_args):
+    new_value = event_args["sender"].tag.text - 1
+    event_args["sender"].tag.text = new_value
+    self.change_frosthaven_value(new_value, event_args["sender"].tag.tag)
+    self.total_defense_text_box.text = Utilites.get_total_defense(moral=self.frosthaven['Moral'], defense=self.frosthaven['Defense'])

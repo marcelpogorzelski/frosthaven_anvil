@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..Character import Character
 from ..Frosthaven import Frosthaven
+from ..Party import Party
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -19,7 +20,6 @@ class Main(MainTemplate):
   def go_to_character(self, character):
     self.content_panel.clear()
     self.content_panel.add_component(character)
-    
 
   def initialize_navbar_links(self):
     self.havard_link.tag.form_to_open = Character('Håvard')
@@ -27,13 +27,12 @@ class Main(MainTemplate):
     self.john_magne_link.tag.form_to_open = Character('John Magne')
     self.marcel_link.tag.form_to_open = Character('Marcel')
     self.frosthave_link.tag.form_to_open = Frosthaven()
+    self.party_link.tag.form_to_open = Party()
 
   def reset_links(self, **event_args):
-    self.marcel_link.role = ''
-    self.havard_link.role = ''
-    self.kristian_link.role = ''
-    self.john_magne_link.role = ''
-    self.frosthave_link.role = ''
+    for comp in self.navbar_column_panel.get_components():
+      if comp.role == 'selected':
+        comp.role = ''
 
   def navbar_link_click(self, **event_args):
     self.reset_links()
