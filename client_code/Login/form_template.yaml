@@ -1,8 +1,12 @@
 container: {type: ColumnPanel}
 components:
 - name: login_button
-  properties: {text: Login}
+  properties: {text: Login, role: outlined-button}
   type: Button
-  layout_properties: {grid_position: 'KVZXLZ,UWUUZT'}
+  layout_properties: {grid_position: 'ZERNUA,STRRQX'}
   event_bindings: {click: login_button_click}
+- name: spacer_1
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {grid_position: 'ZERNUA,HXCSEJ'}
 is_package: true

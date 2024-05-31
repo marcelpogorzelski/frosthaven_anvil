@@ -1,5 +1,14 @@
 container: {type: ColumnPanel}
 components:
+- name: outlined_card_1
+  properties: {role: outlined-card}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'NWHRFH,QIFICR'}
+  components:
+  - name: player_label
+    properties: {role: headline, align: center}
+    type: Label
+    layout_properties: {grid_position: 'ZXJWFK,FNVRNJ'}
 - name: character_info_outlined_card
   properties: {role: outlined-card, col_widths: '{}', wrap_on: never}
   type: ColumnPanel

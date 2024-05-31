@@ -13,12 +13,14 @@ class Character(CharacterTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.player = player
+    self.player_label.text = self.player
+    
     self.character = app_tables.characters.get(Player=self.player)
-    #self.character = anvil.server.call('get_character_by_player', player)
     self.experience_text_box.text = self.character['Experience']
     self.level_text_box.text = Utilites.get_level(self.character['Experience'])
     self.name_text_box.text = self.character['Name']
     self.notes_text_area.text = self.character['Notes']
+    
     self.populate_class_drop_down()
     self.populate_resource_panel()
 
@@ -69,5 +71,3 @@ class Character(CharacterTemplate):
   def text_box_change(self, **event_args):
     self.change_character_value(event_args['sender'].text, event_args['sender'].tag)
 
-
-    # Any code you write here will run before the form opens.
