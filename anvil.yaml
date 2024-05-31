@@ -11,7 +11,7 @@ services:
 startup: {type: form, module: Login}
 package_name: Frosthaven2
 allow_embedding: false
-name: Clone of Frosthaven2
+name: Frosthaven
 runtime_options:
   version: 3
   client_version: '3'
