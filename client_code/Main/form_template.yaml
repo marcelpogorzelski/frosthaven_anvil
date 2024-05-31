@@ -12,7 +12,7 @@ components:
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
-- name: column_panel_1
+- name: navbar_column_panel
   properties: {}
   type: ColumnPanel
   layout_properties: {slot: left-nav}

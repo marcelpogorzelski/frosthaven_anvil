@@ -12,6 +12,12 @@ class Main(MainTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.initialize_navbar_links()
+    self.go_to_character(self.marcel_link.tag.form_to_open)
+
+  def go_to_character(self, character):
+    self.content_panel.clear()
+    self.content_panel.add_component(character)
+    
 
   def initialize_navbar_links(self):
     self.havard_link.tag.form_to_open = Character('Havard')
@@ -28,4 +34,5 @@ class Main(MainTemplate):
   def navbar_link_click(self, **event_args):
     self.reset_links()
     event_args['sender'].role = 'selected'
-    open_form(event_args['sender'].tag.form_to_open)
+    self.go_to_character(event_args['sender'].tag.form_to_open)
+    #open_form(event_args['sender'].tag.form_to_open)
