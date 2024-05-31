@@ -2,19 +2,11 @@ container:
   type: ColumnPanel
   data_bindings: []
 components:
-- name: data_grid_1
-  properties:
-    columns:
-    - {id: XCHIXQ, data_key: Player, title: Player}
-    - {id: WNIYTO, data_key: Class, title: Class}
-    - {id: TZLEXO, data_key: Name, title: Name}
-    - {id: KDAOOW, data_key: Experience, title: Experience}
-    show_page_controls: false
-  type: DataGrid
-  components: []
-  layout_properties: {grid_position: 'TSQMIU,RIRHNH'}
-- name: grid_panel_1
-  properties: {}
-  type: GridPanel
-  layout_properties: {grid_position: 'TSQMIU,ALSIZP'}
+- name: outlined_1
+  properties: {role: outlined}
+  type: TextBox
+  layout_properties: {grid_position: 'QSKGOE,YJUJSP'}
+  data_bindings:
+  - {property: text, code: 'self.item[''Name'']', writeback: true}
+  event_bindings: {}
 is_package: true
