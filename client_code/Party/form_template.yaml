@@ -11,10 +11,10 @@ components:
     - {id: KDAOOW, data_key: Experience, title: Experience}
     show_page_controls: false
   type: DataGrid
-  components:
-  - name: repeating_panel_1
-    properties: {item_template: Party.RowTemplate1}
-    type: RepeatingPanel
-    data_bindings: []
+  components: []
   layout_properties: {grid_position: 'TSQMIU,RIRHNH'}
+- name: grid_panel_1
+  properties: {}
+  type: GridPanel
+  layout_properties: {grid_position: 'TSQMIU,ALSIZP'}
 is_package: true
