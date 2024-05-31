@@ -1,0 +1,11 @@
+is_package: true
+container:
+  type: DataRowPanel
+  data_bindings: []
+components:
+- name: label_1
+  properties: {}
+  type: Label
+  layout_properties: {column: JKSDUP}
+  data_bindings:
+  - {property: text, code: 'self.item[''Class''][''Name'']', writeback: false}

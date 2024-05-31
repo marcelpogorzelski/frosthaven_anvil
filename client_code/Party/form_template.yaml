@@ -2,17 +2,18 @@ container:
   type: ColumnPanel
   data_bindings: []
 components:
-- name: outlined_1
-  properties: {role: outlined}
-  type: TextBox
-  layout_properties: {grid_position: 'QSKGOE,YJUJSP'}
-  data_bindings:
-  - {property: text, code: 'self.item[''Name'']', writeback: true}
-  event_bindings: {}
-- name: outlined_2
-  properties: {role: outlined, type: number}
-  type: TextBox
-  layout_properties: {grid_position: 'SGNYYV,ZDJRRG'}
-  data_bindings:
-  - {property: text, code: 'self.item[''Gold'']', writeback: false}
+- name: characters_data_grid
+  properties:
+    columns:
+    - {id: JKSDUP, title: Class, data_key: Class, expand: true}
+    - {id: VJQQOR, title: Name, data_key: Name}
+    - {id: OJLQEN, title: Experience, data_key: Experience}
+    show_page_controls: false
+  type: DataGrid
+  components:
+  - name: characters_repeating_panel
+    properties: {item_template: Party.RowTemplate1}
+    type: RepeatingPanel
+    data_bindings: []
+  layout_properties: {grid_position: 'VQEZUT,WUURIE'}
 is_package: true

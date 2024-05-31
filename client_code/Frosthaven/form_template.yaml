@@ -15,7 +15,7 @@ components:
   layout_properties: {grid_position: 'SWCBFQ,TXIVAJ'}
   components:
   - name: name_outlined_card
-    properties: {role: outlined-card, col_widths: '{"UELJKE":15,"PGAHRN":45}'}
+    properties: {role: outlined-card, col_widths: '{"UELJKE":20,"PGAHRN":40}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,CMAXHE SOQXUU,YJMSMI'}
     components:
@@ -27,11 +27,12 @@ components:
       properties: {}
       type: TextBox
       layout_properties: {grid_position: 'TUYMUI,PGAHRN'}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      event_bindings: {}
       data_bindings:
       - {property: tag, code: '''Name''', writeback: false}
+      - {property: text, code: 'self.item[''Name'']', writeback: true}
   - name: moral_outlined_card
-    properties: {role: outlined-card}
+    properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,CMAXHE ONGFYK,JBQKMG'}
     components:
@@ -45,23 +46,10 @@ components:
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings:
       - {property: tag, code: '''Moral''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: inc_moral_button
-      properties: {text: '', icon: 'fa:plus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,GOJLJI'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.moral_text_box, writeback: false}
-    - name: dec_moral_button
-      properties: {text: '', icon: 'fa:minus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,HWQLMJ'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.moral_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Moral'']', writeback: true}
+      event_bindings: {}
   - name: bonus_defense_outlined_card
-    properties: {role: outlined-card, col_widths: '{"QIGRXS":15,"SMCXRL":15,"GOJLJI":15,"HWQLMJ":15}'}
+    properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,CMAXHE HTETYT,GRSGJL'}
     components:
@@ -75,23 +63,10 @@ components:
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings:
       - {property: tag, code: '''Defense''', writeback: false}
-      event_bindings: {change: bonus_defense_text_box_change, pressed_enter: bonus_defense_text_box_pressed_enter}
-    - name: inc_bonus_defense_button
-      properties: {text: '', icon: 'fa:plus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,GOJLJI'}
-      event_bindings: {click: bonus_defense_inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.bonus_defense_text_box, writeback: false}
-    - name: dec_bonus_defense_button
-      properties: {text: '', icon: 'fa:minus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,HWQLMJ'}
-      event_bindings: {click: bonus_defense_dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.bonus_defense_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Defense'']', writeback: true}
+      event_bindings: {}
   - name: inspiration_outlined_card
-    properties: {role: outlined-card}
+    properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,VNHSZI YSSZDY,RBHXGV'}
     components:
@@ -105,23 +80,10 @@ components:
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings:
       - {property: tag, code: '''Inspiration''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: inc_inspiration_button
-      properties: {text: '', icon: 'fa:plus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,GOJLJI'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.inspiration_text_box, writeback: false}
-    - name: dec_inspiration_button
-      properties: {text: '', icon: 'fa:minus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,HWQLMJ'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.inspiration_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Inspiration'']', writeback: true}
+      event_bindings: {}
   - name: soldiers_outlined_card
-    properties: {role: outlined-card}
+    properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,VNHSZI XWSQKF,HTIEAS'}
     components:
@@ -135,23 +97,10 @@ components:
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings:
       - {property: tag, code: '''Soldiers''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: inc_soldiers_button
-      properties: {text: '', icon: 'fa:plus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,GOJLJI'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.soldiers_text_box, writeback: false}
-    - name: dec_soldiers_button
-      properties: {text: '', icon: 'fa:minus'}
-      type: Button
-      layout_properties: {grid_position: 'BYSQTJ,HWQLMJ'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.soldiers_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Soldiers'']', writeback: true}
+      event_bindings: {}
   - name: total_defense_outlined_card
-    properties: {role: outlined-card, col_widths: '{"QIGRXS":15,"SMCXRL":45}'}
+    properties: {role: outlined-card, col_widths: '{"QIGRXS":20,"SMCXRL":40}'}
     type: ColumnPanel
     layout_properties: {grid_position: 'QFCHJC,VNHSZI QPYIZK,ALHKUQ'}
     components:
@@ -164,7 +113,7 @@ components:
       type: TextBox
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings: []
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
+      event_bindings: {}
 - name: resources_outlined_card
   properties: {role: outlined-card}
   type: ColumnPanel
@@ -189,22 +138,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Gold''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: gold_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      data_bindings:
-      - {property: tag, code: self.gold_text_box, writeback: false}
-      event_bindings: {click: inc_button_click}
-    - name: gold_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      data_bindings:
-      - {property: tag, code: self.gold_text_box, writeback: false}
-      event_bindings: {click: dec_button_click}
+      - {property: text, code: 'self.item[''Gold'']', writeback: true}
+      event_bindings: {}
   - name: gold_spacer_2
     properties: {height: 32}
     type: Spacer
@@ -224,22 +159,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Lumber''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: lumber_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.lumber_text_box, writeback: false}
-    - name: lumber_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.lumber_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Lumber'']', writeback: true}
+      event_bindings: {}
   - name: arrowvine_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -255,22 +176,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Arrowvine''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: arrowvine_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.arrowvine_text_box, writeback: false}
-    - name: arrowvine_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.arrowvine_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
+      event_bindings: {}
   - name: flamefruit_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -286,22 +193,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Flamefruit''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: flamefruit_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.flamefruit_text_box, writeback: false}
-    - name: flamefruit_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.flamefruit_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
+      event_bindings: {}
   - name: metal_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -318,22 +211,8 @@ components:
       layout_properties: {grid_position: 'SRDWPE,UATBAF'}
       data_bindings:
       - {property: tag, code: '''Metal''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: metal_pust_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'SRDWPE,JTRCFD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.metal_text_box, writeback: false}
-    - name: metal_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'SRDWPE,SDJVUQ'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.metal_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Metal'']', writeback: true}
+      event_bindings: {}
   - name: axenut_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -349,22 +228,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Axenut''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: axenut_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.axenut_text_box, writeback: false}
-    - name: axenut_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.axenut_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Axenut'']', writeback: true}
+      event_bindings: {}
   - name: rockroot_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -381,22 +246,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Rockroot''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: rockroot_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.rockroot_text_box, writeback: false}
-    - name: rockroot_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.rockroot_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
+      event_bindings: {}
   - name: hide_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -412,22 +263,8 @@ components:
       layout_properties: {grid_position: 'SRDWPE,UATBAF'}
       data_bindings:
       - {property: tag, code: '''Hide''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: hide_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'SRDWPE,JTRCFD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.hide_text_box, writeback: false}
-    - name: hide_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'SRDWPE,SDJVUQ'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.hide_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Hide'']', writeback: true}
+      event_bindings: {}
   - name: corpsecap_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -443,22 +280,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Corpsecap''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: corpsecap_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.corpsecap_text_box, writeback: false}
-    - name: corpsecap_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.corpsecap_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Corpsecap'']', writeback: true}
+      event_bindings: {}
   - name: snowthistle_outlined_card
     properties: {role: outlined-card}
     type: ColumnPanel
@@ -474,22 +297,8 @@ components:
       layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
       data_bindings:
       - {property: tag, code: '''Snowthistle''', writeback: false}
-      event_bindings: {change: text_box_change, pressed_enter: text_box_pressed_enter}
-    - name: snowthistle_plus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:plus', icon_align: top,
-        align: full}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,AGSVWD'}
-      event_bindings: {click: inc_button_click}
-      data_bindings:
-      - {property: tag, code: self.snowthistle_text_box, writeback: false}
-    - name: snowthistle_minus_button
-      properties: {text: '', spacing_above: large, icon: 'fa:minus', icon_align: top}
-      type: Button
-      layout_properties: {grid_position: 'CSVYYZ,LUXPQB'}
-      event_bindings: {click: dec_button_click}
-      data_bindings:
-      - {property: tag, code: self.snowthistle_text_box, writeback: false}
+      - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
+      event_bindings: {}
 - name: notes_outlined_card
   properties: {role: outlined-card}
   type: ColumnPanel
@@ -500,10 +309,10 @@ components:
     type: Label
     layout_properties: {grid_position: 'LLIAGN,BJYWYY'}
   - name: notes_text_area
-    properties: {height: 307.884521484375}
+    properties: {height: '400', auto_expand: true}
     type: TextArea
     layout_properties: {grid_position: 'XAZDWX,BXNCMR'}
-    event_bindings: {change: text_box_change}
+    event_bindings: {}
     data_bindings:
-    - {property: tag, code: '''Notes''', writeback: false}
+    - {property: text, code: 'self.item[''Notes'']', writeback: true}
 is_package: true
