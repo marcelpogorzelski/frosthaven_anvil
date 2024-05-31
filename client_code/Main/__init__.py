@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..Character import Character
+from ..Frosthaven import Frosthaven
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -25,12 +26,14 @@ class Main(MainTemplate):
     self.kristian_link.tag.form_to_open = Character('Kristian')
     self.john_magne_link.tag.form_to_open = Character('John Magne')
     self.marcel_link.tag.form_to_open = Character('Marcel')
+    self.frosthave_link.tag.form_to_open = Frosthaven()
 
   def reset_links(self, **event_args):
     self.marcel_link.role = ''
     self.havard_link.role = ''
     self.kristian_link.role = ''
     self.john_magne_link.role = ''
+    self.frosthave_link.role = ''
 
   def navbar_link_click(self, **event_args):
     self.reset_links()
