@@ -13,6 +13,13 @@ class Party(PartyTemplate):
     self.init_components(**properties)
     #self.item = app_tables.characters.get(Player='Marcel')
     #self.repeating_panel_1.items = app_tables.characters.search()
+    self.item = app_tables.frosthaven.search()[0]
     self.characters_repeating_panel.items = app_tables.characters.search()
+
+  def get_party_level(self):
+    total_levels = 0
+    for character in self.characters_repeating_panel.items:
+      total_levels += character['Level']
+    average_level = total_levels / 4
 
   

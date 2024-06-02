@@ -29,9 +29,8 @@ class Character(CharacterTemplate):
     level = Utilites.get_level(self.experience_text_box.text)
     if level != self.item['Level']:
       self.item['Level'] = level
-      #self.item.update()
-      self.refresh_data_bindings()
-    #self.level_text_box.text = Utilites.get_level(self.experience_text_box.text)
+      self.item.update()
+      self.level_text_box.text = level
 
 
 

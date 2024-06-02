@@ -161,5 +161,8 @@ db_schema:
     - name: Notes
       admin_ui: {width: 200, order: 16}
       type: string
+    - name: Adjust Level
+      admin_ui: {width: 200, order: 17}
+      type: number
     title: Frosthaven
 renamed: true
