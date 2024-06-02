@@ -47,7 +47,7 @@ components:
       data_bindings:
       - {property: tag, code: '''Moral''', writeback: false}
       - {property: text, code: 'self.item[''Moral'']', writeback: true}
-      event_bindings: {}
+      event_bindings: {change: text_box_change}
   - name: bonus_defense_outlined_card
     properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
     type: ColumnPanel
@@ -64,7 +64,7 @@ components:
       data_bindings:
       - {property: tag, code: '''Defense''', writeback: false}
       - {property: text, code: 'self.item[''Defense'']', writeback: true}
-      event_bindings: {}
+      event_bindings: {change: text_box_change}
   - name: inspiration_outlined_card
     properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
     type: ColumnPanel

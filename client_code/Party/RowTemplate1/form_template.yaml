@@ -3,7 +3,7 @@ container:
   type: DataRowPanel
   data_bindings: []
 components:
-- name: label_1
+- name: class_label
   properties: {}
   type: Label
   layout_properties: {column: JKSDUP}

@@ -25,5 +25,13 @@ class Character(CharacterTemplate):
       item_list.append((row['Name'], row))
     self.class_drop_down.items = item_list
 
+  def experience_text_box_change(self, **event_args):
+    level = Utilites.get_level(self.experience_text_box.text)
+    if level != self.item['Level']:
+      self.item['Level'] = level
+      #self.item.update()
+      self.refresh_data_bindings()
+    #self.level_text_box.text = Utilites.get_level(self.experience_text_box.text)
+
 
 

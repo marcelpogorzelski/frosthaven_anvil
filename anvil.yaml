@@ -71,6 +71,9 @@ db_schema:
       admin_ui: {width: 200, order: 12}
       type: link_single
       target: classes
+    - name: Level
+      admin_ui: {width: 200, order: 13}
+      type: number
     title: Characters
   classes:
     client: full

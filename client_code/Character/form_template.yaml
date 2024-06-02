@@ -63,7 +63,7 @@ components:
       layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
       data_bindings:
       - {property: text, code: 'self.item[''Experience'']', writeback: true}
-      event_bindings: {}
+      event_bindings: {change: experience_text_box_change}
   - name: level_outlined_card
     properties: {role: outlined-card, col_widths: '{"JYFFLE":10,"UZTZFQ":50}'}
     type: ColumnPanel
@@ -77,6 +77,8 @@ components:
       properties: {type: number, enabled: false}
       type: TextBox
       layout_properties: {grid_position: 'HOUEKS,UZTZFQ'}
+      data_bindings:
+      - {property: text, code: 'self.item[''Level'']', writeback: false}
 - name: resources_outlined_card
   properties: {role: outlined-card}
   type: ColumnPanel

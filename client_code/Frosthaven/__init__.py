@@ -16,3 +16,7 @@ class Frosthaven(FrosthavenTemplate):
   
     self.total_defense_text_box.text = Utilites.get_total_defense(moral=self.item['Moral'], defense=self.item['Defense'])
 
+  def text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    self.total_defense_text_box.text = Utilites.get_total_defense(moral=self.moral_text_box.text, defense=self.bonus_defense_text_box.text)
+
