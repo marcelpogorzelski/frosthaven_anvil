@@ -12,48 +12,78 @@ class Resources(ResourcesTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+    self.item = app_tables.frosthaven.search()[0]
     self.character_repeating_panel.items = app_tables.characters.search()
-    self.frosthaven_data_row_panel.item = app_tables.frosthaven.search()[0]
     self.total_data_row_panel.item = self.get_resources()
 
   def get_resources(self):
-    characters = app_tables.characters.search()
-    frosthaven = app_tables.frosthaven.search()[0]
-
     total_resources = {'Name': 'Total', 'Gold': 0, 'Lumber': 0, 'Metal': 0, 'Hide': 0, 'Arrowvine': 0, 'Axenut': 0, 'Corpsecap': 0, 'Flamefruit': 0, 'Rockroot': 0, 'Snowthistle': 0}
-    for resource in characters:
-      total_resources['Gold'] += resource['Gold']
-      total_resources['Lumber'] += resource['Lumber']
-      total_resources['Metal'] += resource['Metal']
-      total_resources['Hide'] += resource['Hide']
-      total_resources['Arrowvine'] += resource['Arrowvine']
-      total_resources['Axenut'] += resource['Axenut']
-      total_resources['Corpsecap'] += resource['Corpsecap']
-      total_resources['Flamefruit'] += resource['Flamefruit']
-      total_resources['Rockroot'] += resource['Rockroot']
-      total_resources['Snowthistle'] += resource['Snowthistle']
 
-    
-    total_resources['Gold'] += frosthaven['Gold']
-    total_resources['Lumber'] += frosthaven['Lumber']
-    total_resources['Metal'] += frosthaven['Metal']
-    total_resources['Hide'] += frosthaven['Hide']
-    total_resources['Arrowvine'] += frosthaven['Arrowvine']
-    total_resources['Axenut'] += frosthaven['Axenut']
-    total_resources['Corpsecap'] += frosthaven['Corpsecap']
-    total_resources['Flamefruit'] += frosthaven['Flamefruit']
-    total_resources['Rockroot'] += frosthaven['Rockroot']
-    total_resources['Snowthistle'] += frosthaven['Snowthistle']
-      
-    #resources.append(total_resources)
-    
+    for character in self.character_repeating_panel.get_components():
+      total_resources['Gold'] += character.player_gold_text_box.text
+      total_resources['Lumber'] += character.player_lumber_text_box.text
+      total_resources['Metal'] += character.player_metal_text_box.text
+      total_resources['Hide'] += character.player_hide_text_box.text
+      total_resources['Arrowvine'] += character.player_arrowvine_text_box.text
+      total_resources['Axenut'] += character.player_axenut_text_box.text
+      total_resources['Corpsecap'] += character.player_corpsecap_text_box.text
+      total_resources['Flamefruit'] += character.player_flamefruit_text_box.text
+      total_resources['Rockroot'] += character.player_rockroot_text_box.text
+      total_resources['Snowthistle'] += character.player_snowthistle_text_box.text
+
+    total_resources['Gold'] += self.frosthaven_gold_text_box.text
+    total_resources['Lumber'] += self.frosthaven_lumber_text_box.text
+    total_resources['Metal'] += self.frosthaven_metal_text_box.text
+    total_resources['Hide'] += self.frosthaven_hide_text_box.text
+    total_resources['Arrowvine'] += self.frosthaven_arrowvine_text_box.text
+    total_resources['Axenut'] += self.frosthaven_axenut_text_box.text
+    total_resources['Corpsecap'] += self.frosthaven_corpsecap_text_box.text
+    total_resources['Flamefruit'] += self.frosthaven_flamefruit_text_box.text
+    total_resources['Rockroot'] += self.frosthaven_rockroot_text_box.text
+    total_resources['Snowthistle'] += self.frosthaven_snowthistle_text_box.text
+
     return total_resources
-
-
-
-  
-        
     
-    
+  def total_row_replace(self):
+    self.data_grid_1.get_components()[-1].remove_from_parent()
+    row = DataRowPanel(item=self.get_resources())
+    self.data_grid_1.add_component(row)
 
-    # Any code you write here will run before the form opens.
+  def text_box_change(self, **event_args):
+    self.total_row_replace()
+
+  def frosthaven_lumber_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_metal_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_hide_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_arrowvine_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_axenut_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_corpsecap_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_flamefruit_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_rockroot_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def frosthaven_snowthistle_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass

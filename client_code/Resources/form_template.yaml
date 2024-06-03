@@ -4,7 +4,7 @@ components:
   properties:
     columns:
     - {id: XSAFZX, data_key: Name, title: Name}
-    - {id: IYDZYZ, data_key: Gold, title: Gold}
+    - {id: IYDZYZ, data_key: Gold, title: Gold, expand: false}
     - {id: TWVBIC, data_key: Lumber, title: Lumber}
     - {id: AOSTAK, data_key: Metal, title: Metal}
     - {id: FOSWJJ, data_key: Hide, title: Hide}
@@ -16,11 +16,13 @@ components:
     - {id: SSKCUR, data_key: Snowthistle, title: Snowthistle}
     show_page_controls: false
     role: tonal-data-grid
+    wrap_on: mobile
   type: DataGrid
   components:
   - name: character_repeating_panel
     properties: {item_template: Resources.RowTemplate3}
     type: RepeatingPanel
+    data_bindings: []
   - name: frosthaven_data_row_panel
     properties: {}
     type: DataRowPanel
@@ -29,8 +31,79 @@ components:
       properties: {text: Frosthaven}
       type: Label
       layout_properties: {column: XSAFZX}
+    - name: frosthaven_gold_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: IYDZYZ}
+      data_bindings:
+      - {property: text, code: 'self.item[''Gold'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_lumber_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: TWVBIC}
+      data_bindings:
+      - {property: text, code: 'self.item[''Lumber'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_metal_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: AOSTAK}
+      data_bindings:
+      - {property: text, code: 'self.item[''Metal'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_hide_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: FOSWJJ}
+      data_bindings:
+      - {property: text, code: 'self.item[''Hide'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_arrowvine_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: QISJAP}
+      data_bindings:
+      - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_axenut_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: UWWRFX}
+      data_bindings:
+      - {property: text, code: 'self.item[''Axenut'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_corpsecap_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: YXYOUI}
+      data_bindings:
+      - {property: text, code: 'self.item[''Corpsecap'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_flamefruit_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: ZPALIO}
+      data_bindings:
+      - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_rockroot_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: HROJIF}
+      data_bindings:
+      - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
+      event_bindings: {change: text_box_change}
+    - name: frosthaven_snowthistle_text_box
+      properties: {type: number}
+      type: TextBox
+      layout_properties: {column: SSKCUR}
+      data_bindings:
+      - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
+      event_bindings: {change: text_box_change}
   - name: total_data_row_panel
     properties: {}
     type: DataRowPanel
+    components: []
   layout_properties: {grid_position: 'HIETRA,TXOBZJ'}
 is_package: true
