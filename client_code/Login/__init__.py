@@ -15,5 +15,6 @@ class Login(LoginTemplate):
     # Any code you write here will run before the form opens.
 
   def login_button_click(self, **event_args):
-    #anvil.users.login_with_form()
+    anvil.users.login_with_form()
+    #anvil.users.reset_password('test2','aa_chill_meeting')
     open_form('Main')
