@@ -1,0 +1,36 @@
+container: {type: ColumnPanel}
+components:
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: XSAFZX, data_key: Name, title: Name}
+    - {id: IYDZYZ, data_key: Gold, title: Gold}
+    - {id: TWVBIC, data_key: Lumber, title: Lumber}
+    - {id: AOSTAK, data_key: Metal, title: Metal}
+    - {id: FOSWJJ, data_key: Hide, title: Hide}
+    - {id: QISJAP, data_key: Arrowvine, title: Arrowvine}
+    - {id: UWWRFX, data_key: Axenut, title: Axenut}
+    - {id: YXYOUI, data_key: Corpsecap, title: Corpsecap}
+    - {id: ZPALIO, data_key: Flamefruit, title: Flamefruit}
+    - {id: HROJIF, data_key: Rockroot, title: Rockroot}
+    - {id: SSKCUR, data_key: Snowthistle, title: Snowthistle}
+    show_page_controls: false
+    role: tonal-data-grid
+  type: DataGrid
+  components:
+  - name: character_repeating_panel
+    properties: {item_template: Resources.RowTemplate3}
+    type: RepeatingPanel
+  - name: frosthaven_data_row_panel
+    properties: {}
+    type: DataRowPanel
+    components:
+    - name: frosthaven_label
+      properties: {text: Frosthaven}
+      type: Label
+      layout_properties: {column: XSAFZX}
+  - name: total_data_row_panel
+    properties: {}
+    type: DataRowPanel
+  layout_properties: {grid_position: 'HIETRA,TXOBZJ'}
+is_package: true

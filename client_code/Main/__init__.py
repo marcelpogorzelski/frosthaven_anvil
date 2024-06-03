@@ -8,6 +8,7 @@ from anvil.tables import app_tables
 from ..Character import Character
 from ..Frosthaven import Frosthaven
 from ..Party import Party
+from ..Resources import Resources
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -28,6 +29,7 @@ class Main(MainTemplate):
     self.marcel_link.tag.form_to_open = Character('Marcel')
     self.frosthave_link.tag.form_to_open = Frosthaven()
     self.party_link.tag.form_to_open = Party()
+    self.resources_link.tag.form_to_open = Resources()
 
   def reset_links(self, **event_args):
     for comp in self.navbar_column_panel.get_components():

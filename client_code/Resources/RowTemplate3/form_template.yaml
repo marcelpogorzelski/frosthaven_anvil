@@ -1,0 +1,9 @@
+is_package: true
+container: {type: DataRowPanel}
+components:
+- name: player_label
+  properties: {}
+  type: Label
+  layout_properties: {column: XSAFZX}
+  data_bindings:
+  - {property: text, code: 'self.item[''Player'']', writeback: false}

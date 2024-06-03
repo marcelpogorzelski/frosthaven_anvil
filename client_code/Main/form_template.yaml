@@ -30,6 +30,13 @@ components:
     layout_properties: {grid_position: 'SWOOJY,UXNVSH'}
     event_bindings: {click: navbar_link_click}
     data_bindings: []
+    components: []
+  - name: resources_link
+    properties: {text: Resources, align: center}
+    type: Link
+    layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
+    event_bindings: {click: navbar_link_click}
+    data_bindings: []
   - name: havard_link
     properties: {text: Håvard, align: center}
     type: Link
