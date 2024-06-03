@@ -58,6 +58,3 @@ def get_total_defense(moral, defense):
     moral_defense = 15
   
   return moral_defense + defense
-    
-  
-

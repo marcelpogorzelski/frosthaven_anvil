@@ -165,4 +165,24 @@ db_schema:
       admin_ui: {width: 200, order: 17}
       type: number
     title: Frosthaven
+  scenario_info:
+    client: search
+    server: full
+    columns:
+    - name: Level
+      admin_ui: {order: 0, width: 200}
+      type: number
+    - name: Gold Conversion
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Trap Damage
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: Hazardous Terrain
+      admin_ui: {width: 200, order: 3}
+      type: number
+    - name: Bonus Experience
+      admin_ui: {width: 200, order: 4}
+      type: number
+    title: Scenario Info
 renamed: true

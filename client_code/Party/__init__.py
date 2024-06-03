@@ -5,7 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+import math
 
 class Party(PartyTemplate):
   def __init__(self, **properties):
@@ -15,11 +15,19 @@ class Party(PartyTemplate):
     #self.repeating_panel_1.items = app_tables.characters.search()
     self.item = app_tables.frosthaven.search()[0]
     self.characters_repeating_panel.items = app_tables.characters.search()
+    self.scenario_info_repeating_panel.items = app_tables.scenario_info.search()
+    self.get_party_level()
+    self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)
 
   def get_party_level(self):
     total_levels = 0
     for character in self.characters_repeating_panel.items:
       total_levels += character['Level']
-    average_level = total_levels / 4
+    average_level = math.ceil(total_levels / 4 / 2) + self.adjust_level_text_box.text
+    self.party_level_text_box.text = average_level
+
+  def adjust_level_text_box_change(self, **event_args):
+    self.get_party_level()
+    self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)
 
   
