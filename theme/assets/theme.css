@@ -996,6 +996,16 @@ input[disabled] ~ span {
 }
 
 /* Data Grids */
+.anvil-role-wide .data-grid-child-panel {
+  overflow-x: auto;
+}
+
+.anvil-role-wide .anvil-data-row-panel {
+  flex-wrap: nowrap;
+  min-width: -moz-min-content;
+  min-width: min-content;
+}
+
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header {
   background: linear-gradient(0deg, %color:Primary Overlay 2%, %color:Primary Overlay 2%), %color:Background%;
   border-bottom: 1px solid %color:Surface Variant%;
@@ -1026,6 +1036,8 @@ input[disabled] ~ span {
   border-bottom: 0;
   border-right: 0;
 }
+
+
 
 
 /*Plots*/
