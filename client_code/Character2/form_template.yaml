@@ -1,16 +1,39 @@
-container: {type: ColumnPanel}
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{"LYJZGV":30,"WQHFFC":30}'}
 components:
 - name: data_grid_1
   properties:
     columns:
-    - {id: JKSDUP, title: Test, data_key: column_1, width: '150'}
-    - {id: VJQQOR, title: Test2, data_key: column_2, width: '150'}
-    - {id: OJLQEN, title: Test3, data_key: column_3, width: '150'}
-    auto_header: false
+    - {id: JKSDUP, title: Test, data_key: column_1, width: '160'}
+    - {id: VJQQOR, title: Test2, data_key: column_2, width: '160'}
+    - {id: OJLQEN, title: Test3, data_key: column_3, width: '160'}
+    auto_header: true
     show_page_controls: false
     role: wide
+    visible: true
   type: DataGrid
   components:
+  - name: column_panel_1
+    properties: {col_widths: '{"GQVSWX":25,"PBTHYE":27}'}
+    type: ColumnPanel
+    components:
+    - name: outlined_card_1
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'VPEICG,GQVSWX'}
+      components:
+      - name: player_label
+        properties: {role: headline, align: center}
+        type: Label
+        layout_properties: {grid_position: 'GZCJGR,SNNVDS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Player'']', writeback: false}
+    - name: spacer_1
+      properties: {height: 32}
+      type: Spacer
+      layout_properties: {grid_position: 'VPEICG,PBTHYE'}
+    layout_properties: {}
   - name: gold_data_row_panel
     properties: {}
     type: DataRowPanel
@@ -177,5 +200,5 @@ components:
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         data_bindings:
         - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
-  layout_properties: {grid_position: 'IHPQBU,LYJZGV'}
+  layout_properties: {grid_position: 'IHPQBU,LYJZGV', full_width_row: false}
 is_package: true
