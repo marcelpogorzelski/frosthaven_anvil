@@ -274,7 +274,7 @@ components:
         type: Label
         layout_properties: {row: MDFEZT, width_xs: 12, col_xs: 0}
       - name: notes_text_area
-        properties: {height: 246.3515625}
+        properties: {height: '300'}
         type: TextArea
         layout_properties: {row: PGYLWS, width_xs: 12, col_xs: 0}
         event_bindings: {}
