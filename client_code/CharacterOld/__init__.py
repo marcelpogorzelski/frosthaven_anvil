@@ -1,15 +1,15 @@
-from ._anvil_designer import CharacterTemplate
+from ._anvil_designer import CharacterOldTemplate
 from anvil import *
-import anvil.server
 import anvil.users
+import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Utilites
 
 
-class Character(CharacterTemplate):
-  def __init__(self, player, **properties):
+class CharacterOld(CharacterOldTemplate):
+  def __init__(self, player,**properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.player = player
@@ -31,4 +31,6 @@ class Character(CharacterTemplate):
       self.item['Level'] = level
       self.item.update()
       self.level_text_box.text = level
-    # Any code you write here will run before the form opens.
+
+
+

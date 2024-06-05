@@ -20,10 +20,14 @@ class Party(PartyTemplate):
     self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)
 
   def get_party_level(self):
+    adjust_level = self.adjust_level_text_box.text
+    if not adjust_level:
+      adjust_level = 0
     total_levels = 0
+    
     for character in self.characters_repeating_panel.items:
       total_levels += character['Level']
-    average_level = math.ceil(total_levels / 4 / 2) + self.adjust_level_text_box.text
+    average_level = math.ceil(total_levels / 4 / 2) + adjust_level
     self.party_level_text_box.text = average_level
 
   def adjust_level_text_box_change(self, **event_args):

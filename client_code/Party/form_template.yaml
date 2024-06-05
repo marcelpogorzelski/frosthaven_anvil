@@ -10,6 +10,7 @@ components:
     - {id: OJLQEN, title: Experience, data_key: Experience}
     - {id: XWVXCR, data_key: Level, title: Level}
     show_page_controls: false
+    role: null
   type: DataGrid
   components:
   - name: characters_repeating_panel
@@ -58,6 +59,7 @@ components:
     - {id: YZVLVR, data_key: Hazardous Terrain, title: Hazardous Terrain}
     - {id: UXAHVX, data_key: Bonus Experience, title: Bonus Experience}
     show_page_controls: false
+    role: null
   type: DataGrid
   components:
   - name: scenario_info_repeating_panel

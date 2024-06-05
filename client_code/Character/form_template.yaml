@@ -1,273 +1,284 @@
 container: {type: ColumnPanel}
 components:
-- name: outlined_card_1
-  properties: {role: outlined-card}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'NWHRFH,QIFICR'}
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: VVDSMS, data_key: column_1, title: Column 1, width: '300'}
+    - {id: UHLZCU, data_key: column_2, title: Column 2, expand: false, width: '300'}
+    - {id: PGVFQE, data_key: column_3, title: Column 3, width: '300'}
+    role: wide
+    show_page_controls: false
+    auto_header: false
+  type: DataGrid
   components:
-  - name: player_label
-    properties: {role: headline, align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZXJWFK,FNVRNJ'}
-    data_bindings:
-    - {property: text, code: 'self.item[''Player'']', writeback: false}
-- name: character_info_outlined_card
-  properties: {role: outlined-card, col_widths: '{}', wrap_on: never}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'KGQBOR,OMEDBA'}
-  components:
-  - name: class_outlined_card
-    properties: {role: outlined-card, col_widths: '{"EMTEVL":15,"IFWDRX":45}'}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'FXKDBB,OVSJJQ'}
+  - name: flow_panel_1
+    properties: {}
+    type: FlowPanel
     components:
-    - name: class_label
-      properties: {text: 'Class:', align: right}
-      type: Label
-      layout_properties: {grid_position: 'NJFWTQ,EMTEVL'}
-    - name: class_drop_down
+    - name: grid_panel_1
       properties: {}
-      type: DropDown
-      layout_properties: {grid_position: 'NJFWTQ,IFWDRX'}
-      event_bindings: {}
-      data_bindings:
-      - {property: selected_value, code: 'self.item[''Class'']', writeback: true}
-  - name: name_outlined_card
-    properties: {role: outlined-card, col_widths: '{"UELJKE":10,"PGAHRN":50}'}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'FXKDBB,NFUNUC'}
+      type: GridPanel
+      layout_properties: {width: 900, expand: false}
+      components:
+      - name: outlined_card_1
+        properties: {role: outlined-card}
+        type: ColumnPanel
+        layout_properties: {row: BVZIXB, width_xs: 12, col_xs: 0}
+        components:
+        - name: label_1
+          properties: {align: center, role: headline}
+          type: Label
+          layout_properties: {grid_position: 'ETBKBS,RTSYPI'}
+          data_bindings:
+          - {property: text, code: 'self.item[''Player'']', writeback: false}
+      - name: class_outlined_card
+        properties: {role: outlined-card, col_widths: '{"EMTEVL":15,"IFWDRX":45}'}
+        type: ColumnPanel
+        layout_properties: {row: BVZIXB, width_xs: 6, col_xs: 0}
+        components:
+        - name: class_label
+          properties: {text: 'Class:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'NJFWTQ,EMTEVL'}
+        - name: class_drop_down
+          properties: {}
+          type: DropDown
+          layout_properties: {grid_position: 'NJFWTQ,IFWDRX'}
+          event_bindings: {}
+          data_bindings:
+          - {property: selected_value, code: 'self.item[''Class'']', writeback: true}
+      - name: name_outlined_card
+        properties: {role: outlined-card, col_widths: '{"UELJKE":15,"PGAHRN":45}'}
+        type: ColumnPanel
+        layout_properties: {row: BVZIXB, width_xs: 6, col_xs: 6}
+        components:
+        - name: name_label
+          properties: {text: 'Name:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'TUYMUI,UELJKE'}
+        - name: name_text_box
+          properties: {}
+          type: TextBox
+          layout_properties: {grid_position: 'TUYMUI,PGAHRN'}
+          event_bindings: {}
+          data_bindings:
+          - {property: text, code: 'self.item[''Name'']', writeback: true}
+      - name: experience_outlined_card
+        properties: {role: outlined-card}
+        type: ColumnPanel
+        layout_properties: {row: AQZPCK, width_xs: 6, col_xs: 0}
+        components:
+        - name: experience_label
+          properties: {text: 'Experiance:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+        - name: experience_text_box
+          properties: {type: number}
+          type: TextBox
+          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+          data_bindings:
+          - {property: text, code: 'self.item[''Experience'']', writeback: true}
+          event_bindings: {change: experience_text_box_change}
+      - name: level_outlined_card
+        properties: {role: outlined-card, col_widths: '{"JYFFLE":10,"UZTZFQ":50}'}
+        type: ColumnPanel
+        layout_properties: {row: AQZPCK, width_xs: 6, col_xs: 6}
+        components:
+        - name: level_label
+          properties: {align: right, text: 'Level:'}
+          type: Label
+          layout_properties: {grid_position: 'HOUEKS,JYFFLE'}
+        - name: level_text_box
+          properties: {type: number, enabled: false}
+          type: TextBox
+          layout_properties: {grid_position: 'HOUEKS,UZTZFQ'}
+          data_bindings:
+          - {property: text, code: 'self.item[''Level'']', writeback: false}
+  - name: gold_data_row_panel
+    properties: {}
+    type: DataRowPanel
     components:
-    - name: name_label
-      properties: {text: 'Name:', align: right}
-      type: Label
-      layout_properties: {grid_position: 'TUYMUI,UELJKE'}
-    - name: name_text_box
+    - name: gold_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: UHLZCU}
+      components:
+      - name: gold_image
+        properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'AYZESO,VZTSOM'}
+      - name: gold_text_box
+        properties: {spacing_above: none, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'SPLVKW,NADRLY'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Gold'']', writeback: true}
+  - name: material_data_row_panel
+    properties: {}
+    type: DataRowPanel
+    components:
+    - name: lumber_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: VVDSMS}
+      components:
+      - name: lumber_image
+        properties: {height: '50', source: _/theme/resource_images/fh-lumber-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: lumber_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Lumber'']', writeback: true}
+    - name: metal_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: UHLZCU}
+      components:
+      - name: metal_image
+        properties: {height: '50', source: _/theme/resource_images/fh-metal-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NLPJME,TJEBXD'}
+      - name: metal_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'TATUZF,GRPEGF'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Metal'']', writeback: true}
+    - name: hide_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: PGVFQE}
+      components:
+      - name: hide_image
+        properties: {height: '50', source: _/theme/resource_images/fh-hide-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'IWAIIV,PJMLTQ'}
+      - name: hide_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'QJKEYD,HMRGEF'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Hide'']', writeback: true}
+  - name: herb_data_row_panel_1
+    properties: {}
+    type: DataRowPanel
+    components:
+    - name: arrowvine_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: VVDSMS}
+      components:
+      - name: arrowvine_image
+        properties: {height: '50', source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: arrowvine_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
+    - name: axenut_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: UHLZCU}
+      components:
+      - name: axenut_image
+        properties: {height: '50', source: _/theme/resource_images/fh-axenut-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: axenut_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Axenut'']', writeback: true}
+    - name: corpsecap_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: PGVFQE}
+      components:
+      - name: corpecap_image
+        properties: {height: '50', source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: corpsecap_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Corpsecap'']', writeback: true}
+  - name: herb_data_row_panel_2
+    properties: {}
+    type: DataRowPanel
+    components:
+    - name: flamefruit_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: VVDSMS}
+      components:
+      - name: flamefruit_image
+        properties: {height: '50', source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: flamefruit_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
+    - name: rockroot_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: UHLZCU}
+      components:
+      - name: rockroot_image
+        properties: {height: '50', source: _/theme/resource_images/fh-rockroot-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: rockroot_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
+    - name: snowthistle_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: PGVFQE}
+      components:
+      - name: snowthistle_image
+        properties: {height: '50', source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
+        type: Image
+        layout_properties: {grid_position: 'NXQNJN,VSXBZS'}
+      - name: snowthistle_text_box
+        properties: {spacing_above: small, type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
+  - name: flow_panel_2
+    properties: {}
+    type: FlowPanel
+    components:
+    - name: grid_panel_2
       properties: {}
-      type: TextBox
-      layout_properties: {grid_position: 'TUYMUI,PGAHRN'}
-      event_bindings: {}
-      data_bindings:
-      - {property: text, code: 'self.item[''Name'']', writeback: true}
-  - name: experience_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'TLZCYG,ZDTYBB'}
-    components:
-    - name: experience_label
-      properties: {text: 'Experiance:', align: right}
-      type: Label
-      layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
-    - name: experience_text_box
-      properties: {type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Experience'']', writeback: true}
-      event_bindings: {change: experience_text_box_change}
-  - name: level_outlined_card
-    properties: {role: outlined-card, col_widths: '{"JYFFLE":10,"UZTZFQ":50}'}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'TLZCYG,PMAHXS'}
-    components:
-    - name: level_label
-      properties: {align: right, text: 'Level:'}
-      type: Label
-      layout_properties: {grid_position: 'HOUEKS,JYFFLE'}
-    - name: level_text_box
-      properties: {type: number, enabled: false}
-      type: TextBox
-      layout_properties: {grid_position: 'HOUEKS,UZTZFQ'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Level'']', writeback: false}
-- name: resources_outlined_card
-  properties: {role: outlined-card}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'AZSLNH,JICZUM'}
-  components:
-  - name: spacer_2
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {grid_position: 'HPZHVD,EWBOKJ'}
-  - name: gold_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'HPZHVD,SBTIQR'}
-    components:
-    - name: gold_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-money-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: gold_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Gold'']', writeback: true}
-      event_bindings: {}
-  - name: spacer_1
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {grid_position: 'HPZHVD,XYBMNZ'}
-  - name: lumber_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'LRJDGX,FMYRZB'}
-    components:
-    - name: lumber_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-lumber-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: lumber_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Lumber'']', writeback: true}
-      event_bindings: {}
-  - name: metal_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'LRJDGX,DAAJZA'}
-    components:
-    - name: metal_image
-      properties: {height: 57.51953125, source: _/theme/resource_images/fh-metal-bw-icon.png,
-        display_mode: shrink_to_fit}
-      type: Image
-      layout_properties: {grid_position: 'SRDWPE,FLMFDI'}
-    - name: metal_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'SRDWPE,UATBAF'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Metal'']', writeback: true}
-      event_bindings: {}
-  - name: hide_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'LRJDGX,TUTVIE'}
-    components:
-    - name: hide_image
-      properties: {height: 56.22265625, source: _/theme/resource_images/fh-hide-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'SRDWPE,VGJVTU'}
-    - name: hide_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'SRDWPE,UATBAF'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Hide'']', writeback: true}
-      event_bindings: {}
-  - name: arrowvine_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'QCZBHH,ASOOZX'}
-    components:
-    - name: arrowvine_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: arrowvine_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
-      event_bindings: {}
-  - name: axenut_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'QCZBHH,CDLDUX'}
-    components:
-    - name: axenut_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-axenut-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: axenut_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Axenut'']', writeback: true}
-      event_bindings: {}
-  - name: corpsecap_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'QCZBHH,SJKOUD'}
-    components:
-    - name: corpsecap_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: corpsecap_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Corpsecap'']', writeback: true}
-      event_bindings: {}
-  - name: flamefruit_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'ZBFUGX,AZNEEU'}
-    components:
-    - name: flamefruit_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: flamefruit_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
-      event_bindings: {}
-  - name: rockroot_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'ZBFUGX,RFVCUK'}
-    components:
-    - name: rockroot_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-rockroot-bw-icon.png,
-        visible: true}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: rockroot_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
-      event_bindings: {}
-  - name: snowthistle_outlined_card
-    properties: {role: outlined-card}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'ZBFUGX,HNDDMW'}
-    components:
-    - name: snowthistle_image
-      properties: {height: 52.5234375, source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
-      type: Image
-      layout_properties: {grid_position: 'CSVYYZ,GIJAUR'}
-    - name: snowthistle_text_box
-      properties: {spacing_above: large, type: number}
-      type: TextBox
-      layout_properties: {grid_position: 'CSVYYZ,DMSOAB'}
-      data_bindings:
-      - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
-      event_bindings: {}
-- name: notes_outlined_card
-  properties: {role: outlined-card}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'YPSSAX,JGHFBB'}
-  components:
-  - name: notes_label
-    properties: {align: center, text: Notes}
-    type: Label
-    layout_properties: {grid_position: 'LLIAGN,BJYWYY'}
-  - name: notes_text_area
-    properties: {height: 147.109375}
-    type: TextArea
-    layout_properties: {grid_position: 'XAZDWX,BXNCMR'}
-    event_bindings: {}
-    data_bindings:
-    - {property: text, code: 'self.item[''Notes'']', writeback: true}
+      type: GridPanel
+      layout_properties: {width: 900}
+      components:
+      - name: notes_label
+        properties: {align: center, text: Notes}
+        type: Label
+        layout_properties: {row: MDFEZT, width_xs: 12, col_xs: 0}
+      - name: notes_text_area
+        properties: {height: 246.3515625}
+        type: TextArea
+        layout_properties: {row: PGYLWS, width_xs: 12, col_xs: 0}
+        event_bindings: {}
+        data_bindings:
+        - {property: text, code: 'self.item[''Notes'']', writeback: true}
+  layout_properties: {grid_position: 'WPUZOL,FNLVKI'}
 is_package: true
