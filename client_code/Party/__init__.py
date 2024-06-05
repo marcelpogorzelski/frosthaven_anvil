@@ -14,7 +14,7 @@ class Party(PartyTemplate):
     #self.item = app_tables.characters.get(Player='Marcel')
     #self.repeating_panel_1.items = app_tables.characters.search()
     self.item = app_tables.frosthaven.search()[0]
-    self.characters_repeating_panel.items = app_tables.characters.search()
+    self.characters_repeating_panel.items = app_tables.characters.search(tables.order_by('Player'))
     self.scenario_info_repeating_panel.items = app_tables.scenario_info.search()
     self.get_party_level()
     self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)

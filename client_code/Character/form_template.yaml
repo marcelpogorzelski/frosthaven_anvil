@@ -19,89 +19,97 @@ components:
       properties: {}
       type: GridPanel
       layout_properties: {width: 900, expand: false}
-      components:
-      - name: outlined_card_1
-        properties: {role: outlined-card}
-        type: ColumnPanel
-        layout_properties: {row: BVZIXB, width_xs: 12, col_xs: 0}
-        components:
-        - name: label_1
-          properties: {align: center, role: headline}
-          type: Label
-          layout_properties: {grid_position: 'ETBKBS,RTSYPI'}
-          data_bindings:
-          - {property: text, code: 'self.item[''Player'']', writeback: false}
-      - name: class_outlined_card
-        properties: {role: outlined-card, col_widths: '{"EMTEVL":15,"IFWDRX":45}'}
-        type: ColumnPanel
-        layout_properties: {row: BVZIXB, width_xs: 6, col_xs: 0}
-        components:
-        - name: class_label
-          properties: {text: 'Class:', align: right}
-          type: Label
-          layout_properties: {grid_position: 'NJFWTQ,EMTEVL'}
-        - name: class_drop_down
-          properties: {}
-          type: DropDown
-          layout_properties: {grid_position: 'NJFWTQ,IFWDRX'}
-          event_bindings: {}
-          data_bindings:
-          - {property: selected_value, code: 'self.item[''Class'']', writeback: true}
-      - name: name_outlined_card
-        properties: {role: outlined-card, col_widths: '{"UELJKE":15,"PGAHRN":45}'}
-        type: ColumnPanel
-        layout_properties: {row: BVZIXB, width_xs: 6, col_xs: 6}
-        components:
-        - name: name_label
-          properties: {text: 'Name:', align: right}
-          type: Label
-          layout_properties: {grid_position: 'TUYMUI,UELJKE'}
-        - name: name_text_box
-          properties: {}
-          type: TextBox
-          layout_properties: {grid_position: 'TUYMUI,PGAHRN'}
-          event_bindings: {}
-          data_bindings:
-          - {property: text, code: 'self.item[''Name'']', writeback: true}
-      - name: experience_outlined_card
-        properties: {role: outlined-card}
-        type: ColumnPanel
-        layout_properties: {row: AQZPCK, width_xs: 6, col_xs: 0}
-        components:
-        - name: experience_label
-          properties: {text: 'Experiance:', align: right}
-          type: Label
-          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
-        - name: experience_text_box
-          properties: {type: number}
-          type: TextBox
-          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
-          data_bindings:
-          - {property: text, code: 'self.item[''Experience'']', writeback: true}
-          event_bindings: {change: experience_text_box_change}
-      - name: level_outlined_card
-        properties: {role: outlined-card, col_widths: '{"JYFFLE":10,"UZTZFQ":50}'}
-        type: ColumnPanel
-        layout_properties: {row: AQZPCK, width_xs: 6, col_xs: 6}
-        components:
-        - name: level_label
-          properties: {align: right, text: 'Level:'}
-          type: Label
-          layout_properties: {grid_position: 'HOUEKS,JYFFLE'}
-        - name: level_text_box
-          properties: {type: number, enabled: false}
-          type: TextBox
-          layout_properties: {grid_position: 'HOUEKS,UZTZFQ'}
-          data_bindings:
-          - {property: text, code: 'self.item[''Level'']', writeback: false}
-  - name: gold_data_row_panel
+      components: []
+  - name: info_data_row_panel
     properties: {}
     type: DataRowPanel
     components:
-    - name: gold_outlined_card
+    - name: name_outlined_card
+      properties: {role: outlined-card, col_widths: '{"UELJKE":15}'}
+      type: ColumnPanel
+      layout_properties: {column: PGVFQE}
+      components:
+      - name: name_label
+        properties: {text: 'Name:', align: center, bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'JZYWYM,OGQZJV'}
+      - name: name_text_box
+        properties: {align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'WHLADJ,KOYEVC'}
+        event_bindings: {}
+        data_bindings:
+        - {property: text, code: 'self.item[''Name'']', writeback: true}
+    - name: class_outlined_card
+      properties: {role: outlined-card, col_widths: '{"EMTEVL":15}'}
+      type: ColumnPanel
+      layout_properties: {column: UHLZCU}
+      components:
+      - name: class_label
+        properties: {text: 'Class:', align: center, role: input-prompt, bold: true}
+        type: Label
+        layout_properties: {grid_position: 'TAOCID,PMPVZF'}
+      - name: class_drop_down
+        properties: {align: center}
+        type: DropDown
+        layout_properties: {grid_position: 'AUKJIV,OASIRG'}
+        event_bindings: {}
+        data_bindings:
+        - {property: selected_value, code: 'self.item[''Class'']', writeback: true}
+    - name: outlined_card_1
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: VVDSMS}
+      components:
+      - name: label_1
+        properties: {align: center, role: null, spacing_above: medium, spacing_below: medium,
+          font_size: 45}
+        type: Label
+        layout_properties: {grid_position: 'ETBKBS,RTSYPI'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Player'']', writeback: false}
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+  - name: level_data_row_panel
+    properties: {}
+    type: DataRowPanel
+    components:
+    - name: experience_outlined_card
       properties: {role: outlined-card}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
+      components:
+      - name: experience_label
+        properties: {text: 'Experiance:', align: center, bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'YGFUJB,EADHFP'}
+      - name: experience_text_box
+        properties: {type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'PHYDAP,QQGNIB'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Experience'']', writeback: true}
+        event_bindings: {change: experience_text_box_change}
+    - name: level_outlined_card
+      properties: {role: outlined-card, col_widths: '{"JYFFLE":10}'}
+      type: ColumnPanel
+      layout_properties: {column: PGVFQE}
+      components:
+      - name: level_label
+        properties: {align: center, text: 'Level:', bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'IMJEUP,SPLCZR'}
+      - name: level_text_box
+        properties: {type: number, enabled: false, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Level'']', writeback: false}
+    - name: gold_outlined_card
+      properties: {role: outlined-card}
+      type: ColumnPanel
+      layout_properties: {column: VVDSMS}
       components:
       - name: gold_image
         properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
@@ -270,7 +278,7 @@ components:
       layout_properties: {width: 900}
       components:
       - name: notes_label
-        properties: {align: center, text: Notes}
+        properties: {align: center, text: Notes, role: headline}
         type: Label
         layout_properties: {row: MDFEZT, width_xs: 12, col_xs: 0}
       - name: notes_text_area

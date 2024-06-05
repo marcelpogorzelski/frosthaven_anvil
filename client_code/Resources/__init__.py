@@ -13,7 +13,7 @@ class Resources(ResourcesTemplate):
     self.init_components(**properties)
 
     self.item = app_tables.frosthaven.search()[0]
-    self.character_repeating_panel.items = app_tables.characters.search()
+    self.character_repeating_panel.items = app_tables.characters.search(tables.order_by('Player'))
     self.total_data_row_panel.item = self.get_resources()
 
   def get_resources(self):

@@ -44,19 +44,19 @@ components:
     event_bindings: {click: havard_link_click}
     data_bindings: []
     components: []
+  - name: john_magne_link
+    properties: {text: John Magne, align: center}
+    type: Link
+    layout_properties: {grid_position: 'RLVNAZ,TAKGTV'}
+    event_bindings: {click: john_magne_link_click}
+    data_bindings: []
+    components: []
   - name: kristian_link
     properties: {text: Kristian, align: center}
     type: Link
     layout_properties: {grid_position: 'XXELWF,HLZAKM'}
     event_bindings: {click: kristian_link_click}
     data_bindings: []
-  - name: john_magne_link
-    properties: {text: John Magne, align: center}
-    type: Link
-    layout_properties: {grid_position: 'KLHUHK,KKIMLC'}
-    event_bindings: {click: john_magne_link_click}
-    data_bindings: []
-    components: []
   - name: marcel_link
     properties: {text: Marcel, align: center}
     type: Link

@@ -29,115 +29,106 @@ components:
           properties: {role: headline, align: center, text: Frosthaven}
           type: Label
           layout_properties: {grid_position: 'ZXJWFK,FNVRNJ'}
-  - name: info_data_row_panel
-    properties: {}
-    type: DataRowPanel
-    components:
-    - name: inspiration_outlined_card
-      properties: {role: outlined-card, col_widths: '{"QIGRXS":10}'}
-      type: ColumnPanel
-      layout_properties: {column: VJQQOR}
-      components:
-      - name: inspiration_label
-        properties: {text: 'Inspiration:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'OYESGM,GELTEQ'}
-      - name: inspiration_text_box
-        properties: {type: number, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
-        data_bindings:
-        - {property: tag, code: '''Inspiration''', writeback: false}
-        - {property: text, code: 'self.item[''Inspiration'']', writeback: true}
-        event_bindings: {}
-    - name: soldiers_outlined_card
-      properties: {role: outlined-card, col_widths: '{"QIGRXS":10}'}
-      type: ColumnPanel
-      layout_properties: {column: OJLQEN}
-      components:
-      - name: soldiers_label
-        properties: {text: 'Soldiers:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'AASGLK,QQBPXJ'}
-      - name: soldiers_text_box
-        properties: {type: number, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'UXVCFH,BVPOQR'}
-        data_bindings:
-        - {property: tag, code: '''Soldiers''', writeback: false}
-        - {property: text, code: 'self.item[''Soldiers'']', writeback: true}
-        event_bindings: {}
-    - name: name_outlined_card
-      properties: {role: outlined-card, col_widths: '{"UELJKE":15}'}
-      type: ColumnPanel
-      layout_properties: {column: JKSDUP}
-      components:
-      - name: name_label
-        properties: {text: 'Party Name:', align: center, role: input-prompt, bold: true}
-        type: Label
-        layout_properties: {grid_position: 'LDIBWI,OCZLKB'}
-      - name: name_text_box
-        properties: {align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'MEHUWP,PZSTJI'}
-        event_bindings: {}
-        data_bindings:
-        - {property: tag, code: '''Name''', writeback: false}
-        - {property: text, code: 'self.item[''Name'']', writeback: true}
-  - name: defense_data_row_panel
-    properties: {}
-    type: DataRowPanel
-    components:
-    - name: moral_outlined_card
-      properties: {role: outlined-card, col_widths: '{"SMCXRL":20}'}
-      type: ColumnPanel
-      layout_properties: {column: JKSDUP}
-      components:
-      - name: moral_label
-        properties: {text: 'Moral:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'LWIKAG,IICEWD'}
-      - name: moral_text_box
-        properties: {type: number, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'AJPPQW,KXWMWB'}
-        data_bindings:
-        - {property: tag, code: '''Moral''', writeback: false}
-        - {property: text, code: 'self.item[''Moral'']', writeback: true}
-        event_bindings: {change: text_box_change}
-    - name: bonus_defense_outlined_card
-      properties: {role: outlined-card, col_widths: '{"QIGRXS":10}'}
-      type: ColumnPanel
-      layout_properties: {column: VJQQOR}
-      components:
-      - name: bonus_defense_label
-        properties: {text: 'Wall Defense:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'YJQUYU,ZTNSDL'}
-      - name: bonus_defense_text_box
-        properties: {type: number, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'BJHTFD,TLOINS'}
-        data_bindings:
-        - {property: tag, code: '''Defense''', writeback: false}
-        - {property: text, code: 'self.item[''Defense'']', writeback: true}
-        event_bindings: {change: text_box_change}
-    - name: total_defense_outlined_card
-      properties: {role: outlined-card, col_widths: '{"SMCXRL":40}'}
-      type: ColumnPanel
-      layout_properties: {column: OJLQEN}
-      components:
-      - name: total_defense_label
-        properties: {text: 'Total Defense:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'PEXYPI,GDNJBE'}
-        data_bindings: []
-      - name: total_defense_text_box
-        properties: {type: number, enabled: false, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
-        data_bindings: []
-        event_bindings: {}
+      - name: name_outlined_card
+        properties: {role: outlined-card, col_widths: '{"UELJKE":15,"PGAHRN":45}'}
+        type: ColumnPanel
+        layout_properties: {row: DLUGKM, width_xs: 6, col_xs: 0}
+        components:
+        - name: name_label
+          properties: {text: 'Party Name:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'TUYMUI,UELJKE'}
+        - name: name_text_box
+          properties: {}
+          type: TextBox
+          layout_properties: {grid_position: 'TUYMUI,PGAHRN'}
+          event_bindings: {}
+          data_bindings:
+          - {property: tag, code: '''Name''', writeback: false}
+          - {property: text, code: 'self.item[''Name'']', writeback: true}
+      - name: inspiration_outlined_card
+        properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":30}'}
+        type: ColumnPanel
+        layout_properties: {row: DLUGKM, width_xs: 6, col_xs: 6}
+        components:
+        - name: inspiration_label
+          properties: {text: 'Inspiration:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+        - name: inspiration_text_box
+          properties: {type: number}
+          type: TextBox
+          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+          data_bindings:
+          - {property: tag, code: '''Inspiration''', writeback: false}
+          - {property: text, code: 'self.item[''Inspiration'']', writeback: true}
+          event_bindings: {}
+      - name: moral_outlined_card
+        properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
+        type: ColumnPanel
+        layout_properties: {row: LXCOFT, width_xs: 6, col_xs: 0}
+        components:
+        - name: moral_label
+          properties: {text: 'Moral:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+        - name: moral_text_box
+          properties: {type: number}
+          type: TextBox
+          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+          data_bindings:
+          - {property: tag, code: '''Moral''', writeback: false}
+          - {property: text, code: 'self.item[''Moral'']', writeback: true}
+          event_bindings: {change: text_box_change}
+      - name: soldiers_outlined_card
+        properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
+        type: ColumnPanel
+        layout_properties: {row: LXCOFT, width_xs: 6, col_xs: 6}
+        components:
+        - name: soldiers_label
+          properties: {text: 'Soldiers:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+        - name: soldiers_text_box
+          properties: {type: number}
+          type: TextBox
+          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+          data_bindings:
+          - {property: tag, code: '''Soldiers''', writeback: false}
+          - {property: text, code: 'self.item[''Soldiers'']', writeback: true}
+          event_bindings: {}
+      - name: bonus_defense_outlined_card
+        properties: {role: outlined-card, col_widths: '{"QIGRXS":10,"SMCXRL":20}'}
+        type: ColumnPanel
+        layout_properties: {row: VMSOBU, width_xs: 6, col_xs: 0}
+        components:
+        - name: bonus_defense_label
+          properties: {text: 'Wall Defense:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+        - name: bonus_defense_text_box
+          properties: {type: number}
+          type: TextBox
+          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+          data_bindings:
+          - {property: tag, code: '''Defense''', writeback: false}
+          - {property: text, code: 'self.item[''Defense'']', writeback: true}
+          event_bindings: {change: text_box_change}
+      - name: total_defense_outlined_card
+        properties: {role: outlined-card, col_widths: '{"QIGRXS":20,"SMCXRL":40}'}
+        type: ColumnPanel
+        layout_properties: {row: VMSOBU, width_xs: 6, col_xs: 6}
+        components:
+        - name: total_defense_label
+          properties: {text: 'Total Defense:', align: right}
+          type: Label
+          layout_properties: {grid_position: 'BYSQTJ,QIGRXS'}
+        - name: total_defense_text_box
+          properties: {type: number, enabled: false}
+          type: TextBox
+          layout_properties: {grid_position: 'BYSQTJ,SMCXRL'}
+          data_bindings: []
+          event_bindings: {}
   - name: gold_data_row_panel
     properties: {}
     type: DataRowPanel
@@ -324,5 +315,5 @@ components:
         event_bindings: {}
         data_bindings:
         - {property: text, code: 'self.item[''Notes'']', writeback: true}
-  layout_properties: {grid_position: 'CWBDNV,FIPKJV'}
+  layout_properties: {grid_position: 'CWBDNV,ELPTBK'}
 is_package: true

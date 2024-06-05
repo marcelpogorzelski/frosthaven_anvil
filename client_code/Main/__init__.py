@@ -7,7 +7,6 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..Character import Character
 from ..Frosthaven import Frosthaven
-from ..Frosthaven_copy import Frosthaven_copy
 from ..Party import Party
 from ..Resources import Resources
 
@@ -16,7 +15,7 @@ class Main(MainTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.frosthave_link.role = 'selected'
-    self.change_form(Frosthaven_copy())
+    self.change_form(Frosthaven())
  
   def change_form(self, form):
     self.content_panel.clear()
@@ -37,7 +36,7 @@ class Main(MainTemplate):
 
   def frosthave_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
-    self.change_form(Frosthaven_copy())
+    self.change_form(Frosthaven())
 
   def party_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
