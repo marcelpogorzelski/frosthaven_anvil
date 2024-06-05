@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..Character import Character
+from ..Character2 import Character2
 from ..Frosthaven import Frosthaven
 from ..Party import Party
 from ..Resources import Resources
@@ -60,4 +61,4 @@ class Main(MainTemplate):
 
   def marcel_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
-    self.change_form(Character('Marcel'))
+    self.change_form(Character2('Marcel'))
