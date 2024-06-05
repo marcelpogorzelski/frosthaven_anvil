@@ -996,6 +996,8 @@ input[disabled] ~ span {
 }
 
 /* Data Grids */
+
+/* Marcel */
 .anvil-role-wide .data-grid-child-panel {
   overflow-x: auto;
 }
