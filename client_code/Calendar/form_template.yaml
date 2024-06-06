@@ -1,0 +1,18 @@
+container: {type: ColumnPanel}
+components:
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: VCYXHH, data_key: Week, title: Week}
+    - {id: PEUWUZ, data_key: Sections, title: Sections}
+    - {id: JROJRQ, data_key: Finished, title: Finished}
+    - {id: WDDQPO, data_key: Comments, title: Comments}
+    role: [tonal-data-grid, wide]
+    show_page_controls: false
+  type: DataGrid
+  components:
+  - name: repeating_panel_1
+    properties: {item_template: Calendar.RowTemplate5}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'GQPJFH,IPBYKA'}
+is_package: true

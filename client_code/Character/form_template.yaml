@@ -41,7 +41,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Name'']', writeback: true}
     - name: class_outlined_card
-      properties: {role: outlined-card, col_widths: '{"EMTEVL":15}'}
+      properties: {role: outlined-card, col_widths: '{}'}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
       components:
@@ -50,10 +50,9 @@ components:
         type: Label
         layout_properties: {grid_position: 'TAOCID,PMPVZF'}
       - name: class_drop_down
-        properties: {align: center}
+        properties: {align: full}
         type: DropDown
-        layout_properties: {grid_position: 'AUKJIV,OASIRG'}
-        event_bindings: {}
+        layout_properties: {grid_position: 'THRWQD,VTXHLI'}
         data_bindings:
         - {property: selected_value, code: 'self.item[''Class'']', writeback: true}
     - name: outlined_card_1

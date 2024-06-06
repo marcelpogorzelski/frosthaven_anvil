@@ -185,4 +185,21 @@ db_schema:
       admin_ui: {width: 200, order: 4}
       type: number
     title: Scenario Info
+  calendar:
+    client: full
+    server: full
+    columns:
+    - name: Week
+      admin_ui: {width: 200, order: 0}
+      type: number
+    - name: Sections
+      admin_ui: {width: 200, order: 1}
+      type: string
+    - name: Finished
+      admin_ui: {order: 2, width: 200}
+      type: bool
+    - name: Comments
+      admin_ui: {width: 200, order: 3}
+      type: string
+    title: Calendar
 renamed: true
