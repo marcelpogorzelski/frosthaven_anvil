@@ -11,8 +11,6 @@ class Party(PartyTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    #self.item = app_tables.characters.get(Player='Marcel')
-    #self.repeating_panel_1.items = app_tables.characters.search()
     self.item = app_tables.frosthaven.search()[0]
     self.characters_repeating_panel.items = app_tables.characters.search(tables.order_by('Player'))
     self.scenario_info_repeating_panel.items = app_tables.scenario_info.search()
