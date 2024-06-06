@@ -1,3 +1,27 @@
 is_package: true
-container: {type: DataRowPanel}
-components: []
+container:
+  type: DataRowPanel
+  properties: {background: ''}
+  data_bindings:
+  - {property: background, code: 'self.get_calendar_background(self.item[''Week''],
+      self.item[''Finished''])', writeback: false}
+components:
+- name: sections_text_box
+  properties: {}
+  type: TextBox
+  layout_properties: {column: PEUWUZ}
+  data_bindings:
+  - {property: text, code: 'self.item[''Sections'']', writeback: true}
+- name: finished_check_box
+  properties: {text: '', allow_indeterminate: false, align: center}
+  type: CheckBox
+  layout_properties: {column: JROJRQ}
+  data_bindings:
+  - {property: checked, code: 'self.item[''Finished'']', writeback: true}
+  event_bindings: {change: finished_check_box_change}
+- name: comments_text_box
+  properties: {}
+  type: TextBox
+  layout_properties: {column: WDDQPO}
+  data_bindings:
+  - {property: text, code: 'self.item[''Comments'']', writeback: true}

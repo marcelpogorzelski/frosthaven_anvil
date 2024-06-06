@@ -24,6 +24,12 @@ components:
     event_bindings: {click: frosthave_link_click}
     data_bindings: []
     components: []
+  - name: calendar_link
+    properties: {text: Calendar, align: center}
+    type: Link
+    layout_properties: {grid_position: 'WEBJSV,ALEILZ'}
+    event_bindings: {click: calendar_link_click}
+    data_bindings: []
   - name: party_link
     properties: {text: Party, align: center}
     type: Link
@@ -76,7 +82,7 @@ components:
     layout_properties: {grid_position: 'BSTBDA,LODRQE'}
     event_bindings: {click: logout_button_click}
 - name: label_1
-  properties: {text: Homepage}
+  properties: {text: Campaign Tracker}
   type: Label
   layout_properties: {slot: title}
 layout_metadata: {title: Campaign}

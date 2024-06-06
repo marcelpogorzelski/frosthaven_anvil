@@ -1,6 +1,6 @@
 container: {type: ColumnPanel}
 components:
-- name: data_grid_1
+- name: calendar_data_grid
   properties:
     columns:
     - {id: VCYXHH, data_key: Week, title: Week}
@@ -8,10 +8,11 @@ components:
     - {id: JROJRQ, data_key: Finished, title: Finished}
     - {id: WDDQPO, data_key: Comments, title: Comments}
     role: [tonal-data-grid, wide]
-    show_page_controls: false
+    show_page_controls: true
+    rows_per_page: 10
   type: DataGrid
   components:
-  - name: repeating_panel_1
+  - name: calendar_repeating_panel
     properties: {item_template: Calendar.RowTemplate5}
     type: RepeatingPanel
   layout_properties: {grid_position: 'GQPJFH,IPBYKA'}

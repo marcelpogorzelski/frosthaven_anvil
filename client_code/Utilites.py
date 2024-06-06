@@ -56,7 +56,7 @@ def get_backup():
   for character in characters:
     character_dict = dict(character)
     character_dict['Class'] = dict(character_dict['Class'])
-    backup['Characters'].append({character['Player']: character_dict})
+    backup['Characters'].append(character_dict)
 
   frosthaven = app_tables.frosthaven.search()[0]
   frosthaven_dict = dict(frosthaven)
@@ -68,8 +68,13 @@ def get_backup():
     character_class_dict = dict(character_class)
     backup['Classes'].append(character_class_dict)
 
+  calendar = app_tables.calendar.search()
+  backup['Calendar'] = list()
+  for week in calendar:
+    week_dict = dict(week)
+    backup['Calendar'].append(week_dict)
+
   now = datetime.now().strftime("%d-%m-%Y %H%M%S")
   backup_filename = f'Frosthaven_backup {now}.json'
   backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup).encode('utf-8'), name=backup_filename)
   return backup_blob
-  

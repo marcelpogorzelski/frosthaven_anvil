@@ -16,5 +16,4 @@ class Login(LoginTemplate):
 
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()
-    #anvil.users.reset_password('test2','aa_chill_meeting')
     open_form('Main')

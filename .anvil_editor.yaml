@@ -16,8 +16,7 @@ unique_ids:
     Party: '171715427032148348289519.56705'
   modules:
     Utilites: '1716982197761702742842671.3378'
-  server_modules:
-    ServerModule1: '1716961023146883004351020.1466'
+  server_modules: {}
   assets:
     resource_images/fh-snowthistle-bw-icon.png: '1717064604111204932775281.25775'
     theme.css: WJWPBKLEFA4NYVMXXRQ2SVLZ2OGYP67X
