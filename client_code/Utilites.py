@@ -5,6 +5,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil import URLMedia
 import json
+from datetime import datetime
 
 
 def get_level(experience):
@@ -66,7 +67,9 @@ def get_backup():
   for character_class in classes:
     character_class_dict = dict(character_class)
     backup['Classes'].append(character_class_dict)
-    
-  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup).encode('utf-8'), name='Frosthaven_backup.json')
+
+  now = datetime.now().strftime("%d-%m-%Y %H%M%S")
+  backup_filename = f'Frosthaven_backup {now}.json'
+  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup).encode('utf-8'), name=backup_filename)
   return backup_blob
   
