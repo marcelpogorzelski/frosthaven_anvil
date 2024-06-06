@@ -9,6 +9,7 @@ from ..Character import Character
 from ..Frosthaven import Frosthaven
 from ..Party import Party
 from ..Resources import Resources
+from ..ImportExport import ImportExport
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -61,3 +62,7 @@ class Main(MainTemplate):
   def marcel_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Character('Marcel'))
+
+  def import_export_link_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.change_form(ImportExport())

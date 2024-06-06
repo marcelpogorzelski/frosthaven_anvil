@@ -4,15 +4,9 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil import URLMedia
-# This is a module.
-# You can define variables and functions here, and use them from any form. For example, in a top-level form:
-#
-#    from . import Module1
-#
-#    Module1.say_hello()
-#
+import json
 
-#=IFS(C2<45,1,C2<95,2,C2<150,3,C2<210,4,C2<275,5,C2<345,6,C2<420,7,C2<500,8,C2>=500,9)
+
 def get_level(experience):
   level = 0
   if experience < 45:
@@ -36,12 +30,7 @@ def get_level(experience):
 
   return level
 
-#def get_resources_image():
-  #lumber_image = URLMedia("_/theme/resource_images/fh-lumber-bw-icon.png")
-  #thumb_lumber_image = anvil.image.generate_thumbnail(lumber_image, 120)
-  #return lumber_image
 
-#=ifs(B17<3, -10, B17<5,-5, B17<8,0,B17<11,5,B17<14,10, B17>=14,15)+B18
 def get_total_defense(moral, defense):
   moral_defense = 0
   if moral < 3:
@@ -58,3 +47,26 @@ def get_total_defense(moral, defense):
     moral_defense = 15
   
   return moral_defense + defense
+
+def get_backup():
+  characters = app_tables.characters.search()
+  backup = {}
+  backup['Characters'] = list()
+  for character in characters:
+    character_dict = dict(character)
+    character_dict['Class'] = dict(character_dict['Class'])
+    backup['Characters'].append({character['Player']: character_dict})
+
+  frosthaven = app_tables.frosthaven.search()[0]
+  frosthaven_dict = dict(frosthaven)
+  backup['Frosthaven'] = frosthaven_dict
+
+  classes = app_tables.classes.search()
+  backup['Classes'] = list()
+  for character_class in classes:
+    character_class_dict = dict(character_class)
+    backup['Classes'].append(character_class_dict)
+    
+  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup).encode('utf-8'), name='Frosthaven_backup.json')
+  return backup_blob
+  

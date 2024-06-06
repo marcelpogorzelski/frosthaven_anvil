@@ -1,0 +1,22 @@
+container: {type: ColumnPanel}
+components:
+- name: grid_panel_1
+  properties: {}
+  type: GridPanel
+  layout_properties: {grid_position: 'PGFOPF,BJHRDY'}
+  components:
+  - name: outlined_card_1
+    properties: {role: outlined-card}
+    type: ColumnPanel
+    layout_properties: {row: TRDFFK, width_xs: 5, col_xs: 0}
+    components:
+    - name: export_label
+      properties: {align: center, text: Export Frosthaven Data}
+      type: Label
+      layout_properties: {grid_position: 'EHUMSA,UOTRVN'}
+    - name: export_button
+      properties: {text: Export}
+      type: Button
+      layout_properties: {grid_position: 'CEFMRD,LHVUCC'}
+      event_bindings: {click: export_button_click}
+is_package: true

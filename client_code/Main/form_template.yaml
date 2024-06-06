@@ -63,6 +63,13 @@ components:
     layout_properties: {grid_position: 'ZWYOUQ,EDAGAJ'}
     event_bindings: {click: marcel_link_click}
     data_bindings: []
+    components: []
+  - name: import_export_link
+    properties: {text: Import/Export, align: center}
+    type: Link
+    layout_properties: {grid_position: 'OMJRFF,RZHHHG'}
+    event_bindings: {click: import_export_link_click}
+    data_bindings: []
   - name: logout_button
     properties: {text: Logout, role: outlined-button}
     type: Button
