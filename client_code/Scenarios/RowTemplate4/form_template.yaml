@@ -1,0 +1,13 @@
+is_package: true
+container:
+  type: DataRowPanel
+  properties: {background: '', align: center}
+  data_bindings: []
+components:
+- name: label_1
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: SNLXTY}
+  data_bindings:
+  - {property: text, code: 'self.item[''Number'']', writeback: false}
+  - {property: background, code: 'self.item[''Storyline'']', writeback: false}

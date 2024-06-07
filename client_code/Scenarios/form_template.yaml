@@ -1,3 +1,20 @@
 container: {type: ColumnPanel}
-components: []
+components:
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: SNLXTY, data_key: Number, title: Number, width: '80'}
+    - {id: GJCQIT, data_key: Name, title: Name, width: '170', expand: false}
+    - {id: EGUNUE, data_key: Status, title: Status, width: '80'}
+    - {id: ZVPYTB, data_key: Notes, title: Notes, width: '200', expand: true}
+    - {id: ZFDBBU, data_key: Requirements, title: Requirements, width: '150'}
+    - {id: IYJEPN, data_key: Chests, title: Chests, width: '150'}
+    rows_per_page: 20
+    role: tonal-data-grid
+  type: DataGrid
+  components:
+  - name: scenario_repeating_panel
+    properties: {item_template: Scenarios.RowTemplate4}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'DGYBGY,EAIQKW'}
 is_package: true

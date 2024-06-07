@@ -38,7 +38,7 @@ components:
     data_bindings: []
     components: []
   - name: scenarios_link
-    properties: {text: Scenarios, align: center, visible: false}
+    properties: {text: Scenarios, align: center, visible: true}
     type: Link
     layout_properties: {grid_position: 'SAYEMB,REHBXZ'}
     event_bindings: {click: scenarios_link_click}
