@@ -203,7 +203,7 @@ db_schema:
       type: string
     title: Calendar
   scenarios:
-    client: none
+    client: full
     server: full
     columns:
     - name: S#
@@ -221,8 +221,11 @@ db_schema:
     - name: Notes
       admin_ui: {width: 200, order: 4}
       type: string
-    - name: Transport
-      admin_ui: {width: 200, order: 5}
+    - name: Requirement
+      admin_ui: {order: 5, width: 200}
       type: media
+    - name: Chests
+      admin_ui: {width: 200, order: 6}
+      type: string
     title: Scenarios
 renamed: true
