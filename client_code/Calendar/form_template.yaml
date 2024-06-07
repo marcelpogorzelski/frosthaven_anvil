@@ -3,10 +3,10 @@ components:
 - name: calendar_data_grid
   properties:
     columns:
-    - {id: VCYXHH, data_key: Week, title: Week}
-    - {id: PEUWUZ, data_key: Sections, title: Sections}
-    - {id: JROJRQ, data_key: Finished, title: Finished}
-    - {id: WDDQPO, data_key: Comments, title: Comments}
+    - {id: VCYXHH, data_key: Week, title: Week, width: '100'}
+    - {id: PEUWUZ, data_key: Sections, title: Sections, width: '300'}
+    - {id: JROJRQ, data_key: Finished, title: Finished, width: '80'}
+    - {id: WDDQPO, data_key: Comments, title: Comments, width: '400'}
     role: [tonal-data-grid, wide]
     show_page_controls: true
     rows_per_page: 10

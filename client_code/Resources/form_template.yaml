@@ -6,12 +6,12 @@ components:
 - name: data_grid_1
   properties:
     columns:
-    - {id: XSAFZX, data_key: Name, title: Name, width: '150'}
+    - {id: XSAFZX, data_key: Name, title: Name, width: '150', expand: false}
     - {id: IYDZYZ, data_key: Gold, title: Gold, expand: false, width: '80'}
     - {id: TWVBIC, data_key: Lumber, title: Lumber, width: '80'}
     - {id: AOSTAK, data_key: Metal, title: Metal, width: '80'}
     - {id: FOSWJJ, data_key: Hide, title: Hide, width: '80'}
-    - {id: QISJAP, data_key: Arrowvine, title: Arrowvine, width: '80'}
+    - {id: QISJAP, data_key: Arrowvine, title: Arrowvine, width: '80', expand: false}
     - {id: UWWRFX, data_key: Axenut, title: Axenut, width: '80'}
     - {id: YXYOUI, data_key: Corpsecap, title: Corpsecap, width: '80'}
     - {id: ZPALIO, data_key: Flamefruit, title: Flamefruit, width: '80'}
@@ -111,5 +111,5 @@ components:
     type: DataRowPanel
     components: []
     layout_properties: {}
-  layout_properties: {grid_position: 'HIETRA,TXOBZJ'}
+  layout_properties: {grid_position: 'HIETRA,TXOBZJ', full_width_row: false}
 is_package: true
