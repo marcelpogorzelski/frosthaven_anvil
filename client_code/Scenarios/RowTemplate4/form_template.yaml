@@ -4,10 +4,35 @@ container:
   properties: {background: '', align: center}
   data_bindings: []
 components:
-- name: label_1
+- name: number_label
   properties: {align: center}
   type: Label
   layout_properties: {column: SNLXTY}
   data_bindings:
   - {property: text, code: 'self.item[''Number'']', writeback: false}
   - {property: background, code: 'self.item[''Storyline'']', writeback: false}
+- name: status_drop_down
+  properties:
+    items: [Available, Finished, Locked]
+  type: DropDown
+  layout_properties: {column: EGUNUE}
+  data_bindings:
+  - {property: selected_value, code: 'self.item[''Status'']', writeback: true}
+- name: notes_text_box
+  properties: {}
+  type: TextBox
+  layout_properties: {column: ZVPYTB}
+  data_bindings:
+  - {property: text, code: 'self.item[''Notes'']', writeback: true}
+- name: req_text_box
+  properties: {}
+  type: TextBox
+  layout_properties: {column: ZFDBBU}
+  data_bindings:
+  - {property: text, code: 'self.item[''Requirements'']', writeback: true}
+- name: chest_text_box
+  properties: {}
+  type: TextBox
+  layout_properties: {column: IYJEPN}
+  data_bindings:
+  - {property: text, code: 'self.item[''Chests'']', writeback: true}
