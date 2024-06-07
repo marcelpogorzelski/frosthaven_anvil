@@ -10,7 +10,7 @@ components:
     - {id: ZFDBBU, data_key: Requirements, title: Requirements, width: '150'}
     - {id: IYJEPN, data_key: Chests, title: Chests, width: '150'}
     rows_per_page: 20
-    role: tonal-data-grid
+    role: [tonal-data-grid, wide]
   type: DataGrid
   components:
   - name: scenario_repeating_panel
