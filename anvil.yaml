@@ -202,4 +202,24 @@ db_schema:
       admin_ui: {width: 200, order: 3}
       type: string
     title: Calendar
+  scenarios:
+    client: none
+    server: full
+    columns:
+    - name: S#
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: Name
+      admin_ui: {width: 200, order: 1}
+      type: string
+    - name: Storyline
+      admin_ui: {width: 200, order: 2}
+      type: string
+    - name: Status
+      admin_ui: {width: 200, order: 3}
+      type: string
+    - name: Notes
+      admin_ui: {width: 200, order: 4}
+      type: string
+    title: Scenarios
 renamed: true
