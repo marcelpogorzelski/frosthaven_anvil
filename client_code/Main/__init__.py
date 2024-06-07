@@ -11,6 +11,7 @@ from ..Party import Party
 from ..Resources import Resources
 from ..ImportExport import ImportExport
 from ..Calendar import Calendar
+from ..Scenarios import Scenarios
 
 class Main(MainTemplate):
   def __init__(self, **properties):
@@ -71,3 +72,7 @@ class Main(MainTemplate):
   def calendar_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Calendar())
+
+  def scenarios_link_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.change_form(Scenarios())
