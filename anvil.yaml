@@ -206,8 +206,8 @@ db_schema:
     client: full
     server: full
     columns:
-    - name: S#
-      admin_ui: {width: 200, order: 0}
+    - name: Number
+      admin_ui: {order: 0, width: 200}
       type: string
     - name: Name
       admin_ui: {width: 200, order: 1}
