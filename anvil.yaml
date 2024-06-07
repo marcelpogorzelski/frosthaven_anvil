@@ -221,5 +221,8 @@ db_schema:
     - name: Notes
       admin_ui: {width: 200, order: 4}
       type: string
+    - name: Transport
+      admin_ui: {width: 200, order: 5}
+      type: media
     title: Scenarios
 renamed: true
