@@ -12,4 +12,20 @@ class Scenarios(ScenariosTemplate):
     self.init_components(**properties)
 
     self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
+    self.populate_unlock_scenario_drop_down()
+
+  def populate_unlock_scenario_drop_down(self):
+    item_list = []
+    for row in app_tables.scenarios.search(Status='Undiscovered'):
+      item_list.append((row['Number'], row))
+    self.unlock_scenario_drop_down.items = item_list
+
+  def add_scenario_button_click(self, **event_args):
+    scenario = self.unlock_scenario_drop_down.selected_value
+    if not confirm(f"Do you want to add scenario {scenario['Number']}?"):
+      return
+    scenario['Status'] = 'Available'
+    scenario.update()
+    self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
+    self.populate_unlock_scenario_drop_down()
 
