@@ -227,5 +227,8 @@ db_schema:
     - name: Requirements
       admin_ui: {width: 200, order: 5}
       type: string
+    - name: Unlocked by
+      admin_ui: {width: 200, order: 7}
+      type: string
     title: Scenarios
 renamed: true

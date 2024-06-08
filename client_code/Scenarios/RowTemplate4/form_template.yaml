@@ -36,3 +36,9 @@ components:
   layout_properties: {column: IYJEPN}
   data_bindings:
   - {property: text, code: 'self.item[''Chests'']', writeback: true}
+- name: text_box_1
+  properties: {}
+  type: TextBox
+  layout_properties: {column: ROGTEG}
+  data_bindings:
+  - {property: text, code: 'self.item[''Unlocked by'']', writeback: true}
