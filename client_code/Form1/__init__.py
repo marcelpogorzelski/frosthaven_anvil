@@ -10,14 +10,25 @@ class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    #self.status_list = ['Available', 'Finished', 'Locked']
 
     # Any code you write here will run before the form opens.
 
   def button_1_click(self, **event_args):
-    self.flow_panel_1.add_component(Label(text=self.drop_down_1.selected_value))
-    remove_button = Button(icon='fa:remove')
-    remove_button.set_event_handler()
+    selected_value = self.drop_down_1.selected_value
+    if not selected_value:
+      return
+    #self.drop_down_1.items =[value for value in self.drop_down_1.items if value != self.drop_down_1.selected_value]
+    selected_value_label = Label(text=selected_value, tag='Status')
+    self.flow_panel_1.add_component(selected_value_label)
+    remove_button = Button(icon='fa:remove', tag=selected_value_label)
+    remove_button.set_event_handler('click', self.remove_button_click)
     self.flow_panel_1.add_component(remove_button)
+    self.drop_down_1.items =[value for value in self.drop_down_1.items if value != selected_value]
 
   def remove_button_click(self, **event_args):
-    ...
+    if event_args['sender'].tag == 'Status':
+      #self.drop_down_1.items
+      ...
+    event_args['sender'].tag.remove_from_parent()
+    event_args['sender'].remove_from_parent()
