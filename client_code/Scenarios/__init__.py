@@ -12,7 +12,7 @@ class Scenarios(ScenariosTemplate):
     self.init_components(**properties)
 
     #self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
-    self.scenario_repeating_panel.items = app_tables.scenarios.search(Status=q.any_of(['Available']))
+    self.scenario_repeating_panel.items = app_tables.scenarios.search(Status=q.any_of('Available', 'Finished', 'Locked'))
     self.populate_unlock_scenario_drop_down()
 
   def populate_unlock_scenario_drop_down(self):
@@ -30,16 +30,9 @@ class Scenarios(ScenariosTemplate):
     self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
     self.populate_unlock_scenario_drop_down()
 
-  def add_status_filter(self, filter_value):
-    ...
-
-  def remove_status_filter(self, filter_value):
-    ...
-
   def status_button_click(self, **event_args):
     if event_args['sender'].role == 'filled-button':
       event_args['sender'].role = 'elevated-button'
-      
     else:
       event_args['sender'].role = 'filled-button'
       self.add_status_filter(event_args['sender'].text)
