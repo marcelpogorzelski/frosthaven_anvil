@@ -28,7 +28,7 @@ class Form1(Form1Template):
 
   def remove_button_click(self, **event_args):
     if event_args['sender'].tag == 'Status':
-      #self.drop_down_1.items
+      self.drop_down_1.items = self.drop_down_1.items.append(event_args['sender'].tag.text).sort()
       ...
     event_args['sender'].tag.remove_from_parent()
     event_args['sender'].remove_from_parent()
