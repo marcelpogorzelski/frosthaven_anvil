@@ -14,7 +14,7 @@ class Form1(Form1Template):
 
     # Any code you write here will run before the form opens.
 
-  def button_1_click(self, **event_args):
+  def status_filter_button_click(self, **event_args):
     selected_value = self.drop_down_1.selected_value
     if not selected_value:
       return
