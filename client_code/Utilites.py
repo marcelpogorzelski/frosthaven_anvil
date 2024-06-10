@@ -49,34 +49,36 @@ def get_total_defense(moral, defense):
   
   return moral_defense + defense
 
-
+def database_to_dict(database, linked_columns=None):
+  dict_list = list()
+  for row in database:
+    row_dict = dict(row)
+    if linked_columns:
+      for column in linked_columns:
+        row_dict[column] = dict(row_dict[column])
+    dict_list.append(row_dict)
+  return dict_list
+    
 
 def get_backup():
-  characters = app_tables.characters.search()
   backup = {}
-  backup['Characters'] = list()
-  for character in characters:
-    character_dict = dict(character)
-    character_dict['Class'] = dict(character_dict['Class'])
-    backup['Characters'].append(character_dict)
 
-  frosthaven = app_tables.frosthaven.search()[0]
-  frosthaven_dict = dict(frosthaven)
-  backup['Frosthaven'] = frosthaven_dict
+  calendar_database = app_tables.calendar.search()
+  backup['Calendar'] = database_to_dict(calendar_database)
+  
+  characters_database = app_tables.characters.search()
+  backup['Characters'] = database_to_dict(characters_database, linked_columns=['Class'])
 
-  classes = app_tables.classes.search()
-  backup['Classes'] = list()
-  for character_class in classes:
-    character_class_dict = dict(character_class)
-    backup['Classes'].append(character_class_dict)
+  classes_database = app_tables.classes.search()
+  backup['Classes'] =  database_to_dict(classes_database)
 
-  calendar = app_tables.calendar.search()
-  backup['Calendar'] = list()
-  for week in calendar:
-    week_dict = dict(week)
-    backup['Calendar'].append(week_dict)
+  frosthaven_database = app_tables.frosthaven.search()
+  backup['Frosthaven'] = database_to_dict(frosthaven_database)
+
+  scenarios_database = app_tables.scenarios.search()
+  backup['Scenarios'] = database_to_dict(scenarios_database)
 
   now = datetime.now().strftime("%d-%m-%Y %H%M%S")
   backup_filename = f'Frosthaven_backup {now}.json'
-  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup).encode('utf-8'), name=backup_filename)
+  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup, indent=4).encode('utf-8'), name=backup_filename)
   return backup_blob
