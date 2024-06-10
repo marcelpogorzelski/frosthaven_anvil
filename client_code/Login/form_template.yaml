@@ -10,12 +10,4 @@ components:
   type: Button
   layout_properties: {grid_position: 'ZERNUA,STRRQX VEUNPF,EEQYFM'}
   event_bindings: {click: login_button_click}
-- name: spacer_1
-  properties: {height: 32}
-  type: Spacer
-  layout_properties: {grid_position: 'ZERNUA,HXCSEJ'}
-- name: spacer_1_copy
-  properties: {height: 32}
-  type: Spacer
-  layout_properties: {grid_position: 'ZERNUA,XLNOIK'}
 is_package: true

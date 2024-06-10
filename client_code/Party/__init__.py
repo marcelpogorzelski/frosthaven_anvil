@@ -32,4 +32,13 @@ class Party(PartyTemplate):
     self.get_party_level()
     self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)
 
+  def adjust_level_plus_button_click(self, **event_args):
+    self.adjust_level_text_box.text = self.adjust_level_text_box.text + 1
+    self.get_party_level()
+    self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)
+    
+  def adjust_level_minus_button_click(self, **event_args):
+    self.adjust_level_text_box.text = self.adjust_level_text_box.text - 1
+    self.get_party_level()
+    self.scenario_info_repeating_panel.raise_event_on_children("x-hightlight-level", scenario_level=self.party_level_text_box.text)
   
