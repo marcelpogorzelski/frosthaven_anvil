@@ -49,6 +49,10 @@ components:
     layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
     event_bindings: {click: resources_link_click}
     data_bindings: []
+  - name: label_2
+    properties: {icon: ''}
+    type: Label
+    layout_properties: {grid_position: 'ELARIG,IPOQMC'}
   - name: havard_link
     properties: {text: Håvard, align: center}
     type: Link
@@ -76,6 +80,10 @@ components:
     event_bindings: {click: marcel_link_click}
     data_bindings: []
     components: []
+  - name: spacer_2
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'OSCWGZ,OOPGXW'}
   - name: import_export_link
     properties: {text: Import/Export, align: center}
     type: Link

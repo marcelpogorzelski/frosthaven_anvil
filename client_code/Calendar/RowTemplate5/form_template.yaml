@@ -3,8 +3,7 @@ container:
   type: DataRowPanel
   properties: {background: ''}
   data_bindings:
-  - {property: background, code: 'self.get_calendar_background(self.item[''Week''],
-      self.item[''Finished''])', writeback: false}
+  - {property: background, code: 'self.get_calendar_background(self.item[''Week''], self.item[''Finished''])', writeback: false}
 components:
 - name: sections_text_box
   properties: {}
