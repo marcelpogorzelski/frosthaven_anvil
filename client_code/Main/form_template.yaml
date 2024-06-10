@@ -53,6 +53,7 @@ components:
     properties: {icon: ''}
     type: Label
     layout_properties: {grid_position: 'ELARIG,IPOQMC'}
+    data_bindings: []
   - name: havard_link
     properties: {text: Håvard, align: center}
     type: Link
