@@ -1,4 +1,6 @@
-container: {type: ColumnPanel}
+container:
+  type: ColumnPanel
+  properties: {col_spacing: small}
 components:
 - name: data_grid_1
   properties:

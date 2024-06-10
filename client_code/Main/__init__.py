@@ -26,6 +26,8 @@ class Main(MainTemplate):
 
   def reset_links(self, **event_args):
     for comp in self.navbar_column_panel.get_components():
+      if type(comp) is Spacer:
+        continue
       if comp.role == 'selected':
         comp.role = ''
 

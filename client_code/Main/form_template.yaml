@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html', visible: true}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{}', col_spacing: medium}
+  properties: {col_widths: '{}', col_spacing: small}
   name: content_panel
   layout_properties: {slot: default}
   components: []
@@ -31,7 +31,7 @@ components:
     event_bindings: {click: calendar_link_click}
     data_bindings: []
   - name: party_link
-    properties: {text: Party, align: center}
+    properties: {text: Party, align: center, icon: ''}
     type: Link
     layout_properties: {grid_position: 'SWOOJY,UXNVSH'}
     event_bindings: {click: party_link_click}
@@ -49,6 +49,10 @@ components:
     layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
     event_bindings: {click: resources_link_click}
     data_bindings: []
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'ZRRXYC,PRVYHE'}
   - name: havard_link
     properties: {text: Håvard, align: center}
     type: Link
@@ -76,6 +80,10 @@ components:
     event_bindings: {click: marcel_link_click}
     data_bindings: []
     components: []
+  - name: spacer_2
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'YZBIKS,GTUAMT'}
   - name: import_export_link
     properties: {text: Import/Export, align: center}
     type: Link
