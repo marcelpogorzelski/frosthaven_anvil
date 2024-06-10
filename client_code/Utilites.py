@@ -49,6 +49,8 @@ def get_total_defense(moral, defense):
   
   return moral_defense + defense
 
+
+
 def get_backup():
   characters = app_tables.characters.search()
   backup = {}
