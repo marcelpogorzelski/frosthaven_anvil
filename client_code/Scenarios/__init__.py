@@ -19,8 +19,11 @@ class Scenarios(ScenariosTemplate):
     status_filter_list = list()
     for filter_button in self.filter_flow_panel.get_components():
       if filter_button.role == 'filled-button':
-        status_filter_list.append(filter_button.text) 
-    self.scenario_repeating_panel.items = app_tables.scenarios.search(Status=q.any_of(*status_filter_list))
+        status_filter_list.append(filter_button.text)
+    if not status_filter_list:
+      self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
+    else:
+      self.scenario_repeating_panel.items = app_tables.scenarios.search(Status=q.any_of(*status_filter_list))
 
   def populate_unlock_scenario_drop_down(self):
     item_list = []
