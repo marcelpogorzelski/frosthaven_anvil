@@ -39,6 +39,7 @@ class Scenarios(ScenariosTemplate):
     scenario.update()
     self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
     self.populate_unlock_scenario_drop_down()
+    Notification(f'Scenario "{scenario["Name"]}" added', style="info", timeout=3).show()
 
   def status_button_click(self, **event_args):
     if event_args['sender'].role == 'filled-button':
