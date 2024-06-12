@@ -46,6 +46,7 @@ components:
   - name: scenario_repeating_panel
     properties: {item_template: Scenarios.RowTemplate4}
     type: RepeatingPanel
+    layout_properties: {}
   - name: flow_panel_1
     properties: {}
     type: FlowPanel
@@ -89,8 +90,8 @@ components:
     layout_properties: {grid_position: 'ZDFGNF,MNFRHN QHVKCX,XSJWNH'}
     data_bindings:
     - {property: foreground, code: self.foregroud_color("#EC6624"), writeback: false}
-  - name: algox_snowspeaker_storyline_label
-    properties: {text: Algox Snowspeaker, background: '#45A3E9', align: center, foreground: ''}
+  - name: algox_icespeakers_storyline_label
+    properties: {text: Algox Icespeakers, background: '#45A3E9', align: center, foreground: ''}
     type: Label
     layout_properties: {grid_position: 'ZDFGNF,ELBDEH FMAJFF,JUOYWB'}
     data_bindings:
@@ -107,8 +108,8 @@ components:
     layout_properties: {grid_position: 'ZDFGNF,ELBDEH JEFTUA,JUZXHC'}
     data_bindings:
     - {property: foreground, code: self.foregroud_color("#552F0F"), writeback: false}
-  - name: algox_icespeaker_storyline_label
-    properties: {text: Algox Icespeaker, background: '#0F1D52', foreground: 'theme:On Primary', align: center}
+  - name: algox_snowspeakers_storyline_label
+    properties: {text: Algox Snowspeakers, background: '#0F1D52', foreground: 'theme:On Primary', align: center}
     type: Label
     layout_properties: {grid_position: 'ZDFGNF,GCAFHY GKEEEC,KHYQHW'}
     data_bindings:
