@@ -5,12 +5,13 @@ container:
   data_bindings: []
 components:
 - name: number_label
-  properties: {align: center}
+  properties: {align: center, foreground: ''}
   type: Label
   layout_properties: {column: SNLXTY}
   data_bindings:
   - {property: text, code: 'self.item[''Number'']', writeback: false}
   - {property: background, code: 'self.item[''Storyline'']', writeback: false}
+  - {property: foreground, code: 'self.foregroud_color(self.item[''Storyline''])', writeback: false}
 - name: status_drop_down
   properties:
     items: [Available, Finished, Locked]

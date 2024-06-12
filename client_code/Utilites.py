@@ -82,3 +82,4 @@ def get_backup():
   backup_filename = f'Frosthaven_backup {now}.json'
   backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup, indent=4).encode('utf-8'), name=backup_filename)
   return backup_blob
+  
