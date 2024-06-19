@@ -101,3 +101,4 @@ components:
   type: Label
   layout_properties: {slot: title}
 layout_metadata: {title: Campaign}
+custom_component: false

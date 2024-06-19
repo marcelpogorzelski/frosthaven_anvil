@@ -1,24 +1,25 @@
 container:
   type: ColumnPanel
-  properties:
-    role: [tonal-data-grid, wide]
+  properties: {role: null}
 components:
 - name: data_grid_1
   properties:
     columns:
     - {id: XSAFZX, data_key: Name, title: Name, width: '150', expand: false}
-    - {id: IYDZYZ, data_key: Gold, title: Gold, expand: false, width: '80'}
-    - {id: TWVBIC, data_key: Lumber, title: Lumber, width: '80'}
-    - {id: AOSTAK, data_key: Metal, title: Metal, width: '80'}
-    - {id: FOSWJJ, data_key: Hide, title: Hide, width: '80'}
-    - {id: QISJAP, data_key: Arrowvine, title: Arrowvine, width: '80', expand: false}
-    - {id: UWWRFX, data_key: Axenut, title: Axenut, width: '80'}
-    - {id: YXYOUI, data_key: Corpsecap, title: Corpsecap, width: '80'}
-    - {id: ZPALIO, data_key: Flamefruit, title: Flamefruit, width: '80'}
-    - {id: HROJIF, data_key: Rockroot, title: Rockroot, width: '80'}
-    - {id: SSKCUR, data_key: Snowthistle, title: Snowthistle, width: '80'}
+    - {id: DQHQWZ, data_key: column_1, title: Experience, width: '100'}
+    - {id: IYDZYZ, data_key: Gold, title: Gold, expand: false, width: '100'}
+    - {id: TWVBIC, data_key: Lumber, title: Lumber, width: '100'}
+    - {id: AOSTAK, data_key: Metal, title: Metal, width: '100'}
+    - {id: FOSWJJ, data_key: Hide, title: Hide, width: '100'}
+    - {id: QISJAP, data_key: Arrowvine, title: Arrowvine, width: '100', expand: false}
+    - {id: UWWRFX, data_key: Axenut, title: Axenut, width: '100'}
+    - {id: YXYOUI, data_key: Corpsecap, title: Corpsecap, width: '100'}
+    - {id: ZPALIO, data_key: Flamefruit, title: Flamefruit, width: '100'}
+    - {id: HROJIF, data_key: Rockroot, title: Rockroot, width: '100'}
+    - {id: SSKCUR, data_key: Snowthistle, title: Snowthistle, width: '100'}
+    - {id: GZOHUF, data_key: column_1, title: Notes}
     show_page_controls: false
-    role: tonal-data-grid
+    role: [tonal-data-grid, wide]
     wrap_on: never
   type: DataGrid
   components:
@@ -105,11 +106,27 @@ components:
       data_bindings:
       - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
       event_bindings: {change: text_box_change}
+    - name: label_1
+      properties: {}
+      type: Label
+      layout_properties: {column: DQHQWZ}
+    - name: label_3
+      properties: {}
+      type: Label
+      layout_properties: {column: GZOHUF}
     layout_properties: {}
   - name: total_data_row_panel
     properties: {align: center}
     type: DataRowPanel
-    components: []
+    components:
+    - name: label_2
+      properties: {}
+      type: Label
+      layout_properties: {column: DQHQWZ}
+    - name: label_4
+      properties: {}
+      type: Label
+      layout_properties: {column: GZOHUF}
     layout_properties: {}
-  layout_properties: {grid_position: 'HIETRA,TXOBZJ', full_width_row: false}
+  layout_properties: {grid_position: 'MBXJUE,PFDFUW', full_width_row: true}
 is_package: true

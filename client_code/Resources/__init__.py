@@ -51,39 +51,3 @@ class Resources(ResourcesTemplate):
 
   def text_box_change(self, **event_args):
     self.total_row_replace()
-
-  def frosthaven_lumber_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_metal_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_hide_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_arrowvine_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_axenut_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_corpsecap_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_flamefruit_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_rockroot_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
-
-  def frosthaven_snowthistle_text_box_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass

@@ -22,7 +22,7 @@ class Main(MainTemplate):
  
   def change_form(self, form):
     self.content_panel.clear()
-    self.content_panel.add_component(form)
+    self.content_panel.add_component(form, full_width_row=True)
 
   def reset_links(self, **event_args):
     for comp in self.navbar_column_panel.get_components():
