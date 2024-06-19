@@ -1007,6 +1007,12 @@ input[disabled] ~ span {
   min-width: -moz-min-content;
   min-width: min-content;
 }
+/*
+.anvil-role-wide .data-grid-child-panel div.data-row-col:first-child {
+  position: absolute;
+  margin-left:0em;
+}
+*/
 
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header {
   background: linear-gradient(0deg, %color:Primary Overlay 2%, %color:Primary Overlay 2%), %color:Background%;
