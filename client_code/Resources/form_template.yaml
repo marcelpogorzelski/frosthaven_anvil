@@ -17,7 +17,7 @@ components:
     - {id: ZPALIO, data_key: Flamefruit, title: Flamefruit, width: '100'}
     - {id: HROJIF, data_key: Rockroot, title: Rockroot, width: '100'}
     - {id: SSKCUR, data_key: Snowthistle, title: Snowthistle, width: '100'}
-    - {id: GZOHUF, data_key: column_1, title: Notes}
+    - {id: GZOHUF, data_key: column_1, title: Notes, width: '300', expand: true}
     show_page_controls: false
     role: [tonal-data-grid, wide]
     wrap_on: never

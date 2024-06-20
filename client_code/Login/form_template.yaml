@@ -1,12 +1,12 @@
 container: {type: ColumnPanel}
 components:
-- name: label_1
+- name: title_label
   properties: {text: Frosthaven, align: center, role: headline, bold: false, italic: false, underline: false, foreground: 'theme:Primary'}
   type: Label
-  layout_properties: {grid_position: 'ZERNUA,STRRQX QMXNXW,VMWLHO'}
+  layout_properties: {grid_position: 'QMXNXW,VMWLHO'}
 - name: login_button
   properties: {text: Login, role: outlined-button, align: center}
   type: Button
-  layout_properties: {grid_position: 'ZERNUA,STRRQX VEUNPF,EEQYFM'}
+  layout_properties: {grid_position: 'VEUNPF,EEQYFM'}
   event_bindings: {click: login_button_click}
 is_package: true

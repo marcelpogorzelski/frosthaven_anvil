@@ -12,11 +12,15 @@ from ..Resources import Resources
 from ..ImportExport import ImportExport
 from ..Calendar import Calendar
 from ..Scenarios import Scenarios
+#from anvil.js.window import window
+
 
 class Main(MainTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    #window.innerWidth
+    
     self.frosthave_link.role = 'selected'
     self.change_form(Frosthaven())
  
