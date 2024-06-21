@@ -101,6 +101,9 @@ def get_backup():
   scenarios_database = app_tables.scenarios.search()
   backup['Scenarios'] = database_to_dict(scenarios_database)
 
+  retired_characters_database = app_tables.retired_characters.search()
+  backup['Retired Characters'] = database_to_dict(retired_characters_database, linked_columns=['Class'])
+
   now = datetime.now().strftime("%d-%m-%Y %H%M%S")
   backup_filename = f'Frosthaven_backup {now}.json'
   backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup, indent=4).encode('utf-8'), name=backup_filename)
