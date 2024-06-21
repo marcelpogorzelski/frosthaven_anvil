@@ -18,6 +18,7 @@ class Frosthaven(FrosthavenTemplate):
     
     self.item = app_tables.frosthaven.search()[0]
     self.fill_total_defense()
+    self.fill_prosperity_level()
 
   def adjust_width(self):
     if window.innerWidth < 900:
@@ -35,7 +36,11 @@ class Frosthaven(FrosthavenTemplate):
   def total_defense_change(self, **event_args):
     self.fill_total_defense()
 
+  def fill_prosperity_level(self):
+    self.fill_total_defense()
+    self.prosperity_level_text_box.text = Utilites.get_prosperity_level(
+      prosperity=self.prosperity_text_box.text
+    )
   def prosperity_level_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
+    self.fill_prosperity_level()
 
