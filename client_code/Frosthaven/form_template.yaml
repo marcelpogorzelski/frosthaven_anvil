@@ -15,20 +15,15 @@ components:
     properties: {}
     type: FlowPanel
     components:
-    - name: grid_panel_1
-      properties: {}
-      type: GridPanel
-      layout_properties: {width: 900}
+    - name: frosthaven_outlined_card
+      properties: {role: outlined-card, spacing_above: small, spacing_below: small, col_spacing: medium}
+      type: ColumnPanel
+      layout_properties: {width: 895}
       components:
-      - name: frosthaven_outlined_card
-        properties: {role: outlined-card}
-        type: ColumnPanel
-        layout_properties: {row: GZFCDP, width_xs: 12, col_xs: 0}
-        components:
-        - name: frosthaven_label
-          properties: {role: headline, align: center, text: Frosthaven}
-          type: Label
-          layout_properties: {grid_position: 'ZXJWFK,FNVRNJ'}
+      - name: frosthaven_label
+        properties: {role: headline, align: center, text: Frosthaven, font_size: 40, spacing_above: large, spacing_below: large}
+        type: Label
+        layout_properties: {grid_position: 'ZXJWFK,FNVRNJ'}
   - name: info_data_row_panel
     properties: {}
     type: DataRowPanel
@@ -47,7 +42,6 @@ components:
         type: TextBox
         layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
         data_bindings:
-        - {property: tag, code: '''Inspiration''', writeback: false}
         - {property: text, code: 'self.item[''Inspiration'']', writeback: true}
         event_bindings: {}
     - name: soldiers_outlined_card
@@ -64,7 +58,6 @@ components:
         type: TextBox
         layout_properties: {grid_position: 'UXVCFH,BVPOQR'}
         data_bindings:
-        - {property: tag, code: '''Soldiers''', writeback: false}
         - {property: text, code: 'self.item[''Soldiers'']', writeback: true}
         event_bindings: {}
     - name: name_outlined_card
@@ -82,7 +75,6 @@ components:
         layout_properties: {grid_position: 'MEHUWP,PZSTJI'}
         event_bindings: {}
         data_bindings:
-        - {property: tag, code: '''Name''', writeback: false}
         - {property: text, code: 'self.item[''Name'']', writeback: true}
   - name: defense_data_row_panel
     properties: {}
@@ -102,9 +94,8 @@ components:
         type: TextBox
         layout_properties: {grid_position: 'AJPPQW,KXWMWB'}
         data_bindings:
-        - {property: tag, code: '''Moral''', writeback: false}
         - {property: text, code: 'self.item[''Moral'']', writeback: true}
-        event_bindings: {change: text_box_change}
+        event_bindings: {change: total_defense_change}
     - name: bonus_defense_outlined_card
       properties: {role: outlined-card, col_widths: '{"QIGRXS":10}'}
       type: ColumnPanel
@@ -119,9 +110,8 @@ components:
         type: TextBox
         layout_properties: {grid_position: 'BJHTFD,TLOINS'}
         data_bindings:
-        - {property: tag, code: '''Defense''', writeback: false}
         - {property: text, code: 'self.item[''Defense'']', writeback: true}
-        event_bindings: {change: text_box_change}
+        event_bindings: {change: total_defense_change}
     - name: total_defense_outlined_card
       properties: {role: outlined-card, col_widths: '{"SMCXRL":40}'}
       type: ColumnPanel
@@ -138,14 +128,14 @@ components:
         layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
         data_bindings: []
         event_bindings: {}
-  - name: gold_data_row_panel
+  - name: prosperity_data_row_panel
     properties: {}
     type: DataRowPanel
     components:
     - name: gold_outlined_card
       properties: {role: outlined-card}
       type: ColumnPanel
-      layout_properties: {column: VJQQOR}
+      layout_properties: {column: JKSDUP}
       components:
       - name: gold_image
         properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
@@ -157,6 +147,38 @@ components:
         layout_properties: {grid_position: 'SPLVKW,NADRLY'}
         data_bindings:
         - {property: text, code: 'self.item[''Gold'']', writeback: true}
+    - name: inspiration_outlined_card_copy
+      properties: {role: outlined-card, col_widths: '{"QIGRXS":10}'}
+      type: ColumnPanel
+      layout_properties: {column: VJQQOR}
+      components:
+      - name: prosperity_label
+        properties: {text: 'Prosperity:', align: center, bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'OYESGM,GELTEQ'}
+      - name: prosperity_text_box
+        properties: {type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Prosperity'']', writeback: true}
+        event_bindings: {change: prosperity_level_change}
+    - name: total_defense_outlined_card_copy
+      properties: {role: outlined-card, col_widths: '{}'}
+      type: ColumnPanel
+      layout_properties: {column: OJLQEN}
+      components:
+      - name: prosperity_level_label
+        properties: {text: 'Prosperity Level:', align: center, bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'HUIRBK,IOMOVJ'}
+        data_bindings: []
+      - name: prosperity_level_text_box
+        properties: {type: number, enabled: false, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
+        data_bindings: []
+        event_bindings: {}
   - name: material_data_row_panel
     properties: {}
     type: DataRowPanel

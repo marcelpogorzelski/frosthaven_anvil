@@ -164,6 +164,9 @@ db_schema:
     - name: Adjust Level
       admin_ui: {width: 200, order: 17}
       type: number
+    - name: Prosperity
+      admin_ui: {order: 0.5, width: 200}
+      type: number
     title: Frosthaven
   scenario_info:
     client: search

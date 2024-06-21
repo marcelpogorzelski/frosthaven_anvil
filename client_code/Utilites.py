@@ -31,6 +31,29 @@ def get_level(experience):
 
   return level
 
+def get_prosperity_level(prosperity):
+  prosperity_level = 1
+  if prosperity < 6:
+    prosperity_level = 1
+  elif prosperity < 15:
+    prosperity_level = 2
+  elif prosperity < 27:
+    prosperity_level = 3
+  elif prosperity < 42:
+    prosperity_level = 4
+  elif prosperity < 60:
+    prosperity_level = 5
+  elif prosperity < 81:
+    prosperity_level = 6
+  elif prosperity < 105:
+    prosperity_level = 7
+  elif prosperity < 132:
+    prosperity_level = 8
+  elif prosperity >= 132:
+    prosperity_level = 9
+
+  return prosperity_level
+
 
 def get_total_defense(moral, defense):
   moral_defense = 0
