@@ -1,0 +1,18 @@
+is_package: true
+container:
+  type: DataRowPanel
+  properties: {align: center}
+  data_bindings: []
+components:
+- name: mastery_one_check_box
+  properties: {text: '', align: center}
+  type: CheckBox
+  layout_properties: {column: IAVUMZ}
+  data_bindings:
+  - {property: checked, code: 'self.item[''Mastery1'']', writeback: false}
+- name: mastery_two_check_box
+  properties: {text: '', align: center}
+  type: CheckBox
+  layout_properties: {column: VZHMYS}
+  data_bindings:
+  - {property: checked, code: 'self.item[''Mastery2'']', writeback: false}

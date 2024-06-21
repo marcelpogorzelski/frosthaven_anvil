@@ -31,6 +31,16 @@ components:
     layout_properties: {grid_position: 'WEBJSV,ALEILZ'}
     event_bindings: {click: calendar_link_click}
     data_bindings: []
+  - name: scenarios_link
+    properties: {text: Scenarios, align: center, visible: true}
+    type: Link
+    layout_properties: {grid_position: 'HWKODQ,QOEZTE'}
+    event_bindings: {click: scenarios_link_click}
+    data_bindings: []
+  - name: spacer_3
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'IQQEEW,AUKVPP'}
   - name: party_link
     properties: {text: Party, align: center, icon: ''}
     type: Link
@@ -38,12 +48,6 @@ components:
     event_bindings: {click: party_link_click}
     data_bindings: []
     components: []
-  - name: scenarios_link
-    properties: {text: Scenarios, align: center, visible: true}
-    type: Link
-    layout_properties: {grid_position: 'SAYEMB,REHBXZ'}
-    event_bindings: {click: scenarios_link_click}
-    data_bindings: []
   - name: resources_link
     properties: {text: Resources, align: center}
     type: Link
@@ -85,6 +89,16 @@ components:
     properties: {height: 32}
     type: Spacer
     layout_properties: {grid_position: 'YZBIKS,GTUAMT'}
+  - name: retired_characters_link
+    properties: {text: Retired Characters, align: center}
+    type: Link
+    layout_properties: {grid_position: 'THCHKQ,OQIHNS'}
+    event_bindings: {click: retired_characters_link_click}
+    data_bindings: []
+  - name: spacer_2_copy
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'TIYLTP,GMTQUH'}
   - name: import_export_link
     properties: {text: Import/Export, align: center}
     type: Link
