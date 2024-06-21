@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Utilites
+from ..RetirePrompt import RetirePrompt
 from anvil.js.window import window
 
 
@@ -44,3 +45,18 @@ class Character(CharacterTemplate):
       self.item.update()
       self.level_text_box.text = level
     # Any code you write here will run before the form opens.
+
+  def retire_button_click(self, **event_args):
+    if not confirm("Are you retiring?"):
+      return
+    retire_prompt = RetirePrompt()
+    alert(content=retire_prompt)
+    
+    name = self.name_text_box.text
+    experience = self.experience_text_box.text
+    level = self.level_text_box.text
+    character_class = self.class_drop_down.selected_value
+
+    perks = retire_prompt.perks_text_box.text
+    
+    app_tables.retired_characters.add_row(Player=self.player,Name=name, Experience=experience, Level=level, Class=character_class, Perks=perks, Mastery1=None, Mastery2=None)

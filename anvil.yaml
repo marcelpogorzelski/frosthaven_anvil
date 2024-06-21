@@ -234,5 +234,35 @@ db_schema:
       admin_ui: {width: 200, order: 7}
       type: string
     title: Scenarios
+  retired_characters:
+    client: none
+    server: full
+    columns:
+    - name: Player
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: Name
+      admin_ui: {width: 200, order: 1}
+      type: string
+    - name: Experience
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: Class
+      admin_ui: {width: 200, order: 3}
+      type: link_single
+      target: classes
+    - name: Level
+      admin_ui: {width: 200, order: 2.5}
+      type: number
+    - name: Perks
+      admin_ui: {width: 200, order: 4}
+      type: number
+    - name: Mastery2
+      admin_ui: {order: 6, width: 200}
+      type: bool
+    - name: Mastery1
+      admin_ui: {order: 5, width: 200}
+      type: bool
+    title: Retired Characters
 renamed: true
 metadata: {logo_img: 'asset:communityIcon_99w87f5etxy91.png'}

@@ -288,5 +288,10 @@ components:
         event_bindings: {}
         data_bindings:
         - {property: text, code: 'self.item[''Notes'']', writeback: true}
+      - name: retire_button
+        properties: {text: Retire, role: filled-button, background: ''}
+        type: Button
+        layout_properties: {row: IPZBTQ, width_xs: 12, col_xs: 0}
+        event_bindings: {click: retire_button_click}
   layout_properties: {grid_position: 'WPUZOL,FNLVKI', full_width_row: true}
 is_package: true
