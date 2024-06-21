@@ -44,11 +44,16 @@ class Character(CharacterTemplate):
       self.item['Level'] = level
       self.item.update()
       self.level_text_box.text = level
-    # Any code you write here will run before the form opens.
 
   def retire_button_click(self, **event_args):
     if not confirm("Are you retiring?"):
       return
+    
+    self.retire_character()
+    self.transfer_all_to_frosthaven()
+    self.reset_character()
+
+  def retire_character(self):
     retire_prompt = RetirePrompt()
     alert(content=retire_prompt)
     
@@ -57,6 +62,41 @@ class Character(CharacterTemplate):
     level = self.level_text_box.text
     character_class = self.class_drop_down.selected_value
 
-    perks = retire_prompt.perks_text_box.text
+    perks = retire_prompt.perk_checks_text_box.text
+    master1 = retire_prompt.m1_check_box.checked
+    master2 = retire_prompt.m2_check_box.checked
     
-    app_tables.retired_characters.add_row(Player=self.player,Name=name, Experience=experience, Level=level, Class=character_class, Perks=perks, Mastery1=None, Mastery2=None)
+    app_tables.retired_characters.add_row(Player=self.player,Name=name, Experience=experience, Level=level, Class=character_class, Perks=perks, Mastery1=master1, Mastery2=master2)
+
+  def transfer_all_to_frosthaven(self): 
+    frosthaven = app_tables.frosthaven.search()[0]
+    frosthaven['Lumber'] += self.lumber_text_box.text
+    frosthaven['Metal'] += self.metal_text_box.text
+    frosthaven['Hide'] += self.hide_text_box.text
+    frosthaven['Arrowvine'] += self.arrowvine_text_box.text
+    frosthaven['Axenut'] += self.axenut_text_box.text
+    frosthaven['Corpsecap'] += self.corpsecap_text_box.text
+    frosthaven['Flamefruit'] += self.flamefruit_text_box.text
+    frosthaven['Rockroot'] += self.rockroot_text_box.text
+    frosthaven['Snowthistle'] += self.rockroot_text_box.text
+    frosthaven['Prosperity'] += 2
+
+  def reset_character(self):
+    self.item['Experience'] = 0
+    self.item['Name'] = ''
+    self.item['Level'] = Utilites.get_level(experience=self.item['Experience'])
+    self.item['Gold'] = 0
+    self.item['Lumber'] = 0
+    self.item['Metal'] = 0
+    self.item['Hide'] = 0
+    self.item['Arrowvine'] = 0
+    self.item['Axenut'] = 0
+    self.item['Corpsecap'] = 0
+    self.item['Flamefruit'] = 0
+    self.item['Rockroot'] = 0
+    self.item['Snowthistle'] = 0
+    self.item['Notes'] = ''
+    self.item.update()
+
+    self.parent.parent.change_form(Character(self.player))
+    
