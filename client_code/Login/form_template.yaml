@@ -14,9 +14,4 @@ components:
     type: Button
     layout_properties: {grid_position: 'SXZNGQ,DQPACS'}
     event_bindings: {click: login_button_click}
-- name: column_panel_1
-  properties: {}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'VYKDUC,HNXUHP', full_width_row: true}
-  components: []
 is_package: true
