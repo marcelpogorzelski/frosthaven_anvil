@@ -17,11 +17,11 @@ components:
     properties: {item_template: Party.RowTemplate1}
     type: RepeatingPanel
     data_bindings: []
-  layout_properties: {grid_position: 'VQEZUT,WUURIE'}
+  layout_properties: {grid_position: 'VQEZUT,WUURIE', full_width_row: true}
 - name: flow_panel_1
   properties: {spacing: small}
   type: FlowPanel
-  layout_properties: {grid_position: 'EFQDYI,SQUHTE'}
+  layout_properties: {grid_position: 'EFQDYI,SQUHTE', full_width_row: true}
   components:
   - name: outlined_card_1
     properties: {role: outlined-card}
@@ -77,5 +77,5 @@ components:
   - name: scenario_info_repeating_panel
     properties: {item_template: Party.RowTemplate2}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'FTGXDR,FCPOAA'}
+  layout_properties: {grid_position: 'FTGXDR,FCPOAA', full_width_row: true}
 is_package: true
