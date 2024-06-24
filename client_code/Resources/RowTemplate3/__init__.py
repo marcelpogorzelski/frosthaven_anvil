@@ -23,4 +23,4 @@ class RowTemplate3(RowTemplate3Template):
   def experience_text_box_change(self, **event_args):
     player = event_args['sender'].tag
     player['Level'] = Utilites.get_level(experience=event_args['sender'].text)
-    print(player['Level'])
+    player.update()

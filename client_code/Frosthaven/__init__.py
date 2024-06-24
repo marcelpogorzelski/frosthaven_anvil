@@ -29,18 +29,21 @@ class Frosthaven(FrosthavenTemplate):
       self.data_grid_1.columns = data_grid_columns
 
   def fill_total_defense(self):
+    moral = self.moral_text_box.text or 0
+    defense = self.bonus_defense_text_box.text or 0
     self.total_defense_text_box.text = Utilites.get_total_defense(
-      moral=self.moral_text_box.text, defense=self.bonus_defense_text_box.text
+      moral=moral, defense=defense
     )
 
   def total_defense_change(self, **event_args):
     self.fill_total_defense()
 
   def fill_prosperity_level(self):
-    self.fill_total_defense()
+    prosperity = self.prosperity_text_box.text or 0
     self.prosperity_level_text_box.text = Utilites.get_prosperity_level(
-      prosperity=self.prosperity_text_box.text
+      prosperity=prosperity
     )
+
   def prosperity_level_change(self, **event_args):
     self.fill_prosperity_level()
 

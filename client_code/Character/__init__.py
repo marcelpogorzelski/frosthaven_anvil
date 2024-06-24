@@ -39,11 +39,9 @@ class Character(CharacterTemplate):
     self.class_drop_down.items = item_list
 
   def experience_text_box_change(self, **event_args):
-    level = Utilites.get_level(self.experience_text_box.text)
-    if level != self.item['Level']:
-      self.item['Level'] = level
-      self.item.update()
-      self.level_text_box.text = level
+    experience = self.experience_text_box.text or 0
+    self.item['Level'] = Utilites.get_level(experience)
+    self.level_text_box.text = self.item['Level']
 
   def retire_button_click(self, **event_args):
     if not confirm("Are you retiring?"):
