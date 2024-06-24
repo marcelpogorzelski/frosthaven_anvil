@@ -51,3 +51,5 @@ class Resources(ResourcesTemplate):
 
   def text_box_change(self, **event_args):
     self.total_row_replace()
+
+    

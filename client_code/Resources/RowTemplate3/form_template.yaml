@@ -83,7 +83,8 @@ components:
   layout_properties: {column: DQHQWZ}
   data_bindings:
   - {property: text, code: 'self.item[''Experience'']', writeback: true}
-  event_bindings: {}
+  - {property: tag, code: self.item, writeback: false}
+  event_bindings: {change: experience_text_box_change}
 - name: player_notes_text_box
   properties: {type: text}
   type: TextBox

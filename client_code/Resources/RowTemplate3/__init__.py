@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ... import Utilites
 
 
 class RowTemplate3(RowTemplate3Template):
@@ -18,3 +19,8 @@ class RowTemplate3(RowTemplate3Template):
     """This method is called when the text in this text box is edited"""
     resource_form = self.parent.parent.parent
     resource_form.total_row_replace()
+
+  def experience_text_box_change(self, **event_args):
+    player = event_args['sender'].tag
+    player['Level'] = Utilites.get_level(experience=event_args['sender'].text)
+    print(player['Level'])
