@@ -15,10 +15,9 @@ class FinishScenario(FinishScenarioTemplate):
       {'Player': 'John Magne'},
       {'Player': 'Kristian'},
       {'Player': 'Marcel'},
+      {'Player': 'Frosthaven'},
     ]
 
-    # Any code you write here will run before the form opens.
-
   def finish_scenario_outlined_button_click(self, **event_args):
-    for player in self.finish_scenario_repeating_panel.items:
-      print(player['Experience'])
+    for player in self.finish_scenario_repeating_panel.get_components():
+      print(player.item['Player'])

@@ -1,7 +1,51 @@
 is_package: true
 container: {type: DataRowPanel}
 components:
-- name: text_box_1
-  properties: {}
+- name: experience_text_box
+  properties: {type: number, align: center}
   type: TextBox
   layout_properties: {column: KYLSGG}
+- name: gold_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: BKKTSA}
+- name: gold_coin_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: KPWJHE}
+- name: lumber_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: CNEKNX}
+- name: metal_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: IERWWQ}
+- name: hide_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: XQTYTV}
+- name: arrowvine_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: BKAREF}
+- name: axenut_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: GVVJXF}
+- name: corpsecap_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: XCBRVQ}
+- name: flamefruit_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: RNKXAX}
+- name: rockroot_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: RKKWTJ}
+- name: snowthistle_text_box
+  properties: {type: number, align: center}
+  type: TextBox
+  layout_properties: {column: JGRNRO}

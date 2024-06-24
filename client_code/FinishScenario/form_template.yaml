@@ -3,18 +3,19 @@ components:
 - name: finish_scenario_data_grid
   properties:
     columns:
-    - {id: YJVWJZ, data_key: Player, title: Name}
-    - {id: KYLSGG, data_key: Experience, title: Experience}
-    - {id: BKKTSA, data_key: Gold, title: Gold}
-    - {id: CNEKNX, data_key: Lumber, title: Lumber}
-    - {id: IERWWQ, data_key: Metal, title: Metal}
-    - {id: XQTYTV, data_key: Hide, title: Hide}
-    - {id: BKAREF, data_key: Arrowvine, title: Arrowvine}
-    - {id: GVVJXF, data_key: Axenut, title: Axenut}
-    - {id: XCBRVQ, data_key: Corpsecap, title: Corpsecap}
-    - {id: RNKXAX, data_key: Flamefruit, title: Flamefruit}
-    - {id: RKKWTJ, data_key: Rockroot, title: Rockroot}
-    - {id: JGRNRO, data_key: Snowthistle, title: Snowthistle}
+    - {id: YJVWJZ, data_key: Player, title: Name, width: '150'}
+    - {id: KYLSGG, data_key: Experience, title: Experience, width: '100'}
+    - {id: BKKTSA, data_key: Gold, title: Gold, width: '100'}
+    - {id: KPWJHE, data_key: GoldCoins, title: Gold Coins, width: '100'}
+    - {id: CNEKNX, data_key: Lumber, title: Lumber, width: '100'}
+    - {id: IERWWQ, data_key: Metal, title: Metal, width: '100'}
+    - {id: XQTYTV, data_key: Hide, title: Hide, width: '100'}
+    - {id: BKAREF, data_key: Arrowvine, title: Arrowvine, width: '100'}
+    - {id: GVVJXF, data_key: Axenut, title: Axenut, width: '100'}
+    - {id: XCBRVQ, data_key: Corpsecap, title: Corpsecap, width: '100'}
+    - {id: RNKXAX, data_key: Flamefruit, title: Flamefruit, width: '100'}
+    - {id: RKKWTJ, data_key: Rockroot, title: Rockroot, width: '100'}
+    - {id: JGRNRO, data_key: Snowthistle, title: Snowthistle, width: '100'}
     role: [tonal-data-grid, wide]
   type: DataGrid
   components:
