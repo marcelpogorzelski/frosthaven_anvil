@@ -24,7 +24,7 @@ components:
   type: DataGrid
   components:
   - name: character_repeating_panel
-    properties: {item_template: Resources.RowTemplate3, visible: true}
+    properties: {item_template: Resources.ResourcesRowTemplate, visible: true}
     type: RepeatingPanel
     data_bindings: []
     layout_properties: {}

@@ -44,7 +44,7 @@ components:
   type: DataGrid
   components:
   - name: scenario_repeating_panel
-    properties: {item_template: Scenarios.RowTemplate4}
+    properties: {item_template: Scenarios.ScenariosRowTemplate}
     type: RepeatingPanel
     layout_properties: {}
   - name: flow_panel_1

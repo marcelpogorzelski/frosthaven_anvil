@@ -16,7 +16,7 @@ components:
   type: DataGrid
   components:
   - name: retired_characters_repeating_panel
-    properties: {item_template: RetiredCharacters.RowTemplate6}
+    properties: {item_template: RetiredCharacters.RetiredCharactersRowTemplate}
     type: RepeatingPanel
   layout_properties: {grid_position: 'UNQVGD,SFYBJR', full_width_row: true}
 is_package: true

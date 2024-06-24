@@ -1,4 +1,4 @@
-from ._anvil_designer import RowTemplate3Template
+from ._anvil_designer import ResourcesRowTemplateTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -8,7 +8,7 @@ from anvil.tables import app_tables
 from ... import Utilites
 
 
-class RowTemplate3(RowTemplate3Template):
+class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
