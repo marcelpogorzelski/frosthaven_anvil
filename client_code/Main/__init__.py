@@ -13,7 +13,7 @@ from ..ImportExport import ImportExport
 from ..Calendar import Calendar
 from ..Scenarios import Scenarios
 from ..RetiredCharacters import RetiredCharacters
-#from anvil.js.window import window
+from ..FinishScenario import FinishScenario
 
 
 class Main(MainTemplate):
@@ -87,3 +87,8 @@ class Main(MainTemplate):
   def retired_characters_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
     self.change_form(RetiredCharacters())
+
+  def finish_scenario_link_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.change_form(FinishScenario())
+

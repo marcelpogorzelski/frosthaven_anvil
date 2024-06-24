@@ -1,0 +1,30 @@
+container: {type: ColumnPanel}
+components:
+- name: finish_scenario_data_grid
+  properties:
+    columns:
+    - {id: YJVWJZ, data_key: Player, title: Name}
+    - {id: KYLSGG, data_key: Experience, title: Experience}
+    - {id: BKKTSA, data_key: Gold, title: Gold}
+    - {id: CNEKNX, data_key: Lumber, title: Lumber}
+    - {id: IERWWQ, data_key: Metal, title: Metal}
+    - {id: XQTYTV, data_key: Hide, title: Hide}
+    - {id: BKAREF, data_key: Arrowvine, title: Arrowvine}
+    - {id: GVVJXF, data_key: Axenut, title: Axenut}
+    - {id: XCBRVQ, data_key: Corpsecap, title: Corpsecap}
+    - {id: RNKXAX, data_key: Flamefruit, title: Flamefruit}
+    - {id: RKKWTJ, data_key: Rockroot, title: Rockroot}
+    - {id: JGRNRO, data_key: Snowthistle, title: Snowthistle}
+    role: [tonal-data-grid, wide]
+  type: DataGrid
+  components:
+  - name: finish_scenario_repeating_panel
+    properties: {item_template: FinishScenario.RowTemplate1}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'DXIBMY,FNSWYS', full_width_row: true}
+- name: finish_scenario_outlined_button
+  properties: {text: Finish Scenario, role: outlined-button}
+  type: Button
+  layout_properties: {grid_position: 'PWNEQD,YFENLK'}
+  event_bindings: {click: finish_scenario_outlined_button_click}
+is_package: true

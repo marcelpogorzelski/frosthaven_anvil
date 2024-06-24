@@ -54,6 +54,13 @@ components:
     layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
     event_bindings: {click: resources_link_click}
     data_bindings: []
+    components: []
+  - name: resources_link_copy
+    properties: {text: Finish Scenario, align: center}
+    type: Link
+    layout_properties: {grid_position: 'WNHBKX,UUKZHZ'}
+    event_bindings: {click: finish_scenario_link_click}
+    data_bindings: []
   - name: spacer_1
     properties: {height: 32}
     type: Spacer
