@@ -7,7 +7,7 @@ from anvil.tables import app_tables
 from .. import Utilites
 import math
 from ..Resources import Resources
-
+from ..Calendar import Calendar
 
 class FinishScenario(FinishScenarioTemplate):
   def __init__(self, **properties):
@@ -23,6 +23,7 @@ class FinishScenario(FinishScenarioTemplate):
     ]
     self.set_party_level()
     self.set_coin_value()
+    self.populate_scenario()
 
   def set_party_level(self):
     adjust_level = self.adjust_level_text_box.text or 0
@@ -79,6 +80,42 @@ class FinishScenario(FinishScenarioTemplate):
       database_entry['Rockroot'] += input_row.rockroot_text_box.text or 0
       database_entry['Snowthistle'] += input_row.snowthistle_text_box.text or 0
 
+    scenario = self.scenario_drop_down.selected_value
+    if scenario:
+      scenario.update(
+        Chests=self.chests_text_box.text,
+        Notes=self.notes_text_box.text,
+        Status=self.status_drop_down.selected_value
+      )
+
     main_form = self.parent.parent
-    main_form.navbar_link_select(main_form.resources_link)
-    main_form.change_form(Resources())
+    main_form.navbar_link_select(main_form.calendar_link)
+    main_form.change_form(Calendar())
+
+  def populate_scenario(self):
+    item_list = [('None', None)]
+    for row in app_tables.scenarios.search(q.not_(Status='Undiscovered')):
+      item_list.append((row['Number'], row))
+    self.scenario_drop_down.items = item_list
+    self.scenario_data_row_panel.item = app_tables.scenarios.search()[0]
+
+  def scenario_drop_down_change(self, **event_args):
+    scenario = event_args['sender'].selected_value
+    if scenario:
+      self.scenario_data_row_panel.item = scenario
+      self.status_drop_down.selected_value = scenario['Status']
+      self.name_label.text = scenario['Name']
+      self.notes_text_box.text = scenario['Notes']
+      self.chests_text_box.text = scenario['Chests']
+      self.status_drop_down.enabled = True
+      self.notes_text_box.enabled = True
+      self.chests_text_box.enabled = True
+    else:
+      self.scenario_data_row_panel.item = app_tables.scenarios.search()[0]
+      self.status_drop_down.selected_value = 'Available'
+      self.name_label.text = ''
+      self.notes_text_box.text = ''
+      self.chests_text_box.text = ''
+      self.status_drop_down.enabled = False
+      self.notes_text_box.enabled = False
+      self.chests_text_box.enabled = False

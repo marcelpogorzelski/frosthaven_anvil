@@ -24,6 +24,50 @@ components:
     properties: {item_template: FinishScenario.RowTemplate1}
     type: RepeatingPanel
   layout_properties: {grid_position: 'DXIBMY,FNSWYS', full_width_row: true}
+- name: scenario_data_grid
+  properties:
+    columns:
+    - {id: STHZLY, data_key: Number, title: Number, width: '200'}
+    - {id: QDJPXU, data_key: Name, title: Name, width: '300'}
+    - {id: EIZMVZ, data_key: Status, title: Status, width: '150'}
+    - {id: WKCNMN, data_key: Chests, title: Chests, width: '300'}
+    - {id: HIWFZW, data_key: Notes, title: Notes, width: '500', expand: true}
+    show_page_controls: false
+    role: [tonal-data-grid, wide]
+  type: DataGrid
+  components:
+  - name: scenario_data_row_panel
+    properties: {}
+    type: DataRowPanel
+    components:
+    - name: scenario_drop_down
+      properties: {enabled: true}
+      type: DropDown
+      layout_properties: {column: STHZLY}
+      event_bindings: {change: scenario_drop_down_change}
+    - name: status_drop_down
+      properties:
+        items: [Available, Finished, Locked]
+        visible: true
+        enabled: false
+      type: DropDown
+      layout_properties: {column: EIZMVZ}
+      data_bindings: []
+    - name: notes_text_box
+      properties: {enabled: false, hide_text: false}
+      type: TextBox
+      layout_properties: {column: HIWFZW}
+      data_bindings: []
+    - name: chests_text_box
+      properties: {enabled: false, hide_text: false}
+      type: TextBox
+      layout_properties: {column: WKCNMN}
+      data_bindings: []
+    - name: name_label
+      properties: {}
+      type: Label
+      layout_properties: {column: QDJPXU}
+  layout_properties: {grid_position: 'GOVUWL,ZDHRAE', full_width_row: true}
 - name: flow_panel_1
   properties: {}
   type: FlowPanel
@@ -64,7 +108,7 @@ components:
       type: Label
       layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
     - name: party_level_text_box
-      properties: {type: number, enabled: false}
+      properties: {type: number, enabled: false, align: center}
       type: TextBox
       layout_properties: {grid_position: 'DHCATO,XDZGBD'}
   - name: outlined_card_1_copy_copy
@@ -76,7 +120,7 @@ components:
       type: Label
       layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
     - name: coin_value_text_box
-      properties: {type: number, enabled: false}
+      properties: {type: number, enabled: false, align: center}
       type: TextBox
       layout_properties: {grid_position: 'DHCATO,XDZGBD'}
   - name: outlined_card_2
