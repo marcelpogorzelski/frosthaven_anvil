@@ -17,15 +17,76 @@ components:
     - {id: RKKWTJ, data_key: Rockroot, title: Rockroot, width: '100'}
     - {id: JGRNRO, data_key: Snowthistle, title: Snowthistle, width: '100'}
     role: [tonal-data-grid, wide]
+    show_page_controls: false
   type: DataGrid
   components:
   - name: finish_scenario_repeating_panel
     properties: {item_template: FinishScenario.RowTemplate1}
     type: RepeatingPanel
   layout_properties: {grid_position: 'DXIBMY,FNSWYS', full_width_row: true}
-- name: finish_scenario_outlined_button
-  properties: {text: Finish Scenario, role: outlined-button}
-  type: Button
-  layout_properties: {grid_position: 'PWNEQD,YFENLK'}
-  event_bindings: {click: finish_scenario_outlined_button_click}
+- name: flow_panel_1
+  properties: {}
+  type: FlowPanel
+  layout_properties: {grid_position: 'TEVKFC,GAZSKC', full_width_row: true}
+  components:
+  - name: outlined_card_1
+    properties: {role: elevated-card}
+    type: ColumnPanel
+    layout_properties: {}
+    components:
+    - name: adjust_level_label
+      properties: {text: Adjust Level, align: center}
+      type: Label
+      layout_properties: {grid_position: 'JNRIEV,YJMKYY GPYTUI,WOCMAR'}
+    - name: adjust_level_plus_button
+      properties: {text: '', icon: 'fa:plus'}
+      type: Button
+      layout_properties: {grid_position: 'JNRIEV,QIJLQM QAZULN,KCNJZO'}
+      event_bindings: {click: adjust_level_plus_button_click}
+    - name: adjust_level_minus_button
+      properties: {text: '', icon: 'fa:minus'}
+      type: Button
+      layout_properties: {grid_position: 'JNRIEV,QIJLQM JWQPNF,TBJSDP'}
+      event_bindings: {click: adjust_level_minus_button_click}
+    - name: adjust_level_text_box
+      properties: {type: number, text: '0', align: center}
+      type: TextBox
+      layout_properties: {grid_position: 'JNRIEV,YJMKYY ESTEIE,VMFQPK'}
+      data_bindings:
+      - {property: text, code: 'self.item[''Adjust Level'']', writeback: true}
+      event_bindings: {change: adjust_level_text_box_change}
+  - name: outlined_card_1_copy
+    properties: {role: elevated-card}
+    type: ColumnPanel
+    components:
+    - name: party_level_label
+      properties: {text: '  Party Level', align: center}
+      type: Label
+      layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
+    - name: party_level_text_box
+      properties: {type: number, enabled: false}
+      type: TextBox
+      layout_properties: {grid_position: 'DHCATO,XDZGBD'}
+  - name: outlined_card_1_copy_copy
+    properties: {role: elevated-card}
+    type: ColumnPanel
+    components:
+    - name: coin_value_label
+      properties: {text: Gold Coin Conversion, align: center}
+      type: Label
+      layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
+    - name: coin_value_text_box
+      properties: {type: number, enabled: false}
+      type: TextBox
+      layout_properties: {grid_position: 'DHCATO,XDZGBD'}
+  - name: outlined_card_2
+    properties: {role: elevated-card, spacing_above: small}
+    type: ColumnPanel
+    layout_properties: {width: 240.9964919921875}
+    components:
+    - name: finish_scenario_outlined_button
+      properties: {text: Finish Scenario, role: outlined-button}
+      type: Button
+      layout_properties: {grid_position: 'YHEOUT,FUDBOU'}
+      event_bindings: {click: finish_scenario_outlined_button_click}
 is_package: true

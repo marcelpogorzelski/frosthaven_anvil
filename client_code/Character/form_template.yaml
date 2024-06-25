@@ -27,7 +27,7 @@ components:
     type: DataRowPanel
     components:
     - name: name_outlined_card
-      properties: {role: outlined-card, col_widths: '{"UELJKE":15}'}
+      properties: {role: elevated-card, col_widths: '{"UELJKE":15}'}
       type: ColumnPanel
       layout_properties: {column: PGVFQE}
       components:
@@ -43,7 +43,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Name'']', writeback: true}
     - name: class_outlined_card
-      properties: {role: outlined-card, col_widths: '{}'}
+      properties: {role: elevated-card, col_widths: '{}'}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
       components:
@@ -58,7 +58,7 @@ components:
         data_bindings:
         - {property: selected_value, code: 'self.item[''Class'']', writeback: true}
     - name: outlined_card_1
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: VVDSMS}
       components:
@@ -76,7 +76,7 @@ components:
     type: DataRowPanel
     components:
     - name: experience_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
       components:
@@ -92,7 +92,7 @@ components:
         - {property: text, code: 'self.item[''Experience'']', writeback: true}
         event_bindings: {change: experience_text_box_change}
     - name: level_outlined_card
-      properties: {role: outlined-card, col_widths: '{"JYFFLE":10}'}
+      properties: {role: elevated-card, col_widths: '{"JYFFLE":10}'}
       type: ColumnPanel
       layout_properties: {column: PGVFQE}
       components:
@@ -107,7 +107,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Level'']', writeback: false}
     - name: gold_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: VVDSMS}
       components:
@@ -126,7 +126,7 @@ components:
     type: DataRowPanel
     components:
     - name: lumber_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: VVDSMS}
       components:
@@ -141,7 +141,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Lumber'']', writeback: true}
     - name: metal_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
       components:
@@ -156,7 +156,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Metal'']', writeback: true}
     - name: hide_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: PGVFQE}
       components:
@@ -175,7 +175,7 @@ components:
     type: DataRowPanel
     components:
     - name: arrowvine_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: VVDSMS}
       components:
@@ -190,7 +190,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
     - name: axenut_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
       components:
@@ -205,7 +205,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Axenut'']', writeback: true}
     - name: corpsecap_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: PGVFQE}
       components:
@@ -224,7 +224,7 @@ components:
     type: DataRowPanel
     components:
     - name: flamefruit_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: VVDSMS}
       components:
@@ -239,7 +239,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
     - name: rockroot_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: UHLZCU}
       components:
@@ -254,7 +254,7 @@ components:
         data_bindings:
         - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
     - name: snowthistle_outlined_card
-      properties: {role: outlined-card}
+      properties: {role: elevated-card}
       type: ColumnPanel
       layout_properties: {column: PGVFQE}
       components:

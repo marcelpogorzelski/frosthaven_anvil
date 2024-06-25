@@ -4,12 +4,16 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import Utilites
+import math
+from ..Resources import Resources
 
 
 class FinishScenario(FinishScenarioTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.item = app_tables.frosthaven.search()[0]
     self.finish_scenario_repeating_panel.items = [
       {'Player': 'Håvard'},
       {'Player': 'John Magne'},
@@ -17,7 +21,64 @@ class FinishScenario(FinishScenarioTemplate):
       {'Player': 'Marcel'},
       {'Player': 'Frosthaven'},
     ]
+    self.set_party_level()
+    self.set_coin_value()
 
+  def set_party_level(self):
+    adjust_level = self.adjust_level_text_box.text or 0
+    
+    total_levels = 0
+    for character in app_tables.characters.search():
+      total_levels += character['Level']
+    average_level = math.ceil(total_levels / 4 / 2) + adjust_level
+    self.party_level_text_box.text = average_level
+
+  def set_coin_value(self):
+    gold_conversion = app_tables.scenario_info.get(Level=self.party_level_text_box.text)['Gold Conversion']
+    self.coin_value_text_box.text = gold_conversion
+
+  def adjust_level_plus_button_click(self, **event_args):
+    self.adjust_level_text_box.text = self.adjust_level_text_box.text + 1
+    self.item['Adjust Level'] = self.adjust_level_text_box.text
+    self.set_party_level()
+    self.set_coin_value()
+    
+  def adjust_level_minus_button_click(self, **event_args):
+    self.adjust_level_text_box.text = self.adjust_level_text_box.text - 1
+    self.item['Adjust Level'] = self.adjust_level_text_box.text
+    self.set_party_level()
+    self.set_coin_value()
+    
+  def adjust_level_text_box_change(self, **event_args):
+    self.set_party_level()
+    self.set_coin_value()
+    
   def finish_scenario_outlined_button_click(self, **event_args):
-    for player in self.finish_scenario_repeating_panel.get_components():
-      print(player.item['Player'])
+    if not confirm("Do you want to update all values?"):
+      return
+    for input_row in self.finish_scenario_repeating_panel.get_components():
+      player = input_row.item['Player']
+      if player == 'Frosthaven':
+        database_entry = app_tables.frosthaven.search()[0]
+      else:
+        database_entry = app_tables.characters.get(Player=player)
+        database_entry['Experience'] += input_row.experience_text_box.text or 0
+        database_entry['Level'] = Utilites.get_level(database_entry['Experience'])
+
+      gold = input_row.gold_text_box.text or 0
+      gold_coin = input_row.gold_coin_text_box.text or 0
+      total_gold = (gold_coin * self.coin_value_text_box.text) + gold
+      database_entry['Gold'] += total_gold
+      database_entry['Lumber'] += input_row.lumber_text_box.text or 0
+      database_entry['Metal'] += input_row.metal_text_box.text or 0
+      database_entry['Hide'] += input_row.hide_text_box.text or 0
+      database_entry['Arrowvine'] += input_row.arrowvine_text_box.text or 0
+      database_entry['Axenut'] += input_row.axenut_text_box.text or 0
+      database_entry['Corpsecap'] += input_row.corpsecap_text_box.text or 0
+      database_entry['Flamefruit'] += input_row.flamefruit_text_box.text or 0
+      database_entry['Rockroot'] += input_row.rockroot_text_box.text or 0
+      database_entry['Snowthistle'] += input_row.snowthistle_text_box.text or 0
+
+    main_form = self.parent.parent
+    main_form.navbar_link_select(main_form.resources_link)
+    main_form.change_form(Resources())
