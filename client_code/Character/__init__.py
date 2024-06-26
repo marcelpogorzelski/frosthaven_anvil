@@ -20,7 +20,8 @@ class Character(CharacterTemplate):
     self.player = player
     self.item = app_tables.characters.get(Player=self.player)
   
-    self.level_text_box.text = Utilites.get_level(self.item['Experience'])
+    self.set_experience()
+    self.set_perks()
 
     self.populate_class_drop_down()
 
@@ -38,10 +39,13 @@ class Character(CharacterTemplate):
       item_list.append((row['Name'], row))
     self.class_drop_down.items = item_list
 
-  def experience_text_box_change(self, **event_args):
+  def set_experience(self):
     experience = self.experience_text_box.text or 0
     self.item['Level'] = Utilites.get_level(experience)
-    self.level_text_box.text = self.item['Level']
+    self.level_text_box.text = self.item['Level']    
+
+  def experience_text_box_change(self, **event_args):
+    self.set_experience()
 
   def retire_button_click(self, **event_args):
     if not confirm("Are you retiring?"):
@@ -52,17 +56,14 @@ class Character(CharacterTemplate):
     self.reset_character()
 
   def retire_character(self):
-    retire_prompt = RetirePrompt()
-    alert(content=retire_prompt)
-    
     name = self.name_text_box.text
     experience = self.experience_text_box.text
     level = self.level_text_box.text
     character_class = self.class_drop_down.selected_value
 
-    perks = retire_prompt.perk_checks_text_box.text
-    master1 = retire_prompt.m1_check_box.checked
-    master2 = retire_prompt.m2_check_box.checked
+    perks = self.perk_text_box.text
+    master1 = self.mastery_check_box_1.checked
+    master2 = self.mastery_check_box_2.checked
     
     app_tables.retired_characters.add_row(Player=self.player,Name=name, Experience=experience, Level=level, Class=character_class, Perks=perks, Mastery1=master1, Mastery2=master2)
 
@@ -80,21 +81,37 @@ class Character(CharacterTemplate):
     frosthaven['Prosperity'] += 2
 
   def reset_character(self):
-    self.item['Experience'] = 0
-    self.item['Name'] = ''
-    self.item['Level'] = Utilites.get_level(experience=self.item['Experience'])
-    self.item['Gold'] = 0
-    self.item['Lumber'] = 0
-    self.item['Metal'] = 0
-    self.item['Hide'] = 0
-    self.item['Arrowvine'] = 0
-    self.item['Axenut'] = 0
-    self.item['Corpsecap'] = 0
-    self.item['Flamefruit'] = 0
-    self.item['Rockroot'] = 0
-    self.item['Snowthistle'] = 0
-    self.item['Notes'] = ''
-    self.item.update()
+    experience = 0
+    level = Utilites.get_level(experience=experience)
+    
+    self.item.update(
+      Name='',
+      Experience=experience,
+      Level=level,
+      Gold=0,
+      Lumber=0,
+      Metal=0,
+      Hide=0,
+      Arrowvine=0,
+      Axenut=0,
+      Corpsecap=0,
+      Flamefruit=0,
+      Rockroot=0,
+      Snowthistle=0,
+      CheckMarks=0,
+      Perks=0,
+      Mastery1=False,
+      Mastery2=False,
+      Notes=''
+    )
 
     self.parent.parent.change_form(Character(self.player))
-    
+
+  def set_perks(self):
+    check_marks = self.check_marks_text_box.text or 0
+    perks = int(check_marks/3) + int(self.mastery_check_box_1.checked) + int(self.mastery_check_box_2.checked)
+    self.item['Perks'] = perks
+    self.perk_text_box.text = perks
+
+  def perks_change(self, **event_args):
+    self.set_perks()

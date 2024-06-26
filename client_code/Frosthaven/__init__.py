@@ -15,7 +15,7 @@ class Frosthaven(FrosthavenTemplate):
     self.init_components(**properties)
 
     self.adjust_width()
-    
+    self.frosthaven_label.text = 'Frosthaven'
     self.item = app_tables.frosthaven.search()[0]
     self.fill_total_defense()
     self.fill_prosperity_level()

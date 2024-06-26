@@ -24,7 +24,14 @@ class FinishScenario(FinishScenarioTemplate):
     self.set_party_level()
     self.set_coin_value()
     self.populate_scenario()
-
+    for input_row in self.finish_scenario_repeating_panel.get_components():
+      player = input_row.item['Player']
+      if player == 'Frosthaven':
+        input_row.gold_text_box.visible = False
+        input_row.experience_text_box.visible = False
+        input_row.gold_coin_text_box.visible = False
+        
+        
   def set_party_level(self):
     adjust_level = self.adjust_level_text_box.text or 0
     
@@ -66,10 +73,10 @@ class FinishScenario(FinishScenarioTemplate):
         database_entry['Experience'] += input_row.experience_text_box.text or 0
         database_entry['Level'] = Utilites.get_level(database_entry['Experience'])
 
-      gold = input_row.gold_text_box.text or 0
-      gold_coin = input_row.gold_coin_text_box.text or 0
-      total_gold = (gold_coin * self.coin_value_text_box.text) + gold
-      database_entry['Gold'] += total_gold
+        gold = input_row.gold_text_box.text or 0
+        gold_coin = input_row.gold_coin_text_box.text or 0
+        total_gold = (gold_coin * self.coin_value_text_box.text) + gold
+        database_entry['Gold'] += total_gold
       database_entry['Lumber'] += input_row.lumber_text_box.text or 0
       database_entry['Metal'] += input_row.metal_text_box.text or 0
       database_entry['Hide'] += input_row.hide_text_box.text or 0
@@ -107,15 +114,13 @@ class FinishScenario(FinishScenarioTemplate):
       self.name_label.text = scenario['Name']
       self.notes_text_box.text = scenario['Notes']
       self.chests_text_box.text = scenario['Chests']
-      self.status_drop_down.enabled = True
-      self.notes_text_box.enabled = True
-      self.chests_text_box.enabled = True
+      self.name_label.visible = True
+      self.status_drop_down.visible = True
+      self.notes_text_box.visible = True
+      self.chests_text_box.visible = True
     else:
       self.scenario_data_row_panel.item = app_tables.scenarios.search()[0]
-      self.status_drop_down.selected_value = 'Available'
-      self.name_label.text = ''
-      self.notes_text_box.text = ''
-      self.chests_text_box.text = ''
-      self.status_drop_down.enabled = False
-      self.notes_text_box.enabled = False
-      self.chests_text_box.enabled = False
+      self.name_label.visible = False
+      self.status_drop_down.visible = False
+      self.notes_text_box.visible = False
+      self.chests_text_box.visible = False

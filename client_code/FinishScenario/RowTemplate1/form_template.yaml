@@ -1,5 +1,7 @@
 is_package: true
-container: {type: DataRowPanel}
+container:
+  type: DataRowPanel
+  properties: {visible: true}
 components:
 - name: experience_text_box
   properties: {type: number, align: center}

@@ -31,7 +31,7 @@ class Resources(ResourcesTemplate):
       total_resources['Rockroot'] += character.player_rockroot_text_box.text or 0
       total_resources['Snowthistle'] += character.player_snowthistle_text_box.text or 0
 
-    total_resources['Gold'] += self.frosthaven_gold_text_box.text or 0
+    #total_resources['Gold'] += self.frosthaven_gold_text_box.text or 0
     total_resources['Lumber'] += self.frosthaven_lumber_text_box.text or 0
     total_resources['Metal'] += self.frosthaven_metal_text_box.text or 0
     total_resources['Hide'] += self.frosthaven_hide_text_box.text or 0

@@ -74,6 +74,18 @@ db_schema:
     - name: Level
       admin_ui: {width: 200, order: 13}
       type: number
+    - name: CheckMarks
+      admin_ui: {width: 200, order: 14}
+      type: number
+    - name: Perks
+      admin_ui: {width: 200, order: 15}
+      type: number
+    - name: Mastery1
+      admin_ui: {width: 200, order: 16}
+      type: bool
+    - name: Mastery2
+      admin_ui: {width: 200, order: 17}
+      type: bool
     title: Characters
   classes:
     client: full
@@ -127,9 +139,6 @@ db_schema:
       type: number
     - name: Barracks Level
       admin_ui: {width: 200, order: 5}
-      type: number
-    - name: Gold
-      admin_ui: {width: 200, order: 6}
       type: number
     - name: Lumber
       admin_ui: {width: 200, order: 7}

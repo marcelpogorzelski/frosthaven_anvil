@@ -13,20 +13,55 @@ components:
     role: wide
   type: DataGrid
   components:
-  - name: flow_panel_1
-    properties: {vertical_align: full}
-    type: FlowPanel
+  - name: frosthaven_data_row_panel
+    properties: {}
+    type: DataRowPanel
     components:
-    - name: frosthaven_outlined_card
-      properties: {role: elevated-card, spacing_above: small, spacing_below: small, col_spacing: small}
+    - name: inspiration_outlined_card_copy
+      properties: {role: elevated-card, col_widths: '{"QIGRXS":10}'}
       type: ColumnPanel
-      layout_properties: {width: 895}
+      layout_properties: {column: VJQQOR}
+      components:
+      - name: prosperity_label
+        properties: {text: 'Prosperity:', align: center, bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'OYESGM,GELTEQ'}
+      - name: prosperity_text_box
+        properties: {type: number, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
+        data_bindings:
+        - {property: text, code: 'self.item[''Prosperity'']', writeback: true}
+        event_bindings: {change: prosperity_level_change}
+    - name: total_defense_outlined_card_copy
+      properties: {role: elevated-card, col_widths: '{}'}
+      type: ColumnPanel
+      layout_properties: {column: OJLQEN}
+      components:
+      - name: prosperity_level_label
+        properties: {text: 'Prosperity Level:', align: center, bold: true, role: input-prompt}
+        type: Label
+        layout_properties: {grid_position: 'HUIRBK,IOMOVJ'}
+        data_bindings: []
+      - name: prosperity_level_text_box
+        properties: {type: number, enabled: false, align: center}
+        type: TextBox
+        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
+        data_bindings: []
+        event_bindings: {}
+    - name: outlined_card_1
+      properties: {role: elevated-card}
+      type: ColumnPanel
+      layout_properties: {column: JKSDUP}
       components:
       - name: frosthaven_label
-        properties: {role: headline, align: center, text: Frosthaven, font_size: 40, spacing_above: large, spacing_below: large}
+        properties: {align: center, role: null, spacing_above: medium, spacing_below: medium, font_size: 45}
         type: Label
-        layout_properties: {grid_position: 'ZXJWFK,FNVRNJ'}
-    layout_properties: {}
+        layout_properties: {grid_position: 'ETBKBS,RTSYPI'}
+        data_bindings: []
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
   - name: info_data_row_panel
     properties: {}
     type: DataRowPanel
@@ -126,60 +161,6 @@ components:
         layout_properties: {grid_position: 'PEXYPI,GDNJBE'}
         data_bindings: []
       - name: total_defense_text_box
-        properties: {type: number, enabled: false, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
-        data_bindings: []
-        event_bindings: {}
-  - name: spacer_1
-    properties: {height: 32}
-    type: Spacer
-  - name: prosperity_data_row_panel
-    properties: {}
-    type: DataRowPanel
-    components:
-    - name: gold_outlined_card
-      properties: {role: elevated-card}
-      type: ColumnPanel
-      layout_properties: {column: JKSDUP}
-      components:
-      - name: gold_image
-        properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
-        type: Image
-        layout_properties: {grid_position: 'AYZESO,VZTSOM'}
-      - name: gold_text_box
-        properties: {spacing_above: none, type: number, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'SPLVKW,NADRLY'}
-        data_bindings:
-        - {property: text, code: 'self.item[''Gold'']', writeback: true}
-    - name: inspiration_outlined_card_copy
-      properties: {role: elevated-card, col_widths: '{"QIGRXS":10}'}
-      type: ColumnPanel
-      layout_properties: {column: VJQQOR}
-      components:
-      - name: prosperity_label
-        properties: {text: 'Prosperity:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'OYESGM,GELTEQ'}
-      - name: prosperity_text_box
-        properties: {type: number, align: center}
-        type: TextBox
-        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
-        data_bindings:
-        - {property: text, code: 'self.item[''Prosperity'']', writeback: true}
-        event_bindings: {change: prosperity_level_change}
-    - name: total_defense_outlined_card_copy
-      properties: {role: elevated-card, col_widths: '{}'}
-      type: ColumnPanel
-      layout_properties: {column: OJLQEN}
-      components:
-      - name: prosperity_level_label
-        properties: {text: 'Prosperity Level:', align: center, bold: true, role: input-prompt}
-        type: Label
-        layout_properties: {grid_position: 'HUIRBK,IOMOVJ'}
-        data_bindings: []
-      - name: prosperity_level_text_box
         properties: {type: number, enabled: false, align: center}
         type: TextBox
         layout_properties: {grid_position: 'BZTPAA,KDKXBL'}

@@ -36,13 +36,6 @@ components:
       properties: {text: Frosthaven}
       type: Label
       layout_properties: {column: XSAFZX}
-    - name: frosthaven_gold_text_box
-      properties: {type: number}
-      type: TextBox
-      layout_properties: {column: IYDZYZ}
-      data_bindings:
-      - {property: text, code: 'self.item[''Gold'']', writeback: true}
-      event_bindings: {change: text_box_change}
     - name: frosthaven_lumber_text_box
       properties: {type: number}
       type: TextBox
@@ -107,13 +100,17 @@ components:
       - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
       event_bindings: {change: text_box_change}
     - name: label_1
-      properties: {}
+      properties: {visible: false}
       type: Label
       layout_properties: {column: DQHQWZ}
     - name: label_3
-      properties: {}
+      properties: {visible: false}
       type: Label
       layout_properties: {column: GZOHUF}
+    - name: label_5
+      properties: {visible: false}
+      type: Label
+      layout_properties: {column: IYDZYZ}
     layout_properties: {}
   - name: total_data_row_panel
     properties: {align: center}
