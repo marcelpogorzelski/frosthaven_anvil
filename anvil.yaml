@@ -1,277 +1,277 @@
-correct_dependency_ids: {}
-dependencies: []
-services:
-- source: /runtime/services/tables.yml
-  client_config: {enable_v2: true}
-  server_config: {}
-- source: /runtime/services/anvil/users.yml
-  client_config: {allow_signup: false, enable_automatically: true, use_email: true, confirm_email: false, use_token: false}
-  server_config: {user_table: users}
-startup: {type: form, module: Login}
-package_name: Frosthaven2
 allow_embedding: false
-name: Frosthaven
-runtime_options:
-  version: 3
-  client_version: '3'
-  server_version: python3-sandbox
-  server_spec: null
-  legacy_features: {class_names: true, bootstrap3: true, __dict__: true, root_container: true}
-  server_spec_disabled: {base: python310-standard, requirements: ''}
-startup_form: null
-native_deps: null
+correct_dependency_ids: {}
 db_schema:
+  calendar:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Week
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: Sections
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: Finished
+      type: bool
+    - admin_ui: {order: 3, width: 200}
+      name: Comments
+      type: string
+    server: full
+    title: Calendar
   characters:
     client: full
-    server: full
     columns:
-    - name: Experience
-      admin_ui: {width: 200, order: 1}
+    - admin_ui: {order: 1, width: 200}
+      name: Experience
       type: number
-    - name: Player
-      admin_ui: {order: -1, width: 200}
+    - admin_ui: {order: -1, width: 200}
+      name: Player
       type: string
-    - name: Lumber
-      admin_ui: {width: 200, order: 2}
+    - admin_ui: {order: 2, width: 200}
+      name: Lumber
       type: number
-    - name: Metal
-      admin_ui: {width: 200, order: 3}
+    - admin_ui: {order: 3, width: 200}
+      name: Metal
       type: number
-    - name: Hide
-      admin_ui: {width: 200, order: 4}
+    - admin_ui: {order: 4, width: 200}
+      name: Hide
       type: number
-    - name: Arrowvine
-      admin_ui: {width: 200, order: 5}
+    - admin_ui: {order: 5, width: 200}
+      name: Arrowvine
       type: number
-    - name: Axenut
-      admin_ui: {width: 200, order: 6}
+    - admin_ui: {order: 6, width: 200}
+      name: Axenut
       type: number
-    - name: Corpsecap
-      admin_ui: {width: 200, order: 7}
+    - admin_ui: {order: 7, width: 200}
+      name: Corpsecap
       type: number
-    - name: Flamefruit
-      admin_ui: {width: 200, order: 8}
+    - admin_ui: {order: 8, width: 200}
+      name: Flamefruit
       type: number
-    - name: Rockroot
-      admin_ui: {width: 200, order: 9}
+    - admin_ui: {order: 9, width: 200}
+      name: Rockroot
       type: number
-    - name: Snowthistle
-      admin_ui: {width: 200, order: 10}
+    - admin_ui: {order: 10, width: 200}
+      name: Snowthistle
       type: number
-    - name: Notes
-      admin_ui: {width: 200, order: 11}
+    - admin_ui: {order: 11, width: 200}
+      name: Notes
       type: string
-    - name: Name
-      admin_ui: {order: 0.5, width: 200}
+    - admin_ui: {order: 0.5, width: 200}
+      name: Name
       type: string
-    - name: Gold
-      admin_ui: {order: 1.5, width: 200}
+    - admin_ui: {order: 1.5, width: 200}
+      name: Gold
       type: number
-    - name: Class
-      admin_ui: {width: 200, order: 12}
-      type: link_single
+    - admin_ui: {order: 12, width: 200}
+      name: Class
       target: classes
-    - name: Level
-      admin_ui: {width: 200, order: 13}
+      type: link_single
+    - admin_ui: {order: 13, width: 200}
+      name: Level
       type: number
-    - name: CheckMarks
-      admin_ui: {width: 200, order: 14}
+    - admin_ui: {order: 14, width: 200}
+      name: CheckMarks
       type: number
-    - name: Perks
-      admin_ui: {width: 200, order: 15}
+    - admin_ui: {order: 15, width: 200}
+      name: Perks
       type: number
-    - name: Mastery1
-      admin_ui: {width: 200, order: 16}
+    - admin_ui: {order: 16, width: 200}
+      name: Mastery1
       type: bool
-    - name: Mastery2
-      admin_ui: {width: 200, order: 17}
+    - admin_ui: {order: 17, width: 200}
+      name: Mastery2
       type: bool
+    server: full
     title: Characters
   classes:
     client: full
-    server: full
     columns:
-    - name: Name
-      admin_ui: {width: 200, order: 0}
+    - admin_ui: {order: 0, width: 200}
+      name: Name
       type: string
+    server: full
     title: Classes
-  users:
-    client: none
-    server: full
-    columns:
-    - name: email
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: enabled
-      admin_ui: {order: 1, width: 200}
-      type: bool
-    - name: last_login
-      admin_ui: {order: 2, width: 200}
-      type: datetime
-    - name: password_hash
-      admin_ui: {order: 3, width: 200}
-      type: string
-    - name: n_password_failures
-      admin_ui: {order: 4, width: 200}
-      type: number
-    - name: confirmed_email
-      admin_ui: {order: 5, width: 200}
-      type: bool
-    title: Users
   frosthaven:
     client: full
-    server: full
     columns:
-    - name: Name
-      admin_ui: {order: 0, width: 200}
+    - admin_ui: {order: 0, width: 200}
+      name: Name
       type: string
-    - name: Inspiration
-      admin_ui: {width: 200, order: 1}
+    - admin_ui: {order: 1, width: 200}
+      name: Inspiration
       type: number
-    - name: Moral
-      admin_ui: {width: 200, order: 2}
+    - admin_ui: {order: 2, width: 200}
+      name: Moral
       type: number
-    - name: Defense
-      admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 3, width: 200}
+      name: Defense
       type: number
-    - name: Soldiers
-      admin_ui: {order: 4, width: 200}
+    - admin_ui: {order: 4, width: 200}
+      name: Soldiers
       type: number
-    - name: Barracks Level
-      admin_ui: {width: 200, order: 5}
+    - admin_ui: {order: 5, width: 200}
+      name: Barracks Level
       type: number
-    - name: Lumber
-      admin_ui: {width: 200, order: 7}
+    - admin_ui: {order: 7, width: 200}
+      name: Lumber
       type: number
-    - name: Metal
-      admin_ui: {width: 200, order: 8}
+    - admin_ui: {order: 8, width: 200}
+      name: Metal
       type: number
-    - name: Hide
-      admin_ui: {width: 200, order: 9}
+    - admin_ui: {order: 9, width: 200}
+      name: Hide
       type: number
-    - name: Arrowvine
-      admin_ui: {width: 200, order: 10}
+    - admin_ui: {order: 10, width: 200}
+      name: Arrowvine
       type: number
-    - name: Axenut
-      admin_ui: {width: 200, order: 11}
+    - admin_ui: {order: 11, width: 200}
+      name: Axenut
       type: number
-    - name: Corpsecap
-      admin_ui: {order: 12, width: 200}
+    - admin_ui: {order: 12, width: 200}
+      name: Corpsecap
       type: number
-    - name: Flamefruit
-      admin_ui: {width: 200, order: 13}
+    - admin_ui: {order: 13, width: 200}
+      name: Flamefruit
       type: number
-    - name: Rockroot
-      admin_ui: {width: 200, order: 14}
+    - admin_ui: {order: 14, width: 200}
+      name: Rockroot
       type: number
-    - name: Snowthistle
-      admin_ui: {width: 200, order: 15}
+    - admin_ui: {order: 15, width: 200}
+      name: Snowthistle
       type: number
-    - name: Notes
-      admin_ui: {width: 200, order: 16}
+    - admin_ui: {order: 16, width: 200}
+      name: Notes
       type: string
-    - name: Adjust Level
-      admin_ui: {width: 200, order: 17}
+    - admin_ui: {order: 17, width: 200}
+      name: Adjust Level
       type: number
-    - name: Prosperity
-      admin_ui: {order: 0.5, width: 200}
+    - admin_ui: {order: 0.5, width: 200}
+      name: Prosperity
       type: number
+    server: full
     title: Frosthaven
-  scenario_info:
-    client: search
-    server: full
-    columns:
-    - name: Level
-      admin_ui: {order: 0, width: 200}
-      type: number
-    - name: Gold Conversion
-      admin_ui: {width: 200, order: 1}
-      type: number
-    - name: Trap Damage
-      admin_ui: {width: 200, order: 2}
-      type: number
-    - name: Hazardous Terrain
-      admin_ui: {width: 200, order: 3}
-      type: number
-    - name: Bonus Experience
-      admin_ui: {width: 200, order: 4}
-      type: number
-    title: Scenario Info
-  calendar:
-    client: full
-    server: full
-    columns:
-    - name: Week
-      admin_ui: {width: 200, order: 0}
-      type: number
-    - name: Sections
-      admin_ui: {width: 200, order: 1}
-      type: string
-    - name: Finished
-      admin_ui: {order: 2, width: 200}
-      type: bool
-    - name: Comments
-      admin_ui: {width: 200, order: 3}
-      type: string
-    title: Calendar
-  scenarios:
-    client: full
-    server: full
-    columns:
-    - name: Number
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: Name
-      admin_ui: {width: 200, order: 1}
-      type: string
-    - name: Storyline
-      admin_ui: {width: 200, order: 2}
-      type: string
-    - name: Status
-      admin_ui: {width: 200, order: 3}
-      type: string
-    - name: Notes
-      admin_ui: {width: 200, order: 4}
-      type: string
-    - name: Chests
-      admin_ui: {width: 200, order: 6}
-      type: string
-    - name: Requirements
-      admin_ui: {width: 200, order: 5}
-      type: string
-    - name: Unlocked by
-      admin_ui: {width: 200, order: 7}
-      type: string
-    title: Scenarios
   retired_characters:
     client: full
-    server: full
     columns:
-    - name: Player
-      admin_ui: {width: 200, order: 0}
+    - admin_ui: {order: 0, width: 200}
+      name: Player
       type: string
-    - name: Name
-      admin_ui: {width: 200, order: 1}
+    - admin_ui: {order: 1, width: 200}
+      name: Name
       type: string
-    - name: Experience
-      admin_ui: {width: 200, order: 2}
+    - admin_ui: {order: 2, width: 200}
+      name: Experience
       type: number
-    - name: Class
-      admin_ui: {width: 200, order: 3}
-      type: link_single
+    - admin_ui: {order: 3, width: 200}
+      name: Class
       target: classes
-    - name: Level
-      admin_ui: {width: 200, order: 2.5}
+      type: link_single
+    - admin_ui: {order: 2.5, width: 200}
+      name: Level
       type: number
-    - name: Perks
-      admin_ui: {width: 200, order: 4}
+    - admin_ui: {order: 4, width: 200}
+      name: Perks
       type: number
-    - name: Mastery2
-      admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 200}
+      name: Mastery2
       type: bool
-    - name: Mastery1
-      admin_ui: {order: 5, width: 200}
+    - admin_ui: {order: 5, width: 200}
+      name: Mastery1
       type: bool
+    server: full
     title: Retired Characters
-renamed: true
+  scenario_info:
+    client: search
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Level
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: Gold Conversion
+      type: number
+    - admin_ui: {order: 2, width: 200}
+      name: Trap Damage
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: Hazardous Terrain
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: Bonus Experience
+      type: number
+    server: full
+    title: Scenario Info
+  scenarios:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Number
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Name
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: Storyline
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: Status
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: Notes
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: Chests
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: Requirements
+      type: string
+    - admin_ui: {order: 7, width: 200}
+      name: Unlocked by
+      type: string
+    server: full
+    title: Scenarios
+  users:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: email
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: enabled
+      type: bool
+    - admin_ui: {order: 2, width: 200}
+      name: last_login
+      type: datetime
+    - admin_ui: {order: 3, width: 200}
+      name: password_hash
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: n_password_failures
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: confirmed_email
+      type: bool
+    server: full
+    title: Users
+dependencies: []
 metadata: {logo_img: 'asset:communityIcon_99w87f5etxy91.png'}
+name: Frosthaven
+native_deps: null
+package_name: Frosthaven2
+renamed: true
+runtime_options:
+  client_version: '3'
+  legacy_features: {__dict__: true, bootstrap3: true, class_names: true, root_container: true}
+  server_spec: null
+  server_spec_disabled: {base: python310-standard, requirements: ''}
+  server_version: python3-sandbox
+  version: 3
+services:
+- client_config: {enable_v2: true}
+  server_config: {}
+  source: /runtime/services/tables.yml
+- client_config: {allow_signup: false, confirm_email: false, enable_automatically: true, use_email: true, use_token: false}
+  server_config: {user_table: users}
+  source: /runtime/services/anvil/users.yml
+startup: {module: Login, type: form}
+startup_form: null

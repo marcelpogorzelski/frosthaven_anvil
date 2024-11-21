@@ -1,141 +1,141 @@
-container:
-  type: ColumnPanel
-  properties: {col_widths: '{"LDTEAA":6}'}
 components:
-- name: filter_flow_panel
+- components:
+  - layout_properties: {}
+    name: label_2
+    properties: {align: left, bold: false, text: 'Status filter:'}
+    type: Label
+  - data_bindings: []
+    event_bindings: {click: status_button_click}
+    layout_properties: {}
+    name: available_filter_button
+    properties: {role: elevated-button, text: Available}
+    type: Button
+  - data_bindings: []
+    event_bindings: {click: status_button_click}
+    layout_properties: {}
+    name: finished_filter_button
+    properties: {role: elevated-button, text: Finished}
+    type: Button
+  - data_bindings: []
+    event_bindings: {click: status_button_click}
+    layout_properties: {}
+    name: locked_filter_button
+    properties: {role: elevated-button, text: Locked}
+    type: Button
+  layout_properties: {full_width_row: true, grid_position: 'BAJOEY,CEYCXO'}
+  name: filter_flow_panel
   properties: {}
   type: FlowPanel
-  layout_properties: {grid_position: 'BAJOEY,CEYCXO', full_width_row: true}
-  components:
-  - name: label_2
-    properties: {align: left, text: 'Status filter:', bold: false}
-    type: Label
-    layout_properties: {}
-  - name: available_filter_button
-    properties: {text: Available, role: elevated-button}
-    type: Button
-    event_bindings: {click: status_button_click}
-    data_bindings: []
-    layout_properties: {}
-  - name: finished_filter_button
-    properties: {text: Finished, role: elevated-button}
-    type: Button
-    event_bindings: {click: status_button_click}
-    data_bindings: []
-    layout_properties: {}
-  - name: locked_filter_button
-    properties: {text: Locked, role: elevated-button}
-    type: Button
-    event_bindings: {click: status_button_click}
-    data_bindings: []
-    layout_properties: {}
-- name: data_grid_1
-  properties:
-    columns:
-    - {id: SNLXTY, data_key: Number, title: Number, width: '80'}
-    - {id: GJCQIT, data_key: Name, title: Name, width: '170', expand: false}
-    - {id: EGUNUE, data_key: Status, title: Status, width: 129.71868896484375, expand: false}
-    - {id: ZFDBBU, data_key: Requirements, title: Requirements, width: '150'}
-    - {id: IYJEPN, data_key: Chests, title: Chests, width: '150'}
-    - {id: ROGTEG, data_key: Unlocked by, title: Unlocked by, width: '150'}
-    - {id: ZVPYTB, data_key: Notes, title: Notes, width: '200', expand: true}
-    rows_per_page: 20
-    role: [tonal-data-grid, wide]
-  type: DataGrid
-  components:
-  - name: scenario_repeating_panel
+- components:
+  - layout_properties: {}
+    name: scenario_repeating_panel
     properties: {item_template: Scenarios.ScenariosRowTemplate}
     type: RepeatingPanel
-    layout_properties: {}
-  - name: flow_panel_1
-    properties: {}
-    type: FlowPanel
-    layout_properties: {slot: footer}
-    components:
-    - name: label_1
+  - components:
+    - layout_properties: {}
+      name: label_1
       properties: {text: 'Unlock scenario:'}
       type: Label
-      layout_properties: {}
-    - name: unlock_scenario_drop_down
+    - event_bindings: {}
+      layout_properties: {width: 80.5494384765625}
+      name: unlock_scenario_drop_down
       properties: {}
       type: DropDown
-      layout_properties: {width: 80.5494384765625}
-      event_bindings: {}
-    - name: add_scenario_button
-      properties: {text: '', icon: 'fa:plus'}
-      type: Button
+    - event_bindings: {click: add_scenario_button_click}
       layout_properties: {}
-      event_bindings: {click: add_scenario_button_click}
-  layout_properties: {grid_position: 'DGYBGY,EAIQKW', full_width_row: true}
-- name: column_panel_1
+      name: add_scenario_button
+      properties: {icon: 'fa:plus', text: ''}
+      type: Button
+    layout_properties: {slot: footer}
+    name: flow_panel_1
+    properties: {}
+    type: FlowPanel
+  layout_properties: {full_width_row: true, grid_position: 'DGYBGY,EAIQKW'}
+  name: data_grid_1
+  properties:
+    columns:
+    - {data_key: Number, id: SNLXTY, title: Number, width: '80'}
+    - {data_key: Name, expand: false, id: GJCQIT, title: Name, width: '170'}
+    - {data_key: Status, expand: false, id: EGUNUE, title: Status, width: 129.71868896484375}
+    - {data_key: Requirements, id: ZFDBBU, title: Requirements, width: '150'}
+    - {data_key: Chests, id: IYJEPN, title: Chests, width: '150'}
+    - {data_key: Unlocked by, id: ROGTEG, title: Unlocked by, width: '150'}
+    - {data_key: Notes, expand: true, id: ZVPYTB, title: Notes, width: '200'}
+    role: [tonal-data-grid, wide]
+    rows_per_page: 20
+  type: DataGrid
+- components:
+  - data_bindings:
+    - {code: self.foregroud_color("#4F4F4F"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,MNFRHN NNEIFQ,XQVGMT'}
+    name: introduction_storyline_label
+    properties: {align: center, background: '#4F4F4F', text: Introduction}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#40A44F"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,MNFRHN QEGCGK,TTLRVB'}
+    name: unfettered_storyline_label
+    properties: {align: center, background: '#40A44F', text: Unfettered}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#EC6624"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,MNFRHN QHVKCX,XSJWNH'}
+    name: job_postings_storyline_label
+    properties: {align: center, background: '#EC6624', text: Job Postings}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#45A3E9"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,ELBDEH FMAJFF,JUOYWB'}
+    name: algox_icespeakers_storyline_label
+    properties: {align: center, background: '#45A3E9', foreground: '', text: Algox Icespeakers}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#5F2D91"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,ELBDEH DTQVDM,OGKQSH'}
+    name: lurker_storyline_label
+    properties: {align: center, background: '#5F2D91', text: Lurker}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#552F0F"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,ELBDEH JEFTUA,JUZXHC'}
+    name: rs_storyline_label
+    properties: {align: center, background: '#552F0F', text: Random Scenarios}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#0F1D52"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,GCAFHY GKEEEC,KHYQHW'}
+    name: algox_snowspeakers_storyline_label
+    properties: {align: center, background: '#0F1D52', foreground: 'theme:On Primary', text: Algox Snowspeakers}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#FDFF43"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,GCAFHY FEISSS,FJQPHN'}
+    name: puzzlebook_storyline_label
+    properties: {align: center, background: '#FDFF43', text: Puzzle Book}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#BBB590"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,GCAFHY HFSDZB,AMQLON'}
+    name: other_storyline_label
+    properties: {align: center, background: '#BBB590', text: Other}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#352BF6"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,ATYHIN OICPOC,BPQYSJ'}
+    name: algox_conclusion_storyline_label
+    properties: {align: center, background: '#352BF6', foreground: 'theme:On Primary', text: Algox Conclusion}
+    type: Label
+  - data_bindings:
+    - {code: self.foregroud_color("#A82314"), property: foreground, writeback: false}
+    layout_properties: {grid_position: 'ZDFGNF,ATYHIN LHKUKH,RBKKTU'}
+    name: pq_storyline_label
+    properties: {align: center, background: '#A82314', text: Personal Quest}
+    type: Label
+  layout_properties: {full_width_row: false, grid_position: 'IIMPFG,MWSESK'}
+  name: column_panel_1
   properties: {}
   type: ColumnPanel
-  layout_properties: {grid_position: 'IIMPFG,MWSESK', full_width_row: false}
-  components:
-  - name: introduction_storyline_label
-    properties: {text: Introduction, background: '#4F4F4F', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,MNFRHN NNEIFQ,XQVGMT'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#4F4F4F"), writeback: false}
-  - name: unfettered_storyline_label
-    properties: {text: Unfettered, background: '#40A44F', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,MNFRHN QEGCGK,TTLRVB'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#40A44F"), writeback: false}
-  - name: job_postings_storyline_label
-    properties: {text: Job Postings, background: '#EC6624', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,MNFRHN QHVKCX,XSJWNH'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#EC6624"), writeback: false}
-  - name: algox_icespeakers_storyline_label
-    properties: {text: Algox Icespeakers, background: '#45A3E9', align: center, foreground: ''}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,ELBDEH FMAJFF,JUOYWB'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#45A3E9"), writeback: false}
-  - name: lurker_storyline_label
-    properties: {text: Lurker, background: '#5F2D91', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,ELBDEH DTQVDM,OGKQSH'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#5F2D91"), writeback: false}
-  - name: rs_storyline_label
-    properties: {text: Random Scenarios, background: '#552F0F', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,ELBDEH JEFTUA,JUZXHC'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#552F0F"), writeback: false}
-  - name: algox_snowspeakers_storyline_label
-    properties: {text: Algox Snowspeakers, background: '#0F1D52', foreground: 'theme:On Primary', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,GCAFHY GKEEEC,KHYQHW'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#0F1D52"), writeback: false}
-  - name: puzzlebook_storyline_label
-    properties: {text: Puzzle Book, background: '#FDFF43', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,GCAFHY FEISSS,FJQPHN'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#FDFF43"), writeback: false}
-  - name: other_storyline_label
-    properties: {text: Other, background: '#BBB590', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,GCAFHY HFSDZB,AMQLON'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#BBB590"), writeback: false}
-  - name: algox_conclusion_storyline_label
-    properties: {text: Algox Conclusion, background: '#352BF6', foreground: 'theme:On Primary', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,ATYHIN OICPOC,BPQYSJ'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#352BF6"), writeback: false}
-  - name: pq_storyline_label
-    properties: {text: Personal Quest, background: '#A82314', align: center}
-    type: Label
-    layout_properties: {grid_position: 'ZDFGNF,ATYHIN LHKUKH,RBKKTU'}
-    data_bindings:
-    - {property: foreground, code: self.foregroud_color("#A82314"), writeback: false}
+container:
+  properties: {col_widths: '{"LDTEAA":6}'}
+  type: ColumnPanel
 is_package: true

@@ -1,45 +1,45 @@
-is_package: true
-container:
-  type: DataRowPanel
-  properties: {background: '', align: center}
-  data_bindings: []
 components:
-- name: number_label
+- data_bindings:
+  - {code: 'self.item[''Number'']', property: text, writeback: false}
+  - {code: 'self.item[''Storyline'']', property: background, writeback: false}
+  - {code: 'self.foregroud_color(self.item[''Storyline''])', property: foreground, writeback: false}
+  layout_properties: {column: SNLXTY}
+  name: number_label
   properties: {align: center, foreground: ''}
   type: Label
-  layout_properties: {column: SNLXTY}
-  data_bindings:
-  - {property: text, code: 'self.item[''Number'']', writeback: false}
-  - {property: background, code: 'self.item[''Storyline'']', writeback: false}
-  - {property: foreground, code: 'self.foregroud_color(self.item[''Storyline''])', writeback: false}
-- name: status_drop_down
+- data_bindings:
+  - {code: 'self.item[''Status'']', property: selected_value, writeback: true}
+  layout_properties: {column: EGUNUE}
+  name: status_drop_down
   properties:
     items: [Available, Finished, Locked]
   type: DropDown
-  layout_properties: {column: EGUNUE}
-  data_bindings:
-  - {property: selected_value, code: 'self.item[''Status'']', writeback: true}
-- name: notes_text_box
-  properties: {}
-  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Notes'']', property: text, writeback: true}
   layout_properties: {column: ZVPYTB}
-  data_bindings:
-  - {property: text, code: 'self.item[''Notes'']', writeback: true}
-- name: req_text_box
+  name: notes_text_box
   properties: {}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Requirements'']', property: text, writeback: true}
   layout_properties: {column: ZFDBBU}
-  data_bindings:
-  - {property: text, code: 'self.item[''Requirements'']', writeback: true}
-- name: chest_text_box
+  name: req_text_box
   properties: {}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Chests'']', property: text, writeback: true}
   layout_properties: {column: IYJEPN}
-  data_bindings:
-  - {property: text, code: 'self.item[''Chests'']', writeback: true}
-- name: text_box_1
+  name: chest_text_box
   properties: {}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Unlocked by'']', property: text, writeback: true}
   layout_properties: {column: ROGTEG}
-  data_bindings:
-  - {property: text, code: 'self.item[''Unlocked by'']', writeback: true}
+  name: text_box_1
+  properties: {}
+  type: TextBox
+container:
+  data_bindings: []
+  properties: {align: center, background: ''}
+  type: DataRowPanel
+is_package: true

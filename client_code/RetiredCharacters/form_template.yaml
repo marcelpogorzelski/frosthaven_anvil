@@ -1,22 +1,22 @@
-container: {type: ColumnPanel}
 components:
-- name: data_grid_1
-  properties:
-    columns:
-    - {id: XDZLMJ, data_key: Player, title: Player, width: '150'}
-    - {id: BHJSNO, data_key: Name, title: Name, width: '150'}
-    - {id: EHHRTK, data_key: Experience, title: Experience, width: '150'}
-    - {id: CCUVXO, data_key: Level, title: Level, width: '150'}
-    - {id: HJKNWZ, data_key: Class, title: Class, width: '150'}
-    - {id: FRDENJ, data_key: Perks, title: Perks, width: '150'}
-    - {id: IAVUMZ, data_key: Mastery1, title: Mastery One, width: '150'}
-    - {id: VZHMYS, data_key: Mastery2, title: Mastery Two, width: '150'}
-    role: [tonal-data-grid, wide]
-    rows_per_page: 40
-  type: DataGrid
-  components:
+- components:
   - name: retired_characters_repeating_panel
     properties: {item_template: RetiredCharacters.RetiredCharactersRowTemplate}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'UNQVGD,SFYBJR', full_width_row: true}
+  layout_properties: {full_width_row: true, grid_position: 'UNQVGD,SFYBJR'}
+  name: data_grid_1
+  properties:
+    columns:
+    - {data_key: Player, id: XDZLMJ, title: Player, width: '150'}
+    - {data_key: Name, id: BHJSNO, title: Name, width: '150'}
+    - {data_key: Experience, id: EHHRTK, title: Experience, width: '150'}
+    - {data_key: Level, id: CCUVXO, title: Level, width: '150'}
+    - {data_key: Class, id: HJKNWZ, title: Class, width: '150'}
+    - {data_key: Perks, id: FRDENJ, title: Perks, width: '150'}
+    - {data_key: Mastery1, id: IAVUMZ, title: Mastery One, width: '150'}
+    - {data_key: Mastery2, id: VZHMYS, title: Mastery Two, width: '150'}
+    role: [tonal-data-grid, wide]
+    rows_per_page: 40
+  type: DataGrid
+container: {type: ColumnPanel}
 is_package: true

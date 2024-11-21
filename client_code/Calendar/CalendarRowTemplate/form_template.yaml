@@ -1,26 +1,26 @@
-is_package: true
-container:
-  type: DataRowPanel
-  properties: {background: ''}
-  data_bindings:
-  - {property: background, code: 'self.get_calendar_background(self.item[''Week''], self.item[''Finished''])', writeback: false}
 components:
-- name: sections_text_box
-  properties: {}
-  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Sections'']', property: text, writeback: true}
   layout_properties: {column: PEUWUZ}
-  data_bindings:
-  - {property: text, code: 'self.item[''Sections'']', writeback: true}
-- name: finished_check_box
-  properties: {text: '', allow_indeterminate: false, align: center}
-  type: CheckBox
-  layout_properties: {column: JROJRQ}
-  data_bindings:
-  - {property: checked, code: 'self.item[''Finished'']', writeback: true}
-  event_bindings: {change: finished_check_box_change}
-- name: comments_text_box
+  name: sections_text_box
   properties: {}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Finished'']', property: checked, writeback: true}
+  event_bindings: {change: finished_check_box_change}
+  layout_properties: {column: JROJRQ}
+  name: finished_check_box
+  properties: {align: center, allow_indeterminate: false, text: ''}
+  type: CheckBox
+- data_bindings:
+  - {code: 'self.item[''Comments'']', property: text, writeback: true}
   layout_properties: {column: WDDQPO}
+  name: comments_text_box
+  properties: {}
+  type: TextBox
+container:
   data_bindings:
-  - {property: text, code: 'self.item[''Comments'']', writeback: true}
+  - {code: 'self.get_calendar_background(self.item[''Week''], self.item[''Finished''])', property: background, writeback: false}
+  properties: {background: ''}
+  type: DataRowPanel
+is_package: true

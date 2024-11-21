@@ -1,24 +1,24 @@
-is_package: true
-container:
-  type: DataRowPanel
-  properties: {align: center}
-  data_bindings: []
 components:
-- name: mastery_one_check_box
-  properties: {text: '', align: center}
-  type: CheckBox
+- data_bindings:
+  - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
   layout_properties: {column: IAVUMZ}
-  data_bindings:
-  - {property: checked, code: 'self.item[''Mastery1'']', writeback: false}
-- name: mastery_two_check_box
-  properties: {text: '', align: center}
+  name: mastery_one_check_box
+  properties: {align: center, text: ''}
   type: CheckBox
+- data_bindings:
+  - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
   layout_properties: {column: VZHMYS}
-  data_bindings:
-  - {property: checked, code: 'self.item[''Mastery2'']', writeback: false}
-- name: class_label
-  properties: {text: class_label, align: center}
-  type: Label
+  name: mastery_two_check_box
+  properties: {align: center, text: ''}
+  type: CheckBox
+- data_bindings:
+  - {code: 'self.item[''Class''][''Name'']', property: text, writeback: false}
   layout_properties: {column: HJKNWZ}
-  data_bindings:
-  - {property: text, code: 'self.item[''Class''][''Name'']', writeback: false}
+  name: class_label
+  properties: {align: center, text: class_label}
+  type: Label
+container:
+  data_bindings: []
+  properties: {align: center}
+  type: DataRowPanel
+is_package: true

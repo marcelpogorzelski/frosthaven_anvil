@@ -1,53 +1,53 @@
-is_package: true
-container:
-  type: DataRowPanel
-  properties: {visible: true}
 components:
-- name: experience_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: KYLSGG}
+  name: experience_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: KYLSGG}
-- name: gold_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: BKKTSA}
+  name: gold_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: BKKTSA}
-- name: gold_coin_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: KPWJHE}
+  name: gold_coin_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: KPWJHE}
-- name: lumber_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: CNEKNX}
+  name: lumber_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: CNEKNX}
-- name: metal_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: IERWWQ}
+  name: metal_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: IERWWQ}
-- name: hide_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: XQTYTV}
+  name: hide_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: XQTYTV}
-- name: arrowvine_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: BKAREF}
+  name: arrowvine_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: BKAREF}
-- name: axenut_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: GVVJXF}
+  name: axenut_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: GVVJXF}
-- name: corpsecap_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: XCBRVQ}
+  name: corpsecap_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: XCBRVQ}
-- name: flamefruit_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: RNKXAX}
+  name: flamefruit_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: RNKXAX}
-- name: rockroot_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: RKKWTJ}
+  name: rockroot_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: RKKWTJ}
-- name: snowthistle_text_box
-  properties: {type: number, align: center}
+- layout_properties: {column: JGRNRO}
+  name: snowthistle_text_box
+  properties: {align: center, type: number}
   type: TextBox
-  layout_properties: {column: JGRNRO}
+container:
+  properties: {visible: true}
+  type: DataRowPanel
+is_package: true

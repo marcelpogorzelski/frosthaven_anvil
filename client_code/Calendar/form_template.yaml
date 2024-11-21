@@ -1,19 +1,19 @@
-container: {type: ColumnPanel}
 components:
-- name: calendar_data_grid
-  properties:
-    columns:
-    - {id: VCYXHH, data_key: Week, title: Week, width: '100'}
-    - {id: PEUWUZ, data_key: Sections, title: Sections, width: '400'}
-    - {id: JROJRQ, data_key: Finished, title: Finished, width: '100'}
-    - {id: WDDQPO, data_key: Comments, title: Comments, width: '400', expand: true}
-    role: [tonal-data-grid, wide]
-    show_page_controls: true
-    rows_per_page: 10
-  type: DataGrid
-  components:
+- components:
   - name: calendar_repeating_panel
     properties: {item_template: Calendar.CalendarRowTemplate}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'GQPJFH,IPBYKA', full_width_row: true}
+  layout_properties: {full_width_row: true, grid_position: 'GQPJFH,IPBYKA'}
+  name: calendar_data_grid
+  properties:
+    columns:
+    - {data_key: Week, id: VCYXHH, title: Week, width: '100'}
+    - {data_key: Sections, id: PEUWUZ, title: Sections, width: '400'}
+    - {data_key: Finished, id: JROJRQ, title: Finished, width: '100'}
+    - {data_key: Comments, expand: true, id: WDDQPO, title: Comments, width: '400'}
+    role: [tonal-data-grid, wide]
+    rows_per_page: 10
+    show_page_controls: true
+  type: DataGrid
+container: {type: ColumnPanel}
 is_package: true

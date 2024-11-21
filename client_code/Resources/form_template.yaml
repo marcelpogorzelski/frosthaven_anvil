@@ -1,129 +1,129 @@
-container:
-  type: ColumnPanel
-  properties: {role: null}
 components:
-- name: data_grid_1
-  properties:
-    columns:
-    - {id: XSAFZX, data_key: Name, title: Name, width: '150', expand: false}
-    - {id: DQHQWZ, data_key: column_1, title: Experience, width: '100'}
-    - {id: IYDZYZ, data_key: Gold, title: Gold, expand: false, width: '100'}
-    - {id: TWVBIC, data_key: Lumber, title: Lumber, width: '100'}
-    - {id: AOSTAK, data_key: Metal, title: Metal, width: '100'}
-    - {id: FOSWJJ, data_key: Hide, title: Hide, width: '100'}
-    - {id: QISJAP, data_key: Arrowvine, title: Arrowvine, width: '100', expand: false}
-    - {id: UWWRFX, data_key: Axenut, title: Axenut, width: '100'}
-    - {id: YXYOUI, data_key: Corpsecap, title: Corpsecap, width: '100'}
-    - {id: ZPALIO, data_key: Flamefruit, title: Flamefruit, width: '100'}
-    - {id: HROJIF, data_key: Rockroot, title: Rockroot, width: '100'}
-    - {id: SSKCUR, data_key: Snowthistle, title: Snowthistle, width: '100'}
-    - {id: GZOHUF, data_key: column_1, title: Notes, width: '300', expand: true}
-    show_page_controls: false
-    role: [tonal-data-grid, wide]
-    wrap_on: never
-  type: DataGrid
-  components:
-  - name: character_repeating_panel
+- components:
+  - data_bindings: []
+    layout_properties: {}
+    name: character_repeating_panel
     properties: {item_template: Resources.ResourcesRowTemplate, visible: true}
     type: RepeatingPanel
-    data_bindings: []
-    layout_properties: {}
-  - name: frosthaven_data_row_panel
-    properties: {align: center}
-    type: DataRowPanel
-    components:
-    - name: frosthaven_label
+  - components:
+    - layout_properties: {column: XSAFZX}
+      name: frosthaven_label
       properties: {text: Frosthaven}
       type: Label
-      layout_properties: {column: XSAFZX}
-    - name: frosthaven_lumber_text_box
-      properties: {type: number}
-      type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Lumber'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: TWVBIC}
-      data_bindings:
-      - {property: text, code: 'self.item[''Lumber'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_metal_text_box
+      name: frosthaven_lumber_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Metal'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: AOSTAK}
-      data_bindings:
-      - {property: text, code: 'self.item[''Metal'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_hide_text_box
+      name: frosthaven_metal_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Hide'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: FOSWJJ}
-      data_bindings:
-      - {property: text, code: 'self.item[''Hide'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_arrowvine_text_box
+      name: frosthaven_hide_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Arrowvine'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: QISJAP}
-      data_bindings:
-      - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_axenut_text_box
+      name: frosthaven_arrowvine_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Axenut'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: UWWRFX}
-      data_bindings:
-      - {property: text, code: 'self.item[''Axenut'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_corpsecap_text_box
+      name: frosthaven_axenut_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Corpsecap'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: YXYOUI}
-      data_bindings:
-      - {property: text, code: 'self.item[''Corpsecap'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_flamefruit_text_box
+      name: frosthaven_corpsecap_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Flamefruit'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: ZPALIO}
-      data_bindings:
-      - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_rockroot_text_box
+      name: frosthaven_flamefruit_text_box
       properties: {type: number}
       type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Rockroot'']', property: text, writeback: true}
+      event_bindings: {change: text_box_change}
       layout_properties: {column: HROJIF}
-      data_bindings:
-      - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
-      event_bindings: {change: text_box_change}
-    - name: frosthaven_snowthistle_text_box
+      name: frosthaven_rockroot_text_box
       properties: {type: number}
       type: TextBox
-      layout_properties: {column: SSKCUR}
-      data_bindings:
-      - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
+    - data_bindings:
+      - {code: 'self.item[''Snowthistle'']', property: text, writeback: true}
       event_bindings: {change: text_box_change}
-    - name: label_1
+      layout_properties: {column: SSKCUR}
+      name: frosthaven_snowthistle_text_box
+      properties: {type: number}
+      type: TextBox
+    - layout_properties: {column: DQHQWZ}
+      name: label_1
       properties: {visible: false}
       type: Label
-      layout_properties: {column: DQHQWZ}
-    - name: label_3
+    - layout_properties: {column: GZOHUF}
+      name: label_3
       properties: {visible: false}
       type: Label
-      layout_properties: {column: GZOHUF}
-    - name: label_5
+    - layout_properties: {column: IYDZYZ}
+      name: label_5
       properties: {visible: false}
       type: Label
-      layout_properties: {column: IYDZYZ}
     layout_properties: {}
-  - name: total_data_row_panel
+    name: frosthaven_data_row_panel
     properties: {align: center}
     type: DataRowPanel
-    components:
-    - name: label_2
+  - components:
+    - layout_properties: {column: DQHQWZ}
+      name: label_2
       properties: {}
       type: Label
-      layout_properties: {column: DQHQWZ}
-    - name: label_4
+    - layout_properties: {column: GZOHUF}
+      name: label_4
       properties: {}
       type: Label
-      layout_properties: {column: GZOHUF}
     layout_properties: {}
-  layout_properties: {grid_position: 'MBXJUE,PFDFUW', full_width_row: true}
+    name: total_data_row_panel
+    properties: {align: center}
+    type: DataRowPanel
+  layout_properties: {full_width_row: true, grid_position: 'MBXJUE,PFDFUW'}
+  name: data_grid_1
+  properties:
+    columns:
+    - {data_key: Name, expand: false, id: XSAFZX, title: Name, width: '150'}
+    - {data_key: column_1, id: DQHQWZ, title: Experience, width: '100'}
+    - {data_key: Gold, expand: false, id: IYDZYZ, title: Gold, width: '100'}
+    - {data_key: Lumber, id: TWVBIC, title: Lumber, width: '100'}
+    - {data_key: Metal, id: AOSTAK, title: Metal, width: '100'}
+    - {data_key: Hide, id: FOSWJJ, title: Hide, width: '100'}
+    - {data_key: Arrowvine, expand: false, id: QISJAP, title: Arrowvine, width: '100'}
+    - {data_key: Axenut, id: UWWRFX, title: Axenut, width: '100'}
+    - {data_key: Corpsecap, id: YXYOUI, title: Corpsecap, width: '100'}
+    - {data_key: Flamefruit, id: ZPALIO, title: Flamefruit, width: '100'}
+    - {data_key: Rockroot, id: HROJIF, title: Rockroot, width: '100'}
+    - {data_key: Snowthistle, id: SSKCUR, title: Snowthistle, width: '100'}
+    - {data_key: column_1, expand: true, id: GZOHUF, title: Notes, width: '300'}
+    role: [tonal-data-grid, wide]
+    show_page_controls: false
+    wrap_on: never
+  type: DataGrid
+container:
+  properties: {role: null}
+  type: ColumnPanel
 is_package: true

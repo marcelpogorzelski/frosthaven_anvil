@@ -1,125 +1,125 @@
-is_package: true
-container:
-  type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html', visible: true}
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{}', col_spacing: small}
-  name: content_panel
+- components: []
   layout_properties: {slot: default}
-  components: []
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
+  name: content_panel
+  properties: {col_spacing: small, col_widths: '{}'}
+  type: ColumnPanel
+- components: []
   layout_properties: {slot: nav-right}
-  components: []
-- name: navbar_column_panel
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+- components:
+  - components: []
+    data_bindings: []
+    event_bindings: {click: frosthave_link_click}
+    layout_properties: {grid_position: 'DOIEYI,BILHKV'}
+    name: frosthave_link
+    properties: {align: center, text: Frosthaven}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: calendar_link_click}
+    layout_properties: {grid_position: 'WEBJSV,ALEILZ'}
+    name: calendar_link
+    properties: {align: center, text: Calendar}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: scenarios_link_click}
+    layout_properties: {grid_position: 'HWKODQ,QOEZTE'}
+    name: scenarios_link
+    properties: {align: center, text: Scenarios, visible: true}
+    type: Link
+  - layout_properties: {grid_position: 'IQQEEW,AUKVPP'}
+    name: spacer_3
+    properties: {height: 32}
+    type: Spacer
+  - components: []
+    data_bindings: []
+    event_bindings: {click: party_link_click}
+    layout_properties: {grid_position: 'SWOOJY,UXNVSH'}
+    name: party_link
+    properties: {align: center, icon: '', text: Party}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: resources_link_click}
+    layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
+    name: resources_link
+    properties: {align: center, text: Resources}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: finish_scenario_link_click}
+    layout_properties: {grid_position: 'WNHBKX,UUKZHZ'}
+    name: resources_link_copy
+    properties: {align: center, text: Finish Scenario, visible: true}
+    type: Link
+  - layout_properties: {grid_position: 'ZRRXYC,PRVYHE'}
+    name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+  - components: []
+    data_bindings: []
+    event_bindings: {click: havard_link_click}
+    layout_properties: {grid_position: 'GJQTUG,KXLYJR'}
+    name: havard_link
+    properties: {align: center, text: Håvard}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: john_magne_link_click}
+    layout_properties: {grid_position: 'RLVNAZ,TAKGTV'}
+    name: john_magne_link
+    properties: {align: center, text: John Magne}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: kristian_link_click}
+    layout_properties: {grid_position: 'XXELWF,HLZAKM'}
+    name: kristian_link
+    properties: {align: center, text: Kristian}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: marcel_link_click}
+    layout_properties: {grid_position: 'ZWYOUQ,EDAGAJ'}
+    name: marcel_link
+    properties: {align: center, text: Marcel}
+    type: Link
+  - layout_properties: {grid_position: 'YZBIKS,GTUAMT'}
+    name: spacer_2
+    properties: {height: 32}
+    type: Spacer
+  - data_bindings: []
+    event_bindings: {click: retired_characters_link_click}
+    layout_properties: {grid_position: 'THCHKQ,OQIHNS'}
+    name: retired_characters_link
+    properties: {align: center, text: Retired Characters}
+    type: Link
+  - layout_properties: {grid_position: 'TIYLTP,GMTQUH'}
+    name: spacer_2_copy
+    properties: {height: 32}
+    type: Spacer
+  - data_bindings: []
+    event_bindings: {click: import_export_link_click}
+    layout_properties: {grid_position: 'OMJRFF,RZHHHG'}
+    name: import_export_link
+    properties: {align: center, text: Import/Export}
+    type: Link
+  - event_bindings: {click: logout_button_click}
+    layout_properties: {grid_position: 'BSTBDA,LODRQE'}
+    name: logout_button
+    properties: {role: outlined-button, text: Logout}
+    type: Button
+  layout_properties: {slot: left-nav}
+  name: navbar_column_panel
   properties: {}
   type: ColumnPanel
-  layout_properties: {slot: left-nav}
-  components:
-  - name: frosthave_link
-    properties: {text: Frosthaven, align: center}
-    type: Link
-    layout_properties: {grid_position: 'DOIEYI,BILHKV'}
-    event_bindings: {click: frosthave_link_click}
-    data_bindings: []
-    components: []
-  - name: calendar_link
-    properties: {text: Calendar, align: center}
-    type: Link
-    layout_properties: {grid_position: 'WEBJSV,ALEILZ'}
-    event_bindings: {click: calendar_link_click}
-    data_bindings: []
-  - name: scenarios_link
-    properties: {text: Scenarios, align: center, visible: true}
-    type: Link
-    layout_properties: {grid_position: 'HWKODQ,QOEZTE'}
-    event_bindings: {click: scenarios_link_click}
-    data_bindings: []
-  - name: spacer_3
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {grid_position: 'IQQEEW,AUKVPP'}
-  - name: party_link
-    properties: {text: Party, align: center, icon: ''}
-    type: Link
-    layout_properties: {grid_position: 'SWOOJY,UXNVSH'}
-    event_bindings: {click: party_link_click}
-    data_bindings: []
-    components: []
-  - name: resources_link
-    properties: {text: Resources, align: center}
-    type: Link
-    layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
-    event_bindings: {click: resources_link_click}
-    data_bindings: []
-    components: []
-  - name: resources_link_copy
-    properties: {text: Finish Scenario, align: center, visible: true}
-    type: Link
-    layout_properties: {grid_position: 'WNHBKX,UUKZHZ'}
-    event_bindings: {click: finish_scenario_link_click}
-    data_bindings: []
-  - name: spacer_1
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {grid_position: 'ZRRXYC,PRVYHE'}
-  - name: havard_link
-    properties: {text: Håvard, align: center}
-    type: Link
-    layout_properties: {grid_position: 'GJQTUG,KXLYJR'}
-    event_bindings: {click: havard_link_click}
-    data_bindings: []
-    components: []
-  - name: john_magne_link
-    properties: {text: John Magne, align: center}
-    type: Link
-    layout_properties: {grid_position: 'RLVNAZ,TAKGTV'}
-    event_bindings: {click: john_magne_link_click}
-    data_bindings: []
-    components: []
-  - name: kristian_link
-    properties: {text: Kristian, align: center}
-    type: Link
-    layout_properties: {grid_position: 'XXELWF,HLZAKM'}
-    event_bindings: {click: kristian_link_click}
-    data_bindings: []
-  - name: marcel_link
-    properties: {text: Marcel, align: center}
-    type: Link
-    layout_properties: {grid_position: 'ZWYOUQ,EDAGAJ'}
-    event_bindings: {click: marcel_link_click}
-    data_bindings: []
-    components: []
-  - name: spacer_2
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {grid_position: 'YZBIKS,GTUAMT'}
-  - name: retired_characters_link
-    properties: {text: Retired Characters, align: center}
-    type: Link
-    layout_properties: {grid_position: 'THCHKQ,OQIHNS'}
-    event_bindings: {click: retired_characters_link_click}
-    data_bindings: []
-  - name: spacer_2_copy
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {grid_position: 'TIYLTP,GMTQUH'}
-  - name: import_export_link
-    properties: {text: Import/Export, align: center}
-    type: Link
-    layout_properties: {grid_position: 'OMJRFF,RZHHHG'}
-    event_bindings: {click: import_export_link_click}
-    data_bindings: []
-  - name: logout_button
-    properties: {text: Logout, role: outlined-button}
-    type: Button
-    layout_properties: {grid_position: 'BSTBDA,LODRQE'}
-    event_bindings: {click: logout_button_click}
-- name: label_1
+- layout_properties: {slot: title}
+  name: label_1
   properties: {text: Campaign Tracker}
   type: Label
-  layout_properties: {slot: title}
-layout_metadata: {title: Campaign}
+container:
+  properties: {html: '@theme:standard-page.html', visible: true}
+  type: HtmlTemplate
 custom_component: false
+is_package: true
+layout_metadata: {title: Campaign}

@@ -1,94 +1,94 @@
-is_package: true
-container: {type: DataRowPanel}
 components:
-- name: player_label
+- data_bindings:
+  - {code: 'self.item[''Player'']', property: text, writeback: false}
+  layout_properties: {column: XSAFZX}
+  name: player_label
   properties: {}
   type: Label
-  layout_properties: {column: XSAFZX}
-  data_bindings:
-  - {property: text, code: 'self.item[''Player'']', writeback: false}
-- name: player_gold_text_box
-  properties: {type: number}
-  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Gold'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: IYDZYZ}
-  data_bindings:
-  - {property: text, code: 'self.item[''Gold'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_lumber_text_box
+  name: player_gold_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Lumber'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: TWVBIC}
-  data_bindings:
-  - {property: text, code: 'self.item[''Lumber'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_metal_text_box
+  name: player_lumber_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Metal'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: AOSTAK}
-  data_bindings:
-  - {property: text, code: 'self.item[''Metal'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_hide_text_box
+  name: player_metal_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Hide'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: FOSWJJ}
-  data_bindings:
-  - {property: text, code: 'self.item[''Hide'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_arrowvine_text_box
+  name: player_hide_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Arrowvine'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: QISJAP}
-  data_bindings:
-  - {property: text, code: 'self.item[''Arrowvine'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_axenut_text_box
+  name: player_arrowvine_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Axenut'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: UWWRFX}
-  data_bindings:
-  - {property: text, code: 'self.item[''Axenut'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_corpsecap_text_box
+  name: player_axenut_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Corpsecap'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: YXYOUI}
-  data_bindings:
-  - {property: text, code: 'self.item[''Corpsecap'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_flamefruit_text_box
+  name: player_corpsecap_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Flamefruit'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: ZPALIO}
-  data_bindings:
-  - {property: text, code: 'self.item[''Flamefruit'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_rockroot_text_box
+  name: player_flamefruit_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Rockroot'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: HROJIF}
-  data_bindings:
-  - {property: text, code: 'self.item[''Rockroot'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_snowthistle_text_box
+  name: player_rockroot_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Snowthistle'']', property: text, writeback: true}
+  event_bindings: {change: text_box_change}
   layout_properties: {column: SSKCUR}
-  data_bindings:
-  - {property: text, code: 'self.item[''Snowthistle'']', writeback: true}
-  event_bindings: {change: text_box_change}
-- name: player_experience_text_box
+  name: player_snowthistle_text_box
   properties: {type: number}
   type: TextBox
-  layout_properties: {column: DQHQWZ}
-  data_bindings:
-  - {property: text, code: 'self.item[''Experience'']', writeback: true}
-  - {property: tag, code: self.item, writeback: false}
+- data_bindings:
+  - {code: 'self.item[''Experience'']', property: text, writeback: true}
+  - {code: self.item, property: tag, writeback: false}
   event_bindings: {change: experience_text_box_change}
-- name: player_notes_text_box
+  layout_properties: {column: DQHQWZ}
+  name: player_experience_text_box
+  properties: {type: number}
+  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Notes'']', property: text, writeback: true}
+  event_bindings: {}
+  layout_properties: {column: GZOHUF}
+  name: player_notes_text_box
   properties: {type: text}
   type: TextBox
-  layout_properties: {column: GZOHUF}
-  data_bindings:
-  - {property: text, code: 'self.item[''Notes'']', writeback: true}
-  event_bindings: {}
+container: {type: DataRowPanel}
+is_package: true

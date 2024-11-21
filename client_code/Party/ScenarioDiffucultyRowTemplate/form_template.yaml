@@ -1,5 +1,5 @@
-is_package: true
-container:
-  type: DataRowPanel
-  properties: {role: null}
 components: []
+container:
+  properties: {role: null}
+  type: DataRowPanel
+is_package: true
