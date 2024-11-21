@@ -23,6 +23,7 @@ class FinishScenario(FinishScenarioTemplate):
     ]
     self.set_party_level()
     self.set_coin_value()
+    self.set_bonus_experience()
     self.populate_scenario()
     for input_row in self.finish_scenario_repeating_panel.get_components():
       player = input_row.item['Player']
