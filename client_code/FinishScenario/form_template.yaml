@@ -119,10 +119,31 @@ components:
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
-    - event_bindings: {click: finish_scenario_outlined_button_click}
+    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
+      name: bonus_experience_label
+      properties: {align: center, text: Bonus Experience}
+      type: Label
+    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
+      name: bonus_experience_text_box
+      properties: {align: center, enabled: false, type: number}
+      type: TextBox
+    name: outlined_card_1_copy_copy_copy
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - data_bindings:
+      - {code: '''Completed''', property: tag, writeback: false}
+      event_bindings: {click: finish_scenario_outlined_button_click}
       layout_properties: {grid_position: 'YHEOUT,FUDBOU'}
       name: finish_scenario_outlined_button
-      properties: {role: outlined-button, text: Finish Scenario}
+      properties: {role: outlined-button, text: ' Win Scenario '}
+      type: Button
+    - data_bindings:
+      - {code: '''Lost''', property: tag, writeback: false}
+      event_bindings: {click: finish_scenario_outlined_button_click}
+      layout_properties: {grid_position: 'JWWZKK,LGGAQR'}
+      name: finish_scenario_outlined_button_copy
+      properties: {role: outlined-button, text: Lose Scenario}
       type: Button
     layout_properties: {width: 240.9964919921875}
     name: outlined_card_2

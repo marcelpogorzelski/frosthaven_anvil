@@ -45,6 +45,10 @@ class FinishScenario(FinishScenarioTemplate):
     gold_conversion = app_tables.scenario_info.get(Level=self.party_level_text_box.text)['Gold Conversion']
     self.coin_value_text_box.text = gold_conversion
 
+  def set_bonus_experience(self):
+    bonus_experience = app_tables.scenario_info.get(Level=self.party_level_text_box.text)['Bonus Experience']
+    self.bonus_experience_text_box.text = bonus_experience
+    
   def adjust_level_plus_button_click(self, **event_args):
     self.adjust_level_text_box.text = self.adjust_level_text_box.text + 1
     self.item['Adjust Level'] = self.adjust_level_text_box.text
@@ -64,13 +68,18 @@ class FinishScenario(FinishScenarioTemplate):
   def finish_scenario_outlined_button_click(self, **event_args):
     if not confirm("Do you want to update all values?"):
       return
+    if event_args['sender'].tag == 'Completed':
+      bonus_experience = self.bonus_experience_text_box.text or 0
+    elif event_args['sender'].tag == 'Lost':
+      bonus_experience = 0
+      
     for input_row in self.finish_scenario_repeating_panel.get_components():
       player = input_row.item['Player']
       if player == 'Frosthaven':
         database_entry = app_tables.frosthaven.search()[0]
       else:
         database_entry = app_tables.characters.get(Player=player)
-        database_entry['Experience'] += input_row.experience_text_box.text or 0
+        database_entry['Experience'] += bonus_experience + (input_row.experience_text_box.text or 0)
         database_entry['Level'] = Utilites.get_level(database_entry['Experience'])
 
         gold = input_row.gold_text_box.text or 0
