@@ -88,11 +88,18 @@ components:
     name: spacer_2
     properties: {height: 32}
     type: Spacer
-  - data_bindings: []
+  - components: []
+    data_bindings: []
     event_bindings: {click: retired_characters_link_click}
     layout_properties: {grid_position: 'THCHKQ,OQIHNS'}
     name: retired_characters_link
     properties: {align: center, text: Retired Characters}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: add_class_link_click}
+    layout_properties: {grid_position: 'UQKDAS,EQLJUP'}
+    name: add_class_link
+    properties: {align: center, text: Add Class}
     type: Link
   - layout_properties: {grid_position: 'TIYLTP,GMTQUH'}
     name: spacer_2_copy

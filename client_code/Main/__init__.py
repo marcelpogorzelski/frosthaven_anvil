@@ -5,6 +5,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ..AddClass import AddClass
 from ..Character import Character
 from ..Frosthaven import Frosthaven
 from ..Party import Party
@@ -91,4 +92,8 @@ class Main(MainTemplate):
   def finish_scenario_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
     self.change_form(FinishScenario())
+
+  def add_class_link_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.change_form(AddClass())
 
