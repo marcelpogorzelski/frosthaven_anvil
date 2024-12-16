@@ -41,7 +41,8 @@ class Character(CharacterTemplate):
   def set_experience(self):
     experience = self.experience_text_box.text or 0
     self.item['Level'] = Utilites.get_level(experience)
-    self.level_text_box.text = self.item['Level']    
+    self.level_text_box.text = self.item['Level']
+    self.set_perks()
 
   def experience_text_box_change(self, **event_args):
     self.set_experience()
@@ -108,7 +109,10 @@ class Character(CharacterTemplate):
 
   def set_perks(self):
     check_marks = self.check_marks_text_box.text or 0
-    perks = int(check_marks/3) + int(self.mastery_check_box_1.checked) + int(self.mastery_check_box_2.checked)
+    retired_perks = len(app_tables.retired_characters.search(Player=self.player))
+    level_perks = int(self.level_text_box.text) - 1
+    mastery_perks = int(self.mastery_check_box_1.checked) + int(self.mastery_check_box_2.checked)
+    perks = int(check_marks/3) + retired_perks + level_perks + mastery_perks
     self.item['Perks'] = perks
     self.perk_text_box.text = perks
 
