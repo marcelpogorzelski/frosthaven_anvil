@@ -1,0 +1,21 @@
+components:
+- components:
+  - components:
+    - data_bindings: []
+      layout_properties: {grid_position: 'SCAXOR,RAKBFK'}
+      name: label_1
+      properties: {align: center, bold: true, role: input-prompt, text: 'Add Class:'}
+      type: Label
+    - layout_properties: {grid_position: 'KTLKIH,BUYBTY'}
+      name: text_box_1
+      properties: {}
+      type: TextBox
+    name: outlined_card_1
+    properties: {role: outlined-card}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'IVEAOQ,PIFGEA'}
+  name: flow_panel_1
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true

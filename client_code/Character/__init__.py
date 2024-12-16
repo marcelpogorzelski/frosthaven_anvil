@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Utilites
 from anvil.js.window import window
+from math import ceil
 
 
 class Character(CharacterTemplate):
@@ -83,6 +84,11 @@ class Character(CharacterTemplate):
   def reset_character(self):
     experience = 0
     level = Utilites.get_level(experience=experience)
+
+    prosperity_level = Utilites.get_prosperity_level(app_tables.frosthaven.search()[0]['Prosperity'])
+    starting_gold = (10 * prosperity_level) + 20
+    starintg_level = ceil(prosperity_level/2)
+    notes = f"You start at level: {starintg_level} and buy items for: {starting_gold} gold"
     
     self.item.update(
       Name='',
@@ -102,7 +108,7 @@ class Character(CharacterTemplate):
       Perks=0,
       Mastery1=False,
       Mastery2=False,
-      Notes=''
+      Notes=notes
     )
 
     self.parent.parent.change_form(Character(self.player))
