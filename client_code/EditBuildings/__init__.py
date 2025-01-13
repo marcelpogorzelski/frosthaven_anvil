@@ -10,15 +10,19 @@ class EditBuildings(EditBuildingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    all_building_numbers = (5, 12,17,21,24,34,35,37,39,42,44,65,67,72,74,81,83,84,90,98)
-    items = 
-    for building_number in all_building_numbers:
-      building = app_tables.buildings.search(Number=building_number, Available=True)
-      level = 0
-      if len(building) > 0:
-        level = building[0]['Level']
-      print(f"Building {building_number} has level {level}")
-
+    
+    buildings = app_tables.buildings.search()
+    building_list = {}
+    for building in buildings:
+      building_number = building['Number']
+      building_name = building['Name']
+      building_item = building_list.get(building_number, dict({'Number': building_number, 'Name': building_name, 'Level': 0, 'Count': 0}) )
+      if building['Available']:
+        building_item['Level'] = building['Level']
+      building_item['Count'] += 1
+      building_list[building_number] = building_item
+    self.edit_buildings_repeating_panel.items = building_list.values()
+    
     
 
     # Any code you write here will run before the form opens.

@@ -10,5 +10,8 @@ class ItemTemplate1(ItemTemplate1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.building_number_drop_down.items = [str(i) for i in range(self.item['Count'] + 1)]
+    self.building_number_drop_down.selected_value = str(self.item['Level'])
+    self.name_text_box.text = self.item['Name']
 
     # Any code you write here will run before the form opens.
