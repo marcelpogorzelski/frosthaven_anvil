@@ -4,7 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+from ..EditBuildings import EditBuildings
 
 class Buildings(BuildingsTemplate):
   def __init__(self, **properties):
@@ -28,3 +28,9 @@ class Buildings(BuildingsTemplate):
     building_image = event_args['sender']
     building_image.tag = tuple(reversed(building_image.tag))
     building_image.source = building_image.tag[0]
+
+  def outlined_button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    main_form = self.parent.parent
+    #main_form.navbar_link_select(main_form.calendar_link)
+    main_form.change_form(EditBuildings())

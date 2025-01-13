@@ -106,7 +106,8 @@ components:
     name: spacer_4
     properties: {height: 32}
     type: Spacer
-  - data_bindings: []
+  - components: []
+    data_bindings: []
     event_bindings: {click: buildings_link_click}
     layout_properties: {grid_position: 'LDFRMW,DFWYZB'}
     name: buildings_link
