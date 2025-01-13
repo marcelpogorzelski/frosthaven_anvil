@@ -1,6 +1,29 @@
 allow_embedding: false
 correct_dependency_ids: {}
 db_schema:
+  buildings:
+    client: search
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Number
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: Name
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: Level
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: Card Front
+      type: media
+    - admin_ui: {order: 4, width: 200}
+      name: Card Back
+      type: media
+    - admin_ui: {order: 5, width: 200}
+      name: Available
+      type: bool
+    server: full
+    title: Buildings
   calendar:
     client: full
     columns:
