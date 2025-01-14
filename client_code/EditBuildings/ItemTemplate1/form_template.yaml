@@ -12,7 +12,8 @@ components:
     name: label_1
     properties: {text: Level}
     type: Label
-  - layout_properties: {grid_position: 'HSOYST,OYJABM'}
+  - event_bindings: {change: building_number_drop_down_change}
+    layout_properties: {grid_position: 'HSOYST,OYJABM'}
     name: building_number_drop_down
     properties: {}
     type: DropDown

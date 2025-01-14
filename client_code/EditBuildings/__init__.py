@@ -22,7 +22,7 @@ class EditBuildings(EditBuildingsTemplate):
       building_item['Count'] += 1
       building_list[building_number] = building_item
     self.edit_buildings_repeating_panel.items = building_list.values()
-    
+
     
 
     # Any code you write here will run before the form opens.
