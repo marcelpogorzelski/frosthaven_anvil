@@ -25,6 +25,8 @@ class Buildings(BuildingsTemplate):
     return app_tables.buildings.search(Available=True)
 
   def change_building_side(self, **event_args):
+    if event_args['button'] != 1:
+      return
     building_image = event_args['sender']
     building_image.tag = tuple(reversed(building_image.tag))
     building_image.source = building_image.tag[0]
