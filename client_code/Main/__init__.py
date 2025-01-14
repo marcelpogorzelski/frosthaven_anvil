@@ -16,6 +16,7 @@ from ..Scenarios import Scenarios
 from ..RetiredCharacters import RetiredCharacters
 from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
+from ..Items import Items
 
 
 class Main(MainTemplate):
@@ -99,6 +100,9 @@ class Main(MainTemplate):
     self.change_form(AddClass())
 
   def buildings_link_click(self, **event_args):
-    """This method is called when the link is clicked"""
     self.navbar_link_select(event_args['sender'])
     self.change_form(Buildings())
+
+  def items_link_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.change_form(Items())
