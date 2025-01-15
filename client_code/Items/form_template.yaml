@@ -1,7 +1,7 @@
 components:
 - components:
   - name: repeating_panel_1
-    properties: {item_template: Items.RowTemplate4}
+    properties: {item_template: Items.ItemRowTemplate}
     type: RepeatingPanel
   layout_properties: {grid_position: 'OGDTVY,ASTQPR'}
   name: data_grid_1
@@ -12,6 +12,7 @@ components:
     - {data_key: Card, id: ROTBQW, title: Card}
     - {data_key: Type, id: YMQXAI, title: Type}
     - {data_key: Usage, id: NTCJVX, title: Usage}
+    - {data_key: Gold, id: WHTZLT, title: Gold}
     - {data_key: Available, id: XLAKYE, title: Available}
   type: DataGrid
 container: {type: ColumnPanel}

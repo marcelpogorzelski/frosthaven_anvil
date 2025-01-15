@@ -195,6 +195,9 @@ db_schema:
     - admin_ui: {order: 5, width: 200}
       name: Available
       type: bool
+    - admin_ui: {order: 4.5, width: 200}
+      name: Gold
+      type: bool
     server: full
     title: Items
   retired_characters:

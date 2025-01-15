@@ -20,5 +20,17 @@ components:
   properties:
     items: []
   type: DropDown
+- data_bindings:
+  - {code: 'self.item[''Gold'']', property: checked, writeback: true}
+  layout_properties: {column: WHTZLT}
+  name: gold_check_box
+  properties: {text: Gold}
+  type: CheckBox
+- data_bindings:
+  - {code: 'self.item[''Available'']', property: checked, writeback: true}
+  layout_properties: {column: XLAKYE}
+  name: available_check_box
+  properties: {text: Available}
+  type: CheckBox
 container: {type: DataRowPanel}
 is_package: true
