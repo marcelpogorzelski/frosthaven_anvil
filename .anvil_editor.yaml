@@ -1,6 +1,16 @@
 unique_ids:
   assets:
     communityIcon_99w87f5etxy91.png: '1718955508751763465329049.8501'
+    fh-equip-slot-body-bw-icon.png: '1736924288099574468212006.4983'
+    fh-equip-slot-dual-hand-bw-icon.png: '1736924420141335611672151.3085'
+    fh-equip-slot-head-bw-icon.png: '1736924196591666687719590.918'
+    fh-equip-slot-item-bw-icon.png: '1736924444674768623531897.6655'
+    fh-equip-slot-legs-bw-icon.png: '1736924370304539699382439.19446'
+    fh-equip-slot-single-hand-bw-icon.png: '1736924398890696355585980.8965'
+    fh-flip-back-to-front-generic-color-icon.png: '1736924750584906577102427.4431'
+    fh-lost-black-card-color-icon.png: '1736924712312524833466188.5012'
+    fh-persistent-bonus-color-icon.png: '1736924671624649680405840.753'
+    fh-tap-card-color-icon.png: '1736924694236701626679852.2623'
     resource_images/.gitkeep: '1717064476892415381207838.79395'
     resource_images/fh-arrowvine-bw-icon.png: '1717064702521624984256951.733'
     resource_images/fh-axenut-bw-icon.png: '1717064561649522186867982.00543'
@@ -28,8 +38,9 @@ unique_ids:
     FinishScenario.RowTemplate2: '1719312983605889707850952.4913'
     Frosthaven: '1717581664929865111325417.3663'
     ImportExport: '1717653412534189932299393.8386'
-    Items: '1736858131274930283775101.6046'
-    Items.ItemRowTemplate: '1736858476454163431624701.2817'
+    Items: '1736921950738163440991084.25668'
+    ItemsEdit: '1736858131274930283775101.6046'
+    ItemsEdit.ItemEditRowTemplate: '1736858476454163431624701.2817'
     Login: '1717142779542169978002461.34064'
     Main: VULT646LTA7NIDGWIG3GG4SODEWG4CVL
     Party: '171715427032148348289519.56705'
