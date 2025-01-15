@@ -1,7 +1,7 @@
 components:
 - layout_properties: {full_width_row: true, grid_position: 'ZSHMXH,YDTJIB'}
   name: edit_buildings_repeating_panel
-  properties: {item_template: EditBuildings.ItemTemplate1}
+  properties: {item_template: EditBuildings.EditBuildingsItemTemplate}
   type: RepeatingPanel
 container: {type: ColumnPanel}
 is_package: true
