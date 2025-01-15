@@ -16,6 +16,7 @@ from ..Scenarios import Scenarios
 from ..RetiredCharacters import RetiredCharacters
 from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
+from ..EditBuildings import EditBuildings
 from ..Items import Items
 
 
@@ -106,3 +107,7 @@ class Main(MainTemplate):
   def items_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Items())
+
+  def edit_buildings_link_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.change_form(EditBuildings())

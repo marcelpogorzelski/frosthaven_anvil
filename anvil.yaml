@@ -1,6 +1,26 @@
 allow_embedding: false
 correct_dependency_ids: {}
 db_schema:
+  available_buildings:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Number
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: Name
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: Current Level
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: Max Level
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: Available
+      type: bool
+    server: full
+    title: Available Buildings
   buildings:
     client: full
     columns:

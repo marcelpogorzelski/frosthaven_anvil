@@ -4,15 +4,5 @@ components:
   name: buildings_flow_panel
   properties: {}
   type: FlowPanel
-- components:
-  - event_bindings: {click: outlined_button_1_click}
-    layout_properties: {}
-    name: outlined_button_1
-    properties: {role: outlined-button, text: Edit Buildings}
-    type: Button
-  layout_properties: {full_width_row: true, grid_position: 'ONEINL,KDGCDP'}
-  name: flow_panel_1
-  properties: {}
-  type: FlowPanel
 container: {type: ColumnPanel}
 is_package: true
