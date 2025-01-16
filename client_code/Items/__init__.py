@@ -49,7 +49,7 @@ class Items(ItemsTemplate):
     for item in self.item_list:
       display_mode = 'shrink_to_fit'
       #display_mode = 'original_size'
-      item_image = Image(source=item['Card'], display_mode=display_mode)
+      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}")
       self.items_flow_panel.add_component(item_image)
 
   def parse_filter_image(self, filter_image_list):
