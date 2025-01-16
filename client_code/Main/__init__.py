@@ -5,7 +5,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ..AddClass import AddClass
+from ..UnlockEdit import UnlockEdit
 from ..Character import Character
 from ..Frosthaven import Frosthaven
 from ..Party import Party
@@ -16,7 +16,6 @@ from ..Scenarios import Scenarios
 from ..RetiredCharacters import RetiredCharacters
 from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
-from ..EditBuildings import EditBuildings
 from ..Items import Items
 
 
@@ -96,9 +95,9 @@ class Main(MainTemplate):
     self.navbar_link_select(event_args['sender'])
     self.change_form(FinishScenario())
 
-  def add_class_link_click(self, **event_args):
+  def unlock_edit_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
-    self.change_form(AddClass())
+    self.change_form(UnlockEdit())
 
   def buildings_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
@@ -108,6 +107,3 @@ class Main(MainTemplate):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Items())
 
-  def edit_buildings_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(EditBuildings())
