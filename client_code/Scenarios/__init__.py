@@ -13,7 +13,6 @@ class Scenarios(ScenariosTemplate):
 
     #self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
     self.filter_on_status()
-    self.populate_unlock_scenario_drop_down()
 
   def filter_on_status(self):
     status_filter_list = list()
@@ -24,23 +23,6 @@ class Scenarios(ScenariosTemplate):
       self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
     else:
       self.scenario_repeating_panel.items = app_tables.scenarios.search(Status=q.any_of(*status_filter_list))
-
-
-  def populate_unlock_scenario_drop_down(self):
-    item_list = []
-    for row in app_tables.scenarios.search(Status='Undiscovered'):
-      item_list.append((row['Number'], row))
-    self.unlock_scenario_drop_down.items = item_list
-
-  def add_scenario_button_click(self, **event_args):
-    scenario = self.unlock_scenario_drop_down.selected_value
-    if not confirm(f"Do you want to add scenario {scenario['Number']}?"):
-      return
-    scenario['Status'] = 'Available'
-    scenario.update()
-    self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
-    self.populate_unlock_scenario_drop_down()
-    Notification(f'Scenario "{scenario["Name"]}" added', style="info", timeout=3).show()
 
   def status_button_click(self, **event_args):
     if event_args['sender'].role == 'filled-button':

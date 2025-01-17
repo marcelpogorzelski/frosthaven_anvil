@@ -27,6 +27,13 @@ class UnlockEdit(UnlockEditTemplate):
     self.building_drop_down.items = building_list
     self.change_edit_building()
 
+    scenario_list = []
+    #for scenario in app_tables.scenarios.search(Status='Undiscovered'):
+    for scenario in app_tables.scenarios.search():
+      scenario_list.append((scenario['Number'], scenario))
+    self.scenario_drop_down.items = scenario_list
+    self.change_scenario()
+
     # Any code you write here will run before the form opens.
 
   def add_class_button_click(self, **event_args):
@@ -130,6 +137,45 @@ class UnlockEdit(UnlockEditTemplate):
       self.building_image.visible = True
     else:
       self.building_image.visible = False
+
+  def change_scenario(self):
+    self.selected_scenario = self.scenario_drop_down.selected_value
+    if self.selected_scenario['Status'] == 'Undiscovered':
+      available = False
+    else:
+      available = True
+    
+    self.scenario_name_text_box.visible = available
+    self.scenario_image.visible = available
+    
+    self.scenario_status_drop_down.selected_value = self.selected_scenario['Status']
+    self.scenario_name_text_box.text = self.selected_scenario['Name']
+    
+    if self.selected_scenario['Number'][0:1] == 'So':
+      self.scenario_image.source = None
+      return
+    sticker_name = self.selected_scenario['Name'].lower().replace(' ', '-')
+    sticker_number = int(self.selected_scenario['Number'][1:])
+    sticker_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{sticker_number:03d}-{sticker_name}.png?raw=true")
+    self.scenario_image.source = sticker_media
+    
+  
+  def scenario_drop_down_change(self, **event_args):
+    self.change_scenario()
+
+  def scenario_status_drop_down_change(self, **event_args):
+    new_status = self.scenario_status_drop_down.selected_value
+    if new_status == 'Undiscovered':
+      available = False
+    else:
+      available = True
+
+    self.scenario_name_text_box.visible = available
+    self.scenario_image.visible = available
+    
+    self.selected_scenario['Status'] = new_status
+    self.selected_scenario.update()
+
     
 
 

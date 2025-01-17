@@ -31,25 +31,6 @@ components:
     name: scenario_repeating_panel
     properties: {item_template: Scenarios.ScenariosRowTemplate}
     type: RepeatingPanel
-  - components:
-    - layout_properties: {}
-      name: label_1
-      properties: {text: 'Unlock scenario:'}
-      type: Label
-    - event_bindings: {}
-      layout_properties: {width: 80.5494384765625}
-      name: unlock_scenario_drop_down
-      properties: {}
-      type: DropDown
-    - event_bindings: {click: add_scenario_button_click}
-      layout_properties: {}
-      name: add_scenario_button
-      properties: {icon: 'fa:plus', text: ''}
-      type: Button
-    layout_properties: {slot: footer}
-    name: flow_panel_1
-    properties: {}
-    type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'DGYBGY,EAIQKW'}
   name: data_grid_1
   properties:

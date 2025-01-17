@@ -44,7 +44,7 @@ components:
       type: CheckBox
     - layout_properties: {grid_position: 'YWSGWR,MYHDRL'}
       name: item_name_label
-      properties: {align: right, text: Name}
+      properties: {align: center, text: Name}
       type: Label
     - event_bindings: {}
       layout_properties: {grid_position: 'YWSGWR,HXFWBX'}
@@ -53,7 +53,7 @@ components:
       type: TextBox
     - layout_properties: {grid_position: 'BMGHST,XNNITR'}
       name: item_type_label
-      properties: {align: right, text: Type}
+      properties: {align: center, text: Type}
       type: Label
     - event_bindings: {change: item_type_drop_down_change}
       layout_properties: {grid_position: 'BMGHST,OSLWMU'}
@@ -62,7 +62,7 @@ components:
       type: DropDown
     - layout_properties: {grid_position: 'KYPOWK,LIUXFO'}
       name: item_usage_label
-      properties: {align: right, text: Usage}
+      properties: {align: center, text: Usage}
       type: Label
     - event_bindings: {change: item_usage_drop_down_change}
       layout_properties: {grid_position: 'KYPOWK,TFEZFY'}
@@ -94,7 +94,7 @@ components:
       type: CheckBox
     - layout_properties: {grid_position: 'EFRTPR,QDGKDZ'}
       name: building_name_label
-      properties: {align: right, text: Name}
+      properties: {align: center, text: Name}
       type: Label
     - event_bindings: {}
       layout_properties: {grid_position: 'EFRTPR,MEKDUH'}
@@ -103,7 +103,7 @@ components:
       type: TextBox
     - layout_properties: {grid_position: 'CTJEQQ,IBLPRZ'}
       name: building_level_label
-      properties: {align: right, text: Level}
+      properties: {align: center, text: Level}
       type: Label
     - event_bindings: {change: building_level_drop_down_change}
       layout_properties: {grid_position: 'CTJEQQ,FEXMWJ'}
@@ -116,6 +116,44 @@ components:
       type: Image
     layout_properties: {width: 450}
     name: edit_building_outlined_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'XBREWB,AOTDNW'}
+      name: scenario_label
+      properties: {align: center, role: title, text: Scenario}
+      type: Label
+    - event_bindings: {change: scenario_drop_down_change}
+      layout_properties: {grid_position: 'XBREWB,RYIRXC'}
+      name: scenario_drop_down
+      properties: {}
+      type: DropDown
+    - layout_properties: {grid_position: 'NCQGKN,SFOBQZ'}
+      name: scenario_status_label
+      properties: {align: center, text: Status}
+      type: Label
+    - data_bindings:
+      - {code: '[''Available'', ''Finished'', ''Locked'', ''Undiscovered'']', property: items, writeback: false}
+      event_bindings: {change: scenario_status_drop_down_change}
+      layout_properties: {grid_position: 'NCQGKN,YQHYRO'}
+      name: scenario_status_drop_down
+      properties: {}
+      type: DropDown
+    - layout_properties: {grid_position: 'RSOGHM,NBHMKP'}
+      name: scenario_name_label
+      properties: {align: center, text: Name}
+      type: Label
+    - layout_properties: {grid_position: 'RSOGHM,JYXTCE'}
+      name: scenario_name_text_box
+      properties: {enabled: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'QJLBYY,EOUPEB'}
+      name: scenario_image
+      properties: {display_mode: fill_width}
+      type: Image
+    layout_properties: {width: 450}
+    name: scenario_outlined_card
     properties: {role: elevated-card}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'IVEAOQ,PIFGEA'}
