@@ -10,7 +10,7 @@ class Buildings(BuildingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     
-    for available_building in app_tables.available_buildings.search(Available=True, CurrentLevel=q.greater_than(0)):
+    for available_building in app_tables.available_buildings.search(Available=True):
       building = app_tables.buildings.get(Name=available_building['Name'], Level=available_building['CurrentLevel'])
       tag = (building['Card Front'], building['Card Back'])
       building_image = Image(source=building['Card Front'], display_mode='original_size', tag=tag)

@@ -102,6 +102,8 @@ class UnlockEdit(UnlockEditTemplate):
       self.building = app_tables.buildings.get(Name=self.available_building['Name'], Level=self.available_building['CurrentLevel'])
       self.building_image.source = self.building['Card Front']
     else:
+      self.building = app_tables.buildings.get(Name=self.available_building['Name'], Level=self.available_building['CurrentLevel'])
+      print(self.building)
       self.building_image.source = None
     
     available = self.available_building['Available']
@@ -110,6 +112,10 @@ class UnlockEdit(UnlockEditTemplate):
     self.building_image.visible = available
     self.building_level_drop_down.visible = available
 
+    if self.building:
+      self.building_image.source = self.building['Card Front']
+    else:
+      self.building_image.source = None
     self.building_text_box.text = self.available_building['Name']
     self.building_level_drop_down.items = [str(level) for level in range(self.available_building['Max Level']+1)]
     self.building_level_drop_down.selected_value = str(self.available_building['CurrentLevel'])
@@ -121,8 +127,7 @@ class UnlockEdit(UnlockEditTemplate):
   def building_available_check_box_change(self, **event_args):
     available = self.building_available_check_box.checked
     self.building_text_box.visible = available
-    if self.available_building['CurrentLevel'] > 0:
-      self.building_image.visible = available
+    self.building_image.visible = available
     self.building_level_drop_down.visible = available
 
     self.available_building['Available'] = available
