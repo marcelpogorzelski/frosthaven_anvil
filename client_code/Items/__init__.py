@@ -38,6 +38,7 @@ class Items(ItemsTemplate):
       self.lost_image,
       self.flip_image
                         )
+    self.selected_item_numbers = q.none_of("a")
     self.get_filter_items()
     self.populate_items()
 
@@ -47,33 +48,44 @@ class Items(ItemsTemplate):
 
     self.items_flow_panel.clear()
     for item in self.item_list:
-      display_mode = 'shrink_to_fit'
-      #display_mode = 'original_size'
+      #display_mode = 'shrink_to_fit'
+      display_mode = 'original_size'
       item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}")
       self.items_flow_panel.add_component(item_image)
 
+  
   def parse_filter_image(self, filter_image_list):
     return_list = list()
     for filter_image in filter_image_list:
       if not filter_image.background:
         continue
       return_list.append(filter_image.tag)
-    return return_list
-      
+    if return_list:
+      return q.any_of(*return_list)
+    return None
+
+  def parse_item_numbers(self):
+    if not self.item_number_text_box.text:
+      self.item_number_selected_list = q.none_of("a")
+      return
+    parsed_items = list(self.item_number_text_box.text.split(","))
+    self.item_number_selected_list = q.any_of(*parsed_items)
+    
+    
   def get_filter_items(self):
-    self.type_selected_list = self.parse_filter_image(self.type_filters) or ['Head', 'Body', 'Feet', 'One Hand', 'Two Hands', 'Small']
-    self.usage_selected_list = self.parse_filter_image(self.usage_filters) or ['Passive', 'Spent', 'Lost', 'Flip']
+    self.type_selected_list = self.parse_filter_image(self.type_filters) or q.any_of('Head', 'Body', 'Feet', 'One Hand', 'Two Hands', 'Small')
+    self.usage_selected_list = self.parse_filter_image(self.usage_filters) or q.any_of('Passive', 'Spent', 'Lost', 'Flip')
+    self.parse_item_numbers()
     if self.gold_image.background:
-      self.gold_selected = True
+      self.gold_selected_list = q.any_of(True)
     else:
-      self.gold_selected = False
+      self.gold_selected_list = q.any_of(True, False)
+
     
   def get_available_items(self):
-    if self.gold_selected:
-      return app_tables.items.search(Available=True, Type=q.any_of(*self.type_selected_list), Usage=q.any_of(*self.usage_selected_list), Gold=True)
-    return app_tables.items.search(Available=True, Type=q.any_of(*self.type_selected_list), Usage=q.any_of(*self.usage_selected_list))
-    
+    return app_tables.items.search(Available=True, Type=self.type_selected_list, Usage=self.usage_selected_list, Gold=self.gold_selected_list, Number=self.item_number_selected_list)
 
+    
   def filter_mouse_down(self, x, y, button, keys, **event_args):
     """This method is called when a mouse button is pressed on this component"""
     if event_args['sender'].background:
@@ -82,3 +94,9 @@ class Items(ItemsTemplate):
       event_args['sender'].background = self.orange
     self.get_filter_items()
     self.populate_items()
+
+  def item_number_text_box_pressed_enter(self, **event_args):
+    self.get_filter_items()
+    self.populate_items()
+
+    

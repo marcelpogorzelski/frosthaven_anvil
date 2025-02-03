@@ -56,6 +56,11 @@ components:
     name: gold_image
     properties: {height: '60', source: _/theme/resource_images/fh-money-bw-icon.png}
     type: Image
+  - event_bindings: {pressed_enter: item_number_text_box_pressed_enter}
+    layout_properties: {width: 173.869544921875}
+    name: item_number_text_box
+    properties: {placeholder: Item Number, role: outlined}
+    type: TextBox
   layout_properties: {full_width_row: true, grid_position: 'IJKHNB,IYYZMH'}
   name: filter_flow_panel
   properties: {}
