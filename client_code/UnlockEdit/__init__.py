@@ -136,12 +136,7 @@ class UnlockEdit(UnlockEditTemplate):
   def building_level_drop_down_change(self, **event_args):
     self.available_building['CurrentLevel'] = int(self.building_level_drop_down.selected_value)
     self.available_building.update()
-    if self.available_building['CurrentLevel'] > 0:
-      self.building = app_tables.buildings.get(Name=self.available_building['Name'], Level=self.available_building['CurrentLevel'])
-      self.building_image.source = self.building['Card Front']
-      self.building_image.visible = True
-    else:
-      self.building_image.visible = False
+    self.change_edit_building()
 
   def change_scenario(self):
     self.selected_scenario = self.scenario_drop_down.selected_value
