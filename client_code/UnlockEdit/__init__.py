@@ -14,25 +14,25 @@ class UnlockEdit(UnlockEditTemplate):
     item_list = []
     for item in app_tables.items.search():
       item_list.append((item['Number'], item))
-    self.edit_item_drop_down.items = item_list
+    self.item_drop_down.items = item_list
     
     self.item_type_drop_down.items = ['Head', 'Body', 'Feet', 'One Hand', 'Two Hands', 'Small']
     self.item_usage_drop_down.items = ['Passive', 'Spent', 'Lost', 'Flip']
     
-    self.change_edit_item()
+    self.item_change()
 
     building_list = []
     for building in app_tables.available_buildings.search():
       building_list.append((str(building['Number']), building))
     self.building_drop_down.items = building_list
-    self.change_edit_building()
+    self.building_change()
 
     scenario_list = []
     #for scenario in app_tables.scenarios.search(Status='Undiscovered'):
     for scenario in app_tables.scenarios.search():
       scenario_list.append((scenario['Number'], scenario))
     self.scenario_drop_down.items = scenario_list
-    self.change_scenario()
+    self.scenario_change()
 
     # Any code you write here will run before the form opens.
 
@@ -48,10 +48,10 @@ class UnlockEdit(UnlockEditTemplate):
     app_tables.classes.add_row(Name=new_class)
     self.add_class_text_box.text = ''
 
-  def change_edit_item(self):
-    self.edit_item = self.edit_item_drop_down.selected_value
+  def item_change(self):
+    self.item_selected = self.item_drop_down.selected_value
     
-    available = self.edit_item['Available']
+    available = self.item_selected['Available']
     self.item_available_check_box.checked = available
     self.item_name_text_box.visible = available
     self.item_image.visible = available
@@ -59,15 +59,15 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_usage_drop_down.visible = available
     self.item_gold_check_box.visible = available
     
-    self.item_name_text_box.text = self.edit_item['Name']
-    self.item_image.source = self.edit_item['Card']
-    self.item_type_drop_down.selected_value = self.edit_item['Type']
-    self.item_usage_drop_down.selected_value = self.edit_item['Usage']
-    self.item_gold_check_box.checked = self.edit_item['Gold']
+    self.item_name_text_box.text = self.item_selected['Name']
+    self.item_image.source = self.item_selected['Card']
+    self.item_type_drop_down.selected_value = self.item_selected['Type']
+    self.item_usage_drop_down.selected_value = self.item_selected['Usage']
+    self.item_gold_check_box.checked = self.item_selected['Gold']
     
-  def edit_item_drop_down_change(self, **event_args):
+  def item_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
-    self.change_edit_item()
+    self.item_change()
 
   def item_available_check_box_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
@@ -78,35 +78,35 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_usage_drop_down.visible = available
     self.item_gold_check_box.visible = available
 
-    self.edit_item['Available'] = available
-    self.edit_item.update()
+    self.item_selected['Available'] = available
+    self.item_selected.update()
 
   def item_gold_check_box_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    self.edit_item['Gold'] = self.item_gold_check_box.checked
-    self.edit_item.update()
+    self.item_selected['Gold'] = self.item_gold_check_box.checked
+    self.item_selected.update()
 
   def item_type_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
-    self.edit_item['Type'] = self.item_type_drop_down.selected_value
-    self.edit_item.update()
+    self.item_selected['Type'] = self.item_type_drop_down.selected_value
+    self.item_selected.update()
 
   def item_usage_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
-    self.edit_item['Usage'] = self.item_usage_drop_down.selected_value
-    self.edit_item.update()
+    self.item_selected['Usage'] = self.item_usage_drop_down.selected_value
+    self.item_selected.update()
 
-  def change_edit_building(self):
-    self.available_building = self.building_drop_down.selected_value
-    if self.available_building['CurrentLevel'] > 0:
-      self.building = app_tables.buildings.get(Name=self.available_building['Name'], Level=self.available_building['CurrentLevel'])
+  def building_change(self):
+    self.building_selected = self.building_drop_down.selected_value
+    if self.building_selected['CurrentLevel'] > 0:
+      self.building = app_tables.buildings.get(Name=self.building_selected['Name'], Level=self.building_selected['CurrentLevel'])
       self.building_image.source = self.building['Card Front']
     else:
-      self.building = app_tables.buildings.get(Name=self.available_building['Name'], Level=self.available_building['CurrentLevel'])
+      self.building = app_tables.buildings.get(Name=self.building_selected['Name'], Level=self.building_selected['CurrentLevel'])
       print(self.building)
       self.building_image.source = None
     
-    available = self.available_building['Available']
+    available = self.building_selected['Available']
     self.building_available_check_box.checked = available
     self.building_text_box.visible = available
     self.building_image.visible = available
@@ -116,13 +116,13 @@ class UnlockEdit(UnlockEditTemplate):
       self.building_image.source = self.building['Card Front']
     else:
       self.building_image.source = None
-    self.building_text_box.text = self.available_building['Name']
-    self.building_level_drop_down.items = [str(level) for level in range(self.available_building['Max Level']+1)]
-    self.building_level_drop_down.selected_value = str(self.available_building['CurrentLevel'])
+    self.building_text_box.text = self.building_selected['Name']
+    self.building_level_drop_down.items = [str(level) for level in range(self.building_selected['Max Level']+1)]
+    self.building_level_drop_down.selected_value = str(self.building_selected['CurrentLevel'])
     
     
   def building_drop_down_change(self, **event_args):
-    self.change_edit_building()
+    self.building_change()
     
   def building_available_check_box_change(self, **event_args):
     available = self.building_available_check_box.checked
@@ -130,17 +130,17 @@ class UnlockEdit(UnlockEditTemplate):
     self.building_image.visible = available
     self.building_level_drop_down.visible = available
 
-    self.available_building['Available'] = available
-    self.available_building.update()
+    self.building_selected['Available'] = available
+    self.building_selected.update()
 
   def building_level_drop_down_change(self, **event_args):
-    self.available_building['CurrentLevel'] = int(self.building_level_drop_down.selected_value)
-    self.available_building.update()
-    self.change_edit_building()
+    self.building_selected['CurrentLevel'] = int(self.building_level_drop_down.selected_value)
+    self.building_selected.update()
+    self.building_change()
 
-  def change_scenario(self):
-    self.selected_scenario = self.scenario_drop_down.selected_value
-    if self.selected_scenario['Status'] == 'Undiscovered':
+  def scenario_change(self):
+    self.scenario_selected = self.scenario_drop_down.selected_value
+    if self.scenario_selected['Status'] == 'Undiscovered':
       available = False
     else:
       available = True
@@ -148,22 +148,26 @@ class UnlockEdit(UnlockEditTemplate):
     self.scenario_name_text_box.visible = available
     self.scenario_image.visible = available
     
-    self.scenario_status_drop_down.selected_value = self.selected_scenario['Status']
-    self.scenario_name_text_box.text = self.selected_scenario['Name']
+    self.scenario_status_drop_down.selected_value = self.scenario_selected['Status']
+    self.scenario_name_text_box.text = self.scenario_selected['Name']
     
-    if self.selected_scenario['Number'][0:1] == 'So':
+    if self.scenario_selected['Number'][0:1] == 'So':
       self.scenario_image.source = None
       return
-    sticker_name = self.selected_scenario['Name'].lower().replace(' ', '-')
-    sticker_number = int(self.selected_scenario['Number'][1:])
+    sticker_name = self.scenario_selected['Name'].lower().replace(' ', '-')
+    sticker_number = int(self.scenario_selected['Number'][1:])
     sticker_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{sticker_number:03d}-{sticker_name}.png?raw=true")
     self.scenario_image.source = sticker_media
     
   
   def scenario_drop_down_change(self, **event_args):
-    self.change_scenario()
+    self.scenario_change()
 
   def scenario_status_drop_down_change(self, **event_args):
+    self.scenario_selected['Status'] = self.scenario_status_drop_down.selected_value
+    self.scenario_selected.update()
+    self.scenario_change()
+    return
     new_status = self.scenario_status_drop_down.selected_value
     if new_status == 'Undiscovered':
       available = False
@@ -173,8 +177,8 @@ class UnlockEdit(UnlockEditTemplate):
     self.scenario_name_text_box.visible = available
     self.scenario_image.visible = available
     
-    self.selected_scenario['Status'] = new_status
-    self.selected_scenario.update()
+    self.scenario_selected['Status'] = new_status
+    self.scenario_selected.update()
 
     
 

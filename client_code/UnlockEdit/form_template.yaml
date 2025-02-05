@@ -27,9 +27,9 @@ components:
       name: edit_item_label
       properties: {align: center, role: title, text: Item}
       type: Label
-    - event_bindings: {change: edit_item_drop_down_change}
-      layout_properties: {grid_position: 'LGIYSZ,ODJMFB'}
-      name: edit_item_drop_down
+    - event_bindings: {change: item_drop_down_change}
+      layout_properties: {grid_position: 'LGIYSZ,ODJMFB PKMJVC,LVWJOP'}
+      name: item_drop_down
       properties: {}
       type: DropDown
     - event_bindings: {change: item_available_check_box_change}
@@ -115,7 +115,7 @@ components:
       properties: {display_mode: fill_width}
       type: Image
     layout_properties: {width: 450}
-    name: edit_building_outlined_card
+    name: building_outlined_card
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
