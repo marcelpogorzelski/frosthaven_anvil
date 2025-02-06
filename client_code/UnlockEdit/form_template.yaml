@@ -27,11 +27,11 @@ components:
       name: edit_item_label
       properties: {align: center, role: title, text: Item}
       type: Label
-    - event_bindings: {change: item_drop_down_change}
-      layout_properties: {grid_position: 'LGIYSZ,ODJMFB PKMJVC,LVWJOP'}
-      name: item_drop_down
-      properties: {}
-      type: DropDown
+    - event_bindings: {pressed_enter: item_number_text_box_pressed_enter}
+      layout_properties: {grid_position: 'LGIYSZ,ODJMFB IVSKMA,XCPEUL'}
+      name: item_number_text_box
+      properties: {text: '001'}
+      type: TextBox
     - event_bindings: {change: item_available_check_box_change}
       layout_properties: {grid_position: 'EWWYOF,LGXISN'}
       name: item_available_check_box

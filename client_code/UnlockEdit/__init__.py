@@ -10,15 +10,11 @@ class UnlockEdit(UnlockEditTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    item_list = []
-    for item in app_tables.items.search():
-      item_list.append((item['Number'], item))
-    self.item_drop_down.items = item_list
     
     self.item_type_drop_down.items = ['Head', 'Body', 'Feet', 'One Hand', 'Two Hands', 'Small']
     self.item_usage_drop_down.items = ['Passive', 'Spent', 'Lost', 'Flip']
-    
+
+    self.previous_item = self.item_number_text_box.text
     self.item_change()
 
     building_list = []
@@ -37,7 +33,6 @@ class UnlockEdit(UnlockEditTemplate):
     # Any code you write here will run before the form opens.
 
   def add_class_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
     if not self.add_class_text_box.text:
       return
     new_class = self.add_class_text_box.text
@@ -48,51 +43,51 @@ class UnlockEdit(UnlockEditTemplate):
     app_tables.classes.add_row(Name=new_class)
     self.add_class_text_box.text = ''
 
+  def item_show(self, visible):
+    self.item_name_text_box.visible = visible
+    self.item_image.visible = visible
+    self.item_type_drop_down.visible = visible
+    self.item_usage_drop_down.visible = visible
+    self.item_gold_check_box.visible = visible
+
   def item_change(self):
-    self.item_selected = self.item_drop_down.selected_value
+    self.item_selected = app_tables.items.get(Number=self.item_number_text_box.text)
+
+    if not self.item_selected:
+      alert(f"{self.item_number_text_box.text} is not an item! Returning to item {self.previous_item}")
+      self.item_number_text_box.text = self.previous_item
+      self.item_selected = app_tables.items.get(Number=self.item_number_text_box.text)
+    self.previous_item = self.item_number_text_box.text
     
-    available = self.item_selected['Available']
-    self.item_available_check_box.checked = available
-    self.item_name_text_box.visible = available
-    self.item_image.visible = available
-    self.item_type_drop_down.visible = available
-    self.item_usage_drop_down.visible = available
-    self.item_gold_check_box.visible = available
+    self.item_show(self.item_selected['Available'])
+    self.item_available_check_box.checked = self.item_selected['Available']
     
     self.item_name_text_box.text = self.item_selected['Name']
     self.item_image.source = self.item_selected['Card']
     self.item_type_drop_down.selected_value = self.item_selected['Type']
     self.item_usage_drop_down.selected_value = self.item_selected['Usage']
     self.item_gold_check_box.checked = self.item_selected['Gold']
+
+  def item_number_text_box_pressed_enter(self, **event_args):
+    self.item_change()
     
   def item_drop_down_change(self, **event_args):
-    """This method is called when an item is selected"""
     self.item_change()
 
   def item_available_check_box_change(self, **event_args):
-    """This method is called when this checkbox is checked or unchecked"""
-    available = self.item_available_check_box.checked
-    self.item_name_text_box.visible = available
-    self.item_image.visible = available
-    self.item_type_drop_down.visible = available
-    self.item_usage_drop_down.visible = available
-    self.item_gold_check_box.visible = available
-
-    self.item_selected['Available'] = available
+    self.item_selected['Available'] = self.item_available_check_box.checked
     self.item_selected.update()
+    self.item_change()
 
   def item_gold_check_box_change(self, **event_args):
-    """This method is called when this checkbox is checked or unchecked"""
     self.item_selected['Gold'] = self.item_gold_check_box.checked
     self.item_selected.update()
 
   def item_type_drop_down_change(self, **event_args):
-    """This method is called when an item is selected"""
     self.item_selected['Type'] = self.item_type_drop_down.selected_value
     self.item_selected.update()
 
   def item_usage_drop_down_change(self, **event_args):
-    """This method is called when an item is selected"""
     self.item_selected['Usage'] = self.item_usage_drop_down.selected_value
     self.item_selected.update()
 
@@ -179,7 +174,6 @@ class UnlockEdit(UnlockEditTemplate):
     
     self.scenario_selected['Status'] = new_status
     self.scenario_selected.update()
-
     
 
 
