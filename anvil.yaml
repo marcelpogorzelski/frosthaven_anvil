@@ -213,8 +213,44 @@ db_schema:
       name: Available
       type: bool
     - admin_ui: {order: 4.5, width: 200}
-      name: Gold
+      name: HasGoldCost
       type: bool
+    - admin_ui: {order: 6, width: 200}
+      name: Gold
+      type: number
+    - admin_ui: {order: 7, width: 200}
+      name: Lumber
+      type: number
+    - admin_ui: {order: 8, width: 200}
+      name: Metal
+      type: number
+    - admin_ui: {order: 9, width: 200}
+      name: Hide
+      type: number
+    - admin_ui: {order: 10, width: 200}
+      name: Arrowvine
+      type: number
+    - admin_ui: {order: 11, width: 200}
+      name: Axenut
+      type: number
+    - admin_ui: {order: 12, width: 200}
+      name: Corpsecap
+      type: number
+    - admin_ui: {order: 13, width: 200}
+      name: Flamefruit
+      type: number
+    - admin_ui: {order: 14, width: 200}
+      name: Rockroot
+      type: number
+    - admin_ui: {order: 15, width: 200}
+      name: Snowthistle
+      type: number
+    - admin_ui: {order: 16, width: 200}
+      name: Items
+      type: string
+    - admin_ui: {order: 17, width: 200}
+      name: Count
+      type: number
     server: full
     title: Items
   retired_characters:

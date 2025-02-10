@@ -1,11 +1,16 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'REQZFM,YSTJAU'}
+  - event_bindings: {change: file_loader_1_change}
+    layout_properties: {grid_position: 'MZGISC,WHPUNS'}
+    name: file_loader_1
+    properties: {}
+    type: FileLoader
+  - layout_properties: {grid_position: 'MZGISC,ECCZNG REQZFM,YSTJAU'}
     name: title_label
     properties: {align: center, bold: false, foreground: 'theme:Primary', italic: false, role: headline, text: Frosthaven, underline: false}
     type: Label
   - event_bindings: {click: login_button_click}
-    layout_properties: {grid_position: 'SXZNGQ,DQPACS'}
+    layout_properties: {grid_position: 'MZGISC,ECCZNG SXZNGQ,DQPACS'}
     name: login_button
     properties: {align: center, role: outlined-button, text: Login}
     type: Button

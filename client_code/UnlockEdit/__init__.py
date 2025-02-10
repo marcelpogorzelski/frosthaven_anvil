@@ -66,7 +66,7 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_image.source = self.item_selected['Card']
     self.item_type_drop_down.selected_value = self.item_selected['Type']
     self.item_usage_drop_down.selected_value = self.item_selected['Usage']
-    self.item_gold_check_box.checked = self.item_selected['Gold']
+    self.item_gold_check_box.checked = self.item_selected['HasGoldCost']
 
   def item_number_text_box_pressed_enter(self, **event_args):
     self.item_change()
@@ -80,7 +80,7 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_change()
 
   def item_gold_check_box_change(self, **event_args):
-    self.item_selected['Gold'] = self.item_gold_check_box.checked
+    self.item_selected['HasGoldCost'] = self.item_gold_check_box.checked
     self.item_selected.update()
 
   def item_type_drop_down_change(self, **event_args):

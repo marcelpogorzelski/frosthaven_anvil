@@ -83,7 +83,7 @@ class Items(ItemsTemplate):
 
     
   def get_available_items(self):
-    return app_tables.items.search(Available=True, Type=self.type_selected_list, Usage=self.usage_selected_list, Gold=self.gold_selected_list, Number=self.item_number_selected_list)
+    return app_tables.items.search(Available=True, Type=self.type_selected_list, Usage=self.usage_selected_list, HasGoldCost=self.gold_selected_list, Number=self.item_number_selected_list)
 
     
   def filter_mouse_down(self, x, y, button, keys, **event_args):

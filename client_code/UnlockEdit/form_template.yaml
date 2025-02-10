@@ -40,7 +40,7 @@ components:
     - event_bindings: {change: item_gold_check_box_change}
       layout_properties: {grid_position: 'EWWYOF,AOVQMN'}
       name: item_gold_check_box
-      properties: {text: Gold}
+      properties: {text: Cost Gold}
       type: CheckBox
     - layout_properties: {grid_position: 'YWSGWR,MYHDRL'}
       name: item_name_label
