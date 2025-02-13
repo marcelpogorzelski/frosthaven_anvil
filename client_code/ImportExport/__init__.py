@@ -17,3 +17,7 @@ class ImportExport(ImportExportTemplate):
   def export_button_click(self, **event_args):
     backup_blob = Utilites.get_backup()
     download(backup_blob)
+
+  def import_file_loader_change(self, file, **event_args):
+    """This method is called when a new file is loaded into this FileLoader"""
+    pass

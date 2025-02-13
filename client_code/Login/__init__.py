@@ -18,7 +18,3 @@ class Login(LoginTemplate):
     if anvil.users.get_user():
       open_form('Main')
 
-  def file_loader_1_change(self, file, **event_args):
-    """This method is called when a new file is loaded into this FileLoader"""
-    ...
-
