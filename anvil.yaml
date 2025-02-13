@@ -249,7 +249,10 @@ db_schema:
       name: Items
       type: string
     - admin_ui: {order: 17, width: 200}
-      name: Count
+      name: TotalCount
+      type: number
+    - admin_ui: {order: 18, width: 200}
+      name: AvailableCount
       type: number
     server: full
     title: Items
