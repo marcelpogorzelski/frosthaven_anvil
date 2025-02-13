@@ -215,34 +215,34 @@ db_schema:
     - admin_ui: {order: 4.5, width: 200}
       name: HasGoldCost
       type: bool
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 50}
       name: Gold
       type: number
-    - admin_ui: {order: 7, width: 200}
+    - admin_ui: {order: 7, width: 68}
       name: Lumber
       type: number
-    - admin_ui: {order: 8, width: 200}
+    - admin_ui: {order: 8, width: 56}
       name: Metal
       type: number
-    - admin_ui: {order: 9, width: 200}
+    - admin_ui: {order: 9, width: 50}
       name: Hide
       type: number
-    - admin_ui: {order: 10, width: 200}
+    - admin_ui: {order: 10, width: 85}
       name: Arrowvine
       type: number
-    - admin_ui: {order: 11, width: 200}
+    - admin_ui: {order: 11, width: 65}
       name: Axenut
       type: number
-    - admin_ui: {order: 12, width: 200}
+    - admin_ui: {order: 12, width: 90}
       name: Corpsecap
       type: number
-    - admin_ui: {order: 13, width: 200}
+    - admin_ui: {order: 13, width: 85}
       name: Flamefruit
       type: number
-    - admin_ui: {order: 14, width: 200}
+    - admin_ui: {order: 14, width: 77}
       name: Rockroot
       type: number
-    - admin_ui: {order: 15, width: 200}
+    - admin_ui: {order: 15, width: 94}
       name: Snowthistle
       type: number
     - admin_ui: {order: 16, width: 200}
@@ -254,6 +254,12 @@ db_schema:
     - admin_ui: {order: 18, width: 200}
       name: AvailableCount
       type: number
+    - admin_ui: {order: 15.5, width: 55}
+      name: 1Herb
+      type: bool
+    - admin_ui: {order: 15.75, width: 64}
+      name: 2Herbs
+      type: bool
     server: full
     title: Items
   retired_characters:
