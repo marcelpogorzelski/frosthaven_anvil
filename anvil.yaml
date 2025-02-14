@@ -61,65 +61,65 @@ db_schema:
   characters:
     client: full
     columns:
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {order: 1, width: 89}
       name: Experience
       type: number
     - admin_ui: {order: -1, width: 200}
       name: Player
       type: string
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {order: 2, width: 68}
       name: Lumber
       type: number
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 3, width: 56}
       name: Metal
       type: number
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {order: 4, width: 50}
       name: Hide
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {order: 5, width: 85}
       name: Arrowvine
       type: number
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 65}
       name: Axenut
       type: number
-    - admin_ui: {order: 7, width: 200}
+    - admin_ui: {order: 7, width: 90}
       name: Corpsecap
       type: number
-    - admin_ui: {order: 8, width: 200}
+    - admin_ui: {order: 8, width: 85}
       name: Flamefruit
       type: number
-    - admin_ui: {order: 9, width: 200}
+    - admin_ui: {order: 9, width: 77}
       name: Rockroot
       type: number
-    - admin_ui: {order: 10, width: 200}
+    - admin_ui: {order: 10, width: 94}
       name: Snowthistle
       type: number
     - admin_ui: {order: 11, width: 200}
       name: Notes
       type: string
-    - admin_ui: {order: 0.5, width: 200}
+    - admin_ui: {order: 0.5, width: 92}
       name: Name
       type: string
-    - admin_ui: {order: 1.5, width: 200}
+    - admin_ui: {order: 1.5, width: 50}
       name: Gold
       type: number
     - admin_ui: {order: 12, width: 200}
       name: Class
       target: classes
       type: link_single
-    - admin_ui: {order: 13, width: 200}
+    - admin_ui: {order: 13, width: 52}
       name: Level
       type: number
-    - admin_ui: {order: 14, width: 200}
+    - admin_ui: {order: 14, width: 99}
       name: CheckMarks
       type: number
-    - admin_ui: {order: 15, width: 200}
+    - admin_ui: {order: 15, width: 54}
       name: Perks
       type: number
-    - admin_ui: {order: 16, width: 200}
+    - admin_ui: {order: 16, width: 76}
       name: Mastery1
       type: bool
-    - admin_ui: {order: 17, width: 200}
+    - admin_ui: {order: 17, width: 79}
       name: Mastery2
       type: bool
     server: full
