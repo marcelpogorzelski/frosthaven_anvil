@@ -52,7 +52,7 @@ class Items(ItemsTemplate):
       #display_mode = 'shrink_to_fit'
       display_mode = 'original_size'
       item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=item)
-      #item_image.add_event_handler('mouse_down', self.process_item)
+      item_image.add_event_handler('mouse_down', self.process_item)
       self.items_flow_panel.add_component(item_image)
 
   def process_item(self, **event_args):
