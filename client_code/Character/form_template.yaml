@@ -344,6 +344,7 @@ components:
     - {data_key: column_3, id: PGVFQE, title: Column 3, width: '300'}
     role: wide
     show_page_controls: false
+    visible: true
   type: DataGrid
 container:
   properties: {col_spacing: small}

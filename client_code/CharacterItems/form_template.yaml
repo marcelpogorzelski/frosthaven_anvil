@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'LKOYTL,FPGOZA'}
+  name: label_1
+  properties: {text: Character Items}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true

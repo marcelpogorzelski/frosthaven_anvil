@@ -1,0 +1,155 @@
+components:
+- components:
+  - components:
+    - layout_properties: {grid_position: 'TZGYXC,GQTENM'}
+      name: item_image
+      properties: {display_mode: original_size}
+      type: Image
+    - layout_properties: {grid_position: 'YCAHPM,CAEFXC'}
+      name: character_label
+      properties: {text: 'Player:'}
+      type: Label
+    - data_bindings: []
+      event_bindings: {change: character_drop_down_change}
+      layout_properties: {grid_position: 'YCAHPM,KFGYWX'}
+      name: character_drop_down
+      properties: {}
+      type: DropDown
+    - layout_properties: {grid_position: 'ITNYRH,VASWTU'}
+      name: price_label
+      properties: {align: center, role: title, text: Price}
+      type: Label
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE RIDUFF,PULRJS'}
+      name: gold_image
+      properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE HHIBCL,GXZPPX'}
+      name: lumber_image
+      properties: {height: '50', source: _/theme/resource_images/fh-lumber-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE WUJPBE,GCTZRS'}
+      name: metal_image
+      properties: {height: '50', source: _/theme/resource_images/fh-metal-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE KYWINK,AYOHKG'}
+      name: hide_image
+      properties: {height: '50', source: _/theme/resource_images/fh-hide-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE PADGPE,PCTKMJ'}
+      name: arrowvine_image
+      properties: {height: '50', source: _/theme/resource_images/fh-arrowvine-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE HESBIS,PLGLFD'}
+      name: axenut_image
+      properties: {height: '50', source: _/theme/resource_images/fh-axenut-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE GSQVPW,DKOEGB'}
+      name: corpsecap_image
+      properties: {height: '50', source: _/theme/resource_images/fh-corpsecap-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE CRKRAN,RDTYYF'}
+      name: flamefruit_image
+      properties: {height: '50', source: _/theme/resource_images/fh-flamefruit-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE SJNHDO,HANYTG'}
+      name: rockroot_image
+      properties: {height: '50', source: _/theme/resource_images/fh-rockroot-bw-icon.png, visible: false}
+      type: Image
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE RYRCPT,YLRRSB'}
+      name: snowthistle_image
+      properties: {height: '50', source: _/theme/resource_images/fh-snowthistle-bw-icon.png, visible: false}
+      type: Image
+    - layout_properties: {grid_position: 'JVUTZA,BKDSXE TMRINP,UGYJNF'}
+      name: any_1_label
+      properties: {text: Any 1}
+      type: Label
+    - layout_properties: {grid_position: 'JVUTZA,BKDSXE MSDYPY,WPSQHQ'}
+      name: any_2_label
+      properties: {text: Any 2}
+      type: Label
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB JEWXWD,OXGAKJ'}
+      name: gold_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB KJMDPX,OVXEDB'}
+      name: lumber_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB MKBJCJ,QCEAJV'}
+      name: metal_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB RBXWLS,WNWZFC'}
+      name: hide_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB AHVOXF,EYQCAM'}
+      name: arrowvine_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB COUMHO,MCAXOF'}
+      name: axenut_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB KDOALL,VRRKWY'}
+      name: corpsecap_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB GYZUUN,NGUAJZ'}
+      name: flamefruit_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB RQJVEG,RSRDRZ'}
+      name: rockroot_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB UUKWBL,OTRIKD'}
+      name: snwothistle_text_box
+      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      type: TextBox
+    - layout_properties: {grid_position: 'NAODNY,NHMKXC'}
+      name: item_cost_image_1
+      properties: {height: '200', visible: false}
+      type: Image
+    - layout_properties: {grid_position: 'NAODNY,MGIKYP'}
+      name: item_cost_image_2
+      properties: {height: '200', visible: false}
+      type: Image
+    - layout_properties: {grid_position: 'NAODNY,PIRNUG'}
+      name: item_cost_image_3
+      properties: {height: '200', visible: false}
+      type: Image
+    - layout_properties: {grid_position: 'MWJGNO,EMLDFP'}
+      name: outlined_button_1
+      properties: {enabled: false, role: filled-button, text: Buy}
+      type: Button
+    layout_properties: {width: 500}
+    name: outlined_card_1
+    properties: {col_widths: '{"BKDSXE":10,"FAVSNB":50,"CAEFXC":10,"KFGYWX":50}', role: elevated-card}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'LYPSVI,IUVTHR'}
+  name: flow_panel_1
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true

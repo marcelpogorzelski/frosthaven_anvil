@@ -17,16 +17,17 @@ from ..RetiredCharacters import RetiredCharacters
 from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
 from ..Items import Items
+from ..CharacterItems import CharacterItems
 
 
 class Main(MainTemplate):
-  def __init__(self, **properties):
+  def __init__(self, start_form, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #window.innerWidth
     
     self.frosthave_link.role = 'selected'
-    self.change_form(Frosthaven())
+    self.change_form(start_form)
  
   def change_form(self, form):
     self.content_panel.clear()
@@ -73,7 +74,13 @@ class Main(MainTemplate):
 
   def marcel_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
-    self.change_form(Character('Marcel'))
+    character_name = 'Marcel'
+    if event_args['sender'].text == character_name:
+      event_args['sender'].text = f'{character_name} - Items'
+      self.change_form(Character(character_name))
+    else:
+      event_args['sender'].text = character_name
+      self.change_form(CharacterItems(character_name))
 
   def import_export_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])

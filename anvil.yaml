@@ -260,6 +260,18 @@ db_schema:
     - admin_ui: {order: 15.75, width: 64}
       name: 2Herbs
       type: bool
+    - admin_ui: {order: 19, width: 200}
+      name: Håvard
+      type: bool
+    - admin_ui: {order: 20, width: 200}
+      name: Marcel
+      type: bool
+    - admin_ui: {order: 21, width: 200}
+      name: John Magne
+      type: bool
+    - admin_ui: {order: 22, width: 200}
+      name: Kristian
+      type: bool
     server: full
     title: Items
   retired_characters:

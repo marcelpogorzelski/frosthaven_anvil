@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ..Item import Item
 
 
 class Items(ItemsTemplate):
@@ -50,8 +51,13 @@ class Items(ItemsTemplate):
     for item in self.item_list:
       #display_mode = 'shrink_to_fit'
       display_mode = 'original_size'
-      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}")
+      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=item)
+      item_image.add_event_handler('mouse_down', self.process_item)
       self.items_flow_panel.add_component(item_image)
+
+  def process_item(self, **event_args):
+    item = event_args['sender']
+    get_open_form().change_form(Item(item.tag))
 
   
   def parse_filter_image(self, filter_image_list):

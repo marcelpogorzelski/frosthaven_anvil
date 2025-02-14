@@ -5,6 +5,8 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ..Main import Main
+from ..Frosthaven import Frosthaven
 
 
 
@@ -16,5 +18,5 @@ class Login(LoginTemplate):
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()
     if anvil.users.get_user():
-      open_form('Main')
+      open_form(Main(start_form=Frosthaven()))
 

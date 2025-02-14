@@ -174,6 +174,15 @@ class UnlockEdit(UnlockEditTemplate):
     
     self.scenario_selected['Status'] = new_status
     self.scenario_selected.update()
+
+  def edit_select_radio_button_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    self.class_outlined_card.visible = False
+    self.item_outlined_card.visible = False
+    self.scenario_outlined_card.visible = False
+    self.building_outlined_card.visible = False
+    event_args['sender'].tag.visible = True
+
     
 
 
