@@ -12,21 +12,23 @@ class Item(ItemTemplate):
     self.init_components(**properties)
     self.item_image.source = item['Card']
     self.item = item
+    
     character_list = []
     character_list.append(('None', None))
     for character in app_tables.characters.search():
       character_list.append((str(character['Player']), character))
     self.character_drop_down.items = character_list
+    
+    self.frosthaven = app_tables.frosthaven.search()[0]
+    
     self.craftable = True
     self.player = None
-    self.frosthaven = app_tables.frosthaven.search()[0]
-
-    self.one_herb = False
-    self.two_herbs = False
 
     self.setup()
     
   def setup(self):
+    self.reset()
+    
     self.add_item_to_price(self.item)
     self.set_cost_items()
     if self.craftable:
@@ -76,10 +78,14 @@ class Item(ItemTemplate):
     if price_item['2Herbs']:
       self.two_herbs = price_item['2Herbs']
     
-
   def set_price(self, price, text_box):
     if price > 0:
       text_box.text += price
+
+  def parse_item_price(self, item):
+    cost_items = app_tables.items.search(Number=q.any_of(*item['Items'].split(',')))
+    for cost_item in cost_items:
+      print(cost_item)
 
   def set_cost_items(self):
     if not self.item['Items']:
@@ -183,20 +189,28 @@ class Item(ItemTemplate):
     self.rockroot_text_box.background = ''
     self.snwothistle_text_box.background = ''
 
+  def reset_prices(self):
+    self.prices = {
+      'Gold' : (0, self.gold_text_box,self.gold_image),
+      'Lumber' : (0, self.lumber_text_box, self.lumber_image),
+      'Metal' : (0, self.metal_text_box, self.metal_image),
+      'Hide' : (0, self.hide_text_box, self.hide_image),
+      'Arrowvine' : (0, self.arrowvine_text_box, self.arrowvine_image),
+      'Axenut' : (0, self.axenut_text_box, self.axenut_image),
+      'Corpsecap' : (0, self.corpsecap_text_box, self.corpsecap_image),
+      'Flamefruit' : (0, self.flamefruit_text_box, self.flamefruit_image),
+      'Rockroot' : (0, self.rockroot_text_box, self.rockroot_image),
+      'Snowthistle' : (0, self.snwothistle_text_box, self.snowthistle_image),
+    }    
+
   def reset(self):
-    self.set_not_visible()
-    self.gold_text_box.text = 0
-    self.lumber_text_box.text = 0
-    self.metal_text_box.text = 0
-    self.hide_text_box.text = 0
-    self.arrowvine_text_box.text = 0
-    self.axenut_text_box.text = 0
-    self.corpsecap_text_box.text = 0
-    self.flamefruit_text_box.text = 0
-    self.rockroot_text_box.text = 0
-    self.snwothistle_text_box.text = 0
-    
-    self.reset_border()
+    #self.set_not_visible()
+    self.reset_prices()
+    for price in self.prices:
+      price[2].visible = False
+      price[1].visible = False
+      price[1].text = price[0]
+      price[1].border = ''
     
     self.item_cost_image_1.source = None
     self.item_cost_image_2.source = None
