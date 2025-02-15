@@ -12,6 +12,9 @@ class Item(ItemTemplate):
     self.init_components(**properties)
     self.item_image.source = item['Card']
     self.item = item
+
+    self.solo_resources = ['Gold', 'Lumber', 'Metal', 'Hide']
+    self.combined_resources = ['Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
     
     character_list = []
     character_list.append(('None', None))
@@ -33,12 +36,25 @@ class Item(ItemTemplate):
         self.price_label.text = 'You already own the item!'
         return
     self.parse_item_price(self.item)
+    if self.player:
+      self.get_available_founds()
     
     if self.craftable:
       self.process_crafting()
     else:
       self.character_drop_down.visible = False
       self.character_label.visible = False
+
+  def get_available_founds(self):
+    for resource in self.solo_resources:
+      player_resource_count = self.player[resource]
+      self.available_resources[resource] = {'Player': player_resource_count, 'Frosthaven': None, 'Sum': None}
+      
+    for resource in self.combined_resources:
+      player_resource_count = self.player[resource]
+      frosthaven_resource_count = self.frosthaven[resource]
+      sum_resource_count = player_resource_count + frosthaven_resource_count
+      self.available_resources[resource] = {'Player': player_resource_count, 'Frosthaven': frosthaven_resource_count, 'Sum': sum_resource_count}
 
   def process_crafting(self):
     self.set_visible()
@@ -79,12 +95,36 @@ class Item(ItemTemplate):
     if image.source:
       image.visible = True
 
+  def show_resource(self, resource):
+    price = self.prices[resource]
+    if price['Price'] == 0:
+      return
+      
+    price['TextBox'].text = price['Price']
+    price['Image'].visible = True
+    price['TextBox'].visible = True
+    
+    if not self.player:
+      return
+      
+    available_count = self.available_resources[resource]
+    if available_count['Player'] >= price['Price']:
+      return
+    
+    price['TextBox'].background = 'theme:Primary Container'
+    print(f"{resource}: {available_count['Frosthaven']}")
+    if not available_count['Frosthaven']:
+      return
+    #print(f"{resource}: {available_count['Sum']}")
+    if available_count['Sum'] >= price['Price']:
+      return
+    #print("adfga")
+    price['TextBox'].background = 'theme:On Secondary Container'
+
+
   def set_visible(self):
-    for price in self.prices.values():
-      if price['Price'] > 0:
-        price['TextBox'].text = price['Price']
-        price['Image'].visible = True
-        price['TextBox'].visible = True
+    for resource in self.prices.keys():
+      self.show_resource(resource)
 
     for item in self.items_as_price:
       self.items_as_price_flow_panel.add_component(Image(source=item['Card']))
@@ -117,7 +157,7 @@ class Item(ItemTemplate):
       price['Image'].visible = False
       price['TextBox'].visible = False
       price['TextBox'].text = 0
-      price['TextBox'].border = ''
+      price['TextBox'].background = ''
 
     self.one_herb = False
     self.two_herbs = False
@@ -131,6 +171,8 @@ class Item(ItemTemplate):
     self.buy_button.visible = False
 
     self.price_label.text = 'Price'
+
+    self.available_resources = dict()
 
     self.items_as_price = list()
     self.items_as_price_flow_panel.clear()
