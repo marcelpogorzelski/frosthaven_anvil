@@ -112,14 +112,14 @@ class Item(ItemTemplate):
       return
     
     price['TextBox'].background = 'theme:Primary Container'
-    print(f"{resource}: {available_count['Frosthaven']}")
-    if not available_count['Frosthaven']:
+    if available_count['Frosthaven'] is None:
       return
+    print(f"{resource}: {available_count['Sum']}")
     #print(f"{resource}: {available_count['Sum']}")
     if available_count['Sum'] >= price['Price']:
       return
     #print("adfga")
-    price['TextBox'].background = 'theme:On Secondary Container'
+    price['TextBox'].background = 'theme:Primary'
 
 
   def set_visible(self):
