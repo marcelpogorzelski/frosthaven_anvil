@@ -64,12 +64,39 @@ components:
     name: havard_link
     properties: {align: center, text: Håvard}
     type: Link
+  - data_bindings: []
+    event_bindings: {click: havard_link_click}
+    layout_properties: {grid_position: 'XTEYQR,SOADVY'}
+    name: havard_main_link
+    properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: havard_items_click}
+    layout_properties: {grid_position: 'AWTZES,KEDARH'}
+    name: havard_items_link
+    properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
+    type: Link
   - components: []
     data_bindings: []
     event_bindings: {click: john_magne_link_click}
     layout_properties: {grid_position: 'RLVNAZ,TAKGTV'}
     name: john_magne_link
     properties: {align: center, text: John Magne}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: john_magne_link_click}
+    layout_properties: {grid_position: 'YKYBZO,YSRTYI'}
+    name: john_magne_main_link
+    properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: john_magne_items_click}
+    layout_properties: {grid_position: 'PXWRZW,YNRUDP'}
+    name: john_magne_items_link
+    properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
     type: Link
   - data_bindings: []
     event_bindings: {click: kristian_link_click}
@@ -79,10 +106,36 @@ components:
     type: Link
   - components: []
     data_bindings: []
+    event_bindings: {click: kristian_link_click}
+    layout_properties: {grid_position: 'KGXMVY,DCTKUI'}
+    name: kristian_main_link
+    properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
+    type: Link
+  - components: []
+    data_bindings: []
+    event_bindings: {click: kristian_items_click}
+    layout_properties: {grid_position: 'GHYUZU,HJSULY'}
+    name: kristian_items_link
+    properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
+    type: Link
+  - components: []
+    data_bindings: []
     event_bindings: {click: marcel_link_click}
     layout_properties: {grid_position: 'ZWYOUQ,EDAGAJ'}
     name: marcel_link
     properties: {align: center, text: Marcel}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: marcel_link_click}
+    layout_properties: {grid_position: 'WSGZSJ,VNGFKU'}
+    name: marcel_main_link
+    properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: marcel_items_click}
+    layout_properties: {grid_position: 'GLOCVZ,KAFDXB'}
+    name: marcel_items_link
+    properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
     type: Link
   - layout_properties: {grid_position: 'QJIFIK,AYLIYF'}
     name: spacer_3

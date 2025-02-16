@@ -39,6 +39,14 @@ class Main(MainTemplate):
         continue
       if comp.role == 'selected':
         comp.role = ''
+    self.havard_main_link.visible = False
+    self.havard_items_link.visible = False
+    self.john_magne_main_link.visible = False
+    self.john_magne_items_link.visible = False
+    self.kristian_main_link.visible = False
+    self.kristian_items_link.visible = False
+    self.marcel_main_link.visible = False
+    self.marcel_items_link.visible = False
 
   def navbar_link_select(self, link):
     self.reset_links()
@@ -62,25 +70,67 @@ class Main(MainTemplate):
 
   def havard_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
+    self.havard_main_link.visible = True
+    self.havard_main_link.role = 'selected'
+    self.havard_items_link.visible = True
+    self.havard_link.role = 'selected'
     self.change_form(Character('Håvard'))
+
+  def havard_items_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.havard_main_link.visible = True
+    self.havard_items_link.visible = True
+    self.havard_items_link.role = 'selected'
+    self.havard_link.role = 'selected'
+    self.change_form(CharacterItems('Håvard'))
 
   def kristian_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
+    self.kristian_main_link.visible = True
+    self.kristian_main_link.role = 'selected'
+    self.kristian_items_link.visible = True
+    self.kristian_link.role = 'selected'
     self.change_form(Character('Kristian'))
+
+  def kristian_items_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.kristian_main_link.visible = True
+    self.kristian_items_link.visible = True
+    self.kristian_items_link.role = 'selected'
+    self.kristian_link.role = 'selected'
+    self.change_form(CharacterItems('Kristian'))
 
   def john_magne_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
+    self.john_magne_main_link.visible = True
+    self.john_magne_main_link.role = 'selected'
+    self.john_magne_items_link.visible = True
+    self.john_magne_link.role = 'selected'
     self.change_form(Character('John Magne'))
+
+  def john_magne_items_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.john_magne_main_link.visible = True
+    self.john_magne_items_link.visible = True
+    self.john_magne_items_link.role = 'selected'
+    self.john_magne_link.role = 'selected'
+    self.change_form(CharacterItems('John Magne'))
 
   def marcel_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
-    character_name = 'Marcel'
-    if event_args['sender'].text == character_name:
-      event_args['sender'].text = f'{character_name} - Items'
-      self.change_form(Character(character_name))
-    else:
-      event_args['sender'].text = character_name
-      self.change_form(CharacterItems(character_name))
+    self.marcel_main_link.visible = True
+    self.marcel_main_link.role = 'selected'
+    self.marcel_items_link.visible = True
+    self.marcel_link.role = 'selected'
+    self.change_form(Character('Marcel'))
+
+  def marcel_items_click(self, **event_args):
+    self.navbar_link_select(event_args['sender'])
+    self.marcel_main_link.visible = True
+    self.marcel_items_link.visible = True
+    self.marcel_items_link.role = 'selected'
+    self.marcel_link.role = 'selected'
+    self.change_form(CharacterItems('Marcel'))
 
   def import_export_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
