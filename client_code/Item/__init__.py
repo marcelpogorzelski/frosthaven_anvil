@@ -31,6 +31,7 @@ class Item(ItemTemplate):
     
   def setup(self):
     self.reset()
+    self.player = self.character_drop_down.selected_value
     if self.player:
       if self.item[self.player['Player']]:
         self.price_label.text = 'You already own the item!'
@@ -179,7 +180,6 @@ class Item(ItemTemplate):
 
   def character_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
-    self.player = event_args['sender'].selected_value
     self.setup()
         
     
