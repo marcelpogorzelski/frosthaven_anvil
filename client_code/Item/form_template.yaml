@@ -95,7 +95,7 @@ components:
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,FAVSNB RBXWLS,WNWZFC'}
       name: hide_text_box
-      properties: {enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
+      properties: {background: '', enabled: false, spacing_above: medium, text: '0', type: number, visible: false}
       type: TextBox
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,FAVSNB AHVOXF,EYQCAM'}
@@ -153,7 +153,7 @@ components:
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'LYPSVI,IUVTHR'}
   name: flow_panel_1
-  properties: {}
+  properties: {background: ''}
   type: FlowPanel
 container: {type: ColumnPanel}
 is_package: true

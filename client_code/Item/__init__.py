@@ -77,7 +77,7 @@ class Item(ItemTemplate):
     cost_items = app_tables.items.search(Number=q.any_of(*item['Items'].split(',')))
     for cost_item in cost_items:
       if not cost_item['Available']:
-        self.uncraftable(item)
+        self.uncraftable(cost_item)
         return
       if self.player:
         self.parse_item_price(cost_item)
@@ -96,36 +96,76 @@ class Item(ItemTemplate):
     if image.source:
       image.visible = True
 
-  def show_resource(self, resource):
-    price = self.prices[resource]
-    if price['Price'] == 0:
+  def show_solo_resource(self, resource_name):
+    resource = self.prices[resource_name]
+    if resource['Price'] == 0:
       return
-      
-    price['TextBox'].text = price['Price']
-    price['Image'].visible = True
-    price['TextBox'].visible = True
-    
+
     if not self.player:
+      resource['TextBox'].text = resource['Price']
+      resource['Image'].visible = True
+      resource['TextBox'].visible = True
       return
       
-    available_count = self.available_resources[resource]
-    if available_count['Player'] >= price['Price']:
+    price = resource['Price']
+    available_player = self.available_resources[resource_name]['Player']
+
+    if available_player >= price:
+      resource['TextBox'].text = price
+    else:
+      self.insufficient_funds = True
+      resource['TextBox'].type = 'text'
+      if available_player == 0:
+        resource['TextBox'].text = f'{price} (No {resource_name.lower()} avaiable)'
+      else:
+        resource['TextBox'].text = f'{price} ({available_player} {resource_name.lower()} available)'
+      resource['TextBox'].background = 'theme:Primary Container'
+
+    resource['Image'].visible = True
+    resource['TextBox'].visible = True
+
+  def show_combined_resource(self, resource_name):
+    resource = self.prices[resource_name]
+    if resource['Price'] == 0:
       return
-    
-    price['TextBox'].background = 'theme:Primary Container'
-    if available_count['Frosthaven'] is None:
+
+    if not self.player:
+      resource['TextBox'].text = resource['Price']
+      resource['Image'].visible = True
+      resource['TextBox'].visible = True
       return
-    print(f"{resource}: {available_count['Sum']}")
-    #print(f"{resource}: {available_count['Sum']}")
-    if available_count['Sum'] >= price['Price']:
-      return
-    #print("adfga")
-    price['TextBox'].background = 'theme:Primary'
+
+    price = resource['Price']
+    available_player = self.available_resources[resource_name]['Player']
+    #available_forsthaven = self.available_resources[resource_name]['Frosthaven']
+    available_total = self.available_resources[resource_name]['Sum']
+
+    if available_player >= price:
+      resource['TextBox'].text = price
+    elif available_total >= price:
+      remainder = price - available_player
+      resource['TextBox'].type = 'text'
+      resource['TextBox'].text = f'{price} ({remainder} taken from Frosthaven)'
+      resource['TextBox'].background = 'theme:Tertiary Container'
+    else:
+      self.insufficient_funds = True
+      resource['TextBox'].type = 'text'
+      if available_total == 0:
+        resource['TextBox'].text = f'{price} (No {resource_name.lower()} available)'
+      else:
+        resource['TextBox'].text = f'{price} ({available_total} {resource_name.lower()} available)'
+      resource['TextBox'].background = 'theme:Primary Container'
+
+    resource['Image'].visible = True
+    resource['TextBox'].visible = True
 
 
   def set_visible(self):
-    for resource in self.prices.keys():
-      self.show_resource(resource)
+    for resource in self.solo_resources:
+      self.show_solo_resource(resource)
+      
+    for resource in self.combined_resources:
+      self.show_combined_resource(resource)
 
     for item in self.items_as_price:
       self.items_as_price_flow_panel.add_component(Image(source=item['Card']))
@@ -136,6 +176,15 @@ class Item(ItemTemplate):
     if self.two_herbs:
       self.any_2_label.visible = True
       self.any_2_drop_down.visible = True
+
+    if not self.player:
+      return
+    
+    if self.insufficient_funds:
+      self.buy_button.text = 'Insufficient resources'
+    else:
+      self.buy_button.enabled = True
+    self.buy_button.visible = True
 
 
   def reset_prices(self):
@@ -158,6 +207,7 @@ class Item(ItemTemplate):
       price['Image'].visible = False
       price['TextBox'].visible = False
       price['TextBox'].text = 0
+      price['TextBox'].type = 'number'
       price['TextBox'].background = ''
 
     self.one_herb = False
@@ -168,8 +218,11 @@ class Item(ItemTemplate):
     self.any_2_label.visible = False
     self.any_1_drop_down.visible = False
     self.any_2_drop_down.visible = False
-    
+
+    self.insufficient_funds = False
+    self.buy_button.text = 'Buy'
     self.buy_button.visible = False
+    self.buy_button.enabled = False
 
     self.price_label.text = 'Price'
 

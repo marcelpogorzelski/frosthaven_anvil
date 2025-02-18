@@ -49,6 +49,27 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_type_drop_down.visible = visible
     self.item_usage_drop_down.visible = visible
     self.item_gold_check_box.visible = visible
+    
+    self.gold_image.visible = visible
+    self.gold_text_box.visible = visible
+    self.lumber_image.visible = visible
+    self.lumber_text_box.visible = visible
+    self.metal_image.visible = visible
+    self.metal_text_box.visible = visible
+    self.hide_image.visible = visible
+    self.hide_text_box.visible = visible
+    self.arrowvine_image.visible = visible
+    self.arrowvine_text_box.visible = visible
+    self.axenut_image.visible = visible
+    self.axenut_text_box.visible = visible
+    self.corpsecap_image.visible = visible
+    self.corpsecap_text_box.visible = visible
+    self.flamefruit_image.visible = visible
+    self.flamefruit_text_box.visible = visible
+    self.rockroot_image.visible = visible
+    self.rockroot_text_box.visible = visible
+    self.snowthistle_image.visible = visible
+    self.snowthistle_text_box.visible = visible
 
   def item_change(self):
     self.item_selected = app_tables.items.get(Number=self.item_number_text_box.text)
@@ -67,6 +88,17 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_type_drop_down.selected_value = self.item_selected['Type']
     self.item_usage_drop_down.selected_value = self.item_selected['Usage']
     self.item_gold_check_box.checked = self.item_selected['HasGoldCost']
+
+    self.gold_text_box.text = self.item_selected['Gold']
+    self.lumber_text_box.text = self.item_selected['Lumber']
+    self.metal_text_box.text = self.item_selected['Metal']
+    self.hide_text_box.text = self.item_selected['Hide']
+    self.arrowvine_text_box.text = self.item_selected['Arrowvine']
+    self.axenut_text_box.text = self.item_selected['Axenut']
+    self.corpsecap_text_box.text = self.item_selected['Corpsecap']
+    self.flamefruit_text_box.text = self.item_selected['Flamefruit']
+    self.rockroot_text_box.text = self.item_selected['Rockroot']
+    self.snowthistle_text_box.text = self.item_selected['Snowthistle']
 
   def item_number_text_box_pressed_enter(self, **event_args):
     self.item_change()
