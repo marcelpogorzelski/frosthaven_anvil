@@ -82,6 +82,10 @@ class Items(ItemsTemplate):
     self.type_selected_list = self.parse_filter_image(self.type_filters) or q.any_of('Head', 'Body', 'Feet', 'One Hand', 'Two Hands', 'Small')
     self.usage_selected_list = self.parse_filter_image(self.usage_filters) or q.any_of('Passive', 'Spent', 'Lost', 'Flip')
     self.parse_item_numbers()
+    if self.all_link.background:
+      self.available_selected = q.greater_than(0)
+    else:
+      self.available_selected = q.greater_than(-1)
     if self.gold_image.background:
       self.gold_selected_list = q.any_of(True)
     else:
@@ -89,11 +93,10 @@ class Items(ItemsTemplate):
 
     
   def get_available_items(self):
-    return app_tables.items.search(Available=True, Type=self.type_selected_list, Usage=self.usage_selected_list, HasGoldCost=self.gold_selected_list, Number=self.item_number_selected_list)
+    return app_tables.items.search(Available=True, Type=self.type_selected_list, Usage=self.usage_selected_list, HasGoldCost=self.gold_selected_list, Number=self.item_number_selected_list, AvailableCount=self.available_selected)
 
     
   def filter_mouse_down(self, x, y, button, keys, **event_args):
-    """This method is called when a mouse button is pressed on this component"""
     if event_args['sender'].background:
       event_args['sender'].background = None
     else:
@@ -102,6 +105,14 @@ class Items(ItemsTemplate):
     self.populate_items()
 
   def item_number_text_box_pressed_enter(self, **event_args):
+    self.get_filter_items()
+    self.populate_items()
+
+  def all_link_click(self, **event_args):
+    if event_args['sender'].background:
+      event_args['sender'].background = None
+    else:
+      event_args['sender'].background = self.orange
     self.get_filter_items()
     self.populate_items()
 
