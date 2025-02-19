@@ -35,7 +35,22 @@ class Item(ItemTemplate):
     if self.player:
       if self.item[self.player['Player']]:
         self.price_label.text = 'You already own the item!'
+        self.free_check_box.visible = False
         return
+
+    if self.item['AvailableCount'] == 0:
+      self.price_label.text = f"No more copies of item: {self.item['Number']} - {self.item['Name']}"
+      self.free_check_box.visible = False
+      self.character_drop_down.visible = False
+      self.character_label.visible = False
+      return
+
+    if self.free_check_box.checked:
+      self.buy_button.text = 'Add item'
+      self.buy_button.enabled = True
+      self.buy_button.visible = True
+      self.price_label.text = 'Add item for free'
+      return
     self.parse_item_price(self.item)
     if self.player:
       self.get_available_founds()
@@ -45,6 +60,7 @@ class Item(ItemTemplate):
     else:
       self.character_drop_down.visible = False
       self.character_label.visible = False
+
 
   def get_available_founds(self):
     for resource in self.solo_resources:
@@ -95,34 +111,6 @@ class Item(ItemTemplate):
   def set_image_visible_if_source(self, image):
     if image.source:
       image.visible = True
-
-  def show_solo_resource(self, resource_name):
-    resource = self.prices[resource_name]
-    if resource['Price'] == 0:
-      return
-
-    if not self.player:
-      resource['TextBox'].text = resource['Price']
-      resource['Image'].visible = True
-      resource['TextBox'].visible = True
-      return
-      
-    price = resource['Price']
-    available_player = self.available_resources[resource_name]['Player']
-
-    if available_player >= price:
-      resource['TextBox'].text = price
-    else:
-      self.insufficient_funds = True
-      resource['TextBox'].type = 'text'
-      if available_player == 0:
-        resource['TextBox'].text = f'{price} (No {resource_name.lower()} avaiable)'
-      else:
-        resource['TextBox'].text = f'{price} ({available_player} {resource_name.lower()} available)'
-      resource['TextBox'].background = 'theme:Primary Container'
-
-    resource['Image'].visible = True
-    resource['TextBox'].visible = True
 
   def show_resource(self, resource_name):
     resource = self.prices[resource_name]
@@ -236,15 +224,25 @@ class Item(ItemTemplate):
     self.items_as_price = list()
     self.items_as_price_flow_panel.clear()
 
+    self.free_check_box.visible = True
+
   def character_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
     self.setup()
 
   def buy_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
+    if self.free_check_box.checked:
+      if not self.player:
+        alert("Choose a player in the drop down menu")
+        return
+      if not confirm(f"Do you want to add item:\n   {self.item['Number']} - {self.item['Name']}"):
+        return
+      self.item[self.player['Player']] = True
+      self.item['AvailableCount'] -= 1
+      return
     player_name = self.player['Player']
-    player_payment_string = ''
-    frosthaven_payment_string = ''
+    player_payment_string = player_name + ':\n'
+    frosthaven_payment_string = '\nFrosthaven:\n'
     
     for resource_name, values in self.payment.items():
       if 'Player' in values:
@@ -254,8 +252,23 @@ class Item(ItemTemplate):
         frosthaven_price = values['Frosthaven']
         frosthaven_payment_string += "  - " + str(resource_name) + ": " + str(frosthaven_price)  + "\n"
 
-    if not confirm((player_name + ":\n" + player_payment_string + "\nFrosthaven:\n" + frosthaven_payment_string)):
+    items_string = '\nItems:\n'
+
+    for item in self.items_as_price:
+      items_string += "  - " + item['Number'] + ": " + item['Name'] + "\n"
+    if not confirm((player_payment_string + frosthaven_payment_string + items_string)):
       return
+
+    for resource_name, values in self.payment.items():
+      if 'Player' in values:
+        self.player[resource_name] -= values['Player']
+      if 'Frosthaven' in values:
+        self.frosthaven[resource_name] -= values['Frosthaven']
+    self.player.update()
+    self.frosthaven.update()
+
+  def free_check_box_change(self, **event_args):
+    self.setup()
 
     
         

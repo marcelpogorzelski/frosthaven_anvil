@@ -11,10 +11,15 @@ components:
       type: Label
     - data_bindings: []
       event_bindings: {change: character_drop_down_change}
-      layout_properties: {grid_position: 'YCAHPM,KFGYWX'}
+      layout_properties: {grid_position: 'YCAHPM,KFGYWX WIIJJT,XZUWYA'}
       name: character_drop_down
       properties: {}
       type: DropDown
+    - event_bindings: {change: free_check_box_change}
+      layout_properties: {grid_position: 'YCAHPM,KFGYWX SHIJNA,KUNKNM'}
+      name: free_check_box
+      properties: {text: Free}
+      type: CheckBox
     - layout_properties: {grid_position: 'ITNYRH,VASWTU'}
       name: price_label
       properties: {align: center, role: title, text: Price}
