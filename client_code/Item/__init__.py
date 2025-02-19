@@ -49,13 +49,13 @@ class Item(ItemTemplate):
   def get_available_founds(self):
     for resource in self.solo_resources:
       player_resource_count = self.player[resource]
-      self.available_resources[resource] = {'Player': player_resource_count, 'Frosthaven': None, 'Sum': None}
+      self.available_resources[resource] = {'Player': player_resource_count, 'Sum': -1}
       
     for resource in self.combined_resources:
       player_resource_count = self.player[resource]
       frosthaven_resource_count = self.frosthaven[resource]
       sum_resource_count = player_resource_count + frosthaven_resource_count
-      self.available_resources[resource] = {'Player': player_resource_count, 'Frosthaven': frosthaven_resource_count, 'Sum': sum_resource_count}
+      self.available_resources[resource] = {'Player': player_resource_count, 'Sum': sum_resource_count}
 
   def process_crafting(self):
     self.set_visible()
@@ -124,7 +124,7 @@ class Item(ItemTemplate):
     resource['Image'].visible = True
     resource['TextBox'].visible = True
 
-  def show_combined_resource(self, resource_name):
+  def show_resource(self, resource_name):
     resource = self.prices[resource_name]
     if resource['Price'] == 0:
       return
@@ -137,19 +137,25 @@ class Item(ItemTemplate):
 
     price = resource['Price']
     available_player = self.available_resources[resource_name]['Player']
-    #available_forsthaven = self.available_resources[resource_name]['Frosthaven']
     available_total = self.available_resources[resource_name]['Sum']
 
     if available_player >= price:
       resource['TextBox'].text = price
+      self.payment[resource_name] = {'Player': price}
     elif available_total >= price:
       remainder = price - available_player
       resource['TextBox'].type = 'text'
       resource['TextBox'].text = f'{price} ({remainder} taken from Frosthaven)'
       resource['TextBox'].background = 'theme:Tertiary Container'
+      if aavailable_player > 0:
+        self.payment[resource_name] = {'Player': available_player, 'Frosthaven': remainder}
+      else:
+        self.payment[resource_name] = {'Frosthaven': remainder}
     else:
       self.insufficient_funds = True
       resource['TextBox'].type = 'text'
+      if available_total == -1:
+        available_total = available_player
       if available_total == 0:
         resource['TextBox'].text = f'{price} (No {resource_name.lower()} available)'
       else:
@@ -161,11 +167,8 @@ class Item(ItemTemplate):
 
 
   def set_visible(self):
-    for resource in self.solo_resources:
-      self.show_solo_resource(resource)
-      
-    for resource in self.combined_resources:
-      self.show_combined_resource(resource)
+    for resource in self.prices.keys():
+      self.show_resource(resource)
 
     for item in self.items_as_price:
       self.items_as_price_flow_panel.add_component(Image(source=item['Card']))
@@ -210,6 +213,8 @@ class Item(ItemTemplate):
       price['TextBox'].type = 'number'
       price['TextBox'].background = ''
 
+    self.payment = dict()
+
     self.one_herb = False
     self.two_herbs = False
     self.any_1_drop_down.selected_value = ''
@@ -237,6 +242,20 @@ class Item(ItemTemplate):
 
   def buy_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    pass
+    player_name = self.player['Name']
+    ≈ = ''
+    frosthaven_payment_string = ''
+    
+    for resource_name, values in self.payment.items():
+      if 'Player' in values:
+        player_price = values['Player']
+        player_payment_string += resource_name , ": ", player_price
+      if 'Frosthaven' in values:
+        frosthaven_price = values['Frosthaven']
+        frosthaven_payment_string += resource_name , ": ", frosthaven_price
+
+      alert()
+        
+      
         
     
