@@ -83,9 +83,9 @@ class Items(ItemsTemplate):
     self.usage_selected_list = self.parse_filter_image(self.usage_filters) or q.any_of('Passive', 'Spent', 'Lost', 'Flip')
     self.parse_item_numbers()
     if self.all_link.background:
-      self.available_selected = q.greater_than(0)
-    else:
       self.available_selected = q.greater_than(-1)
+    else:
+      self.available_selected = q.greater_than(0)
     if self.gold_image.background:
       self.gold_selected_list = q.any_of(True)
     else:
