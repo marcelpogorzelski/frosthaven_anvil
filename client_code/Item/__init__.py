@@ -234,5 +234,9 @@ class Item(ItemTemplate):
   def character_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
     self.setup()
+
+  def buy_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
         
     
