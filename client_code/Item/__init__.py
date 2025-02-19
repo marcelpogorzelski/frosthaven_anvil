@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ..CharacterItems import CharacterItems
 
 
 class Item(ItemTemplate):
@@ -239,6 +240,7 @@ class Item(ItemTemplate):
         return
       self.item[self.player['Player']] = True
       self.item['AvailableCount'] -= 1
+      self.go_to_character_items(self.player['Player'])
       return
     player_name = self.player['Player']
     player_payment_string = player_name + ':\n'
@@ -266,10 +268,35 @@ class Item(ItemTemplate):
         self.frosthaven[resource_name] -= values['Frosthaven']
     self.player.update()
     self.frosthaven.update()
+    for item in self.items_as_price:
+      item[self.player['Player']] = False
+      item['AvailableCount'] += 1
+      item.update()
+    self.item[self.player['Player']] = True
+    self.item['AvailableCount'] -= 1
+    self.go_to_character_items(self.player['Player'])
 
   def free_check_box_change(self, **event_args):
     self.setup()
 
+  def go_to_character_items(self, character_name):
+    main_form = get_open_form()
+    if character_name == 'Håvard':
+      main_form.havard_items_click(sender = main_form.havard_items_link)
+      return
+      
+    if character_name == 'Marcel':
+      main_form.marcel_items_click(sender = main_form.marcel_items_link)
+      return
+      
+    if character_name == 'Kristian':
+      main_form.kristian_items_click(sender = main_form.kristian_items_link)
+      return
+      
+    if character_name == 'John Magne':
+      main_form.john_magne_items_click(sender = main_form.john_magne_items_link)
+      return
+      
     
         
       

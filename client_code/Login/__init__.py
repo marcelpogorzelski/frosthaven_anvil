@@ -9,7 +9,6 @@ from ..Main import Main
 from ..Frosthaven import Frosthaven
 
 
-
 class Login(LoginTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
