@@ -147,7 +147,7 @@ class Item(ItemTemplate):
       resource['TextBox'].type = 'text'
       resource['TextBox'].text = f'{price} ({remainder} taken from Frosthaven)'
       resource['TextBox'].background = 'theme:Tertiary Container'
-      if aavailable_player > 0:
+      if available_player > 0:
         self.payment[resource_name] = {'Player': available_player, 'Frosthaven': remainder}
       else:
         self.payment[resource_name] = {'Frosthaven': remainder}
@@ -242,19 +242,22 @@ class Item(ItemTemplate):
 
   def buy_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    player_name = self.player['Name']
-    ≈ = ''
+    player_name = self.player['Player']
+    player_payment_string = ''
     frosthaven_payment_string = ''
     
     for resource_name, values in self.payment.items():
       if 'Player' in values:
         player_price = values['Player']
-        player_payment_string += resource_name , ": ", player_price
+        player_payment_string += "  - " + str(resource_name) + ": " + str(player_price) + "\n"
       if 'Frosthaven' in values:
         frosthaven_price = values['Frosthaven']
-        frosthaven_payment_string += resource_name , ": ", frosthaven_price
+        frosthaven_payment_string += "  - " + str(resource_name) + ": " + str(frosthaven_price)  + "\n"
 
-      alert()
+    if not confirm((player_name + ":\n" + player_payment_string + "\nFrosthaven:\n" + frosthaven_payment_string)):
+      return
+
+    
         
       
         
