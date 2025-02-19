@@ -15,6 +15,7 @@ class CharacterItems(CharacterItemsTemplate):
 
   def populate_items(self):
     self.item_list = app_tables.items.search(Available=True)
+    border = 'thick solid #00FF00'
 
     self.character_items_flow_panel.clear()
     for item in self.item_list:
@@ -22,5 +23,5 @@ class CharacterItems(CharacterItemsTemplate):
         continue
       #display_mode = 'shrink_to_fit'
       display_mode = 'original_size'
-      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=item)
+      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=item, border=border)
       self.character_items_flow_panel.add_component(item_image)
