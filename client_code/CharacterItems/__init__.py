@@ -27,8 +27,11 @@ class CharacterItems(CharacterItemsTemplate):
         continue
       #display_mode = 'shrink_to_fit'
       display_mode = 'original_size'
-      sell_price = self.get_item_sell_price(item)
-      tag = {'Item': item, 'Sell_Price': sell_price}
+      if item['Destilled']:
+        tag = {'Item': item}
+      else: 
+        sell_price = self.get_item_sell_price(item)
+        tag = {'Item': item, 'Sell_Price': sell_price}
       item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=tag)
       item_image.add_event_handler('mouse_down', self.select_item)
       self.character_items_flow_panel.add_component(item_image)
@@ -46,7 +49,6 @@ class CharacterItems(CharacterItemsTemplate):
 
   def select_item(self, **event_args):
     item_image = event_args['sender']
-    print(item_image.tag['Sell_Price'])
     if item_image.border:
       item_image.border = None
     else:
