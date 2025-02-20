@@ -267,7 +267,7 @@ db_schema:
       name: Marcel
       type: bool
     - admin_ui: {order: 21, width: 99}
-      name: John Magne
+      name: John_Magne
       type: bool
     - admin_ui: {order: 22, width: 69}
       name: Kristian

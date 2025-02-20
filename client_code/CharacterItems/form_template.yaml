@@ -1,9 +1,43 @@
 components:
 - layout_properties: {full_width_row: true, grid_position: 'DQXNFG,PTWAHK'}
   name: player_label
-  properties: {role: title}
+  properties: {align: center, role: headline}
   type: Label
-- layout_properties: {full_width_row: true, grid_position: 'YMDKXD,NSNSBZ'}
+- components:
+  - event_bindings: {click: select_all_button_click}
+    layout_properties: {expand: false, width: null}
+    name: select_all_button
+    properties: {role: filled-button, text: Select All}
+    type: Button
+  - event_bindings: {click: clear_button_click}
+    layout_properties: {width: null}
+    name: clear_button
+    properties: {role: filled-button, text: '   Clear   '}
+    type: Button
+  - layout_properties: {}
+    name: sell_value_label
+    properties: {role: input-prompt, text: Sell value}
+    type: Label
+  - data_bindings: []
+    layout_properties: {width: 60}
+    name: sell_value_text_box
+    properties: {align: center, enabled: false, role: outlined, text: '0', type: number}
+    type: TextBox
+  - layout_properties: {}
+    name: herbs_back_label
+    properties: {role: input-prompt, text: Herbs back}
+    type: Label
+  - data_bindings: []
+    layout_properties: {width: 60}
+    name: herbs_back_text_box
+    properties: {align: center, enabled: false, role: outlined, text: '0', type: number}
+    type: TextBox
+  layout_properties: {full_width_row: true, grid_position: 'VUMBFZ,NITOQV'}
+  name: header_flow_panel
+  properties: {}
+  type: FlowPanel
+- components: []
+  layout_properties: {full_width_row: true, grid_position: 'YMDKXD,NSNSBZ'}
   name: character_items_flow_panel
   properties: {}
   type: FlowPanel

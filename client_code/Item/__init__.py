@@ -34,7 +34,8 @@ class Item(ItemTemplate):
     self.reset()
     self.player = self.character_drop_down.selected_value
     if self.player:
-      if self.item[self.player['Player']]:
+      player_name = self.player['Player'].replace(" ", "_")
+      if self.item[player_name]:
         self.price_label.text = 'You already own the item!'
         self.free_check_box.visible = False
         return
@@ -81,7 +82,8 @@ class Item(ItemTemplate):
 
   def parse_item_price(self, item):
     if self.player:
-      if item[self.player['Player']]:
+      player_name = self.player['Player'].replace(" ", "_")
+      if item[player_name]:
         self.items_as_price.append(item)
         return
     for resource, price in self.prices.items():
@@ -108,10 +110,6 @@ class Item(ItemTemplate):
       self.price_label.text = f'Cannot craft item. Missing item(s): {item_number}'
     else:
       self.price_label.text += f', {item_number}'
-
-  def set_image_visible_if_source(self, image):
-    if image.source:
-      image.visible = True
 
   def show_resource(self, resource_name):
     resource = self.prices[resource_name]
@@ -228,7 +226,6 @@ class Item(ItemTemplate):
     self.free_check_box.visible = True
 
   def character_drop_down_change(self, **event_args):
-    """This method is called when an item is selected"""
     self.setup()
 
   def buy_button_click(self, **event_args):
@@ -238,12 +235,13 @@ class Item(ItemTemplate):
         return
       if not confirm(f"Do you want to add item:\n   {self.item['Number']} - {self.item['Name']}"):
         return
-      self.item[self.player['Player']] = True
+      player_name = self.player['Player'].replace(" ", "_")
+      self.item[player_name] = True
       self.item['AvailableCount'] -= 1
       self.go_to_character_items(self.player['Player'])
       return
-    player_name = self.player['Player']
-    player_payment_string = player_name + ':\n'
+    player_display_name = self.player['Player']
+    player_payment_string = player_display_name + ':\n'
     frosthaven_payment_string = '\nFrosthaven:\n'
     
     for resource_name, values in self.payment.items():
@@ -268,11 +266,12 @@ class Item(ItemTemplate):
         self.frosthaven[resource_name] -= values['Frosthaven']
     self.player.update()
     self.frosthaven.update()
+    player_name = self.player['Player'].replace(" ", "_")
     for item in self.items_as_price:
-      item[self.player['Player']] = False
+      item[player_name] = False
       item['AvailableCount'] += 1
       item.update()
-    self.item[self.player['Player']] = True
+    self.item[player_name] = True
     self.item['AvailableCount'] -= 1
     self.go_to_character_items(self.player['Player'])
 

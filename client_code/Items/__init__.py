@@ -45,7 +45,9 @@ class Items(ItemsTemplate):
 
 
   def populate_items(self):
+    self.items_flow_panel.visible = False
     self.item_list = self.get_available_items()
+    
 
     self.items_flow_panel.clear()
     for item in self.item_list:
@@ -54,6 +56,7 @@ class Items(ItemsTemplate):
       item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=item)
       item_image.add_event_handler('mouse_down', self.process_item)
       self.items_flow_panel.add_component(item_image)
+    self.items_flow_panel.visible = True
 
   def process_item(self, **event_args):
     item = event_args['sender']
