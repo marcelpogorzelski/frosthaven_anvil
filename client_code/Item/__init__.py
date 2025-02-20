@@ -47,7 +47,7 @@ class Item(ItemTemplate):
       self.character_label.visible = False
       return
 
-    if self.free_check_box.checked:
+    if self.free_check_box.checked and self.character_drop_down.selected_value:
       self.buy_button.text = 'Add item'
       self.buy_button.enabled = True
       self.buy_button.visible = True

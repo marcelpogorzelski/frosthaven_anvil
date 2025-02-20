@@ -28,7 +28,7 @@ class CharacterItems(CharacterItemsTemplate):
       self.item_list = app_tables.items.search(Available=True, Marcel=True)
       
     if self.player_name == 'Kristian':
-      self.item_list = app_tables.items.search(Available=True, HåvaKristianrd=True)
+      self.item_list = app_tables.items.search(Available=True, Kristian=True)
       
     if self.player_name == 'John Magne':
       self.item_list = app_tables.items.search(Available=True, John_Magne=True)
@@ -95,5 +95,50 @@ class CharacterItems(CharacterItemsTemplate):
     self.sell_value_text_box.text = 0
     self.herbs_back_text_box.text = 0
 
+  def get_selected_items(self):
+    items = []
+    for item_image in self.character_items_flow_panel.get_components():
+      items.append(item_image.tag)
+    return items
+
   def sell_button_click(self, **event_args):
     pass
+
+  def lose_button_click(self, **event_args):
+    remove_item_list = list()
+    items_string = 'Are you sure you want to remove following items:\n'
+    for item_image in self.character_items_flow_panel.get_components():
+      if not item_image.border:
+        continue
+      item = item_image.tag['Item']
+      items_string += "  - " + item['Number'] + ": " + item['Name'] + "\n"
+      remove_item_list.append(item)
+    if len(remove_item_list) == 0:
+      return
+    if not confirm(items_string):
+      return
+    player_name = self.player_name.replace(" ", "_")
+    for item in remove_item_list:
+      item[player_name] = False
+      item['AvailableCount'] += 1
+      item.update()
+    self.go_to_character(self.player_name)
+
+  def go_to_character(self, player_name):
+    main_form = get_open_form()
+    if player_name == 'Håvard':
+      main_form.havard_link_click(sender = main_form.havard_link)
+      return
+      
+    if player_name == 'Marcel':
+      main_form.marcel_link_click(sender = main_form.marcel_link)
+      return
+      
+    if player_name == 'Kristian':
+      main_form.kristian_link_click(sender = main_form.kristian_link)
+      return
+      
+    if player_name == 'John Magne':
+      main_form.john_magne_link_click(sender = main_form.john_magne_link)
+      return
+

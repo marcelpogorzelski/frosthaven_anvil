@@ -37,6 +37,11 @@ components:
     name: sell_button
     properties: {role: filled-button, text: Sell Selected}
     type: Button
+  - event_bindings: {click: lose_button_click}
+    layout_properties: {}
+    name: lose_button
+    properties: {role: filled-button, text: Lose Selected}
+    type: Button
   layout_properties: {full_width_row: true, grid_position: 'VUMBFZ,NITOQV'}
   name: header_flow_panel
   properties: {}
