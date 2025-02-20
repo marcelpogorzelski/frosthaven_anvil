@@ -12,7 +12,7 @@ components:
   - event_bindings: {click: clear_button_click}
     layout_properties: {width: null}
     name: clear_button
-    properties: {role: filled-button, text: '   Clear   '}
+    properties: {role: filled-button, text: Clear All}
     type: Button
   - layout_properties: {}
     name: sell_value_label
@@ -32,6 +32,11 @@ components:
     name: herbs_back_text_box
     properties: {align: center, enabled: false, role: outlined, text: '0', type: number}
     type: TextBox
+  - event_bindings: {click: sell_button_click}
+    layout_properties: {}
+    name: sell_button
+    properties: {role: filled-button, text: Sell Selected}
+    type: Button
   layout_properties: {full_width_row: true, grid_position: 'VUMBFZ,NITOQV'}
   name: header_flow_panel
   properties: {}

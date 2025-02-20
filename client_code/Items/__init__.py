@@ -48,7 +48,6 @@ class Items(ItemsTemplate):
     self.items_flow_panel.visible = False
     self.item_list = self.get_available_items()
     
-
     self.items_flow_panel.clear()
     for item in self.item_list:
       #display_mode = 'shrink_to_fit'

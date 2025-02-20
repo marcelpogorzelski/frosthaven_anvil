@@ -94,3 +94,6 @@ class CharacterItems(CharacterItemsTemplate):
     self.set_border_for_all(None)
     self.sell_value_text_box.text = 0
     self.herbs_back_text_box.text = 0
+
+  def sell_button_click(self, **event_args):
+    pass
