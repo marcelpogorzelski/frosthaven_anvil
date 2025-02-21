@@ -336,21 +336,21 @@ class Item(ItemTemplate):
   def free_check_box_change(self, **event_args):
     self.setup()
 
-  def go_to_character_items(self, character_name):
+  def go_to_character_items(self, player_name):
     main_form = get_open_form()
-    if character_name == 'Håvard':
-      main_form.havard_items_click(sender = main_form.havard_items_link)
+    if player_name == 'Håvard':
+      main_form.open_havard_items()
       return
       
-    if character_name == 'Marcel':
-      main_form.marcel_items_click(sender = main_form.marcel_items_link)
+    if player_name == 'Marcel':
+      main_form.open_marcel_items()
       return
       
-    if character_name == 'Kristian':
-      main_form.kristian_items_click(sender = main_form.kristian_items_link)
+    if player_name == 'Kristian':
+      main_form.open_kristian_items()
       return
       
-    if character_name == 'John Magne':
-      main_form.john_magne_items_click(sender = main_form.john_magne_items_link)
+    if player_name == 'John Magne':
+      main_form.open_john_magne_items()
       return
       

@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ..SellItem import SellItem
 import math
 
 
@@ -102,7 +103,16 @@ class CharacterItems(CharacterItemsTemplate):
     return items
 
   def sell_button_click(self, **event_args):
-    pass
+    sell_item_list = list()
+    for item_image in self.character_items_flow_panel.get_components():
+      if not item_image.border:
+        continue
+      item = item_image.tag['Item']
+      sell_item_list.append(item)
+    if len(sell_item_list) == 0:
+      return
+    main_form = get_open_form()
+    main_form.change_form(SellItem(self.player_name, sell_item_list, self.sell_value_text_box.text))
 
   def lose_button_click(self, **event_args):
     remove_item_list = list()
@@ -127,18 +137,18 @@ class CharacterItems(CharacterItemsTemplate):
   def go_to_character(self, player_name):
     main_form = get_open_form()
     if player_name == 'Håvard':
-      main_form.havard_link_click(sender = main_form.havard_link)
+      main_form.open_havard_sheet()
       return
       
     if player_name == 'Marcel':
-      main_form.marcel_link_click(sender = main_form.marcel_link)
+      main_form.open_marcel_sheet()
       return
       
     if player_name == 'Kristian':
-      main_form.kristian_link_click(sender = main_form.kristian_link)
+      main_form.open_kristian_sheet()
       return
       
     if player_name == 'John Magne':
-      main_form.john_magne_link_click(sender = main_form.john_magne_link)
+      main_form.open_john_magne_sheet()
       return
 

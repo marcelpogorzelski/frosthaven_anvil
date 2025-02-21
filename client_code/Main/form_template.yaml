@@ -67,7 +67,7 @@ components:
   - data_bindings: []
     event_bindings: {click: havard_link_click}
     layout_properties: {grid_position: 'XTEYQR,SOADVY'}
-    name: havard_main_link
+    name: havard_sheet_link
     properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
     type: Link
   - components: []
@@ -86,9 +86,9 @@ components:
     type: Link
   - components: []
     data_bindings: []
-    event_bindings: {click: john_magne_link_click}
+    event_bindings: {click: john_magne_sheet_click}
     layout_properties: {grid_position: 'YKYBZO,YSRTYI'}
-    name: john_magne_main_link
+    name: john_magne_sheet_link
     properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
     type: Link
   - components: []
@@ -106,9 +106,9 @@ components:
     type: Link
   - components: []
     data_bindings: []
-    event_bindings: {click: kristian_link_click}
+    event_bindings: {click: kristian_sheet_click}
     layout_properties: {grid_position: 'KGXMVY,DCTKUI'}
-    name: kristian_main_link
+    name: kristian_sheet_link
     properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
     type: Link
   - components: []
@@ -126,9 +126,9 @@ components:
     properties: {align: center, text: Marcel}
     type: Link
   - data_bindings: []
-    event_bindings: {click: marcel_link_click}
+    event_bindings: {click: marcel_sheet_click}
     layout_properties: {grid_position: 'WSGZSJ,VNGFKU'}
-    name: marcel_main_link
+    name: marcel_sheet_link
     properties: {align: center, col_spacing: medium, role: null, text: Sheet, visible: false}
     type: Link
   - data_bindings: []

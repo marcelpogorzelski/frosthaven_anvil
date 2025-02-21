@@ -39,13 +39,13 @@ class Main(MainTemplate):
         continue
       if comp.role == 'selected':
         comp.role = ''
-    self.havard_main_link.visible = False
+    self.havard_sheet_link.visible = False
     self.havard_items_link.visible = False
-    self.john_magne_main_link.visible = False
+    self.john_magne_sheet_link.visible = False
     self.john_magne_items_link.visible = False
-    self.kristian_main_link.visible = False
+    self.kristian_sheet_link.visible = False
     self.kristian_items_link.visible = False
-    self.marcel_main_link.visible = False
+    self.marcel_sheet_link.visible = False
     self.marcel_items_link.visible = False
 
   def navbar_link_select(self, link):
@@ -68,69 +68,117 @@ class Main(MainTemplate):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Resources())
 
-  def havard_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.havard_main_link.visible = True
-    self.havard_main_link.role = 'selected'
+  def open_havard_sheet(self):
+    self.navbar_link_select(self.havard_sheet_link)
+    self.havard_sheet_link.visible = True
+    self.havard_sheet_link.role = 'selected'
     self.havard_items_link.visible = True
     self.havard_link.role = 'selected'
     self.change_form(Character('Håvard'))
 
-  def havard_items_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.havard_main_link.visible = True
+  def open_havard_items(self):
+    self.navbar_link_select(self.havard_items_link)
+    self.havard_sheet_link.visible = True
     self.havard_items_link.visible = True
     self.havard_items_link.role = 'selected'
     self.havard_link.role = 'selected'
     self.change_form(CharacterItems('Håvard'))
 
-  def kristian_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.kristian_main_link.visible = True
-    self.kristian_main_link.role = 'selected'
+  def havard_link_click(self, **event_args):
+    if self.havard_sheet_link.role == 'selected':
+      self.open_havard_items()
+    else:
+      self.open_havard_sheet()
+
+  def havard_sheet_click(self, **event_args):
+    self.open_havard_sheet()
+
+  def havard_items_click(self, **event_args):
+    self.open_havard_items()
+
+  def open_kristian_sheet(self):
+    self.navbar_link_select(self.kristian_sheet_link)
+    self.kristian_sheet_link.visible = True
+    self.kristian_sheet_link.role = 'selected'
     self.kristian_items_link.visible = True
     self.kristian_link.role = 'selected'
     self.change_form(Character('Kristian'))
 
-  def kristian_items_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.kristian_main_link.visible = True
+  def open_kristian_items(self):
+    self.navbar_link_select(self.kristian_items_link)
+    self.kristian_sheet_link.visible = True
     self.kristian_items_link.visible = True
     self.kristian_items_link.role = 'selected'
     self.kristian_link.role = 'selected'
     self.change_form(CharacterItems('Kristian'))
 
-  def john_magne_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.john_magne_main_link.visible = True
-    self.john_magne_main_link.role = 'selected'
+  def kristian_link_click(self, **event_args):
+    if self.kristian_sheet_link.role == 'selected':
+      self.open_kristian_items()
+    else:
+      self.open_kristian_sheet()
+
+  def kristian_sheet_click(self, **event_args):
+    self.open_kristian_sheet()
+
+  def kristian_items_click(self, **event_args):
+    self.open_kristian_items()
+
+  def open_john_magne_sheet(self):
+    self.navbar_link_select(self.john_magne_sheet_link)
+    self.john_magne_sheet_link.visible = True
+    self.john_magne_sheet_link.role = 'selected'
     self.john_magne_items_link.visible = True
     self.john_magne_link.role = 'selected'
     self.change_form(Character('John Magne'))
 
-  def john_magne_items_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.john_magne_main_link.visible = True
+  def open_john_magne_items(self):
+    self.navbar_link_select(self.john_magne_items_link)
+    self.john_magne_sheet_link.visible = True
     self.john_magne_items_link.visible = True
     self.john_magne_items_link.role = 'selected'
     self.john_magne_link.role = 'selected'
     self.change_form(CharacterItems('John Magne'))
 
-  def marcel_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.marcel_main_link.visible = True
-    self.marcel_main_link.role = 'selected'
+  def john_magne_link_click(self, **event_args):
+    if self.john_magne_sheet_link.role == 'selected':
+      self.open_john_magne_items()
+    else:
+      self.open_john_magne_sheet()
+
+  def john_magne_sheet_click(self, **event_args):
+    self.open_john_magne_sheet()
+
+  def john_magne_items_click(self, **event_args):
+    self.open_john_magne_items()
+
+  def open_marcel_sheet(self):
+    self.navbar_link_select(self.marcel_sheet_link)
+    self.marcel_sheet_link.visible = True
+    self.marcel_sheet_link.role = 'selected'
     self.marcel_items_link.visible = True
     self.marcel_link.role = 'selected'
     self.change_form(Character('Marcel'))
 
-  def marcel_items_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.marcel_main_link.visible = True
+  def open_marcel_items(self):
+    self.navbar_link_select(self.marcel_items_link)
+    self.marcel_sheet_link.visible = True
     self.marcel_items_link.visible = True
     self.marcel_items_link.role = 'selected'
     self.marcel_link.role = 'selected'
     self.change_form(CharacterItems('Marcel'))
+    
+  def marcel_link_click(self, **event_args):
+    if self.marcel_sheet_link.role == 'selected':
+      self.open_marcel_items()
+    else:
+      self.open_marcel_sheet()
+
+  def marcel_sheet_click(self, **event_args):
+    self.open_marcel_sheet()
+
+  def marcel_items_click(self, **event_args):
+    self.open_marcel_items()
 
   def import_export_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
