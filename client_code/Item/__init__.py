@@ -128,7 +128,7 @@ class Item(ItemTemplate):
 
     if available_player >= price:
       resource['TextBox'].text = price
-      self.payment[resource_name] = {'Player': price}
+      self.payment[resource_name] = {'Player': price, 'Frosthaven': 0}
     elif available_total >= price:
       remainder = price - available_player
       resource['TextBox'].type = 'text'
@@ -137,7 +137,7 @@ class Item(ItemTemplate):
       if available_player > 0:
         self.payment[resource_name] = {'Player': available_player, 'Frosthaven': remainder}
       else:
-        self.payment[resource_name] = {'Frosthaven': remainder}
+        self.payment[resource_name] = {'Player': 0, 'Frosthaven': remainder}
     else:
       self.insufficient_funds = True
       resource['TextBox'].type = 'text'
@@ -152,20 +152,55 @@ class Item(ItemTemplate):
     resource['Image'].visible = True
     resource['TextBox'].visible = True
 
+  def show_two_herbs(self):
+    if not self.two_herbs:
+      return
+
+    if not self.player:
+      self.any_2_label.visible = True
+      self.any_2_drop_down.visible = True
+      return
+  
+    any_2_drop_down_list = list()
+    any_2_drop_down_list.append(('Please select a herb', None))
+    for herb_name in self.combined_resources:
+      price = self.prices[herb_name]['Price']
+      available_player = self.available_resources[herb_name]['Player'] - price
+      available_total = self.available_resources[herb_name]['Sum'] - price
+
+      if available_player >= 2:
+        drop_down_text = herb_name
+        drop_down_select = {'Player': 2, 'Frosthaven': 0, 'Herb': herb_name}
+        any_2_drop_down_list.append((drop_down_text, drop_down_select))
+      elif available_total >= 2:
+        frosthaven_portion = 2 - available_player
+        drop_down_text = f"{herb_name} ({frosthaven_portion} from Frosthaven)"
+        drop_down_select = {'Player': available_player, 'Frosthaven': frosthaven_portion, 'Herb': herb_name}
+        any_2_drop_down_list.append((drop_down_text, drop_down_select))
+
+    if len(any_2_drop_down_list) == 1:
+      self.insufficient_funds = True
+      any_2_drop_down_list = ["Insufficient herbs"]
+      self.any_2_drop_down.enabled = False
+      
+    self.any_2_drop_down.items = any_2_drop_down_list
+
+    self.any_2_label.visible = True
+    self.any_2_drop_down.visible = True
+
 
   def set_visible(self):
     for resource in self.prices.keys():
       self.show_resource(resource)
+    
+    self.show_two_herbs()
 
     for item in self.items_as_price:
       self.items_as_price_flow_panel.add_component(Image(source=item['Card']))
-      
+
     if self.one_herb:
       self.any_1_label.visible = True
       self.any_1_drop_down.visible = True
-    if self.two_herbs:
-      self.any_2_label.visible = True
-      self.any_2_drop_down.visible = True
 
     if not self.player:
       return
@@ -210,6 +245,7 @@ class Item(ItemTemplate):
     self.any_2_label.visible = False
     self.any_1_drop_down.visible = False
     self.any_2_drop_down.visible = False
+    self.any_2_drop_down.enabled = True
 
     self.insufficient_funds = False
     self.buy_button.text = 'Buy'
@@ -240,16 +276,34 @@ class Item(ItemTemplate):
       self.item['AvailableCount'] -= 1
       self.go_to_character_items(self.player['Player'])
       return
+
+    if self.two_herbs:
+      if not self.any_2_drop_down.selected_value:
+        alert("Select a herb from 'Any 2' drop down")
+        return
+      two_herb_name = self.any_2_drop_down.selected_value['Herb']
+      two_herb_player = self.any_2_drop_down.selected_value['Player']
+      two_herb_frosthaven = self.any_2_drop_down.selected_value['Frosthaven']
+      if two_herb_name in self.payment:
+        self.payment[two_herb_name]['Player'] += two_herb_player
+        self.payment[two_herb_name]['Frosthaven'] += two_herb_frosthaven
+      else:
+        self.payment[two_herb_name] = {'Player': two_herb_player, 'Frosthaven': two_herb_frosthaven}
+    if self.one_herb:
+      if not self.any_1_drop_down.selected_value:
+        alert("Select a herb from 'Any 1' drop down")
+        return
+        
     player_display_name = self.player['Player']
     player_payment_string = player_display_name + ':\n'
     frosthaven_payment_string = '\nFrosthaven:\n'
     
     for resource_name, values in self.payment.items():
-      if 'Player' in values:
-        player_price = values['Player']
+      player_price = values['Player']
+      if player_price > 0:
         player_payment_string += "  - " + str(resource_name) + ": " + str(player_price) + "\n"
-      if 'Frosthaven' in values:
-        frosthaven_price = values['Frosthaven']
+      frosthaven_price = values['Frosthaven']
+      if frosthaven_price > 0:
         frosthaven_payment_string += "  - " + str(resource_name) + ": " + str(frosthaven_price)  + "\n"
 
     items_string = '\nItems:\n'
@@ -257,13 +311,17 @@ class Item(ItemTemplate):
     for item in self.items_as_price:
       items_string += "  - " + item['Number'] + ": " + item['Name'] + "\n"
     if not confirm((player_payment_string + frosthaven_payment_string + items_string)):
+      self.setup()
       return
 
     for resource_name, values in self.payment.items():
-      if 'Player' in values:
-        self.player[resource_name] -= values['Player']
-      if 'Frosthaven' in values:
-        self.frosthaven[resource_name] -= values['Frosthaven']
+      player_price = values['Player']
+      if player_price > 0:
+        self.player[resource_name] -= player_price
+      frosthaven_price = values['Frosthaven']
+      if frosthaven_price > 0:
+        self.frosthaven[resource_name] -= frosthaven_price
+      
     self.player.update()
     self.frosthaven.update()
     player_name = self.player['Player'].replace(" ", "_")
