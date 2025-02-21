@@ -354,8 +354,3 @@ class Item(ItemTemplate):
       main_form.john_magne_items_click(sender = main_form.john_magne_items_link)
       return
       
-    
-        
-      
-        
-    
