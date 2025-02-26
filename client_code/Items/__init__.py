@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil.js.window import navigator
 from ..Item import Item
 
 
@@ -13,6 +14,10 @@ class Items(ItemsTemplate):
     self.init_components(**properties)
     
     self.orange = ' #FFA500'
+
+    self.display_mode = 'original_size'
+    if navigator.userAgentData.mobile:
+      self.display_mode = 'shrink_to_fit'
     
     self.head_image.tag = 'Head'
     self.body_image.tag = 'Body'
@@ -44,15 +49,14 @@ class Items(ItemsTemplate):
     self.populate_items()
 
 
+
   def populate_items(self):
     self.items_flow_panel.visible = False
     self.item_list = self.get_available_items()
     
     self.items_flow_panel.clear()
     for item in self.item_list:
-      #display_mode = 'shrink_to_fit'
-      display_mode = 'original_size'
-      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=item)
+      item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=item)
       item_image.add_event_handler('mouse_down', self.process_item)
       self.items_flow_panel.add_component(item_image)
     self.items_flow_panel.visible = True
