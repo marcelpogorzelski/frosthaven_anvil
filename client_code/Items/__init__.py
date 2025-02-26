@@ -49,7 +49,6 @@ class Items(ItemsTemplate):
     self.populate_items()
 
 
-
   def populate_items(self):
     self.items_flow_panel.visible = False
     self.item_list = self.get_available_items()
