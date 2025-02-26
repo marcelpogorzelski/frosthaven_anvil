@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+import json
 
 
 class UnlockEdit(UnlockEditTemplate):
@@ -30,18 +31,26 @@ class UnlockEdit(UnlockEditTemplate):
     self.scenario_drop_down.items = scenario_list
     self.scenario_change()
 
-    # Any code you write here will run before the form opens.
+    self.class_nicknames = ['Blinkblade', 'Bannerspear', 'Boneshaper', 'Drifter', 'Deathwalker', 'Geminate', 'Coral', 'Kelp', 'Fist', 'Prism', 'Astral', 'Drill', 'Shackles', 'Meteor', 'Snowflake', 'Shards', 'Trap']
+    for unlocked_class in app_tables.classes.search():
+      self.class_nicknames.remove(unlocked_class['Nickname'])
+    self.add_class_drop_down.items = self.class_nicknames
 
   def add_class_button_click(self, **event_args):
-    if not self.add_class_text_box.text:
+
+    mats_json = URLMedia("https://raw.githubusercontent.com/any2cards/frosthaven/refs/heads/master/data/character-mats.js")
+    mats = json.loads(mats_json.get_bytes())
+    nickname = self.add_class_drop_down.selected_value.lower()
+    xws = list(filter(lambda mat: mat['name'] == nickname, mats))[0]['xws']
+    class_name = list(filter(lambda mat: mat['xws'] == xws and mat['name'] != nickname, mats))[0]['name']
+    print(class_name.title(), class_name, nickname)
+    
+    if not confirm(f"Do you want to add the class: {nickname.title()}?"):
       return
-    new_class = self.add_class_text_box.text
-    if not confirm(f"Do you want to add the class: {new_class}?"):
-      return
-    if len(app_tables.classes.search(Name=new_class)) > 0:
-      return
-    app_tables.classes.add_row(Name=new_class)
-    self.add_class_text_box.text = ''
+    
+    app_tables.classes.add_row(Name=class_name.title(), Nickname=nickname.title(), xws=class_name)
+    self.class_nicknames.remove(nickname.title())
+    self.add_class_drop_down.items = self.class_nicknames
 
   def item_show(self, visible):
     self.item_name_text_box.visible = visible
