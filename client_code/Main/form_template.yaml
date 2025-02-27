@@ -77,11 +77,18 @@ components:
     name: havard_items_link
     properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
     type: Link
-  - data_bindings: []
+  - components: []
+    data_bindings: []
     event_bindings: {click: player_sublink_click}
     layout_properties: {grid_position: 'XAIGQT,ZJMCLB'}
     name: havard_cards_link
     properties: {align: center, col_spacing: medium, role: null, text: Cards, visible: false}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: player_sublink_click}
+    layout_properties: {grid_position: 'WCNBHY,VJMGEJ'}
+    name: havard_details_link
+    properties: {align: center, col_spacing: medium, role: null, text: Details, visible: false}
     type: Link
   - components: []
     data_bindings: []
@@ -104,11 +111,18 @@ components:
     name: john_magne_items_link
     properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
     type: Link
-  - data_bindings: []
+  - components: []
+    data_bindings: []
     event_bindings: {click: player_sublink_click}
     layout_properties: {grid_position: 'ZVKMUI,CPZFOR'}
     name: john_magne_cards_link
     properties: {align: center, col_spacing: medium, role: null, text: Cards, visible: false}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: player_sublink_click}
+    layout_properties: {grid_position: 'SSEXLX,ZJOZJH'}
+    name: john_magne_details_link
+    properties: {align: center, col_spacing: medium, role: null, text: Details, visible: false}
     type: Link
   - data_bindings: []
     event_bindings: {click: player_link_click}
@@ -130,11 +144,18 @@ components:
     name: kristian_items_link
     properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
     type: Link
-  - data_bindings: []
+  - components: []
+    data_bindings: []
     event_bindings: {click: player_sublink_click}
     layout_properties: {grid_position: 'OLQZEV,JHHXDE'}
     name: kristian_cards_link
     properties: {align: center, col_spacing: medium, role: null, text: Cards, visible: false}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: player_sublink_click}
+    layout_properties: {grid_position: 'SFKSMZ,MUEUQY'}
+    name: kristian_details_link
+    properties: {align: center, col_spacing: medium, role: null, text: Details, visible: false}
     type: Link
   - components: []
     data_bindings: []
@@ -156,11 +177,18 @@ components:
     name: marcel_items_link
     properties: {align: center, col_spacing: medium, role: null, text: Items, visible: false}
     type: Link
-  - data_bindings: []
+  - components: []
+    data_bindings: []
     event_bindings: {click: player_sublink_click}
     layout_properties: {grid_position: 'YOFJOK,RLWPFD'}
     name: marcel_cards_link
     properties: {align: center, col_spacing: medium, role: null, text: Cards, visible: false}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: player_sublink_click}
+    layout_properties: {grid_position: 'NDXVXM,USRJVL'}
+    name: marcel_details_link
+    properties: {align: center, col_spacing: medium, role: null, text: Details, visible: false}
     type: Link
   - layout_properties: {grid_position: 'QJIFIK,AYLIYF'}
     name: spacer_3

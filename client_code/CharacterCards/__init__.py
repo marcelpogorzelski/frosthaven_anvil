@@ -1,4 +1,4 @@
-from ._anvil_designer import CardsTemplate
+from ._anvil_designer import CharacterCardsTemplate
 from anvil import *
 import anvil.users
 import anvil.tables as tables
@@ -8,7 +8,7 @@ from anvil.js.window import navigator
 import json
 from .. import Frosthaven_info
 
-class Cards(CardsTemplate):
+class CharacterCards(CharacterCardsTemplate):
   def __init__(self, player_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -22,6 +22,7 @@ class Cards(CardsTemplate):
     self.character_label.text = player_name
 
     class_id = self.character['Class']['Id']
+    
     class_cards_info = sorted(Frosthaven_info.class_cards_info[class_id], key=lambda card: card['level'] )
     for class_card_info in class_cards_info:
       self.add_card_image(class_card_info['image'])

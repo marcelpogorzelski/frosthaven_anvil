@@ -6,23 +6,125 @@ from anvil.tables import app_tables
 #https://github.com/cmlenius/gloomhaven-card-browser/blob/main/data/scripts/characters.js
 
 class_names = {
-  "Blinkblade": { 'id': "BB", 'name': "Blinkblade" },
-  "Bannerspear": { 'id': "BN", 'name': "Banner Spear"},
-  "Boneshaper": { 'id': "BO", 'name': "Boneshaper"},
-  "Drifter": { 'id': "DF", 'name': "Drifter"},
-  "Deathwalker": { 'id': "DW", 'name': "Deathwalker" },
-  "Geminate": { 'id': "GE", 'name': "Geminate" },
-  "Coral": { 'id': "CR", 'name': "Crashing Tide"},
-  "Kelp": { 'id': "DT", 'name': "Deepwraith"},
-  "Fist": { 'id': "FF", 'name': "Frozen Fist"},
-  "Prism": { 'id': "HV", 'name': "Hive"},
-  "Astral": { 'id': "IF", 'name': "Infuser"},
-  "Drill": { 'id': "ME", 'name': "Metal Mosaic"},
-  "Shackles": { 'id': "PC", 'name': "Pain Conduit"},
-  "Meteor": { 'id': "PY", 'name': "Pyroclast"} ,
-  "Snowflake": { 'id': "SD", 'name': "Snowdancer"},
-  "Shards": { 'id': "SH", 'name': "Shattersong"},
-  "Trap": { 'id': "TA", 'name': "Trapper"}
+  "Blinkblade": { 
+    'id': "BB",
+    'name': "Blinkblade",
+    'matImage': "character-mats/frosthaven/fh-blinkblade.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-blinkblade-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-blinkblade-perks.jpeg" 
+  },
+  "Bannerspear": {
+    'id': "BN",
+    'name': "Banner Spear",
+    'matImage': "character-mats/frosthaven/fh-banner-spear.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-banner-spear-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-banner-spear-perks.jpeg"
+  },
+  "Boneshaper": {
+    'id': "BO",
+    'name': "Boneshaper",
+    'matImage': "character-mats/frosthaven/fh-boneshaper.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-boneshaper-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-boneshaper-perks.jpeg"
+  },
+  "Drifter": {
+    'id': "DF",
+    'name': "Drifter",
+    'matImage': "character-mats/frosthaven/fh-drifter.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-drifter-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-drifter-perks.jpeg"
+  },
+  "Deathwalker": {
+    'id': "DW",
+    'name': "Deathwalker",
+    'matImage': "character-mats/frosthaven/fh-deathwalker.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-deathwalker-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-deathwalker-perks.jpeg"
+  },
+  "Geminate": {
+    'id': "GE",
+    'name': "Geminate",
+    'matImage': "character-mats/frosthaven/fh-geminate.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-geminate-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-geminate-perks.jpeg"
+  },
+  "Coral": {
+    'id': "CR",
+    'name': "Crashing Tide",
+    'matImage': "character-mats/frosthaven/fh-crashing-tide.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-crashing-tide-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-crashing-tide-perks.jpeg"
+  },
+  "Kelp": {
+    'id': "DT",
+    'name': "Deepwraith",
+    'matImage': "character-mats/frosthaven/fh-deepwraith.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-deepwraith-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-deepwraith-perks.jpeg"
+  },
+  "Fist": {
+    'id': "FF",
+    'name': "Frozen Fist",
+    'matImage': "character-mats/frosthaven/fh-frozen-fist.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-frozen-fist-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-frozen-fist-perks.jpeg"
+  },
+  "Prism": {
+    'id': "HV",
+    'name': "Hive",
+    'matImage': "character-mats/frosthaven/fh-hive.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-hive-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-hive-perks.jpeg"
+  },
+  "Astral": {
+    'id': "IF",
+    'name': "Infuser",
+    'matImage': "character-mats/frosthaven/fh-infuser.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-infuser-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-infuser-perks.jpeg"
+  },
+  "Drill": {
+    'id': "ME",
+    'name': "Metal Mosaic",
+    'matImage': "character-mats/frosthaven/fh-metal-mosaic.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-metal-mosaic-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-metal-mosaic-perks.jpeg"
+  },
+  "Shackles": {
+    'id': "PC",
+    'name': "Pain Conduit",
+    'matImage': "character-mats/frosthaven/fh-pain-conduit.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-pain-conduit-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-pain-conduit-perks.jpeg"
+  },
+  "Meteor": {
+    'id': "PY",
+    'name': "Pyroclast",
+    'matImage': "character-mats/frosthaven/fh-pyroclast.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-pyroclast-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-pyroclast-perks.jpeg"
+  } ,
+  "Snowflake": {
+    'id': "SD",
+    'name': "Snowdancer",
+    'matImage': "character-mats/frosthaven/fh-snowdancer.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-snowdancer-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-snowdancer-perks.jpeg"
+  },
+  "Shards": {
+    'id': "SH",
+    'name': "Shattersong",
+    'matImage': "character-mats/frosthaven/fh-shattersong.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-shattersong-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-shattersong-perks.jpeg"
+  },
+  "Trap": {
+    'id': "TA",
+    'name': "Trapper",
+    'matImage': "character-mats/frosthaven/fh-trapper.jpeg",
+    'matImageBack': "character-mats/frosthaven/fh-trapper-back.jpeg",
+    'sheetImage': "character-perks/frosthaven/fh-trapper-perks.jpeg"
+  }
 }
 
 class_cards_info = { "BB": [

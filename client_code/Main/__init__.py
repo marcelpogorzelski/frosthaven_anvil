@@ -18,7 +18,8 @@ from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
 from ..Items import Items
 from ..CharacterItems import CharacterItems
-from ..Cards import Cards
+from ..CharacterCards import CharacterCards
+from ..CharacterDetails import CharacterDetails
 
 
 class Main(MainTemplate):
@@ -29,24 +30,24 @@ class Main(MainTemplate):
     self.player_links = {}
     self.player_toggle_links = []
 
-    self.setup_player('Håvard', self.havard_link, self.havard_sheet_link, self.havard_items_link, self.havard_cards_link)
-    self.setup_player('John Magne', self.john_magne_link, self.john_magne_sheet_link, self.john_magne_items_link, self.john_magne_cards_link)
-    self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link)
-    self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link)
+    self.setup_player('Håvard', self.havard_link, self.havard_sheet_link, self.havard_items_link, self.havard_cards_link, self.havard_details_link)
+    self.setup_player('John Magne', self.john_magne_link, self.john_magne_sheet_link, self.john_magne_items_link, self.john_magne_cards_link, self.john_magne_details_link)
+    self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link, self.kristian_details_link)
+    self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link, self.marcel_details_link)
     
     self.frosthave_link.role = 'selected'
     self.change_form(start_form)
 
-  def setup_player(self, player, player_link, sheet_link, items_link, cards_link):
+  def setup_player(self, player, player_link, sheet_link, items_link, cards_link, details_link):
     player_link.tag = player
     sheet_link.tag = {'Player': player, 'Next': items_link, 'Form': Character}
     items_link.tag = {'Player': player, 'Next': cards_link, 'Form': CharacterItems}
-    cards_link.tag = {'Player': player, 'Next': sheet_link, 'Form': Cards}
+    cards_link.tag = {'Player': player, 'Next': details_link, 'Form': CharacterCards}
+    details_link.tag = {'Player': player, 'Next': sheet_link, 'Form': CharacterDetails}
 
-    invisible_links = [sheet_link, items_link, cards_link]
-    self.player_toggle_links.append(sheet_link)
-    self.player_toggle_links.append(items_link)
-    self.player_toggle_links.append(cards_link)
+    invisible_links = [sheet_link, items_link, cards_link, details_link]
+    for link in invisible_links:
+      self.player_toggle_links.append(link)
     
     self.player_links[player] = {'Player Link': player_link, 'Links': invisible_links}
  
