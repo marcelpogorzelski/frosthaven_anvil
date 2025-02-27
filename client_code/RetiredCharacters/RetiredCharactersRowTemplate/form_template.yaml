@@ -3,13 +3,13 @@ components:
   - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
   layout_properties: {column: IAVUMZ}
   name: mastery_one_check_box
-  properties: {align: center, text: ''}
+  properties: {align: center, enabled: false, text: ''}
   type: CheckBox
 - data_bindings:
   - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
   layout_properties: {column: VZHMYS}
   name: mastery_two_check_box
-  properties: {align: center, text: ''}
+  properties: {align: center, enabled: false, text: ''}
   type: CheckBox
 - data_bindings:
   - {code: 'self.item[''Class''][''Name'']', property: text, writeback: false}

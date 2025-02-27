@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..Main import Main
 from ..Frosthaven import Frosthaven
-#from ..Cards import Cards
+from ..Cards import Cards
 
 
 class Login(LoginTemplate):

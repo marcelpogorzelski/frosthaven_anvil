@@ -18,16 +18,37 @@ from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
 from ..Items import Items
 from ..CharacterItems import CharacterItems
+from ..Cards import Cards
 
 
 class Main(MainTemplate):
   def __init__(self, start_form, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    #window.innerWidth
+
+    self.player_links = {}
+    self.player_toggle_links = []
+
+    self.setup_player('Håvard', self.havard_link, self.havard_sheet_link, self.havard_items_link, self.havard_cards_link)
+    self.setup_player('John Magne', self.john_magne_link, self.john_magne_sheet_link, self.john_magne_items_link, self.john_magne_cards_link)
+    self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link)
+    self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link)
     
     self.frosthave_link.role = 'selected'
     self.change_form(start_form)
+
+  def setup_player(self, player, player_link, sheet_link, items_link, cards_link):
+    player_link.tag = player
+    sheet_link.tag = {'Player': player, 'Next': items_link, 'Form': Character}
+    items_link.tag = {'Player': player, 'Next': cards_link, 'Form': CharacterItems}
+    cards_link.tag = {'Player': player, 'Next': sheet_link, 'Form': Cards}
+
+    invisible_links = [sheet_link, items_link, cards_link]
+    self.player_toggle_links.append(sheet_link)
+    self.player_toggle_links.append(items_link)
+    self.player_toggle_links.append(cards_link)
+    
+    self.player_links[player] = {'Player Link': player_link, 'Links': invisible_links}
  
   def change_form(self, form):
     self.content_panel.clear()
@@ -39,14 +60,7 @@ class Main(MainTemplate):
         continue
       if comp.role == 'selected':
         comp.role = ''
-    self.havard_sheet_link.visible = False
-    self.havard_items_link.visible = False
-    self.john_magne_sheet_link.visible = False
-    self.john_magne_items_link.visible = False
-    self.kristian_sheet_link.visible = False
-    self.kristian_items_link.visible = False
-    self.marcel_sheet_link.visible = False
-    self.marcel_items_link.visible = False
+    self.appeear_links_toggle(self.player_toggle_links, False)
 
   def navbar_link_select(self, link):
     self.reset_links()
@@ -68,117 +82,28 @@ class Main(MainTemplate):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Resources())
 
-  def open_havard_sheet(self):
-    self.navbar_link_select(self.havard_sheet_link)
-    self.havard_sheet_link.visible = True
-    self.havard_sheet_link.role = 'selected'
-    self.havard_items_link.visible = True
-    self.havard_link.role = 'selected'
-    self.change_form(Character('Håvard'))
+  def appeear_links_toggle(self, toggle_link_list, toggle):
+    for toggle_link in toggle_link_list:
+      toggle_link.visible = toggle
 
-  def open_havard_items(self):
-    self.navbar_link_select(self.havard_items_link)
-    self.havard_sheet_link.visible = True
-    self.havard_items_link.visible = True
-    self.havard_items_link.role = 'selected'
-    self.havard_link.role = 'selected'
-    self.change_form(CharacterItems('Håvard'))
+  def open_player_link(self, player, link):
+    self.navbar_link_select(link)
+    self.appeear_links_toggle(self.player_links[player]['Links'], True)
+    self.player_links[player]['Player Link'].role = 'selected'
+    self.change_form(link.tag['Form'](player))
 
-  def havard_link_click(self, **event_args):
-    if self.havard_sheet_link.role == 'selected':
-      self.open_havard_items()
-    else:
-      self.open_havard_sheet()
-
-  def havard_sheet_click(self, **event_args):
-    self.open_havard_sheet()
-
-  def havard_items_click(self, **event_args):
-    self.open_havard_items()
-
-  def open_kristian_sheet(self):
-    self.navbar_link_select(self.kristian_sheet_link)
-    self.kristian_sheet_link.visible = True
-    self.kristian_sheet_link.role = 'selected'
-    self.kristian_items_link.visible = True
-    self.kristian_link.role = 'selected'
-    self.change_form(Character('Kristian'))
-
-  def open_kristian_items(self):
-    self.navbar_link_select(self.kristian_items_link)
-    self.kristian_sheet_link.visible = True
-    self.kristian_items_link.visible = True
-    self.kristian_items_link.role = 'selected'
-    self.kristian_link.role = 'selected'
-    self.change_form(CharacterItems('Kristian'))
-
-  def kristian_link_click(self, **event_args):
-    if self.kristian_sheet_link.role == 'selected':
-      self.open_kristian_items()
-    else:
-      self.open_kristian_sheet()
-
-  def kristian_sheet_click(self, **event_args):
-    self.open_kristian_sheet()
-
-  def kristian_items_click(self, **event_args):
-    self.open_kristian_items()
-
-  def open_john_magne_sheet(self):
-    self.navbar_link_select(self.john_magne_sheet_link)
-    self.john_magne_sheet_link.visible = True
-    self.john_magne_sheet_link.role = 'selected'
-    self.john_magne_items_link.visible = True
-    self.john_magne_link.role = 'selected'
-    self.change_form(Character('John Magne'))
-
-  def open_john_magne_items(self):
-    self.navbar_link_select(self.john_magne_items_link)
-    self.john_magne_sheet_link.visible = True
-    self.john_magne_items_link.visible = True
-    self.john_magne_items_link.role = 'selected'
-    self.john_magne_link.role = 'selected'
-    self.change_form(CharacterItems('John Magne'))
-
-  def john_magne_link_click(self, **event_args):
-    if self.john_magne_sheet_link.role == 'selected':
-      self.open_john_magne_items()
-    else:
-      self.open_john_magne_sheet()
-
-  def john_magne_sheet_click(self, **event_args):
-    self.open_john_magne_sheet()
-
-  def john_magne_items_click(self, **event_args):
-    self.open_john_magne_items()
-
-  def open_marcel_sheet(self):
-    self.navbar_link_select(self.marcel_sheet_link)
-    self.marcel_sheet_link.visible = True
-    self.marcel_sheet_link.role = 'selected'
-    self.marcel_items_link.visible = True
-    self.marcel_link.role = 'selected'
-    self.change_form(Character('Marcel'))
-
-  def open_marcel_items(self):
-    self.navbar_link_select(self.marcel_items_link)
-    self.marcel_sheet_link.visible = True
-    self.marcel_items_link.visible = True
-    self.marcel_items_link.role = 'selected'
-    self.marcel_link.role = 'selected'
-    self.change_form(CharacterItems('Marcel'))
+  def player_link_click(self, **event_args):
+    player = event_args['sender'].tag
+    for player_link in self.player_links[player]['Links']:
+      if player_link.role == 'selected':
+        self.open_player_link(player_link.tag['Player'], player_link.tag['Next'])
+        return
+    link = self.player_links[player]['Links'][0]
+    self.open_player_link(link.tag['Player'], link)
     
-  def marcel_link_click(self, **event_args):
-    if self.marcel_sheet_link.role == 'selected':
-      self.open_marcel_items()
-    else:
-      self.open_marcel_sheet()
-
-  def marcel_sheet_click(self, **event_args):
-    self.open_marcel_sheet()
-
-  def marcel_items_click(self, **event_args):
-    self.open_marcel_items()
+  def player_sublink_click(self, **event_args):
+    link = event_args['sender']
+    self.open_player_link(link.tag['Player'], link)
 
   def import_export_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
