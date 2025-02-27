@@ -1,0 +1,12 @@
+components:
+- data_bindings: []
+  layout_properties: {full_width_row: true, grid_position: 'OGBMJF,FCXUBA'}
+  name: character_label
+  properties: {align: center, role: headline}
+  type: Label
+- layout_properties: {full_width_row: true, grid_position: 'CWUMUF,ZYGUBV'}
+  name: cards_flow_panel
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true
