@@ -20,6 +20,7 @@ class Cards(CardsTemplate):
     
     self.character_label.text = player_name
 
+    #https://github.com/cmlenius/gloomhaven-card-browser/blob/main/data/character-ability-cards.ts
     cards_json = URLMedia("https://raw.githubusercontent.com/any2cards/frosthaven/refs/heads/master/data/character-ability-cards.js")
     all_cards = json.loads(cards_json.get_bytes())
 
