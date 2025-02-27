@@ -3,6 +3,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+#https://github.com/cmlenius/gloomhaven-card-browser/blob/main/data/scripts/characters.js
+
 class_names = {
   "Blinkblade": { 'id': "BB", 'name': "Blinkblade" },
   "Bannerspear": { 'id': "BN", 'name': "Banner Spear"},
