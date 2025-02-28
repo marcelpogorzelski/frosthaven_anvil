@@ -55,7 +55,9 @@ class UnlockEdit(UnlockEditTemplate):
     self.item_type_drop_down.visible = visible
     self.item_usage_drop_down.visible = visible
     self.item_gold_check_box.visible = visible
-    
+
+    self.count_label.visible = visible
+    self.count_text_box.visible = visible
     self.gold_image.visible = visible
     self.gold_text_box.visible = visible
     self.lumber_image.visible = visible
@@ -88,13 +90,14 @@ class UnlockEdit(UnlockEditTemplate):
     
     self.item_show(self.item_selected['Available'])
     self.item_available_check_box.checked = self.item_selected['Available']
-    
+
     self.item_name_text_box.text = self.item_selected['Name']
     self.item_image.source = self.item_selected['Card']
     self.item_type_drop_down.selected_value = self.item_selected['Type']
     self.item_usage_drop_down.selected_value = self.item_selected['Usage']
     self.item_gold_check_box.checked = self.item_selected['HasGoldCost']
 
+    self.count_text_box.text = self.item_selected['TotalCount']
     self.gold_text_box.text = self.item_selected['Gold']
     self.lumber_text_box.text = self.item_selected['Lumber']
     self.metal_text_box.text = self.item_selected['Metal']

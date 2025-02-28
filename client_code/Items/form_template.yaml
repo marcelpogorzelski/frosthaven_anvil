@@ -56,10 +56,10 @@ components:
     name: gold_image
     properties: {height: '60', source: _/theme/resource_images/fh-money-bw-icon.png}
     type: Image
-  - event_bindings: {click: all_link_click}
+  - event_bindings: {click: in_store_link_click}
     layout_properties: {}
-    name: all_link
-    properties: {foreground: 'theme:On Primary Container', role: headline, text: All}
+    name: in_store_link
+    properties: {foreground: 'theme:On Primary Container', role: headline, text: In Store}
     type: Link
   - event_bindings: {pressed_enter: item_number_text_box_pressed_enter}
     layout_properties: {width: 173.869544921875}
@@ -72,7 +72,7 @@ components:
   type: FlowPanel
 - layout_properties: {full_width_row: true, grid_position: 'OBNEZV,BVYRAW'}
   name: items_flow_panel
-  properties: {}
+  properties: {visible: false}
   type: FlowPanel
 container: {type: ColumnPanel}
 is_package: true
