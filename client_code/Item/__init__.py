@@ -338,19 +338,7 @@ class Item(ItemTemplate):
 
   def go_to_character_items(self, player_name):
     main_form = get_open_form()
-    if player_name == 'Håvard':
-      main_form.open_havard_items()
-      return
-      
-    if player_name == 'Marcel':
-      main_form.open_marcel_items()
-      return
-      
-    if player_name == 'Kristian':
-      main_form.open_kristian_items()
-      return
-      
-    if player_name == 'John Magne':
-      main_form.open_john_magne_items()
-      return
+
+    items_link = main_form.player_links[player_name]['Items Link']
+    main_form.open_player_link(player_name, items_link)
       

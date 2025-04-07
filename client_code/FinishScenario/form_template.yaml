@@ -11,6 +11,7 @@ components:
     - {data_key: Experience, id: KYLSGG, title: Experience, width: '100'}
     - {data_key: Gold, id: BKKTSA, title: Gold, width: '100'}
     - {data_key: GoldCoins, id: KPWJHE, title: Gold Coins, width: '100'}
+    - {data_key: CheckMarks, id: XIWIEI, title: Checks, width: '100'}
     - {data_key: Lumber, id: CNEKNX, title: Lumber, width: '100'}
     - {data_key: Metal, id: IERWWQ, title: Metal, width: '100'}
     - {data_key: Hide, id: XQTYTV, title: Hide, width: '100'}

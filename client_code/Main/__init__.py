@@ -49,7 +49,7 @@ class Main(MainTemplate):
     for link in invisible_links:
       self.player_toggle_links.append(link)
     
-    self.player_links[player] = {'Player Link': player_link, 'Links': invisible_links}
+    self.player_links[player] = {'Player Link': player_link, 'Links': invisible_links, 'Sheet Link': sheet_link, 'Items Link': items_link}
  
   def change_form(self, form):
     self.content_panel.clear()

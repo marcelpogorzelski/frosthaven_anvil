@@ -123,4 +123,6 @@ class Character(CharacterTemplate):
     self.perk_text_box.text = perks
 
   def perks_change(self, **event_args):
+    if self.check_marks_text_box.text > 18:
+      self.check_marks_text_box.text = 18
     self.set_perks()
