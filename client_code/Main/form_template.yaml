@@ -230,10 +230,10 @@ components:
     properties: {height: 32}
     type: Spacer
   - data_bindings: []
-    event_bindings: {click: import_export_link_click}
+    event_bindings: {click: settings_link_click}
     layout_properties: {grid_position: 'OMJRFF,RZHHHG'}
-    name: import_export_link
-    properties: {align: center, text: Import/Export}
+    name: settings_link
+    properties: {align: center, text: Settings}
     type: Link
   - event_bindings: {click: logout_button_click}
     layout_properties: {grid_position: 'BSTBDA,LODRQE'}

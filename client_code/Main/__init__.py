@@ -10,7 +10,7 @@ from ..Character import Character
 from ..Frosthaven import Frosthaven
 from ..Party import Party
 from ..Resources import Resources
-from ..ImportExport import ImportExport
+from ..Settings import Settings
 from ..Calendar import Calendar
 from ..Scenarios import Scenarios
 from ..RetiredCharacters import RetiredCharacters
@@ -106,9 +106,9 @@ class Main(MainTemplate):
     link = event_args['sender']
     self.open_player_link(link.tag['Player'], link)
 
-  def import_export_link_click(self, **event_args):
+  def settings_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
-    self.change_form(ImportExport())
+    self.change_form(Settings())
 
   def calendar_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])

@@ -7,7 +7,6 @@ from anvil import URLMedia
 import json
 from datetime import datetime
 
-
 def get_level(experience):
   level = 0
   if experience < 45:

@@ -1,4 +1,4 @@
-from ._anvil_designer import ImportExportTemplate
+from ._anvil_designer import SettngsTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -14,7 +14,7 @@ def parse_int_price(price):
   return 0
 
 
-class ImportExport(ImportExportTemplate):
+class Settngs(SettngsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -52,5 +52,12 @@ class ImportExport(ImportExportTemplate):
       item['TotalCount'] = parse_int_price(item_price['Count'])
       item['AvailableCount'] = parse_int_price(item_price['Count'])
       item.update()
+
+  def change_password_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.users.change_password_with_form(require_old_password=True)
+
+
+
       
     
