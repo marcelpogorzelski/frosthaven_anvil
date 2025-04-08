@@ -8,27 +8,18 @@ import json
 from datetime import datetime
 
 def get_level(experience):
-  level = 0
-  if experience < 45:
-    level = 1
-  elif experience < 95:
-    level = 2
-  elif experience < 150:
-    level = 3
-  elif experience < 210:
-    level = 4
-  elif experience < 275:
-    level = 5
-  elif experience < 345:
-    level = 6
-  elif experience < 420:
-    level = 7
-  elif experience < 500:
-    level = 8
-  elif experience >= 500:
-    level = 9
+  experience_per_level = [0, 45, 95,150,210,275,345,420,500]
+  for level, next_level_experience in zip(range(9), experience_per_level):
+    if experience < next_level_experience:
+      return level, next_level_experience
 
-  return level
+def get_experience(level):
+  if level > 9:
+    level = 9
+  experience_per_level = [0, 45, 95,150,210,275,345,420,500]
+  return experience_per_level[level-1]
+  
+  
 
 def get_prosperity_level(prosperity):
   prosperity_level = 1

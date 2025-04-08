@@ -132,7 +132,7 @@ class FinishScenario(FinishScenarioTemplate):
         experience = self.get_experience(player_resources)
         if experience > 0:
           database_entry['Experience'] += experience
-          database_entry['Level'] = Utilites.get_level(database_entry['Experience'])
+          database_entry['Level'], database_entry['NextLevelExperience'] = Utilites.get_level(database_entry['Experience'])
   
         gold = self.get_gold(player_resources)
         if gold > 0:

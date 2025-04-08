@@ -41,9 +41,13 @@ class Character(CharacterTemplate):
 
   def set_experience(self):
     experience = self.experience_text_box.text or 0
-    self.item['Level'] = Utilites.get_level(experience)
-    self.level_text_box.text = self.item['Level']
-    self.set_perks()
+    level, next_level_experience = Utilites.get_level(experience)
+    if self.level_text_box.text != level:
+      self.item['Level'] = level
+      self.level_text_box.text = level
+      self.item['NextLevelExperience'] = next_level_experience
+      #self.next_level_text_box.text = next_level_experience
+      self.set_perks()
 
   def experience_text_box_change(self, **event_args):
     self.set_experience()
@@ -82,19 +86,20 @@ class Character(CharacterTemplate):
     frosthaven['Prosperity'] += 2
 
   def reset_character(self):
-    experience = 0
-    level = Utilites.get_level(experience=experience)
-
     prosperity_level = Utilites.get_prosperity_level(app_tables.frosthaven.search()[0]['Prosperity'])
+    
     starting_gold = (10 * prosperity_level) + 20
     starintg_level = ceil(prosperity_level/2)
-    notes = f"You start at level: {starintg_level} and buy items for: {starting_gold} gold"
+    
+    starting_experience = Utilites.get_experience(starintg_level)
+    next_level_experience = Utilites.get_experience(starintg_level + 1)
     
     self.item.update(
       Name='',
-      Experience=experience,
-      Level=level,
-      Gold=0,
+      Experience=starting_experience,
+      NextLevelExperience=next_level_experience,
+      Level=starintg_level,
+      Gold=starting_gold,
       Lumber=0,
       Metal=0,
       Hide=0,
@@ -108,7 +113,7 @@ class Character(CharacterTemplate):
       Perks=0,
       Mastery1=False,
       Mastery2=False,
-      Notes=notes
+      Notes=''
     )
 
     self.parent.parent.change_form(Character(self.player))
