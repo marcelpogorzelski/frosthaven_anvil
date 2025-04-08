@@ -16,8 +16,8 @@ class Character(CharacterTemplate):
 
     self.adjust_width()
 
-    self.player = player
-    self.item = app_tables.characters.get(Player=self.player)
+    self.player_name = player
+    self.item = app_tables.characters.get(Player=self.player_name)
 
     self.set_experience()
     self.set_perks()
@@ -51,7 +51,30 @@ class Character(CharacterTemplate):
   def experience_text_box_change(self, **event_args):
     self.set_experience()
 
+  def go_to_character_items(self):
+    main_form = get_open_form()
+
+    items_link = main_form.player_links[self.player_name]['Items Link']
+    main_form.open_player_link(self.player_name, items_link)
+
   def retire_button_click(self, **event_args):
+    if self.player_name == 'Håvard':
+      item_list = app_tables.items.search(Available=True, Håvard=True)
+      
+    if self.player_name == 'Marcel':
+      item_list = app_tables.items.search(Available=True, Marcel=True)
+      
+    if self.player_name == 'Kristian':
+      item_list = app_tables.items.search(Available=True, Kristian=True)
+      
+    if self.player_name == 'John Magne':
+      item_list = app_tables.items.search(Available=True, John_Magne=True)
+
+    if len(item_list) > 0:
+      alert("You have items left to sell")
+      self.go_to_character_items()
+      return
+      
     if not confirm("Are you retiring?"):
       return
 
@@ -70,7 +93,7 @@ class Character(CharacterTemplate):
     master2 = self.mastery_check_box_2.checked
 
     app_tables.retired_characters.add_row(
-      Player=self.player,
+      Player=self.player_name,
       Name=name,
       Experience=experience,
       Level=level,
@@ -94,9 +117,7 @@ class Character(CharacterTemplate):
     frosthaven["Prosperity"] += 2
 
   def reset_character(self):
-    prosperity_level = Utilites.get_prosperity_level(
-      app_tables.frosthaven.search()[0]["Prosperity"]
-    )
+    prosperity_level = Utilites.get_prosperity_level(app_tables.frosthaven.search()[0]["Prosperity"])
 
     starting_gold = (10 * prosperity_level) + 20
     starintg_level = ceil(prosperity_level / 2)
@@ -131,7 +152,7 @@ class Character(CharacterTemplate):
       Notes='',
     )
 
-    self.parent.parent.change_form(Character(self.player))
+    self.parent.parent.change_form(Character(self.player_name))
 
   def set_perks(self):
     check_marks = self.check_marks_text_box.text or 0

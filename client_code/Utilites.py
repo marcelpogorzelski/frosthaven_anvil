@@ -19,8 +19,6 @@ def get_experience(level):
   experience_per_level = [0, 45, 95,150,210,275,345,420,500]
   return experience_per_level[level-1]
   
-  
-
 def get_prosperity_level(prosperity):
   prosperity_level = 1
   if prosperity < 6:
