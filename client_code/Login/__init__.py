@@ -18,10 +18,7 @@ class Login(LoginTemplate):
   def login(self):
     user = anvil.users.get_user()
     if user:
-      #open_form(Main(start_form=Frosthaven()))
       open_form(Main(player_name=user['email']))
-    
-    
     
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()
