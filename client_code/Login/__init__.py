@@ -18,8 +18,8 @@ class Login(LoginTemplate):
   def login(self):
     user = anvil.users.get_user(allow_remembered=True)
     if user:
-      open_form(Main(player_name=user['email']))
-    anvil.users.login_with_form()
+      open_form(Main(player_name=user['email'], login_form=Login()))
+    #anvil.users.login_with_form()
     
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()
