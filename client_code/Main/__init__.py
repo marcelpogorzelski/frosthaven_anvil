@@ -23,7 +23,7 @@ from ..CharacterDetails import CharacterDetails
 
 
 class Main(MainTemplate):
-  def __init__(self, start_form, **properties):
+  def __init__(self, player_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
@@ -35,8 +35,17 @@ class Main(MainTemplate):
     self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link, self.kristian_details_link)
     self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link, self.marcel_details_link)
     
-    self.frosthave_link.role = 'selected'
-    self.change_form(start_form)
+    #self.change_form(player_name)
+    #return
+    if player_name == 'Frosthaven':
+      #self.frosthaven_link.role = 'selected'
+      self.navbar_link_select(self.frosthaven_link)
+      self.change_form(Frosthaven())
+      return
+    link = self.player_links[player_name]['Links'][0]
+    self.open_player_link(link.tag['Player'], link)
+    
+    
 
   def setup_player(self, player, player_link, sheet_link, items_link, cards_link, details_link):
     player_link.tag = player
@@ -71,7 +80,7 @@ class Main(MainTemplate):
     anvil.users.logout()
     open_form('Login')
 
-  def frosthave_link_click(self, **event_args):
+  def frosthaven_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])
     self.change_form(Frosthaven())
 

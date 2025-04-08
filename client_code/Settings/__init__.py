@@ -1,4 +1,4 @@
-from ._anvil_designer import SettngsTemplate
+from ._anvil_designer import SettingsTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -14,10 +14,11 @@ def parse_int_price(price):
   return 0
 
 
-class Settngs(SettngsTemplate):
+class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    print(anvil.users.get_user())
 
     # Any code you write here will run before the form opens.
   def export_button_click(self, **event_args):
@@ -55,7 +56,8 @@ class Settngs(SettngsTemplate):
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.users.change_password_with_form(require_old_password=True)
+    anvil.users.change_password_with_form(require_old_password=False)
+    #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
 
 

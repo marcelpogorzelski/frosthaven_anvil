@@ -12,9 +12,9 @@ components:
 - components:
   - components: []
     data_bindings: []
-    event_bindings: {click: frosthave_link_click}
+    event_bindings: {click: frosthaven_link_click}
     layout_properties: {grid_position: 'DOIEYI,BILHKV'}
-    name: frosthave_link
+    name: frosthaven_link
     properties: {align: center, text: Frosthaven}
     type: Link
   - data_bindings: []
