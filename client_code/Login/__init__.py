@@ -13,13 +13,14 @@ class Login(LoginTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
     self.login()
 
   def login(self):
     user = anvil.users.get_user(allow_remembered=True)
     if user:
-      open_form(Main(player_name=user['email'], login_form=Login()))
-    #anvil.users.login_with_form()
+      open_form(Main(player_name=user['email']))
+
     
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()

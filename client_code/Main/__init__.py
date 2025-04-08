@@ -23,13 +23,13 @@ from ..CharacterDetails import CharacterDetails
 
 
 class Main(MainTemplate):
-  def __init__(self, player_name, login_form, **properties):
+  def __init__(self, player_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
     self.player_links = {}
     self.player_toggle_links = []
-    self.login_form = login_form
+    #self.login_form = login_form
 
     self.setup_player('Håvard', self.havard_link, self.havard_sheet_link, self.havard_items_link, self.havard_cards_link, self.havard_details_link)
     self.setup_player('John Magne', self.john_magne_link, self.john_magne_sheet_link, self.john_magne_items_link, self.john_magne_cards_link, self.john_magne_details_link)
@@ -79,7 +79,7 @@ class Main(MainTemplate):
 
   def logout_button_click(self, **event_args):
     anvil.users.logout()
-    open_form(self.login_form)
+    open_form('Login')
 
   def frosthaven_link_click(self, **event_args):
     self.navbar_link_select(event_args['sender'])

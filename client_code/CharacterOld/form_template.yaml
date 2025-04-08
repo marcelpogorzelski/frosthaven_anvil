@@ -71,7 +71,7 @@ components:
         name: experience_text_box
         properties: {align: center, type: number}
         type: TextBox
-      layout_properties: {column: VVDSMS}
+      layout_properties: {column: UHLZCU}
       name: experience_outlined_card
       properties: {role: elevated-card}
       type: ColumnPanel
@@ -87,25 +87,24 @@ components:
         name: level_text_box
         properties: {align: center, enabled: false, type: number}
         type: TextBox
-      layout_properties: {column: UHLZCU}
+      layout_properties: {column: PGVFQE}
       name: level_outlined_card
       properties: {col_widths: '{}', role: elevated-card, wrap_on: mobile}
       type: ColumnPanel
     - components:
-      - layout_properties: {grid_position: 'IMJEUP,SPLCZR'}
-        name: next_level_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Next Level:'}
-        type: Label
+      - layout_properties: {grid_position: 'AYZESO,VZTSOM'}
+        name: gold_image
+        properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
+        type: Image
       - data_bindings:
-        - {code: 'self.item[''NextLevelExperience'']', property: text, writeback: false}
-        - {code: 'f"Next Level in {self.item[''NextLevelExperience'']}"', property: tooltip, writeback: false}
-        layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
-        name: next_level_text_box
-        properties: {align: center, enabled: false, type: number}
+        - {code: 'self.item[''Gold'']', property: text, writeback: true}
+        layout_properties: {grid_position: 'SPLVKW,NADRLY'}
+        name: gold_text_box
+        properties: {align: center, spacing_above: none, type: number}
         type: TextBox
-      layout_properties: {column: PGVFQE}
-      name: level_outlined_card_copy_2
-      properties: {col_widths: '{}', role: elevated-card, wrap_on: mobile}
+      layout_properties: {column: VVDSMS}
+      name: gold_outlined_card
+      properties: {role: elevated-card}
       type: ColumnPanel
     name: level_data_row_panel
     properties: {}
@@ -265,7 +264,7 @@ components:
         type: Label
       - data_bindings:
         - {code: 'self.item[''CheckMarks'']', property: text, writeback: true}
-        event_bindings: {change: check_marks_text_box_change}
+        event_bindings: {change: perks_change}
         layout_properties: {grid_position: 'PHYDAP,QQGNIB'}
         name: check_marks_text_box
         properties: {align: center, type: number}
@@ -276,7 +275,7 @@ components:
       type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'IMJEUP,SPLCZR'}
-        name: perks_label
+        name: level_label_copy
         properties: {align: center, bold: true, role: input-prompt, text: 'Perks:'}
         type: Label
       - data_bindings:
@@ -287,38 +286,19 @@ components:
         type: TextBox
       layout_properties: {column: PGVFQE}
       name: level_outlined_card_copy
-      properties: {col_widths: '{}', role: elevated-card}
+      properties: {col_widths: '{"JYFFLE":10}', role: elevated-card}
       type: ColumnPanel
-    - components:
-      - layout_properties: {grid_position: 'AYZESO,VZTSOM'}
-        name: gold_image
-        properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
-        type: Image
-      - data_bindings:
-        - {code: 'self.item[''Gold'']', property: text, writeback: true}
-        layout_properties: {grid_position: 'SPLVKW,NADRLY'}
-        name: gold_text_box
-        properties: {align: center, spacing_above: none, type: number}
-        type: TextBox
-      layout_properties: {column: VVDSMS}
-      name: gold_outlined_card
-      properties: {role: elevated-card}
-      type: ColumnPanel
-    name: data_row_panel_1
-    properties: {}
-    type: DataRowPanel
-  - components:
     - components:
       - data_bindings:
         - {code: 'self.item[''Mastery1'']', property: checked, writeback: true}
-        event_bindings: {change: mastery_check_box_change}
+        event_bindings: {change: perks_change}
         layout_properties: {grid_position: 'OQQKDT,XAKAHR'}
         name: mastery_check_box_1
         properties: {align: center, bold: true, text: Mastery 1}
         type: CheckBox
       - data_bindings:
         - {code: 'self.item[''Mastery2'']', property: checked, writeback: true}
-        event_bindings: {change: mastery_check_box_change}
+        event_bindings: {change: perks_change}
         layout_properties: {grid_position: 'ISEMNX,GRFKGR'}
         name: mastery_check_box_2
         properties: {align: center, bold: true, text: Mastery 2}
@@ -327,22 +307,7 @@ components:
       name: masteries_outlined_card
       properties: {role: elevated-card}
       type: ColumnPanel
-    - components:
-      - layout_properties: {grid_position: 'IMJEUP,SPLCZR'}
-        name: retired_count_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Retired Count:'}
-        type: Label
-      - data_bindings:
-        - {code: 'self.item[''RetiredCount'']', property: text, writeback: false}
-        layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
-        name: retired_count_text_box
-        properties: {align: center, enabled: false, type: number}
-        type: TextBox
-      layout_properties: {column: UHLZCU}
-      name: level_outlined_card_copy_copy
-      properties: {col_widths: '{"JYFFLE":10}', role: elevated-card}
-      type: ColumnPanel
-    name: data_row_panel_2
+    name: data_row_panel_1
     properties: {}
     type: DataRowPanel
   - components:

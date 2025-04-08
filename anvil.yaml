@@ -125,6 +125,12 @@ db_schema:
     - admin_ui: {order: 18, width: 200}
       name: NextLevelExperience
       type: number
+    - admin_ui: {order: 19, width: 200}
+      name: RetiredCount
+      type: number
+    - admin_ui: {order: 20, width: 200}
+      name: MasteryCount
+      type: number
     server: full
     title: Characters
   classes:
