@@ -14,11 +14,14 @@ class Login(LoginTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #print(anvil.server.cookies)
+    self.login()
+
+
+  def login(self):
     if anvil.users.get_user(allow_remembered=True):
       open_form(Main(start_form=Frosthaven()))
 
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()
-    if anvil.users.get_user(allow_remembered=True):
-      open_form(Main(start_form=Frosthaven()))
+    self.login()
 
