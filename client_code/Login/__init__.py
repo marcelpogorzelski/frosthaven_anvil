@@ -16,9 +16,10 @@ class Login(LoginTemplate):
     self.login()
 
   def login(self):
-    user = anvil.users.get_user()
+    user = anvil.users.get_user(allow_remembered=True)
     if user:
       open_form(Main(player_name=user['email']))
+    anvil.users.login_with_form()
     
   def login_button_click(self, **event_args):
     anvil.users.login_with_form()
