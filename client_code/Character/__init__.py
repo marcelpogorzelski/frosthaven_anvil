@@ -125,11 +125,11 @@ class Character(CharacterTemplate):
     starting_experience = Utilites.get_experience(starintg_level)
     next_level_experience = Utilites.get_experience(starintg_level + 1)
 
-    retired_count = self.item['RetiredCount']
+    retired_count = self.item['RetiredCount'] + 1
     starting_perks = starintg_level - 1 + retired_count
 
     self.item.update(
-      Name="",
+      Name='',
       Experience=starting_experience,
       NextLevelExperience=next_level_experience,
       Level=starintg_level,
