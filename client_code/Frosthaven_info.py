@@ -6,6 +6,7 @@ from anvil.tables import app_tables
 
 #https://github.com/cmlenius/gloomhaven-card-browser/blob/main/data/scripts/characters.js
 
+
 class_names = {
   "Blinkblade": { 
     'id': "BB",
