@@ -360,16 +360,16 @@ db_schema:
     - admin_ui: {order: 3, width: 200}
       name: Status
       type: string
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {order: 4, width: 57}
       name: Notes
       type: string
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 64}
       name: Chests
       type: string
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {order: 5, width: 109}
       name: Requirements
       type: string
-    - admin_ui: {order: 7, width: 200}
+    - admin_ui: {order: 7, width: 112}
       name: Unlocked by
       type: string
     - admin_ui: {order: 8, width: 200}
