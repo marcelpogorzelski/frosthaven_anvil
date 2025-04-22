@@ -33,17 +33,14 @@ class SellItem(SellItemTemplate):
 
 
   def add_herb_choice(self, item):
-    herb_drop_down_items = list()
-
     if item['2Herbs']:
-      herb_drop_down = DropDown(items=self.herb_names)
-      self.sell_card.add_component(herb_drop_down)
-      self.herb_choice_drop_down_list.append(herb_drop_down)
-      return
-      
-    for herb_name in self.herb_names:
-      if item[herb_name] > 0:
-        herb_drop_down_items.append(herb_name)
+      herb_drop_down_items = self.herb_names.copy()
+    else:
+      herb_drop_down_items = list()
+      for herb_name in self.herb_names:
+        if item[herb_name] > 0:
+          herb_drop_down_items.append(herb_name)
+    
     herb_drop_down = DropDown(items=herb_drop_down_items)
     self.sell_card.add_component(herb_drop_down)
     self.herb_choice_drop_down_list.append(herb_drop_down)

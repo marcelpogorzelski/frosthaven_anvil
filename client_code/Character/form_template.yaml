@@ -1,14 +1,31 @@
 components:
-- components: []
-  layout_properties: {grid_position: 'WPUZOL,EBMWSN'}
-  name: grid_panel_1
-  properties: {}
-  type: GridPanel
 - components:
-  - components: []
-    name: flow_panel_1
+  - components:
+    - components:
+      - data_bindings:
+        - {code: 'self.item[''Player'']', property: text, writeback: false}
+        layout_properties: {grid_position: 'TUBAVW,ORFABG'}
+        name: label_1
+        properties: {align: center, font_size: 45, role: null, spacing_above: medium, spacing_below: medium}
+        type: Label
+      layout_properties: {column: JKSDUP}
+      name: label_outlined_card
+      properties: {role: elevated-card}
+      type: ColumnPanel
+    layout_properties: {slot: footer}
+    name: label_data_row_panel
     properties: {}
-    type: FlowPanel
+    type: DataRowPanel
+  layout_properties: {full_width_row: true, grid_position: 'IBNMPY,EWCKGI'}
+  name: label_data_grid
+  properties:
+    auto_header: false
+    columns:
+    - {data_key: Label, id: JKSDUP, title: Column 1, width: '900'}
+    role: wide
+    show_page_controls: false
+  type: DataGrid
+- components:
   - components:
     - components:
       - layout_properties: {grid_position: 'JZYWYM,OGQZJV'}
@@ -40,17 +57,6 @@ components:
       layout_properties: {column: UHLZCU}
       name: class_outlined_card
       properties: {col_widths: '{}', role: elevated-card}
-      type: ColumnPanel
-    - components:
-      - data_bindings:
-        - {code: 'self.item[''Player'']', property: text, writeback: false}
-        layout_properties: {grid_position: 'ETBKBS,RTSYPI'}
-        name: label_1
-        properties: {align: center, font_size: 45, role: null, spacing_above: medium, spacing_below: medium}
-        type: Label
-      layout_properties: {column: VVDSMS}
-      name: outlined_card_1
-      properties: {role: elevated-card}
       type: ColumnPanel
     name: info_data_row_panel
     properties: {}
@@ -371,7 +377,7 @@ components:
     properties: {}
     type: FlowPanel
   layout_properties: {full_width_row: true, grid_position: 'WPUZOL,FNLVKI'}
-  name: data_grid_1
+  name: character_data_grid
   properties:
     auto_header: false
     columns:
