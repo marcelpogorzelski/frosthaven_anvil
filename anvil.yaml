@@ -372,6 +372,10 @@ db_schema:
     - admin_ui: {order: 7, width: 200}
       name: Unlocked by
       type: string
+    - admin_ui: {order: 8, width: 200}
+      name: Treasures
+      target: treasures
+      type: link_multiple
     server: full
     title: Scenarios
   treasures:

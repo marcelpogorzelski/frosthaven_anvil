@@ -19,19 +19,40 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+  def test_treasures(self):
+    return
+    scenario = app_tables.scenarios.get(Number='S2')
+    treasure = app_tables.treasures.get(Number=5)
+    print(treasure)
+    if treasure not in scenario['Treasures']:
+      scenario['Treasures'] += [treasure]
+    print(len(scenario['Treasures']))
+
     # Any code you write here will run before the form opens.
   def export_button_click(self, **event_args):
     backup_blob = Utilites.get_backup()
     download(backup_blob)
 
+  def parse_scenario(self, scenario_data):
+    if 'treasures' not in scenario_data:
+        return
+    scenario_id = 'S' + str(scenario_data['id'])
+
+    scenario = app_tables.scenarios.get(Number=scenario_id)
+    
+    treasures = list()
+
+    for treasure_id in scenario_data['treasures']:
+      treasure = app_tables.treasures.get(Number=treasure_id)
+      treasures.append(treasure)
+    scenario['Treasures'] = treasures
+
   def import_file_loader_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
-    file_data = json.loads(file.get_bytes())
+    file_data = json.loads(file.get_bytes())['scenarios']
 
-    for treasure in file_data:
-      app_tables.treasures.add_row(Number=treasure['Number'], Content=treasure['Treasure'], Looted=False)
-
-
+    for scenario_data in file_data:
+      self.parse_scenario(scenario_data)
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
