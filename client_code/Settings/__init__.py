@@ -19,6 +19,11 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+    scenarios = app_tables.scenarios.search(HasRandomItem=True, Status=q.any_of('Available', 'Finished', 'Locked'))
+
+    for scenario in scenarios:
+      print(scenario['Number'])
+    
   def test_treasures(self):
     return
     scenario = app_tables.scenarios.get(Number='S2')
@@ -58,13 +63,13 @@ class Settings(SettingsTemplate):
     page = int(scenario_data['page'])
     location = scenario_data.get('location', '')
     tiles = scenario_data['tiles']
-    complexity = scenario_data.get('difficulty', 1)
+    complexity = int(scenario_data.get('difficulty', 1))
 
     name = scenario_data['title']
     
     scenario = app_tables.scenarios.get(Name=name)
 
-    #scenario.update()
+    scenario.update(Errata=errata, Complition=complition, HasRandomItem=has_random_item, Tiles=tiles, Page=page, Location=location, Complexity=complexity)
     
     
   def import_file_loader_change(self, file, **event_args):
@@ -73,7 +78,6 @@ class Settings(SettingsTemplate):
 
     for scenario_id, scenario_data in file_data.items():
       self.parse_scenario_errata(scenario_id, scenario_data)
-      
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
