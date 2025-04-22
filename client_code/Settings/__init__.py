@@ -19,10 +19,6 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    scenarios = app_tables.scenarios.search(HasRandomItem=True, Status=q.any_of('Available', 'Finished', 'Locked'))
-
-    for scenario in scenarios:
-      print(scenario['Number'])
     
   def test_treasures(self):
     return
