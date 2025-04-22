@@ -53,19 +53,12 @@ class Settings(SettingsTemplate):
         return
       
     #number = 'S' + str(scenario_id)
-    complition = scenario_data.get('completion', {'section': ''})['section']
-    has_random_item = bool(scenario_data['loot']['Item'])
-    errata = scenario_data['errata']
-    page = int(scenario_data['page'])
-    location = scenario_data.get('location', '')
-    tiles = scenario_data['tiles']
-    complexity = int(scenario_data.get('difficulty', 1))
-
+    loot = scenario_data['loot']
     name = scenario_data['title']
     
     scenario = app_tables.scenarios.get(Name=name)
 
-    scenario.update(Errata=errata, Complition=complition, HasRandomItem=has_random_item, Tiles=tiles, Page=page, Location=location, Complexity=complexity)
+    scenario.update(Loot=loot)
     
     
   def import_file_loader_change(self, file, **event_args):
@@ -73,7 +66,8 @@ class Settings(SettingsTemplate):
     file_data = json.loads(file.get_bytes())
 
     for scenario_id, scenario_data in file_data.items():
-      self.parse_scenario_errata(scenario_id, scenario_data)
+      break
+      #self.parse_scenario_errata(scenario_id, scenario_data)
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
