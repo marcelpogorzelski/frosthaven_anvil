@@ -47,12 +47,33 @@ class Settings(SettingsTemplate):
       treasures.append(treasure)
     scenario['Treasures'] = treasures
 
+  def parse_scenario_errata(self, scenario_id, scenario_data):
+    if not scenario_id.isdigit():
+        return
+      
+    #number = 'S' + str(scenario_id)
+    complition = scenario_data.get('completion', {'section': ''})['section']
+    has_random_item = bool(scenario_data['loot']['Item'])
+    errata = scenario_data['errata']
+    page = int(scenario_data['page'])
+    location = scenario_data.get('location', '')
+    tiles = scenario_data['tiles']
+    complexity = scenario_data.get('difficulty', 1)
+
+    name = scenario_data['title']
+    
+    scenario = app_tables.scenarios.get(Name=name)
+
+    #scenario.update()
+    
+    
   def import_file_loader_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
-    file_data = json.loads(file.get_bytes())['scenarios']
+    file_data = json.loads(file.get_bytes())
 
-    for scenario_data in file_data:
-      self.parse_scenario(scenario_data)
+    for scenario_id, scenario_data in file_data.items():
+      self.parse_scenario_errata(scenario_id, scenario_data)
+      
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
