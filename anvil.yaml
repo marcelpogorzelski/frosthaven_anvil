@@ -376,6 +376,30 @@ db_schema:
       name: Treasures
       target: treasures
       type: link_multiple
+    - admin_ui: {order: 9, width: 200}
+      name: Errata
+      type: string
+    - admin_ui: {order: 10, width: 200}
+      name: Location
+      type: string
+    - admin_ui: {order: 11, width: 200}
+      name: Complition
+      type: string
+    - admin_ui: {order: 12, width: 200}
+      name: Page
+      type: number
+    - admin_ui: {order: 13, width: 200}
+      name: Tiles
+      type: simpleObject
+    - admin_ui: {order: 14, width: 200}
+      name: Difficulty
+      type: number
+    - admin_ui: {order: 15, width: 200}
+      name: HasRandomItem
+      type: bool
+    - admin_ui: {order: 16, width: 200}
+      name: RandomItemCollected
+      type: bool
     server: full
     title: Scenarios
   treasures:
