@@ -18,16 +18,19 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
     
-  def test_treasures(self):
+  def test_scenarios(self):
     return
-    scenario = app_tables.scenarios.get(Number='S2')
-    treasure = app_tables.treasures.get(Number=5)
-    print(treasure)
-    if treasure not in scenario['Treasures']:
-      scenario['Treasures'] += [treasure]
-    print(len(scenario['Treasures']))
+    scenarios = app_tables.scenarios.search()
+
+    for scenario in scenarios:
+      treasures = scenario['Treasures']
+      if not treasures:
+        continue
+      if scenario['Status'] == 'Undiscovered':
+        continue
+      if all(map(lambda treasure: treasure['Looted'], treasures)):
+        scenario.update(Looted=True)
 
     # Any code you write here will run before the form opens.
   def export_button_click(self, **event_args):
