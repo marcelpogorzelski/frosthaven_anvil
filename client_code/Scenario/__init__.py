@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .Loot import Loot
 
 
 class Scenario(ScenarioTemplate):
@@ -37,3 +38,7 @@ class Scenario(ScenarioTemplate):
     sticker_number = int(self.item['Number'][1:])
     sticker_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{sticker_number:03d}-{sticker_name}.png?raw=true")
     self.scenario_image.source = sticker_media
+
+  def loot_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    alert(content=Loot(self.item['Loot']))

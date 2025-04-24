@@ -25,6 +25,7 @@ unique_ids:
     resource_images/fh-money-bw-icon.png: '1717064620029700343601197.9073'
     resource_images/fh-rockroot-bw-icon.png: '1717064599062714494773557.49'
     resource_images/fh-snowthistle-bw-icon.png: '1717064604111204932775281.25775'
+    resource_images/fh-treasure-chest-item-bw-icon.png: '174549282776689527068516.65671'
     standard-page.html: RHOF3TGLPFY5ZTMITZDJ6FAFZSRRLTUW
     theme.css: WJWPBKLEFA4NYVMXXRQ2SVLZ2OGYP67X
   forms:
@@ -56,6 +57,9 @@ unique_ids:
     RetiredCharacters: '1718972366886994549071861.58'
     RetiredCharacters.RetiredCharactersRowTemplate: '1718972405113510014417367.3882'
     Scenario: '1745487033953549923426008.0668'
+    Scenario.Form1: '1745494338078632001902476.3029'
+    Scenario.Loot: '1745491503643990767011029.7018'
+    Scenario.Loot.LootItemTemplate: '1745491691974116848129704.78598'
     Scenarios: '1717756850229953035950991.7052'
     Scenarios.ScenariosRowTemplate: '1717760060079427219016337.0888'
     SellItem: '1740130183203996940930872.4814'
