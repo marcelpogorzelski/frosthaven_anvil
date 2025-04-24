@@ -5,7 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ..CharacterItems import CharacterItems
+from .. import navigation
 
 
 class Item(ItemTemplate):
@@ -275,7 +275,7 @@ class Item(ItemTemplate):
       player_name = self.player['Player'].replace(" ", "_")
       self.item[player_name] = True
       self.item['AvailableCount'] -= 1
-      self.go_to_character_items(self.player['Player'])
+      navigation.go_to_character_items(self.player['Player'])
       return
 
     if self.two_herbs:
@@ -332,14 +332,9 @@ class Item(ItemTemplate):
       item.update()
     self.item[player_name] = True
     self.item['AvailableCount'] -= 1
-    self.go_to_character_items(self.player['Player'])
+    navigation.go_to_character_items(self.player['Player'])
 
   def free_check_box_change(self, **event_args):
     self.setup()
 
-  def go_to_character_items(self, player_name):
-    main_form = get_open_form()
-
-    items_link = main_form.player_links[player_name]['Items Link']
-    main_form.open_player_link(player_name, items_link)
       

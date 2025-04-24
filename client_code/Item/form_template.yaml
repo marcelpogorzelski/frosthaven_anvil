@@ -27,60 +27,60 @@ components:
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE RIDUFF,PULRJS'}
       name: gold_image
-      properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-money-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE HHIBCL,GXZPPX'}
       name: lumber_image
-      properties: {height: '50', source: _/theme/resource_images/fh-lumber-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-lumber-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE WUJPBE,GCTZRS'}
       name: metal_image
-      properties: {height: '50', source: _/theme/resource_images/fh-metal-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-metal-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE KYWINK,AYOHKG'}
       name: hide_image
-      properties: {height: '50', source: _/theme/resource_images/fh-hide-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-hide-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE PADGPE,PCTKMJ'}
       name: arrowvine_image
-      properties: {height: '50', source: _/theme/resource_images/fh-arrowvine-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-arrowvine-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE HESBIS,PLGLFD'}
       name: axenut_image
-      properties: {height: '50', source: _/theme/resource_images/fh-axenut-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-axenut-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE GSQVPW,DKOEGB'}
       name: corpsecap_image
-      properties: {height: '50', source: _/theme/resource_images/fh-corpsecap-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-corpsecap-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE CRKRAN,RDTYYF'}
       name: flamefruit_image
-      properties: {height: '50', source: _/theme/resource_images/fh-flamefruit-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-flamefruit-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE SJNHDO,HANYTG'}
       name: rockroot_image
-      properties: {height: '50', source: _/theme/resource_images/fh-rockroot-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-rockroot-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE RYRCPT,YLRRSB'}
       name: snowthistle_image
-      properties: {height: '50', source: _/theme/resource_images/fh-snowthistle-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/fh-snowthistle-bw-icon.png, visible: false}
       type: Image
     - layout_properties: {grid_position: 'JVUTZA,BKDSXE TMRINP,UGYJNF'}
       name: any_1_label
-      properties: {text: Any 1, visible: false}
+      properties: {role: input-prompt, text: Any 1, visible: false}
       type: Label
     - layout_properties: {grid_position: 'JVUTZA,BKDSXE MSDYPY,WPSQHQ'}
       name: any_2_label
-      properties: {text: Any 2, visible: false}
+      properties: {role: input-prompt, text: Any 2, visible: false}
       type: Label
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,FAVSNB JEWXWD,OXGAKJ'}

@@ -45,7 +45,7 @@ components:
         type: DropDown
       - layout_properties: {grid_position: 'NCQGKN,SFOBQZ'}
         name: scenario_status_label
-        properties: {align: center, text: Status}
+        properties: {align: center, role: input-prompt, text: Status}
         type: Label
       - data_bindings:
         - {code: '[''Available'', ''Finished'', ''Locked'', ''Undiscovered'']', property: items, writeback: false}
@@ -56,7 +56,7 @@ components:
         type: DropDown
       - layout_properties: {grid_position: 'RSOGHM,NBHMKP'}
         name: scenario_name_label
-        properties: {align: center, text: Name}
+        properties: {align: center, role: input-prompt, text: Name}
         type: Label
       - layout_properties: {grid_position: 'RSOGHM,JYXTCE'}
         name: scenario_name_text_box
@@ -110,7 +110,7 @@ components:
         type: CheckBox
       - layout_properties: {grid_position: 'EFRTPR,QDGKDZ'}
         name: building_name_label
-        properties: {align: center, text: Name}
+        properties: {align: center, role: input-prompt, text: Name}
         type: Label
       - event_bindings: {}
         layout_properties: {grid_position: 'EFRTPR,MEKDUH'}
@@ -119,7 +119,7 @@ components:
         type: TextBox
       - layout_properties: {grid_position: 'CTJEQQ,IBLPRZ'}
         name: building_level_label
-        properties: {align: center, text: Level}
+        properties: {align: center, role: input-prompt, text: Level}
         type: Label
       - event_bindings: {change: building_level_drop_down_change}
         layout_properties: {grid_position: 'CTJEQQ,FEXMWJ'}
@@ -156,7 +156,7 @@ components:
         type: CheckBox
       - layout_properties: {grid_position: 'YWSGWR,MYHDRL'}
         name: item_name_label
-        properties: {align: center, text: Name}
+        properties: {align: center, role: input-prompt, text: Name}
         type: Label
       - event_bindings: {}
         layout_properties: {grid_position: 'YWSGWR,HXFWBX'}
@@ -165,7 +165,7 @@ components:
         type: TextBox
       - layout_properties: {grid_position: 'BMGHST,XNNITR'}
         name: item_type_label
-        properties: {align: center, text: Type}
+        properties: {align: center, role: input-prompt, text: Type}
         type: Label
       - event_bindings: {change: item_type_drop_down_change}
         layout_properties: {grid_position: 'BMGHST,OSLWMU'}
@@ -174,7 +174,7 @@ components:
         type: DropDown
       - layout_properties: {grid_position: 'KYPOWK,LIUXFO'}
         name: item_usage_label
-        properties: {align: center, text: Usage}
+        properties: {align: center, role: input-prompt, text: Usage}
         type: Label
       - event_bindings: {change: item_usage_drop_down_change}
         layout_properties: {grid_position: 'KYPOWK,TFEZFY'}
@@ -187,7 +187,7 @@ components:
         type: Image
       - layout_properties: {grid_position: 'TDNYSY,MHSTIR WTPWJJ,HSNLMK'}
         name: count_label
-        properties: {text: Count, visible: false}
+        properties: {role: input-prompt, text: Count, visible: false}
         type: Label
       - data_bindings: []
         layout_properties: {grid_position: 'TDNYSY,MHSTIR BTCMOK,KZORHI'}

@@ -55,6 +55,7 @@ unique_ids:
     Resources.ResourcesRowTemplate: '1717394382498634608081290.2566'
     RetiredCharacters: '1718972366886994549071861.58'
     RetiredCharacters.RetiredCharactersRowTemplate: '1718972405113510014417367.3882'
+    Scenario: '1745487033953549923426008.0668'
     Scenarios: '1717756850229953035950991.7052'
     Scenarios.ScenariosRowTemplate: '1717760060079427219016337.0888'
     SellItem: '1740130183203996940930872.4814'
@@ -63,5 +64,6 @@ unique_ids:
   modules:
     Frosthaven_info: '174064204803772941692685.63255'
     Utilites: '1716982197761702742842671.3378'
+    navigation: '1745486245126335554350468.75256'
   scripts: {}
   server_modules: {}

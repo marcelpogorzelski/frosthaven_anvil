@@ -20,7 +20,7 @@ from ..Items import Items
 from ..CharacterItems import CharacterItems
 from ..CharacterCards import CharacterCards
 from ..CharacterDetails import CharacterDetails
-
+from ..Scenario import Scenario
 
 class Main(MainTemplate):
   def __init__(self, player_name, **properties):
@@ -36,10 +36,13 @@ class Main(MainTemplate):
     self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link, self.kristian_details_link)
     self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link, self.marcel_details_link)
     
-    #self.change_form(player_name)
-    #return
+ 
     if player_name == 'Frosthaven':
       #self.frosthaven_link.role = 'selected'
+      scenario = next(iter(app_tables.frosthaven.search()))['ActiveScenario']
+      if scenario:
+        self.change_form(Scenario(scenario))
+        return
       self.navbar_link_select(self.frosthaven_link)
       self.change_form(Frosthaven())
       return

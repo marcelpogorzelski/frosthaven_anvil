@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..SellItem import SellItem
+from .. import navigation
 import math
 
 
@@ -133,11 +134,5 @@ class CharacterItems(CharacterItemsTemplate):
       item[player_name] = False
       item['AvailableCount'] += 1
       item.update()
-    self.go_to_character(self.player_name)
-
-  def go_to_character(self, player_name):
-    main_form = get_open_form()
-
-    items_link = main_form.player_links[player_name]['Sheet Link']
-    main_form.open_player_link(player_name, items_link)
+    navigation.go_to_character(self.player_name)
 

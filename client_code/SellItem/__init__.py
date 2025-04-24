@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import navigation
 
 
 class SellItem(SellItemTemplate):
@@ -61,11 +62,4 @@ class SellItem(SellItemTemplate):
     for herb_drop_down in self.herb_choice_drop_down_list:
       herb_name = herb_drop_down.selected_value
       character[herb_name] += 1
-    self.go_to_character(self.player_name)
-
-    
-  def go_to_character(self, player_name):
-    main_form = get_open_form()
-
-    items_link = main_form.player_links[player_name]['Sheet Link']
-    main_form.open_player_link(player_name, items_link)
+    navigation.go_to_character(self.player_name)
