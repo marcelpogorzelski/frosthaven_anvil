@@ -4,7 +4,6 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from .Loot import Loot
 
 
 class Scenario(ScenarioTemplate):
@@ -12,14 +11,32 @@ class Scenario(ScenarioTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.item = scenario
+    self.frosthaven = next(iter(app_tables.frosthaven.search()))
     if self.item['Errata']:
       self.errata_card.visible = True
     # Any code you write here will run before the form opens.
 
     if self.item['Location'] == 'FR':
       self.road_card_card.visible = True
+      
+    self.activate_buttons()
     self.set_complexity_image()
-    self.get_scenario_image()
+    self.get_images()
+
+  def reset_buttons(self):
+    self.start_scenario_button.visible = False
+    self.win_scenario_button.visible = False
+    self.lose_scenario_button.visible = False
+    self.leave_scenario_button.visible = False
+
+  def activate_buttons(self):
+    self.reset_buttons()
+    if self.frosthaven['ActiveScenario'] != self.item:
+      self.start_scenario_button.visible = True
+      return
+    self.win_scenario_button.visible = True
+    self.lose_scenario_button.visible = True
+    self.leave_scenario_button.visible = True
 
 
   def set_complexity_image(self):
@@ -30,15 +47,27 @@ class Scenario(ScenarioTemplate):
     }
     self.complexity_image.source = complexity_images[self.item['Complexity']]
 
-  def get_scenario_image(self):
+  def get_images(self):
     if self.item['Number'][0:1] == 'So':
       self.scenario_image.source = None
       return
-    sticker_name = self.item['Name'].lower().replace(' ', '-')
-    sticker_number = int(self.item['Number'][1:])
-    sticker_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{sticker_number:03d}-{sticker_name}.png?raw=true")
-    self.scenario_image.source = sticker_media
+    name = self.item['Name'].lower().replace('\'', '').replace(' ', '-')
+    number = int(self.item['Number'][1:])
+    
+    scenario_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{number:03d}-{name}.png?raw=true")
+    map_layout_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/scenario-layout/fh-{number:03d}-{name}-map-layout.png?raw=true")
+    loot_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/scenario-layout/fh-{number:03d}-{name}-loot.png?raw=true")
+    
+    self.scenario_image.source = scenario_image_media
+    self.map_layout_image.source = map_layout_image_media
+    self.loot_image.source = loot_image_media
 
-  def loot_button_click(self, **event_args):
+  def start_scenario_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    alert(content=Loot(self.item['Loot']))
+    self.frosthaven['ActiveScenario'] = self.item
+    self.activate_buttons()
+
+  def leave_scenario_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.frosthaven['ActiveScenario'] = None
+    self.activate_buttons()

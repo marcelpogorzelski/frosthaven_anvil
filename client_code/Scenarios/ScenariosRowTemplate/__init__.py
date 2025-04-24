@@ -5,7 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+from ... import navigation
 
 class ScenariosRowTemplate(ScenariosRowTemplateTemplate):
   def __init__(self, **properties):
@@ -20,3 +20,8 @@ class ScenariosRowTemplate(ScenariosRowTemplateTemplate):
       return "#ffffff"
     else:
       return "#000000"
+
+  def name_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    print(self.item)
+    navigation.go_to_scenario(self.item)

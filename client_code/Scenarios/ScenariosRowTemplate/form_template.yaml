@@ -38,6 +38,13 @@ components:
   name: text_box_1
   properties: {}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Name'']', property: text, writeback: false}
+  event_bindings: {click: name_link_click}
+  layout_properties: {column: GJCQIT}
+  name: name_link
+  properties: {}
+  type: Link
 container:
   data_bindings: []
   properties: {align: center, background: ''}
