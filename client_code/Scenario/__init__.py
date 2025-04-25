@@ -4,14 +4,21 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import navigation
 
 
 class Scenario(ScenarioTemplate):
-  def __init__(self, scenario, **properties):
+  def __init__(self, scenario=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.item = scenario
-    self.frosthaven = next(iter(app_tables.frosthaven.search()))
+
+    self.frosthaven = app_tables.frosthaven.search()[0]
+    
+    if scenario:
+      self.item = scenario
+    else:
+      self.item = self.frosthaven['ActiveScenario']
+      
     if self.item['Errata']:
       self.errata_card.visible = True
     # Any code you write here will run before the form opens.
@@ -22,6 +29,8 @@ class Scenario(ScenarioTemplate):
     self.activate_buttons()
     self.set_complexity_image()
     self.get_images()
+    self.set_chests()
+    
 
   def reset_buttons(self):
     self.start_scenario_button.visible = False
@@ -64,19 +73,32 @@ class Scenario(ScenarioTemplate):
     self.loot_image.source = loot_image_media
     self.key_image.source = key_image_media
 
+  def set_chests(self):
+    self.chests_repeating_panel.items = self.item['Treasures']
+
   def start_scenario_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
     self.frosthaven['ActiveScenario'] = self.item
+    main_form = get_open_form()
+    main_form.setup_active_scenario()
     self.activate_buttons()
 
   def leave_scenario_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.frosthaven['ActiveScenario'] = None
-    self.activate_buttons()
+    main_form = get_open_form()
+    main_form.setup_active_scenario()
+    navigation.go_to_scenarios()
+    #self.activate_buttons()
+
+  def show_link(self, component, link):
+    if component.visible:
+      link.icon = 'fa:angle-double-down'
+    else:
+      link.icon = 'fa:angle-double-up'
+    component.visible = not component.visible
 
   def notes_show_link_click(self, **event_args):
-    if self.notes_text_area.visible:
-      self.notes_show_link.icon = 'fa:angle-double-down'
-    else:
-      self.notes_show_link.icon = 'fa:angle-double-up'
-    self.notes_text_area.visible = not self.notes_text_area.visible
+    self.show_link(self.notes_text_area, self.notes_show_link)
+
+  def chests_link_click(self, **event_args):
+    self.show_link(self.chests_repeating_panel, self.chests_link)

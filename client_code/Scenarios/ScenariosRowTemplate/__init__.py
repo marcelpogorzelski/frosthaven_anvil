@@ -23,5 +23,4 @@ class ScenariosRowTemplate(ScenariosRowTemplateTemplate):
 
   def name_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    print(self.item)
     navigation.go_to_scenario(self.item)

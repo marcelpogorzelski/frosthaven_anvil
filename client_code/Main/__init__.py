@@ -36,19 +36,24 @@ class Main(MainTemplate):
     self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link, self.kristian_details_link)
     self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link, self.marcel_details_link)
     
- 
+    self.setup_active_scenario()
     if player_name == 'Frosthaven':
-      #self.frosthaven_link.role = 'selected'
-      scenario = next(iter(app_tables.frosthaven.search()))['ActiveScenario']
-      if scenario:
-        self.change_form(Scenario(scenario))
-        return
-      self.navbar_link_select(self.frosthaven_link)
-      self.change_form(Frosthaven())
+      if self.scenario:
+        self.open_scenario(self.scenario)
+      else:
+        self.change_form(Frosthaven(),self.frosthaven_link)
+    else:
+      link = self.player_links[player_name]['Links'][0]
+      self.open_player_link(link.tag['Player'], link)
+
+  def setup_active_scenario(self):
+    self.scenario = app_tables.frosthaven.search()[0]['ActiveScenario']
+    if not self.scenario:
+      self.scenario_link.visible = False
+      self.scenario_link.text = ''
       return
-    link = self.player_links[player_name]['Links'][0]
-    self.open_player_link(link.tag['Player'], link)
-    
+    self.scenario_link.visible = True
+    self.scenario_link.text = self.scenario['Number']
     
 
   def setup_player(self, player, player_link, sheet_link, items_link, cards_link, details_link):
@@ -64,7 +69,9 @@ class Main(MainTemplate):
     
     self.player_links[player] = {'Player Link': player_link, 'Links': invisible_links, 'Sheet Link': sheet_link, 'Items Link': items_link}
  
-  def change_form(self, form):
+  def change_form(self, form, link=None):
+    if link:
+      self.navbar_link_select(link)
     self.content_panel.clear()
     self.content_panel.add_component(form, full_width_row=True)
 
@@ -85,16 +92,13 @@ class Main(MainTemplate):
     open_form('Login')
 
   def frosthaven_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Frosthaven())
+    self.change_form(Frosthaven(), event_args['sender'])
 
   def party_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Party())
+    self.change_form(Party(), event_args['sender'])
 
   def resources_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Resources())
+    self.change_form(Resources(), event_args['sender'])
 
   def appeear_links_toggle(self, toggle_link_list, toggle):
     for toggle_link in toggle_link_list:
@@ -120,34 +124,35 @@ class Main(MainTemplate):
     self.open_player_link(link.tag['Player'], link)
 
   def settings_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Settings())
+    self.change_form(Settings(), event_args['sender'])
 
   def calendar_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Calendar())
+    self.change_form(Calendar(), event_args['sender'])
+
+  def open_scenarios(self):
+    self.change_form(Scenarios(), self.scenarios_link)    
 
   def scenarios_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Scenarios())
+    self.open_scenarios()
+
+  def open_scenario(self, scenario):
+    self.change_form(Scenario(scenario), self.scenario_link)    
+
+  def scenario_link_click(self, **event_args):
+    self.open_scenario(self.scenario)
 
   def retired_characters_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(RetiredCharacters())
+    self.change_form(RetiredCharacters(), event_args['sender'])
 
   def finish_scenario_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(FinishScenario())
+    self.change_form(FinishScenario(), event_args['sender'])
 
   def unlock_edit_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(UnlockEdit())
+    self.change_form(UnlockEdit(), event_args['sender'])
 
   def buildings_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Buildings())
+    self.change_form(Buildings(), event_args['sender'])
 
   def items_link_click(self, **event_args):
-    self.navbar_link_select(event_args['sender'])
-    self.change_form(Items())
+    self.change_form(Items(), event_args['sender'])
 

@@ -23,14 +23,31 @@ components:
     name: calendar_link
     properties: {align: center, text: Calendar}
     type: Link
-  - data_bindings: []
-    event_bindings: {click: scenarios_link_click}
-    layout_properties: {grid_position: 'HWKODQ,QOEZTE'}
-    name: scenarios_link
-    properties: {align: center, text: Scenarios, visible: true}
-    type: Link
   - layout_properties: {grid_position: 'VGRARH,VRLVES'}
     name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+  - components: []
+    data_bindings: []
+    event_bindings: {click: scenarios_link_click}
+    layout_properties: {grid_position: 'TQUENN,HURTSK'}
+    name: scenarios_link
+    properties: {align: center, text: Scenario List, visible: true}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: scenario_link_click}
+    layout_properties: {grid_position: 'UXQREM,PGCKDR'}
+    name: scenario_link
+    properties: {align: center, text: '', visible: false}
+    type: Link
+  - data_bindings: []
+    event_bindings: {click: finish_scenario_link_click}
+    layout_properties: {grid_position: 'EKMNVS,LHMDPE'}
+    name: finish_scenario
+    properties: {align: center, text: Finish Scenario, visible: true}
+    type: Link
+  - layout_properties: {grid_position: 'DDZSXC,XODLNV'}
+    name: spacer_6
     properties: {height: 32}
     type: Spacer
   - components: []
@@ -46,12 +63,6 @@ components:
     layout_properties: {grid_position: 'IWZSQG,JCBCQM'}
     name: resources_link
     properties: {align: center, text: Resources}
-    type: Link
-  - data_bindings: []
-    event_bindings: {click: finish_scenario_link_click}
-    layout_properties: {grid_position: 'WNHBKX,UUKZHZ'}
-    name: resources_link_copy
-    properties: {align: center, text: Finish Scenario, visible: true}
     type: Link
   - layout_properties: {grid_position: 'YHQDVR,AZWGWJ'}
     name: spacer_2
