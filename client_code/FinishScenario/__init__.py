@@ -21,7 +21,7 @@ def string_helper(player_resources, resource_list):
   return ''
 
 class FinishScenario(FinishScenarioTemplate):
-  def __init__(self, **properties):
+  def __init__(self, win=False, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.item = app_tables.frosthaven.search()[0]

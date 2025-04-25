@@ -1,0 +1,115 @@
+components:
+- components:
+  - layout_properties: {}
+    name: finish_scenario_repeating_panel
+    properties: {item_template: FinishScenario_copy.FinishScenarioRowTemplate}
+    type: RepeatingPanel
+  layout_properties: {full_width_row: true, grid_position: 'DXIBMY,FNSWYS'}
+  name: finish_scenario_data_grid
+  properties:
+    columns:
+    - {data_key: Player, id: YJVWJZ, title: Name, width: '150'}
+    - {data_key: Experience, id: KYLSGG, title: Experience, width: '100'}
+    - {data_key: Gold, id: BKKTSA, title: Gold, width: '100'}
+    - {data_key: GoldCoins, id: KPWJHE, title: Gold Coins, width: '100'}
+    - {data_key: CheckMarks, id: XIWIEI, title: Checks, width: '100'}
+    - {data_key: Lumber, id: CNEKNX, title: Lumber, width: '100'}
+    - {data_key: Metal, id: IERWWQ, title: Metal, width: '100'}
+    - {data_key: Hide, id: XQTYTV, title: Hide, width: '100'}
+    - {data_key: Arrowvine, id: BKAREF, title: Arrowvine, width: '100'}
+    - {data_key: Axenut, id: GVVJXF, title: Axenut, width: '100'}
+    - {data_key: Corpsecap, id: XCBRVQ, title: Corpsecap, width: '100'}
+    - {data_key: Flamefruit, id: RNKXAX, title: Flamefruit, width: '100'}
+    - {data_key: Rockroot, id: RKKWTJ, title: Rockroot, width: '100'}
+    - {data_key: Snowthistle, id: JGRNRO, title: Snowthistle, width: '100'}
+    role: [tonal-data-grid, wide]
+    show_page_controls: false
+  type: DataGrid
+- components:
+  - components:
+    - layout_properties: {grid_position: 'JNRIEV,YJMKYY GPYTUI,WOCMAR'}
+      name: adjust_level_label
+      properties: {align: center, text: Adjust Level}
+      type: Label
+    - event_bindings: {click: adjust_level_plus_button_click}
+      layout_properties: {grid_position: 'JNRIEV,QIJLQM QAZULN,KCNJZO'}
+      name: adjust_level_plus_button
+      properties: {icon: 'fa:plus', text: ''}
+      type: Button
+    - event_bindings: {click: adjust_level_minus_button_click}
+      layout_properties: {grid_position: 'JNRIEV,QIJLQM JWQPNF,TBJSDP'}
+      name: adjust_level_minus_button
+      properties: {icon: 'fa:minus', text: ''}
+      type: Button
+    - data_bindings:
+      - {code: 'self.item[''Adjust Level'']', property: text, writeback: true}
+      event_bindings: {change: adjust_level_text_box_change}
+      layout_properties: {grid_position: 'JNRIEV,YJMKYY ESTEIE,VMFQPK'}
+      name: adjust_level_text_box
+      properties: {align: center, text: '0', type: number}
+      type: TextBox
+    layout_properties: {}
+    name: adjust_level_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
+      name: party_level_label
+      properties: {align: center, text: '  Party Level'}
+      type: Label
+    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
+      name: party_level_text_box
+      properties: {align: center, enabled: false, type: number}
+      type: TextBox
+    name: party_level_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
+      name: coin_value_label
+      properties: {align: center, text: Gold Coin Conversion}
+      type: Label
+    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
+      name: coin_value_text_box
+      properties: {align: center, enabled: false, type: number}
+      type: TextBox
+    name: gold_value_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
+      name: bonus_experience_label
+      properties: {align: center, text: Bonus Experience}
+      type: Label
+    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
+      name: bonus_experience_text_box
+      properties: {align: center, enabled: false, type: number}
+      type: TextBox
+    name: bonus_experience_cards
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - data_bindings:
+      - {code: '''Completed''', property: tag, writeback: false}
+      event_bindings: {click: finish_scenario_outlined_button_click}
+      layout_properties: {grid_position: 'YHEOUT,FUDBOU'}
+      name: finish_scenario_outlined_button
+      properties: {role: outlined-button, text: ' Win Scenario '}
+      type: Button
+    - data_bindings:
+      - {code: '''Lost''', property: tag, writeback: false}
+      event_bindings: {click: finish_scenario_outlined_button_click}
+      layout_properties: {grid_position: 'JWWZKK,LGGAQR'}
+      name: finish_scenario_outlined_button_copy
+      properties: {role: outlined-button, text: Lose Scenario}
+      type: Button
+    layout_properties: {width: 240.9964919921875}
+    name: finish_scenario_card
+    properties: {role: elevated-card, spacing_above: small}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'TEVKFC,GAZSKC'}
+  name: settings_flow_panel
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true
