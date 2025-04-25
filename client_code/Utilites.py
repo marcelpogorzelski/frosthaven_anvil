@@ -69,7 +69,6 @@ def database_to_dict(database, linked_columns=None):
         row_dict[column] = dict(row_dict[column])
     dict_list.append(row_dict)
   return dict_list
-    
 
 def get_backup():
   backup = {}

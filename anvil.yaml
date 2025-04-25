@@ -211,6 +211,14 @@ db_schema:
       name: ActiveScenario
       target: scenarios
       type: link_single
+    - admin_ui: {order: 19, width: 200}
+      name: PartyLevel
+      target: scenario_info
+      type: link_single
+    - admin_ui: {order: 20, width: 200}
+      name: RecommendedLevel
+      target: scenario_info
+      type: link_single
     server: full
     title: Frosthaven
   items:

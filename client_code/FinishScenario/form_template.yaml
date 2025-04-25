@@ -1,7 +1,8 @@
 components:
 - components:
-  - name: finish_scenario_repeating_panel
-    properties: {item_template: FinishScenario.RowTemplate1}
+  - layout_properties: {}
+    name: finish_scenario_repeating_panel
+    properties: {item_template: FinishScenario.FinishScenarioRowTemplate}
     type: RepeatingPanel
   layout_properties: {full_width_row: true, grid_position: 'DXIBMY,FNSWYS'}
   name: finish_scenario_data_grid
@@ -25,111 +26,43 @@ components:
     show_page_controls: false
   type: DataGrid
 - components:
-  - components:
-    - event_bindings: {change: scenario_drop_down_change}
-      layout_properties: {column: STHZLY}
-      name: scenario_drop_down
-      properties: {enabled: true}
-      type: DropDown
-    - data_bindings: []
-      layout_properties: {column: EIZMVZ}
-      name: status_drop_down
-      properties:
-        enabled: true
-        items: [Available, Finished, Locked]
-        visible: false
-      type: DropDown
-    - data_bindings: []
-      layout_properties: {column: HIWFZW}
-      name: notes_text_box
-      properties: {enabled: true, hide_text: false, visible: false}
-      type: TextBox
-    - data_bindings: []
-      layout_properties: {column: WKCNMN}
-      name: chests_text_box
-      properties: {enabled: true, hide_text: false, visible: false}
-      type: TextBox
-    - layout_properties: {column: QDJPXU}
-      name: name_label
-      properties: {visible: false}
-      type: Label
-    name: scenario_data_row_panel
+  - data_bindings:
+    - {code: 'self.item[''PartyLevel'']', property: item, writeback: false}
+    name: data_row_panel_1
     properties: {}
     type: DataRowPanel
-  layout_properties: {full_width_row: true, grid_position: 'GOVUWL,ZDHRAE'}
-  name: scenario_data_grid
+  layout_properties: {full_width_row: true, grid_position: 'QTNVWO,ELQOHA'}
+  name: party_level_data_grid
   properties:
     columns:
-    - {data_key: Number, id: STHZLY, title: Number, width: '200'}
-    - {data_key: Name, id: QDJPXU, title: Name, width: '300'}
-    - {data_key: Status, id: EIZMVZ, title: Status, width: '150'}
-    - {data_key: Chests, id: WKCNMN, title: Chests, width: '300'}
-    - {data_key: Notes, expand: true, id: HIWFZW, title: Notes, width: '500'}
+    - {data_key: Level, id: QOBSHF, title: Level, width: '100'}
+    - {data_key: Gold Conversion, id: MPBEYT, title: Gold Conversion, width: '100'}
+    - {data_key: Bonus Experience, id: QGMIKG, title: Bonus Experience, width: '100'}
     role: [tonal-data-grid, wide]
     show_page_controls: false
   type: DataGrid
 - components:
   - components:
-    - layout_properties: {grid_position: 'JNRIEV,YJMKYY GPYTUI,WOCMAR'}
-      name: adjust_level_label
-      properties: {align: center, text: Adjust Level}
-      type: Label
-    - event_bindings: {click: adjust_level_plus_button_click}
-      layout_properties: {grid_position: 'JNRIEV,QIJLQM QAZULN,KCNJZO'}
-      name: adjust_level_plus_button
-      properties: {icon: 'fa:plus', text: ''}
-      type: Button
     - event_bindings: {click: adjust_level_minus_button_click}
-      layout_properties: {grid_position: 'JNRIEV,QIJLQM JWQPNF,TBJSDP'}
+      layout_properties: {grid_position: 'GGEVRB,DDHIDW'}
       name: adjust_level_minus_button
       properties: {icon: 'fa:minus', text: ''}
       type: Button
     - data_bindings:
-      - {code: 'self.item[''Adjust Level'']', property: text, writeback: true}
-      event_bindings: {change: adjust_level_text_box_change}
-      layout_properties: {grid_position: 'JNRIEV,YJMKYY ESTEIE,VMFQPK'}
-      name: adjust_level_text_box
-      properties: {align: center, text: '0', type: number}
-      type: TextBox
-    layout_properties: {}
-    name: outlined_card_1
-    properties: {role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
-      name: party_level_label
-      properties: {align: center, text: '  Party Level'}
-      type: Label
-    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
-      name: party_level_text_box
-      properties: {align: center, enabled: false, type: number}
-      type: TextBox
-    name: outlined_card_1_copy
-    properties: {role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
-      name: coin_value_label
-      properties: {align: center, text: Gold Coin Conversion}
-      type: Label
-    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
-      name: coin_value_text_box
-      properties: {align: center, enabled: false, type: number}
-      type: TextBox
-    name: outlined_card_1_copy_copy
-    properties: {role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'GGEVRB,TGEYFI'}
-      name: bonus_experience_label
-      properties: {align: center, text: Bonus Experience}
-      type: Label
-    - layout_properties: {grid_position: 'DHCATO,XDZGBD'}
-      name: bonus_experience_text_box
-      properties: {align: center, enabled: false, type: number}
-      type: TextBox
-    name: outlined_card_1_copy_copy_copy
-    properties: {role: elevated-card}
+      - {code: 'self.item[''RecommendedLevel''][''Level'']', property: text, writeback: false}
+      event_bindings: {click: recommended_party_level_button_click}
+      layout_properties: {grid_position: 'GGEVRB,YDDTLW'}
+      name: recommended_party_level_button
+      properties: {text: ''}
+      type: Button
+    - event_bindings: {click: adjust_level_plus_button_click}
+      layout_properties: {grid_position: 'GGEVRB,EJNIOD'}
+      name: adjust_level_plus_button
+      properties: {icon: 'fa:plus', text: ''}
+      type: Button
+    layout_properties: {width: 313.875083984375}
+    name: party_level_card
+    properties: {col_widths: '{"TGEYFI":26,"DDHIDW":17,"EJNIOD":17}', role: elevated-card}
     type: ColumnPanel
   - components:
     - data_bindings:
@@ -147,11 +80,11 @@ components:
       properties: {role: outlined-button, text: Lose Scenario}
       type: Button
     layout_properties: {width: 240.9964919921875}
-    name: outlined_card_2
+    name: finish_scenario_card
     properties: {role: elevated-card, spacing_above: small}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'TEVKFC,GAZSKC'}
-  name: flow_panel_1
+  name: settings_flow_panel
   properties: {}
   type: FlowPanel
 container: {type: ColumnPanel}

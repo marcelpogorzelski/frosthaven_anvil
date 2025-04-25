@@ -1,8 +1,7 @@
 components:
 - components:
-  - layout_properties: {}
-    name: finish_scenario_repeating_panel
-    properties: {item_template: FinishScenario_copy.FinishScenarioRowTemplate}
+  - name: finish_scenario_repeating_panel
+    properties: {item_template: FinishScenarioOld.RowTemplate1}
     type: RepeatingPanel
   layout_properties: {full_width_row: true, grid_position: 'DXIBMY,FNSWYS'}
   name: finish_scenario_data_grid
@@ -22,6 +21,50 @@ components:
     - {data_key: Flamefruit, id: RNKXAX, title: Flamefruit, width: '100'}
     - {data_key: Rockroot, id: RKKWTJ, title: Rockroot, width: '100'}
     - {data_key: Snowthistle, id: JGRNRO, title: Snowthistle, width: '100'}
+    role: [tonal-data-grid, wide]
+    show_page_controls: false
+  type: DataGrid
+- components:
+  - components:
+    - event_bindings: {change: scenario_drop_down_change}
+      layout_properties: {column: STHZLY}
+      name: scenario_drop_down
+      properties: {enabled: true}
+      type: DropDown
+    - data_bindings: []
+      layout_properties: {column: EIZMVZ}
+      name: status_drop_down
+      properties:
+        enabled: true
+        items: [Available, Finished, Locked]
+        visible: false
+      type: DropDown
+    - data_bindings: []
+      layout_properties: {column: HIWFZW}
+      name: notes_text_box
+      properties: {enabled: true, hide_text: false, visible: false}
+      type: TextBox
+    - data_bindings: []
+      layout_properties: {column: WKCNMN}
+      name: chests_text_box
+      properties: {enabled: true, hide_text: false, visible: false}
+      type: TextBox
+    - layout_properties: {column: QDJPXU}
+      name: name_label
+      properties: {visible: false}
+      type: Label
+    name: scenario_data_row_panel
+    properties: {}
+    type: DataRowPanel
+  layout_properties: {full_width_row: true, grid_position: 'GOVUWL,ZDHRAE'}
+  name: scenario_data_grid
+  properties:
+    columns:
+    - {data_key: Number, id: STHZLY, title: Number, width: '200'}
+    - {data_key: Name, id: QDJPXU, title: Name, width: '300'}
+    - {data_key: Status, id: EIZMVZ, title: Status, width: '150'}
+    - {data_key: Chests, id: WKCNMN, title: Chests, width: '300'}
+    - {data_key: Notes, expand: true, id: HIWFZW, title: Notes, width: '500'}
     role: [tonal-data-grid, wide]
     show_page_controls: false
   type: DataGrid
@@ -49,7 +92,7 @@ components:
       properties: {align: center, text: '0', type: number}
       type: TextBox
     layout_properties: {}
-    name: adjust_level_card
+    name: outlined_card_1
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
@@ -61,7 +104,7 @@ components:
       name: party_level_text_box
       properties: {align: center, enabled: false, type: number}
       type: TextBox
-    name: party_level_card
+    name: outlined_card_1_copy
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
@@ -73,7 +116,7 @@ components:
       name: coin_value_text_box
       properties: {align: center, enabled: false, type: number}
       type: TextBox
-    name: gold_value_card
+    name: outlined_card_1_copy_copy
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
@@ -85,7 +128,7 @@ components:
       name: bonus_experience_text_box
       properties: {align: center, enabled: false, type: number}
       type: TextBox
-    name: bonus_experience_cards
+    name: outlined_card_1_copy_copy_copy
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
@@ -104,11 +147,11 @@ components:
       properties: {role: outlined-button, text: Lose Scenario}
       type: Button
     layout_properties: {width: 240.9964919921875}
-    name: finish_scenario_card
+    name: outlined_card_2
     properties: {role: elevated-card, spacing_above: small}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'TEVKFC,GAZSKC'}
-  name: settings_flow_panel
+  name: flow_panel_1
   properties: {}
   type: FlowPanel
 container: {type: ColumnPanel}
