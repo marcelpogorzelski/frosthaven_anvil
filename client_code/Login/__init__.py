@@ -9,6 +9,8 @@ from ..Main import Main
 from ..Frosthaven import Frosthaven
 from .. import Utilites
 
+#https://github.com/gudyfr/fhtts
+
 class Login(LoginTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.

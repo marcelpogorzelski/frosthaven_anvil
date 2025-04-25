@@ -15,18 +15,31 @@ class Frosthaven(FrosthavenTemplate):
     self.init_components(**properties)
 
     self.adjust_width()
-    self.frosthaven_label.text = 'Frosthaven'
     self.item = app_tables.frosthaven.search()[0]
     self.fill_total_defense()
     self.fill_prosperity_level()
 
   def adjust_width(self):
-    if window.innerWidth < 900:
-      column_width = (window.innerWidth / 3) - 10
-      data_grid_columns = self.data_grid_1.columns
-      for column in data_grid_columns:
-        column['width'] = column_width
-      self.data_grid_1.columns = data_grid_columns
+    if window.innerWidth >= 900:
+      return
+      
+    column_width = (window.innerWidth / 3) - 10
+    
+    data_grid_columns = self.data_grid_1.columns
+    for column in data_grid_columns:
+      column['width'] = column_width
+    self.data_grid_1.columns = data_grid_columns
+
+    label_data_grid_columns = self.label_data_grid.columns
+    label_data_grid_columns[0]['width'] = window.innerWidth - 30
+    self.label_data_grid.columns = label_data_grid_columns
+
+    name_data_grid_columns = self.name_data_grid.columns
+    print(window.innerWidth)
+    name_data_grid_columns[0]['width'] = column_width * 2
+    name_data_grid_columns[1]['width'] = column_width
+
+    self.name_data_grid.columns = name_data_grid_columns
 
   def fill_total_defense(self):
     moral = self.moral_text_box.text or 0

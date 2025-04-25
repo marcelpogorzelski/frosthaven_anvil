@@ -57,10 +57,12 @@ class Scenario(ScenarioTemplate):
     scenario_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{number:03d}-{name}.png?raw=true")
     map_layout_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/scenario-layout/fh-{number:03d}-{name}-map-layout.png?raw=true")
     loot_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/scenario-layout/fh-{number:03d}-{name}-loot.png?raw=true")
+    key_image_media = URLMedia(f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/scenario-layout/fh-{number:03d}-{name}-scenario-key.png?raw=true")
     
     self.scenario_image.source = scenario_image_media
     self.map_layout_image.source = map_layout_image_media
     self.loot_image.source = loot_image_media
+    self.key_image.source = key_image_media
 
   def start_scenario_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -71,3 +73,10 @@ class Scenario(ScenarioTemplate):
     """This method is called when the button is clicked"""
     self.frosthaven['ActiveScenario'] = None
     self.activate_buttons()
+
+  def notes_show_link_click(self, **event_args):
+    if self.notes_text_area.visible:
+      self.notes_show_link.icon = 'fa:angle-double-down'
+    else:
+      self.notes_show_link.icon = 'fa:angle-double-up'
+    self.notes_text_area.visible = not self.notes_text_area.visible

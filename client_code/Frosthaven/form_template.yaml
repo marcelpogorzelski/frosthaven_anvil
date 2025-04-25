@@ -2,54 +2,43 @@ components:
 - components:
   - components:
     - components:
-      - layout_properties: {grid_position: 'OYESGM,GELTEQ'}
-        name: prosperity_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Prosperity:'}
-        type: Label
-      - data_bindings:
-        - {code: 'self.item[''Prosperity'']', property: text, writeback: true}
-        event_bindings: {change: prosperity_level_change}
-        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
-        name: prosperity_text_box
-        properties: {align: center, type: number}
-        type: TextBox
-      layout_properties: {column: VJQQOR}
-      name: inspiration_outlined_card_copy
-      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
-      type: ColumnPanel
-    - components:
-      - data_bindings: []
-        layout_properties: {grid_position: 'HUIRBK,IOMOVJ'}
-        name: prosperity_level_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Prosperity Level:'}
-        type: Label
-      - data_bindings: []
-        event_bindings: {}
-        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
-        name: prosperity_level_text_box
-        properties: {align: center, enabled: false, type: number}
-        type: TextBox
-      layout_properties: {column: OJLQEN}
-      name: total_defense_outlined_card_copy
-      properties: {col_widths: '{}', role: elevated-card}
-      type: ColumnPanel
-    - components:
-      - data_bindings: []
-        layout_properties: {grid_position: 'ETBKBS,RTSYPI'}
-        name: frosthaven_label
-        properties: {align: center, font_size: 45, role: null, spacing_above: medium, spacing_below: medium}
-        type: Label
+      - layout_properties: {grid_position: 'TAIHYO,ILHTSH'}
+        name: frosthaven_image
+        properties: {source: _/theme/fh-frosthaven-logo.png}
+        type: Image
       layout_properties: {column: JKSDUP}
-      name: outlined_card_1
-      properties: {role: elevated-card}
+      name: label_card
+      properties: {role: null}
       type: ColumnPanel
-    name: frosthaven_data_row_panel
+    name: label_data_row_panel
     properties: {}
     type: DataRowPanel
-  - name: spacer_1
-    properties: {height: 32}
-    type: Spacer
+  layout_properties: {full_width_row: true, grid_position: 'GSFAHV,RGZOOW'}
+  name: label_data_grid
+  properties:
+    auto_header: false
+    columns:
+    - {data_key: column_1, id: JKSDUP, title: Column 1, width: '900'}
+    show_page_controls: false
+  type: DataGrid
+- components:
   - components:
+    - components:
+      - layout_properties: {grid_position: 'LDIBWI,OCZLKB'}
+        name: name_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Party Name:'}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''Name'']', property: text, writeback: true}
+        event_bindings: {}
+        layout_properties: {grid_position: 'MEHUWP,PZSTJI'}
+        name: name_text_box
+        properties: {align: center}
+        type: TextBox
+      layout_properties: {column: JKSDUP}
+      name: name_outlined_card
+      properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
+      type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'OYESGM,GELTEQ'}
         name: inspiration_label
@@ -66,6 +55,20 @@ components:
       name: inspiration_outlined_card
       properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
       type: ColumnPanel
+    name: data_row_panel_1
+    properties: {}
+    type: DataRowPanel
+  layout_properties: {full_width_row: true, grid_position: 'GKHDOM,IHKIIL'}
+  name: name_data_grid
+  properties:
+    auto_header: false
+    columns:
+    - {data_key: column_1, expand: false, id: JKSDUP, title: Column 1, width: '600'}
+    - {data_key: column_2, id: VJQQOR, title: Column 2, width: '300'}
+    show_page_controls: false
+  type: DataGrid
+- components:
+  - components:
     - components:
       - layout_properties: {grid_position: 'AASGLK,QQBPXJ'}
         name: soldiers_label
@@ -83,20 +86,36 @@ components:
       properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
       type: ColumnPanel
     - components:
-      - layout_properties: {grid_position: 'LDIBWI,OCZLKB'}
-        name: name_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Party Name:'}
+      - layout_properties: {grid_position: 'OYESGM,GELTEQ'}
+        name: prosperity_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Prosperity:'}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''Name'']', property: text, writeback: true}
-        event_bindings: {}
-        layout_properties: {grid_position: 'MEHUWP,PZSTJI'}
-        name: name_text_box
-        properties: {align: center}
+        - {code: 'self.item[''Prosperity'']', property: text, writeback: true}
+        event_bindings: {change: prosperity_level_change}
+        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
+        name: prosperity_text_box
+        properties: {align: center, type: number}
         type: TextBox
       layout_properties: {column: JKSDUP}
-      name: name_outlined_card
-      properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
+      name: inspiration_outlined_card_copy
+      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
+      type: ColumnPanel
+    - components:
+      - data_bindings: []
+        layout_properties: {grid_position: 'HUIRBK,IOMOVJ'}
+        name: prosperity_level_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Prosperity Level:'}
+        type: Label
+      - data_bindings: []
+        event_bindings: {}
+        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
+        name: prosperity_level_text_box
+        properties: {align: center, enabled: false, type: number}
+        type: TextBox
+      layout_properties: {column: VJQQOR}
+      name: total_defense_outlined_card_copy
+      properties: {col_widths: '{}', role: elevated-card}
       type: ColumnPanel
     name: info_data_row_panel
     properties: {}
@@ -331,7 +350,7 @@ components:
     - {data_key: column_1, id: JKSDUP, title: Column 1, width: '300'}
     - {data_key: column_2, id: VJQQOR, title: Column 2, width: '300'}
     - {data_key: column_3, id: OJLQEN, title: Column 3, width: '300'}
-    role: wide
+    role: null
     show_page_controls: false
   type: DataGrid
 container:
