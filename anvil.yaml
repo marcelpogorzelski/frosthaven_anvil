@@ -338,7 +338,7 @@ db_schema:
     server: full
     title: Retired Characters
   scenario_info:
-    client: search
+    client: full
     columns:
     - admin_ui: {order: 0, width: 200}
       name: Level
@@ -355,6 +355,15 @@ db_schema:
     - admin_ui: {order: 4, width: 200}
       name: Bonus Experience
       type: number
+    - admin_ui: {order: 5, width: 200}
+      name: NextGold
+      type: bool
+    - admin_ui: {order: 6, width: 200}
+      name: Selected
+      type: bool
+    - admin_ui: {order: 7, width: 200}
+      name: Recommended
+      type: bool
     server: full
     title: Scenario Info
   scenarios:

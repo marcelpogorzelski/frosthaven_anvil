@@ -30,6 +30,7 @@ class Scenario(ScenarioTemplate):
     self.set_complexity_image()
     self.get_images()
     self.set_chests()
+    self.set_scenario_difficulty_table()
     
 
   def reset_buttons(self):
@@ -73,6 +74,9 @@ class Scenario(ScenarioTemplate):
     self.loot_image.source = loot_image_media
     self.key_image.source = key_image_media
 
+  def set_scenario_difficulty_table(self):
+    self.scenario_difficulty_repeating_panel.items = app_tables.scenario_info.search()
+
   def set_chests(self):
     self.chests_repeating_panel.items = self.item['Treasures']
 
@@ -102,3 +106,31 @@ class Scenario(ScenarioTemplate):
 
   def chests_link_click(self, **event_args):
     self.show_link(self.chests_repeating_panel, self.chests_link)
+
+  def scenario_difficulty_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.show_link(self.scenario_difficulty_data_grid, self.scenario_difficulty_link)
+
+  def decrease_difficulty_link_click(self, **event_args):
+    scenario_difficulty = app_tables.scenario_info.get(Selected=True)
+    if scenario_difficulty['Level'] == 0:
+      return
+    new_difficulty = scenario_difficulty['Level'] - 1
+    new_scenario_difficulty = app_tables.scenario_info.get(Level=new_difficulty)
+    scenario_difficulty['Selected'] = False
+    new_scenario_difficulty['Selected'] = True
+    self.set_scenario_difficulty_table()
+
+  def reset_difficulty_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    pass
+
+  def increase_difficulty_link_click(self, **event_args):
+    scenario_difficulty = app_tables.scenario_info.get(Selected=True)
+    if scenario_difficulty['Level'] == 7:
+      return
+    new_difficulty = scenario_difficulty['Level'] + 1
+    new_scenario_difficulty = app_tables.scenario_info.get(Level=new_difficulty)
+    scenario_difficulty['Selected'] = False
+    new_scenario_difficulty['Selected'] = True
+    self.set_scenario_difficulty_table()

@@ -120,6 +120,58 @@ components:
     properties: {col_widths: '{"NTYSIB":30,"EBLQIG":30,"HOKCSY":35,"NFJQEX":25}', role: elevated-card, wrap_on: never}
     type: ColumnPanel
   - components:
+    - event_bindings: {click: scenario_difficulty_link_click}
+      layout_properties: {grid_position: 'JWRADN,ZYCYGV'}
+      name: scenario_difficulty_link
+      properties: {align: center, icon: 'fa:angle-double-down', icon_align: right_edge, text: Scenario Difficulty}
+      type: Link
+    - components:
+      - layout_properties: {}
+        name: scenario_difficulty_repeating_panel
+        properties: {background: '', item_template: Scenario.ScenarioiDifficultyRowTemplate, role: null}
+        type: RepeatingPanel
+      - components:
+        - layout_properties: {width: 29.9400634765625}
+          name: spacer_1
+          properties: {height: 32}
+          type: Spacer
+        - event_bindings: {click: decrease_difficulty_link_click}
+          layout_properties: {}
+          name: decrease_difficulty_link
+          properties: {align: center, icon: 'fa:minus'}
+          type: Link
+        - event_bindings: {click: reset_difficulty_link_click}
+          layout_properties: {}
+          name: reset_difficulty_link
+          properties: {align: center, icon: 'fa:repeat'}
+          type: Link
+        - event_bindings: {click: increase_difficulty_link_click}
+          layout_properties: {}
+          name: increase_difficulty_link
+          properties: {align: center, icon: 'fa:plus'}
+          type: Link
+        layout_properties: {slot: footer}
+        name: flow_panel_1
+        properties: {}
+        type: FlowPanel
+      layout_properties: {grid_position: 'HYLVRY,JPZLBT'}
+      name: scenario_difficulty_data_grid
+      properties:
+        columns:
+        - {data_key: Level, id: OYBRYX, title: Level}
+        - {data_key: Gold Conversion, id: GQQYMU, title: Gold Conversion}
+        - {data_key: Trap Damage, id: XDXDLP, title: Trap Damage}
+        - {data_key: Hazardous Terrain, id: XXAOGR, title: Hazardous Terrain}
+        - {data_key: Bonus Experience, id: NZCZNL, title: Bonus Experience}
+        role: tonal-data-grid
+        show_page_controls: false
+        visible: false
+      type: DataGrid
+    layout_properties: {grid_position: 'FMFBUO,CGDAVA'}
+    name: scenario_info_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
     - event_bindings: {click: chests_link_click}
       layout_properties: {grid_position: 'ZHGYHI,YQKCVP'}
       name: chests_link

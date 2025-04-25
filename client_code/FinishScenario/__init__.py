@@ -60,14 +60,13 @@ class FinishScenario(FinishScenarioTemplate):
     self.set_party_level(new_party_level)
 
   def recommended_party_level_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
     self.item['PartyLevel'] = self.item['RecommendedLevel']
     self.refresh_data_bindings()
 
   def get_gold(self, player_resources):
     gold = player_resources["Gold"] or 0
     gold_coin = player_resources["GoldCoins"] or 0
-    return (gold_coin * self.coin_value_text_box.text) + gold
+    return (gold_coin * self.item['PartyLevel']['Gold Conversion']) + gold
 
   def get_experience(self, player_resources):
     experience = self.bonus_experience + (player_resources["Experience"] or 0)
@@ -104,7 +103,7 @@ class FinishScenario(FinishScenarioTemplate):
 
   def finish_scenario_outlined_button_click(self, **event_args):
     if event_args["sender"].tag == "Completed":
-      self.bonus_experience = self.bonus_experience_text_box.text or 0
+      self.bonus_experience = self.item['PartyLevel']['Bonus Experience'] or 0
     elif event_args["sender"].tag == "Lost":
       self.bonus_experience = 0
 
@@ -170,4 +169,11 @@ class FinishScenario(FinishScenarioTemplate):
     main_form = get_open_form()
     main_form.navbar_link_select(main_form.calendar_link)
     main_form.change_form(Calendar())
+
+
+  def gold_conversion_background(self):
+    if self.item['PartyLevel']['NextGold']:
+      return 'theme:Primary Container'
+    return None
+      
 
