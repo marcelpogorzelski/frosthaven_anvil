@@ -43,7 +43,7 @@ components:
   - data_bindings: []
     event_bindings: {click: finish_scenario_link_click}
     layout_properties: {grid_position: 'EKMNVS,LHMDPE'}
-    name: finish_scenario
+    name: finish_scenario_link
     properties: {align: center, text: Finish Scenario, visible: true}
     type: Link
   - layout_properties: {grid_position: 'DDZSXC,XODLNV'}

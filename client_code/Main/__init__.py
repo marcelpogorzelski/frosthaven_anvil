@@ -139,13 +139,17 @@ class Main(MainTemplate):
     self.change_form(Scenario(scenario), self.scenario_link)    
 
   def scenario_link_click(self, **event_args):
+    self.setup_active_scenario()
     self.open_scenario(self.scenario)
 
   def retired_characters_link_click(self, **event_args):
     self.change_form(RetiredCharacters(), event_args['sender'])
 
+  def open_finish_scenario(self, win=False):
+    self.change_form(FinishScenario(win), self.finish_scenario_link)
+
   def finish_scenario_link_click(self, **event_args):
-    self.change_form(FinishScenario(), event_args['sender'])
+    self.open_finish_scenario()
 
   def unlock_edit_link_click(self, **event_args):
     self.change_form(UnlockEdit(), event_args['sender'])

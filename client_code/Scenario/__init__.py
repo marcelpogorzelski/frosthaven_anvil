@@ -29,7 +29,7 @@ class Scenario(ScenarioTemplate):
     self.activate_buttons()
     self.set_complexity_image()
     self.get_images()
-    self.set_chests()
+    self.set_treasures()
     self.set_scenario_difficulty_table()
     
 
@@ -77,8 +77,21 @@ class Scenario(ScenarioTemplate):
   def set_scenario_difficulty_table(self):
     self.scenario_difficulty_repeating_panel.items = app_tables.scenario_info.search()
 
-  def set_chests(self):
+  def set_treasures(self):
     self.chests_repeating_panel.items = self.item['Treasures']
+    self.chests_repeating_panel.set_event_handler('x-check-looted', self.check_looted)
+
+  #def self.check_looted_event(self, **event_args)
+
+  def check_looted(self, **event_args):
+    if not self.item['Treasures']:
+      self.item['Looted'] = True
+      return
+      
+    if all(treasure['Looted'] for treasure in self.item['Treasures']):
+      self.item['Looted'] = True
+    else:
+      self.item['Looted'] = False
 
   def start_scenario_button_click(self, **event_args):
     self.frosthaven['ActiveScenario'] = self.item
@@ -92,7 +105,6 @@ class Scenario(ScenarioTemplate):
     main_form = get_open_form()
     main_form.setup_active_scenario()
     navigation.go_to_scenarios()
-    #self.activate_buttons()
 
   def show_link(self, component, link):
     if component.visible:
@@ -105,6 +117,12 @@ class Scenario(ScenarioTemplate):
     self.show_link(self.notes_text_area, self.notes_show_link)
 
   def chests_link_click(self, **event_args):
+    if not self.item['TreasuresSeen']:
+      if not confirm("This is the first time opening Treasures. Are you sure?"):
+        return
+      self.item['TreasuresSeen'] = True
+      self.item.update()
+    self.check_looted()
     self.show_link(self.chests_repeating_panel, self.chests_link)
 
   def scenario_difficulty_link_click(self, **event_args):
@@ -112,25 +130,40 @@ class Scenario(ScenarioTemplate):
     self.show_link(self.scenario_difficulty_data_grid, self.scenario_difficulty_link)
 
   def decrease_difficulty_link_click(self, **event_args):
-    scenario_difficulty = app_tables.scenario_info.get(Selected=True)
-    if scenario_difficulty['Level'] == 0:
+    selected_difficulty = app_tables.scenario_info.get(Selected=True)
+    if not selected_difficulty['Prev']:
       return
-    new_difficulty = scenario_difficulty['Level'] - 1
-    new_scenario_difficulty = app_tables.scenario_info.get(Level=new_difficulty)
-    scenario_difficulty['Selected'] = False
-    new_scenario_difficulty['Selected'] = True
+    new_difficulty = selected_difficulty['Prev']
+    selected_difficulty['Selected'] = False
+    new_difficulty['Selected'] = True
+
     self.set_scenario_difficulty_table()
 
   def reset_difficulty_link_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    pass
-
-  def increase_difficulty_link_click(self, **event_args):
-    scenario_difficulty = app_tables.scenario_info.get(Selected=True)
-    if scenario_difficulty['Level'] == 7:
-      return
-    new_difficulty = scenario_difficulty['Level'] + 1
-    new_scenario_difficulty = app_tables.scenario_info.get(Level=new_difficulty)
-    scenario_difficulty['Selected'] = False
-    new_scenario_difficulty['Selected'] = True
+    selected_difficulty = app_tables.scenario_info.get(Selected=True)
+    recommended_difficulty = app_tables.scenario_info.get(Recommended=True)
+    selected_difficulty['Selected'] = False
+    recommended_difficulty['Selected'] = True
     self.set_scenario_difficulty_table()
+    
+  def increase_difficulty_link_click(self, **event_args):
+    selected_difficulty = app_tables.scenario_info.get(Selected=True)
+    if not selected_difficulty['Next']:
+      return
+    new_difficulty = selected_difficulty['Next']
+    selected_difficulty['Selected'] = False
+    new_difficulty['Selected'] = True
+
+    self.set_scenario_difficulty_table()
+
+  def finish_scenario(self, win):
+    if win:
+      self.item['Status'] = 'Finished'
+    self.frosthaven['ActiveScenario'] = None
+    navigation.go_to_finish_scenario(win=win)
+    
+  def win_scenario_button_click(self, **event_args):
+    self.finish_scenario(win=True)
+
+  def lose_scenario_button_click(self, **event_args):
+    self.finish_scenario(win=False)

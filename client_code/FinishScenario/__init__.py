@@ -24,9 +24,13 @@ def string_helper(player_resources, resource_list):
 
 class FinishScenario(FinishScenarioTemplate):
   def __init__(self, win=False, **properties):
+    self.scenario_difficulty = app_tables.scenario_info.get(Selected=True)
+    
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.item = app_tables.frosthaven.search()[0]
+    
+    
     self.finish_scenario_repeating_panel.items = [
       {"Player": "Håvard"},
       {"Player": "John Magne"},
@@ -34,6 +38,12 @@ class FinishScenario(FinishScenarioTemplate):
       {"Player": "Marcel"},
       {"Player": "Frosthaven"},
     ]
+
+    if win:
+      self.win_radio_button.selected = True
+    else:
+      self.lose_radio_button.selected = True
+      
 
   def set_party_level_old(self):
     adjust_level = self.adjust_level_text_box.text or 0
@@ -44,29 +54,32 @@ class FinishScenario(FinishScenarioTemplate):
     average_level = math.ceil(total_levels / 4 / 2) + adjust_level
     self.party_level_text_box.text = average_level
 
-  def set_party_level(self, party_level):
-    if party_level < 0 or party_level > 7:
-      return
-    scenario_level = app_tables.scenario_info.get(Level=party_level)
-    self.item['PartyLevel'] = scenario_level
+  def set_scenario_difficulty(self, new_difficulty):
+    self.scenario_difficulty['Selected'] = False
+    new_difficulty['Selected'] = True
+    self.scenario_difficulty = new_difficulty
     self.refresh_data_bindings()
 
   def adjust_level_plus_button_click(self, **event_args):
-    new_party_level = self.item['PartyLevel']['Level'] + 1
-    self.set_party_level(new_party_level)
+    if not self.scenario_difficulty['Next']:
+      return
+    new_difficulty = self.scenario_difficulty['Next']
+    self.set_scenario_difficulty(new_difficulty)
     
   def adjust_level_minus_button_click(self, **event_args):
-    new_party_level = self.item['PartyLevel']['Level'] - 1
-    self.set_party_level(new_party_level)
+    if not self.scenario_difficulty['Prev']:
+      return
+    new_difficulty = self.scenario_difficulty['Prev']
+    self.set_scenario_difficulty(new_difficulty)
 
   def recommended_party_level_button_click(self, **event_args):
-    self.item['PartyLevel'] = self.item['RecommendedLevel']
-    self.refresh_data_bindings()
+    new_difficulty = app_tables.scenario_info.get(Recommended=True)
+    self.set_scenario_difficulty(new_difficulty)
 
   def get_gold(self, player_resources):
     gold = player_resources["Gold"] or 0
     gold_coin = player_resources["GoldCoins"] or 0
-    return (gold_coin * self.item['PartyLevel']['Gold Conversion']) + gold
+    return (gold_coin * self.scenario_difficulty['Gold Conversion']) + gold
 
   def get_experience(self, player_resources):
     experience = self.bonus_experience + (player_resources["Experience"] or 0)
@@ -103,7 +116,7 @@ class FinishScenario(FinishScenarioTemplate):
 
   def finish_scenario_outlined_button_click(self, **event_args):
     if event_args["sender"].tag == "Completed":
-      self.bonus_experience = self.item['PartyLevel']['Bonus Experience'] or 0
+      self.bonus_experience = self.scenario_difficulty['Bonus Experience'] or 0
     elif event_args["sender"].tag == "Lost":
       self.bonus_experience = 0
 
@@ -172,7 +185,7 @@ class FinishScenario(FinishScenarioTemplate):
 
 
   def gold_conversion_background(self):
-    if self.item['PartyLevel']['NextGold']:
+    if self.scenario_difficulty['NextGold']:
       return 'theme:Primary Container'
     return None
       

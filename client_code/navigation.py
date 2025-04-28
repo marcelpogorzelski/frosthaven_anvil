@@ -23,3 +23,8 @@ def go_to_scenario(scenario):
 def go_to_scenarios():
   main_form = get_open_form()
   main_form.open_scenarios()
+
+def go_to_finish_scenario(win):
+  main_form = get_open_form()
+  main_form.setup_active_scenario()
+  main_form.open_finish_scenario(win)

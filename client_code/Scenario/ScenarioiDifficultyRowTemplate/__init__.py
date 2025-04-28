@@ -13,11 +13,8 @@ class ScenarioiDifficultyRowTemplate(ScenarioiDifficultyRowTemplateTemplate):
 
     if self.item['Recommended']:
       self.background = 'theme:Secondary Container'
-      #self.background = 'theme:Primary Container'
       
-      #self.role = ['tonal-card']
     if self.item['Selected']:
-      #self.background = 'theme:Primary Container'
       self.role = 'tonal-card'
       self.background = 'theme:Primary Container'
       
