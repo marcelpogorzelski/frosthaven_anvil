@@ -107,7 +107,7 @@ db_schema:
       name: Class
       target: classes
       type: link_single
-    - admin_ui: {order: 13, width: 52}
+    - admin_ui: {order: 1.25, width: 52}
       name: Level
       type: number
     - admin_ui: {order: 14, width: 99}
@@ -122,7 +122,7 @@ db_schema:
     - admin_ui: {order: 17, width: 79}
       name: Mastery2
       type: bool
-    - admin_ui: {order: 18, width: 200}
+    - admin_ui: {order: 1.375, width: 81}
       name: NextLevelExperience
       type: number
     - admin_ui: {order: 19, width: 200}

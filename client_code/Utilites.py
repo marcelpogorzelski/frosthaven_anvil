@@ -9,15 +9,29 @@ from datetime import datetime
 import math
 
 
-def add_experience(character, experience):
-  if experience < 1:
-    return
-  
-  experience += character['Experience']
+def set_experience(character, experience):
+  experience = max(min(experience, 500),0)
   level, next_level_exp = get_level(experience)
   character.update(Experience=experience, Level=level, NextLevelExperience=next_level_exp)
 
+def add_experience(character, experience):
+  if experience < 1:
+    return
+  set_experience(character, character['Experience'] + experience)
+
+
+def set_checkmarks(character, checkmarks):
+  checkmarks = max(min(checkmarks, 18),0)
+
+  retired_count = character['RetiredCount']
+  mastery_count = character['MasteryCount']
+  level = character['Level'] - 1
+
+  perks = retired_count + mastery_count + int(checkmarks/3) + level
   
+  character.update(CheckMarks=checkmarks, Perks=perks)
+  
+
 def add_checkmarks(character, checkmarks):
   if checkmarks < 1:
     return
@@ -25,12 +39,8 @@ def add_checkmarks(character, checkmarks):
   current_checkmarks = character['CheckMarks']
   if current_checkmarks == 18:
     return
-  
-  new_checkmarks = min(current_checkmarks + checkmarks, 18)
-  check_perk_diff = int(new_checkmarks/3) - int(current_checkmarks/3)
-  
-  new_perks = character['Perks'] + check_perk_diff
-  character.update(CheckMarks=new_checkmarks, Perks=new_perks)
+
+  set_checkmarks(character, checkmarks + current_checkmarks)
 
 def update_recommended_party_level():
   total_levels = sum(character["Level"] for character in app_tables.characters.search())

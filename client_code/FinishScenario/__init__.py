@@ -218,7 +218,6 @@ class FinishScenario(FinishScenarioTemplate):
       database_entry.update()
 
     recommended_scenario_difficulty = Utilites.update_recommended_party_level()
-    
     if recommended_scenario_difficulty:
       alert(f"New recommended party level: {recommended_scenario_difficulty['Level']}")
 

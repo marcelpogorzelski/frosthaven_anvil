@@ -104,7 +104,6 @@ class Scenario(ScenarioTemplate):
     self.activate_buttons()
 
   def leave_scenario_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
     self.frosthaven['ActiveScenario'] = None
     main_form = get_open_form()
     main_form.setup_active_scenario()

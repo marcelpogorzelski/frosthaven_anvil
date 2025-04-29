@@ -14,33 +14,39 @@ class Resources(ResourcesTemplate):
 
     self.item = app_tables.frosthaven.search()[0]
     self.character_repeating_panel.items = app_tables.characters.search(tables.order_by('Player'))
+    self.character_repeating_panel.set_event_handler('x-update-value', self.update_value)
     self.total_data_row_panel.item = self.get_resources()
+
+  def update_value(self, **event_args):
+    for character in self.character_repeating_panel.get_components():
+      if character.item['Player'] == 'Marcel':
+        print('R: ' + str(character.item['Arrowvine']))
 
   def get_resources(self):
     total_resources = {'Name': 'Total', 'Gold': 0, 'Lumber': 0, 'Metal': 0, 'Hide': 0, 'Arrowvine': 0, 'Axenut': 0, 'Corpsecap': 0, 'Flamefruit': 0, 'Rockroot': 0, 'Snowthistle': 0}
 
-    for character in self.character_repeating_panel.get_components():
-      total_resources['Gold'] += character.player_gold_text_box.text or 0
-      total_resources['Lumber'] += character.player_lumber_text_box.text or 0
-      total_resources['Metal'] += character.player_metal_text_box.text or 0
-      total_resources['Hide'] += character.player_hide_text_box.text or 0
-      total_resources['Arrowvine'] += character.player_arrowvine_text_box.text or 0
-      total_resources['Axenut'] += character.player_axenut_text_box.text or 0
-      total_resources['Corpsecap'] += character.player_corpsecap_text_box.text or 0
-      total_resources['Flamefruit'] += character.player_flamefruit_text_box.text or 0
-      total_resources['Rockroot'] += character.player_rockroot_text_box.text or 0
-      total_resources['Snowthistle'] += character.player_snowthistle_text_box.text or 0
+    #for character in self.character_repeating_panel.get_components():
+    #  total_resources['Gold'] += character.player_gold_text_box.text or 0
+    #  total_resources['Lumber'] += character.player_lumber_text_box.text or 0
+     # total_resources['Metal'] += character.player_metal_text_box.text or 0
+     # total_resources['Hide'] += character.player_hide_text_box.text or 0
+     ## total_resources['Arrowvine'] += character.player_arrowvine_text_box.text or 0
+     # total_resources['Axenut'] += character.player_axenut_text_box.text or 0
+     # total_resources['Corpsecap'] += character.player_corpsecap_text_box.text or 0
+     # total_resources['Flamefruit'] += character.player_flamefruit_text_box.text or 0
+     # total_resources['Rockroot'] += character.player_rockroot_text_box.text or 0
+     # total_resources['Snowthistle'] += character.player_snowthistle_text_box.text or 0
 
     #total_resources['Gold'] += self.frosthaven_gold_text_box.text or 0
-    total_resources['Lumber'] += self.frosthaven_lumber_text_box.text or 0
-    total_resources['Metal'] += self.frosthaven_metal_text_box.text or 0
-    total_resources['Hide'] += self.frosthaven_hide_text_box.text or 0
-    total_resources['Arrowvine'] += self.frosthaven_arrowvine_text_box.text or 0
-    total_resources['Axenut'] += self.frosthaven_axenut_text_box.text or 0
-    total_resources['Corpsecap'] += self.frosthaven_corpsecap_text_box.text or 0
-    total_resources['Flamefruit'] += self.frosthaven_flamefruit_text_box.text or 0
-    total_resources['Rockroot'] += self.frosthaven_rockroot_text_box.text or 0
-    total_resources['Snowthistle'] += self.frosthaven_snowthistle_text_box.text or 0
+    #total_resources['Lumber'] += self.frosthaven_lumber_text_box.text or 0
+    #total_resources['Metal'] += self.frosthaven_metal_text_box.text or 0
+    ##total_resources['Hide'] += self.frosthaven_hide_text_box.text or 0
+    #total_resources['Arrowvine'] += self.frosthaven_arrowvine_text_box.text or 0
+    #total_resources['Axenut'] += self.frosthaven_axenut_text_box.text or 0
+    #total_resources['Corpsecap'] += self.frosthaven_corpsecap_text_box.text or 0
+    #total_resources['Flamefruit'] += self.frosthaven_flamefruit_text_box.text or 0
+    #total_resources['Rockroot'] += self.frosthaven_rockroot_text_box.text or 0
+    #total_resources['Snowthistle'] += self.frosthaven_snowthistle_text_box.text or 0
 
     return total_resources
     

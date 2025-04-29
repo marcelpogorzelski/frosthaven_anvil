@@ -85,26 +85,18 @@ components:
       name: label_5
       properties: {visible: false}
       type: Label
-    - layout_properties: {column: SBSASQ}
-      name: label_6
-      properties: {visible: false}
-      type: Label
     layout_properties: {}
     name: frosthaven_data_row_panel
-    properties: {align: center, visible: true}
+    properties: {align: center}
     type: DataRowPanel
   - components:
     - layout_properties: {column: DQHQWZ}
       name: label_2
-      properties: {visible: false}
+      properties: {}
       type: Label
     - layout_properties: {column: GZOHUF}
       name: label_4
       properties: {}
-      type: Label
-    - layout_properties: {column: SBSASQ}
-      name: label_7
-      properties: {visible: false}
       type: Label
     layout_properties: {}
     name: total_data_row_panel
@@ -116,7 +108,6 @@ components:
     columns:
     - {data_key: Name, expand: false, id: XSAFZX, title: Name, width: '150'}
     - {data_key: column_1, id: DQHQWZ, title: Experience, width: '100'}
-    - {data_key: CheckMarks, id: SBSASQ, title: Check Marks, width: '100'}
     - {data_key: Gold, expand: false, id: IYDZYZ, title: Gold, width: '100'}
     - {data_key: Lumber, id: TWVBIC, title: Lumber, width: '100'}
     - {data_key: Metal, id: AOSTAK, title: Metal, width: '100'}
