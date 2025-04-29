@@ -6,12 +6,55 @@ from anvil.tables import app_tables
 from anvil import URLMedia
 import json
 from datetime import datetime
+import math
 
+
+def add_experience(character, experience):
+  if experience < 1:
+    return
+  
+  experience += character['Experience']
+  level, next_level_exp = get_level(experience)
+  character.update(Experience=experience, Level=level, NextLevelExperience=next_level_exp)
+
+  
+def add_checkmarks(character, checkmarks):
+  if checkmarks < 1:
+    return
+  
+  current_checkmarks = character['CheckMarks']
+  if current_checkmarks == 18:
+    return
+  
+  new_checkmarks = min(current_checkmarks + checkmarks, 18)
+  check_perk_diff = int(new_checkmarks/3) - int(current_checkmarks/3)
+  
+  new_perks = character['Perks'] + check_perk_diff
+  character.update(CheckMarks=new_checkmarks, Perks=new_perks)
+
+def update_recommended_party_level():
+  total_levels = sum(character["Level"] for character in app_tables.characters.search())
+
+  recommended_level = math.ceil(total_levels / 4 / 2)
+  
+  new_recommended_scenario_difficulty = app_tables.scenario_info.get(Level=recommended_level)
+  if new_recommended_scenario_difficulty['Recommended']:
+    return False
+    
+  current_recommended_scenario_difficulty = app_tables.scenario_info.get(Recommended=True)
+  
+  current_recommended_scenario_difficulty['Recommended'] = False
+  new_recommended_scenario_difficulty['Recommended'] = True
+
+  return new_recommended_scenario_difficulty
+  
 def get_level(experience):
   experience_per_level = [0, 45, 95,150,210,275,345,420,500]
   for level, next_level_experience in zip(range(9), experience_per_level):
     if experience < next_level_experience:
       return level, next_level_experience
+
+  return 9, 501
 
 def get_experience(level):
   if level > 9:

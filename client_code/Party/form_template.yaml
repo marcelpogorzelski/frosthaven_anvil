@@ -12,6 +12,8 @@ components:
     - {data_key: Name, id: VJQQOR, title: Name}
     - {data_key: Experience, id: OJLQEN, title: Experience}
     - {data_key: Level, id: XWVXCR, title: Level}
+    - {data_key: CheckMarks, id: SEAILR, title: Check Marks}
+    - {data_key: Perks, id: RIXPAF, title: Perks}
     role: tonal-data-grid
     show_page_controls: false
   type: DataGrid

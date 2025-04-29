@@ -33,6 +33,8 @@ class FinishScenario(FinishScenarioTemplate):
 
     if app_tables.available_buildings.get(Number=90)['CurrentLevel'] == 3:
       self.challenge_2_radio_button.visible = True
+
+    #print(Utilites.get_level(500))
     
     
     self.finish_scenario_repeating_panel.items = [
@@ -56,15 +58,6 @@ class FinishScenario(FinishScenarioTemplate):
 
     self.bonus_experience = bonus_experience + (self.other_experience_text_box.text or 0) + challenges_experience
     self.refresh_data_bindings()
-
-  def set_party_level_old(self):
-    adjust_level = self.adjust_level_text_box.text or 0
-
-    total_levels = 0
-    for character in app_tables.characters.search():
-      total_levels += character["Level"]
-    average_level = math.ceil(total_levels / 4 / 2) + adjust_level
-    self.party_level_text_box.text = average_level
 
   def set_scenario_difficulty(self, new_difficulty):
     self.scenario_difficulty['Selected'] = False
@@ -102,13 +95,14 @@ class FinishScenario(FinishScenarioTemplate):
     if experience == 0:
       return False
       
-    current_level = player['Level']
     current_exp = player['Experience']
-    new_exp = current_exp + experience
+    
+    next_level_exp = player['NextLevelExperience']
+    new_exp = min(current_exp + experience, 500)
 
-    new_level, _ = Utilites.get_level(new_exp)
-    if new_level > current_level:
-      return new_level
+    if new_exp >=  next_level_exp:
+       return player['Level'] + 1
+
     return False
 
   def check_if_perk_form_checks(self, player, checks):
@@ -116,6 +110,9 @@ class FinishScenario(FinishScenarioTemplate):
       return False
 
     current_perks = int(player['CheckMarks']/3)
+    if current_perks == 6:
+      return False
+      
     new_perks = int((player['CheckMarks']+ checks)/3)
 
     if new_perks > current_perks:
@@ -190,39 +187,40 @@ class FinishScenario(FinishScenarioTemplate):
       "Snowthistle",
     ]
 
+    
     for player_input in self.finish_scenario_repeating_panel.get_components():
       player_name = player_input.item["Player"]
       player_resources = player_input.item
 
       if player_name == "Frosthaven":
         database_entry = app_tables.frosthaven.search()[0]
+        town_guard_checks = int(self.challenge_0_radio_button.get_group_value() or 0)
+        if town_guard_checks > 0:
+          database_entry['TownGuardCheckMarks'] += town_guard_checks
       else:
         database_entry = app_tables.characters.get(Player=player_name)
 
         experience = self.get_experience(player_resources)
-        if experience > 0:
-          database_entry["Experience"] += experience
-          database_entry["Level"], database_entry["NextLevelExperience"] = (
-            Utilites.get_level(database_entry["Experience"])
-          )
-
+        
+        Utilites.add_experience(database_entry, experience)
+        
         gold = self.get_gold(player_resources)
         if gold > 0:
           database_entry["Gold"] += gold
 
         if player_resources["CheckMarks"]:
-          checkmarks = database_entry["CheckMarks"] + (
-            player_resources["CheckMarks"] or 0
-          )
-          if checkmarks > 18:
-            checkmarks = 18
-          database_entry["CheckMarks"] = checkmarks
+          Utilites.add_checkmarks(database_entry, player_resources["CheckMarks"] or 0)
 
       for resource_name in resource_names:
         if not player_resources[resource_name]:
           continue
         database_entry[resource_name] += player_resources[resource_name] or 0
       database_entry.update()
+
+    recommended_scenario_difficulty = Utilites.update_recommended_party_level()
+    
+    if recommended_scenario_difficulty:
+      alert(f"New recommended party level: {recommended_scenario_difficulty['Level']}")
 
     main_form = get_open_form()
     main_form.navbar_link_select(main_form.calendar_link)
