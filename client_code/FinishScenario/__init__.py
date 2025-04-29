@@ -25,10 +25,14 @@ def string_helper(player_resources, resource_list):
 class FinishScenario(FinishScenarioTemplate):
   def __init__(self, win=False, **properties):
     self.scenario_difficulty = app_tables.scenario_info.get(Selected=True)
-    
+    self.bonus_experience = 0
+    #self.set_bonus_exp()
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.item = app_tables.frosthaven.search()[0]
+
+    if app_tables.available_buildings.get(Number=90)['CurrentLevel'] == 3:
+      self.challenge_2_radio_button.visible = True
     
     
     self.finish_scenario_repeating_panel.items = [
@@ -38,12 +42,20 @@ class FinishScenario(FinishScenarioTemplate):
       {"Player": "Marcel"},
       {"Player": "Frosthaven"},
     ]
-
+    
     if win:
       self.win_radio_button.selected = True
-    else:
-      self.lose_radio_button.selected = True
-      
+
+    self.set_bonus_exp()
+
+  def set_bonus_exp(self):
+    bonus_experience = 0
+    if self.win_radio_button.selected:
+      bonus_experience = self.scenario_difficulty['Bonus Experience']
+    challenges_experience = int(self.challenge_0_radio_button.get_group_value() or 0) * 2
+
+    self.bonus_experience = bonus_experience + (self.other_experience_text_box.text or 0) + challenges_experience
+    self.refresh_data_bindings()
 
   def set_party_level_old(self):
     adjust_level = self.adjust_level_text_box.text or 0
@@ -59,6 +71,7 @@ class FinishScenario(FinishScenarioTemplate):
     new_difficulty['Selected'] = True
     self.scenario_difficulty = new_difficulty
     self.refresh_data_bindings()
+    self.set_bonus_exp()
 
   def adjust_level_plus_button_click(self, **event_args):
     if not self.scenario_difficulty['Next']:
@@ -85,11 +98,42 @@ class FinishScenario(FinishScenarioTemplate):
     experience = self.bonus_experience + (player_resources["Experience"] or 0)
     return experience
 
+  def check_if_level_up(self, player, experience):
+    if experience == 0:
+      return False
+      
+    current_level = player['Level']
+    current_exp = player['Experience']
+    new_exp = current_exp + experience
+
+    new_level, _ = Utilites.get_level(new_exp)
+    if new_level > current_level:
+      return new_level
+    return False
+
+  def check_if_perk_form_checks(self, player, checks):
+    if checks == 0:
+      return False
+
+    current_perks = int(player['CheckMarks']/3)
+    new_perks = int((player['CheckMarks']+ checks)/3)
+
+    if new_perks > current_perks:
+      return True
+    return False
+  
+
   def get_player_string(self, player_name, player_resources):
     player_string = player_name + ":\n"
 
+    new_level = None
     if player_name != "Frosthaven":
+      player = app_tables.characters.get(Player=player_name)
+
       experience = self.get_experience(player_resources)
+
+      new_level = self.check_if_level_up(player, experience)
+      new_perk = self.check_if_perk_form_checks(player, player_resources["CheckMarks"] or 0)
 
       gold = self.get_gold(player_resources)
 
@@ -111,15 +155,15 @@ class FinishScenario(FinishScenarioTemplate):
       player_resources, ["Flamefruit", "Rockroot", "Snowthistle"]
     )
 
+    if new_level:
+      player_string += f"  - Leveled up to level {new_level}!"
+    if new_perk:
+      player_string += "  - New Perk from check marks!"
+
     player_string += "\n"
     return player_string
 
-  def finish_scenario_outlined_button_click(self, **event_args):
-    if event_args["sender"].tag == "Completed":
-      self.bonus_experience = self.scenario_difficulty['Bonus Experience'] or 0
-    elif event_args["sender"].tag == "Lost":
-      self.bonus_experience = 0
-
+  def finish_scenario_button_click(self, **event_args):
     # {'Player': 'Håvard', 'Experience': None, 'Gold': 1, 'GoldCoins': 3, 'Lumber': None, 'Metal': None, 'Hide': None, 'Arrowvine': None, 'Axenut': None, 'Corpsecap': None, 'Flamefruit': None, 'Rockroot': None, 'Snowthistle': None}
     total_string = "Changed Values:\n"
 
@@ -132,7 +176,7 @@ class FinishScenario(FinishScenarioTemplate):
 
     if not confirm(content=total_string, large=True):
       return
-
+    return
     resource_names = [
       "Lumber",
       "Metal",
@@ -188,5 +232,14 @@ class FinishScenario(FinishScenarioTemplate):
     if self.scenario_difficulty['NextGold']:
       return 'theme:Primary Container'
     return None
+
+  def other_experience_text_box_change(self, **event_args):
+    self.set_bonus_exp()
+
+  def outcome_radio_button_change(self, **event_args):
+    self.set_bonus_exp()
+
+  def challenge_radio_button_change(self, **event_args):
+    self.set_bonus_exp()
       
 

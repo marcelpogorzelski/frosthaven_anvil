@@ -74,40 +74,108 @@ components:
     properties: {col_widths: '{}', role: elevated-card}
     type: ColumnPanel
   - components:
-    - layout_properties: {grid_position: 'NMNPLF,MQMANM'}
-      name: win_radio_button
-      properties: {text: Win}
-      type: RadioButton
-    - layout_properties: {grid_position: 'NTQPXX,XLRCZK'}
-      name: lose_radio_button
-      properties: {text: Lose}
-      type: RadioButton
-    layout_properties: {}
-    name: outcome_card
+    - components:
+      - layout_properties: {col_xs: 0, row: WKPUBB, width_xs: 12}
+        name: challenges_label
+        properties: {align: center, role: title, text: Challenges}
+        type: Label
+      - data_bindings:
+        - {code: '0', property: value, writeback: false}
+        event_bindings: {change: challenge_radio_button_change}
+        layout_properties: {col_xs: 0, row: WKPUBB, width_xs: 12}
+        name: challenge_0_radio_button
+        properties: {align: center, group_name: challengesRadioGroup, selected: true, text: '0', value: ''}
+        type: RadioButton
+      - data_bindings:
+        - {code: '1', property: value, writeback: false}
+        event_bindings: {change: challenge_radio_button_change}
+        layout_properties: {col_xs: 0, row: XGGNAC, width_xs: 12}
+        name: challenge_1_radio_button
+        properties: {align: center, group_name: challengesRadioGroup, selected: false, text: '1', value: ''}
+        type: RadioButton
+      - data_bindings:
+        - {code: '2', property: value, writeback: false}
+        event_bindings: {change: challenge_radio_button_change}
+        layout_properties: {col_xs: 1, row: XSMYCF, width_xs: 10}
+        name: challenge_2_radio_button
+        properties: {align: center, group_name: challengesRadioGroup, text: '2', value: '', visible: false}
+        type: RadioButton
+      layout_properties: {grid_position: 'EMDJFU,SYSGSB'}
+      name: challenges_grid_panel
+      properties: {}
+      type: GridPanel
+    layout_properties: {width: 150.454833984375}
+    name: challenges_card
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
-    - data_bindings:
-      - {code: '''Completed''', property: tag, writeback: false}
-      event_bindings: {click: finish_scenario_outlined_button_click}
-      layout_properties: {grid_position: 'YHEOUT,FUDBOU'}
-      name: finish_scenario_outlined_button
-      properties: {role: outlined-button, text: ' Win Scenario '}
-      type: Button
-    - data_bindings:
-      - {code: '''Lost''', property: tag, writeback: false}
-      event_bindings: {click: finish_scenario_outlined_button_click}
-      layout_properties: {grid_position: 'JWWZKK,LGGAQR'}
-      name: finish_scenario_outlined_button_copy
-      properties: {role: outlined-button, text: Lose Scenario}
-      type: Button
-    layout_properties: {width: 240.9964919921875}
-    name: finish_scenario_card
-    properties: {role: elevated-card, spacing_above: small}
+    - components:
+      - layout_properties: {col_xs: 0, row: DDKRMJ, width_xs: 11}
+        name: experience_label
+        properties: {align: center, role: title, text: Experience}
+        type: Label
+      - layout_properties: {col_xs: 0, row: JHYLHH, width_xs: 5}
+        name: other_experience_label
+        properties: {align: center, role: input-prompt, text: Other Bonus}
+        type: Label
+      - event_bindings: {change: other_experience_text_box_change}
+        layout_properties: {col_xs: 5, row: JHYLHH, width_xs: 6}
+        name: other_experience_text_box
+        properties: {type: number}
+        type: TextBox
+      - layout_properties: {col_xs: 0, row: YSYPHQ, width_xs: 5}
+        name: label
+        properties: {align: center, role: input-prompt, text: Total Bonus}
+        type: Label
+      - data_bindings:
+        - {code: self.bonus_experience, property: text, writeback: false}
+        layout_properties: {col_xs: 5, row: YSYPHQ, width_xs: 6}
+        name: bonus_experience_text_box
+        properties: {enabled: false, type: number}
+        type: TextBox
+      layout_properties: {grid_position: 'JBDTQK,EAMSBN'}
+      name: experience_grid_panel
+      properties: {}
+      type: GridPanel
+    layout_properties: {width: 283.7742919921875}
+    name: experience_card
+    properties: {col_widths: '{}', role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - components:
+      - layout_properties: {col_xs: 1, row: PMKWRM, width_xs: 10}
+        name: outcome_label
+        properties: {align: center, role: title, text: Outcome}
+        type: Label
+      - data_bindings: []
+        event_bindings: {change: outcome_radio_button_change}
+        layout_properties: {col_xs: 1, row: TCVMHV, width_xs: 5}
+        name: win_radio_button
+        properties: {align: center, group_name: outcomeRadioGroup, text: Win}
+        type: RadioButton
+      - event_bindings: {change: outcome_radio_button_change}
+        layout_properties: {col_xs: 6, row: TCVMHV, width_xs: 4}
+        name: lose_radio_button
+        properties: {align: center, group_name: outcomeRadioGroup, selected: true, text: Lose, value: ''}
+        type: RadioButton
+      - data_bindings:
+        - {code: '''Completed''', property: tag, writeback: false}
+        event_bindings: {click: finish_scenario_button_click}
+        layout_properties: {col_xs: 0, row: RJFFDC, width_xs: 12}
+        name: finish_scenario_button
+        properties: {role: filled-button, text: ' Finish Scenario '}
+        type: Button
+      layout_properties: {grid_position: 'KKWAOJ,UOTENH'}
+      name: outcome_grid_panel
+      properties: {}
+      type: GridPanel
+    layout_properties: {width: 221.6839599609375}
+    name: outcome_card
+    properties: {role: elevated-card}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'TEVKFC,GAZSKC'}
   name: settings_flow_panel
-  properties: {}
+  properties: {align: left}
   type: FlowPanel
 container:
   data_bindings: []

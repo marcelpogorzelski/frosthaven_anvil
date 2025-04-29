@@ -47,6 +47,8 @@ class Scenario(ScenarioTemplate):
     self.win_scenario_button.visible = True
     self.lose_scenario_button.visible = True
     self.leave_scenario_button.visible = True
+    self.key_and_loot_card.visible = True
+    self.map_layout_card.visible = True
 
 
   def set_complexity_image(self):
@@ -94,6 +96,8 @@ class Scenario(ScenarioTemplate):
       self.item['Looted'] = False
 
   def start_scenario_button_click(self, **event_args):
+    self.key_and_loot_card.visible = True
+    self.map_layout_card.visible = True
     self.frosthaven['ActiveScenario'] = self.item
     main_form = get_open_form()
     main_form.setup_active_scenario()
