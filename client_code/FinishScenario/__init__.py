@@ -17,7 +17,7 @@ def string_helper(player_resources, resource_list):
     if player_resources[resource]:
       resource_string_list.append(f"{resource}: {player_resources[resource] or 0}")
 
-  if resource_list:
+  if resource_string_list:
     return "  - " + ", ".join(resource_string_list) + "\n"
   return ""
 
@@ -127,6 +127,7 @@ class FinishScenario(FinishScenarioTemplate):
     player_string = player_name + ":\n"
 
     new_level = None
+    new_perk = None
     if player_name != "Frosthaven":
       player = app_tables.characters.get(Player=player_name)
 
@@ -176,7 +177,7 @@ class FinishScenario(FinishScenarioTemplate):
 
     if not confirm(content=total_string, large=True):
       return
-    return
+    
     resource_names = [
       "Lumber",
       "Metal",
