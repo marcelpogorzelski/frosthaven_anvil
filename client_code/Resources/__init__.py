@@ -40,7 +40,6 @@ class Resources(ResourcesTemplate):
     
 
   def set_total_resources(self):
-    #self.total_resources = {'Gold': 0, 'Lumber': 0, 'Metal': 0, 'Hide': 0, 'Arrowvine': 0, 'Axenut': 0, 'Corpsecap': 0, 'Flamefruit': 0, 'Rockroot': 0, 'Snowthistle': 0}
     self.total_resources = {resource: 0 for resource in Utilites.ALL_RESOURCES}
 
     for character in self.character_repeating_panel.get_components():

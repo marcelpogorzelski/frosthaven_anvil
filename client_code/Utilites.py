@@ -17,13 +17,16 @@ ALL_RESOURCES = ['Gold', 'Lumber', 'Metal', 'Hide', 'Arrowvine', 'Axenut', 'Corp
 def set_experience(character, experience):
   experience = max(min(experience, 500),0)
   level, next_level_exp = get_level(experience)
-  character.update(Experience=experience, Level=level, NextLevelExperience=next_level_exp)
 
+  level_diff = level - character['Level']
+  perks = character['Perks'] + level_diff
+  
+  character.update(Experience=experience, Level=level, NextLevelExperience=next_level_exp, Perks=perks)
+    
 def add_experience(character, experience):
   if experience < 1:
     return
   set_experience(character, character['Experience'] + experience)
-
 
 def set_checkmarks(character, checkmarks):
   checkmarks = max(min(checkmarks, 18),0)
@@ -35,7 +38,6 @@ def set_checkmarks(character, checkmarks):
   perks = retired_count + mastery_count + int(checkmarks/3) + level
   
   character.update(CheckMarks=checkmarks, Perks=perks)
-  
 
 def add_checkmarks(character, checkmarks):
   if checkmarks < 1:

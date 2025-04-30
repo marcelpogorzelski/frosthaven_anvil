@@ -139,6 +139,30 @@ components:
       properties: {align: center, icon: 'fa:angle-double-down', icon_align: right_edge, text: Scenario Difficulty}
       type: Link
     - components:
+      - components:
+        - layout_properties: {column: OYBRYX}
+          name: level_image
+          properties: {height: '45', source: _/theme/fh-level-crown-bw-icon.png}
+          type: Image
+        - layout_properties: {column: GQQYMU}
+          name: gold_image
+          properties: {height: '45', source: _/theme/resource_images/fh-money-bw-icon.png}
+          type: Image
+        - layout_properties: {column: XDXDLP}
+          name: trap_image
+          properties: {height: '45', source: _/theme/fh-overlay-tile-trap-color-icon.png}
+          type: Image
+        - layout_properties: {column: XXAOGR}
+          name: hazard_image
+          properties: {height: '45', source: _/theme/fh-overlay-tile-hazardous-terrain-color-icon.png}
+          type: Image
+        - layout_properties: {column: NZCZNL}
+          name: experience_image
+          properties: {height: '45', source: _/theme/fh-xp-bw-icon.png}
+          type: Image
+        name: data_row_panel_1
+        properties: {}
+        type: DataRowPanel
       - layout_properties: {}
         name: scenario_difficulty_repeating_panel
         properties: {background: '', item_template: Scenario.ScenarioiDifficultyRowTemplate, role: null}

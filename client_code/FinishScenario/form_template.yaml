@@ -85,17 +85,50 @@ components:
 - components:
   - components:
     - components:
-      - components: []
-        data_bindings:
-        - {code: self.scenario_difficulty, property: item, writeback: false}
+      - components:
+        - layout_properties: {column: QOBSHF}
+          name: level_image
+          properties: {height: '40', source: _/theme/fh-level-crown-bw-icon.png}
+          type: Image
+        - layout_properties: {column: MPBEYT}
+          name: gold_conversion_image
+          properties: {height: '40', source: _/theme/resource_images/fh-money-bw-icon.png}
+          type: Image
+        - layout_properties: {column: QGMIKG}
+          name: bonus_exp_image
+          properties: {height: '40', source: _/theme/fh-xp-bw-icon.png}
+          type: Image
+        name: data_row_panel_1
+        properties: {}
+        type: DataRowPanel
+      - components:
+        - data_bindings:
+          - {code: 'self.scenario_difficulty[''Level'']', property: text, writeback: false}
+          layout_properties: {column: QOBSHF}
+          name: level_label
+          properties: {align: center}
+          type: Label
+        - data_bindings:
+          - {code: 'self.scenario_difficulty[''Gold Conversion'']', property: text, writeback: false}
+          layout_properties: {column: MPBEYT}
+          name: gold_con_label
+          properties: {align: center}
+          type: Label
+        - data_bindings:
+          - {code: 'self.scenario_difficulty[''Bonus Experience'']', property: text, writeback: false}
+          layout_properties: {column: QGMIKG}
+          name: bonus_exp_label
+          properties: {align: center}
+          type: Label
+        data_bindings: []
         layout_properties: {}
         name: party_data_row_panel
-        properties: {auto_display_data: true}
+        properties: {align: left, auto_display_data: true}
         type: DataRowPanel
       layout_properties: {grid_position: 'MQEZYR,ZAZFPU'}
       name: party_level_data_grid
       properties:
-        auto_header: true
+        auto_header: false
         columns:
         - {data_key: Level, id: QOBSHF, title: Level, width: '100'}
         - {data_key: Gold Conversion, expand: false, id: MPBEYT, title: Gold, width: '100'}
@@ -106,6 +139,10 @@ components:
         spacing_below: none
       type: DataGrid
     - components:
+      - layout_properties: {width: 22.92182998046875}
+        name: spacer_1
+        properties: {height: 32}
+        type: Spacer
       - event_bindings: {click: adjust_level_minus_button_click}
         name: adjust_level_minus_button
         properties: {icon: 'fa:minus', text: ''}
@@ -126,7 +163,7 @@ components:
       name: flow_panel_1
       properties: {}
       type: FlowPanel
-    layout_properties: {width: 330.236333984375}
+    layout_properties: {width: 331.896083984375}
     name: party_level_card
     properties: {col_widths: '{}', role: elevated-card}
     type: ColumnPanel

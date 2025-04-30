@@ -12,7 +12,9 @@ class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.setup_tags()
 
+  def setup_tags(self):
     self.gold_text_box.tag = 'Gold'
     self.lumber_text_box.tag = 'Lumber'
     self.metal_text_box.tag = 'Metal'
@@ -25,12 +27,9 @@ class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
     self.rockroot_text_box.tag = 'Rockroot'
     self.snowthistle_text_box.tag = 'Snowthistle'
 
-
   def text_box_change(self, **event_args):
     self.item[event_args['sender'].tag] = event_args['sender'].text or 0
     self.parent.raise_event('x-update-value')
-    #resource_form = self.parent.parent.parent
-    #resource_form.total_row_replace()
 
   def experience_text_box_change(self, **event_args):
     experience = int(self.experience_text_box.text) or 0
