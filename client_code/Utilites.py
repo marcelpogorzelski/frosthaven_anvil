@@ -78,30 +78,19 @@ def get_experience(level):
     level = 9
   experience_per_level = [0, 45, 95,150,210,275,345,420,500]
   return experience_per_level[level-1]
-  
+
 def get_prosperity_level(prosperity):
-  prosperity_level = 1
-  if prosperity < 6:
-    prosperity_level = 1
-  elif prosperity < 15:
-    prosperity_level = 2
-  elif prosperity < 27:
-    prosperity_level = 3
-  elif prosperity < 42:
-    prosperity_level = 4
-  elif prosperity < 60:
-    prosperity_level = 5
-  elif prosperity < 81:
-    prosperity_level = 6
-  elif prosperity < 105:
-    prosperity_level = 7
-  elif prosperity < 132:
-    prosperity_level = 8
-  elif prosperity >= 132:
-    prosperity_level = 9
+  prosperity_per_level = [0, 6, 15, 27, 42, 60, 81, 105, 132]
 
-  return prosperity_level
+  for level, required_prosperity in zip(range(9), prosperity_per_level):
+    if prosperity < required_prosperity:
+      return level, required_prosperity
+  return 9, 133
 
+def set_prosperity(frosthaven, prosperity):
+  prosperity = max(min(prosperity, 132),0)
+  level, next_level = get_prosperity_level(prosperity)
+  frosthaven.update(Prosperity=prosperity, ProsperityLevel=level, ProsperityNextLevel=next_level)
 
 def get_total_defense(moral, defense):
   moral_defense = 0
@@ -129,6 +118,19 @@ def database_to_dict(database, linked_columns=None):
         row_dict[column] = dict(row_dict[column])
     dict_list.append(row_dict)
   return dict_list
+
+def bounded_text_box(text_box, min_value, max_value):
+  if not text_box.text:
+    return
+    
+  if text_box.text > max_value:
+    text_box.text = max_value
+    
+  if text_box.text < min_value:
+    text_box.text = min_value
+
+def retire_character(character):
+  pass
 
 def get_backup():
   backup = {}

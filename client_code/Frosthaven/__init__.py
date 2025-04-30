@@ -17,7 +17,7 @@ class Frosthaven(FrosthavenTemplate):
     self.adjust_width()
     self.item = app_tables.frosthaven.search()[0]
     self.fill_total_defense()
-    self.fill_prosperity_level()
+
 
   def adjust_width(self):
     if window.innerWidth >= 900:
@@ -51,12 +51,8 @@ class Frosthaven(FrosthavenTemplate):
   def total_defense_change(self, **event_args):
     self.fill_total_defense()
 
-  def fill_prosperity_level(self):
-    prosperity = self.prosperity_text_box.text or 0
-    self.prosperity_level_text_box.text = Utilites.get_prosperity_level(
-      prosperity=prosperity
-    )
 
   def prosperity_level_change(self, **event_args):
-    self.fill_prosperity_level()
+    Utilites.bounded_text_box(self.prosperity_text_box, 0, 132)
+    Utilites.set_prosperity(self.item, self.prosperity_text_box.text or 0)
 

@@ -204,7 +204,7 @@ db_schema:
     - admin_ui: {order: 17, width: 96}
       name: Adjust Level
       type: number
-    - admin_ui: {order: 0.5, width: 85}
+    - admin_ui: {order: 21.5, width: 85}
       name: Prosperity
       type: number
     - admin_ui: {order: 18, width: 200}
@@ -221,6 +221,12 @@ db_schema:
       type: link_single
     - admin_ui: {order: 21, width: 200}
       name: TownGuardCheckMarks
+      type: number
+    - admin_ui: {order: 22, width: 200}
+      name: ProsperityLevel
+      type: number
+    - admin_ui: {order: 23, width: 200}
+      name: ProsperityNextLevel
       type: number
     server: full
     title: Frosthaven

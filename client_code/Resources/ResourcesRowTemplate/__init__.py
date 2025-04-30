@@ -28,22 +28,17 @@ class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
     self.snowthistle_text_box.tag = 'Snowthistle'
 
   def text_box_change(self, **event_args):
+    Utilites.bounded_text_box(event_args['sender'], 0, 10000)
     self.item[event_args['sender'].tag] = event_args['sender'].text or 0
     self.parent.raise_event('x-update-value')
 
   def experience_text_box_change(self, **event_args):
-    experience = int(self.experience_text_box.text) or 0
-    if experience > 500:
-      self.experience_text_box.text = 500
-    if experience < 0:
-      self.experience_text_box.text = 0
+    Utilites.bounded_text_box(self.experience_text_box, 0, 500)
     
-    Utilites.set_experience(self.item, experience)
+    Utilites.set_experience(self.item, self.experience_text_box.text or 0)
 
   def check_text_box_change(self, **event_args):
-    checkmarks = int(self.check_text_box.text) or 0
-    if checkmarks > 18:
-      self.check_text_box.text = 18
-    if checkmarks < 0:
-      self.check_text_box.text = 0
-    Utilites.set_checkmarks(self.item, checkmarks)
+    Utilites.bounded_text_box(self.check_text_box, 0, 18)
+    #checkmarks = int(self.check_text_box.text) or 0
+
+    Utilites.set_checkmarks(self.item, self.check_text_box.text or 0)

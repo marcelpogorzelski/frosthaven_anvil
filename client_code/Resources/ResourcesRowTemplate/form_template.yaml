@@ -76,7 +76,7 @@ components:
   properties: {type: number}
   type: TextBox
 - data_bindings:
-  - {code: 'self.item[''Experience'']', property: text, writeback: true}
+  - {code: 'self.item[''Experience'']', property: text, writeback: false}
   - {code: self.item, property: tag, writeback: false}
   event_bindings: {change: experience_text_box_change}
   layout_properties: {column: DQHQWZ}

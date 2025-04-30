@@ -50,6 +50,7 @@ class Resources(ResourcesTemplate):
       self.total_resources[resource] += self.item[resource] or 0
 
   def text_box_change(self, **event_args):
+    Utilites.bounded_text_box(event_args['sender'], 0, 10000)
     self.item[event_args['sender'].tag] = event_args['sender'].text or 0
     self.set_total_resources()
     self.refresh_data_bindings()
