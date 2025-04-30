@@ -131,6 +131,10 @@ db_schema:
     - admin_ui: {order: 20, width: 200}
       name: MasteryCount
       type: number
+    - admin_ui: {order: 21, width: 200}
+      name: Items
+      target: items
+      type: link_multiple
     server: full
     title: Characters
   classes:

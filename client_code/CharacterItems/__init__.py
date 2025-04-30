@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ..SellItem import SellItem
 from .. import navigation
+from .. import Utilites
 import math
 
 
@@ -19,26 +20,15 @@ class CharacterItems(CharacterItemsTemplate):
     self.total_price = 0
     self.total_herbs = 0
     self.player_name = player_name
+    self.character = app_tables.characters.get(Player=player_name)
+
     self.player_label.text = player_name
     self.image_border = 'thick solid green'
     self.populate_items()
 
   def populate_items(self):
-    if self.player_name == 'Håvard':
-      self.item_list = app_tables.items.search(Available=True, Håvard=True)
-      
-    if self.player_name == 'Marcel':
-      self.item_list = app_tables.items.search(Available=True, Marcel=True)
-      
-    if self.player_name == 'Kristian':
-      self.item_list = app_tables.items.search(Available=True, Kristian=True)
-      
-    if self.player_name == 'John Magne':
-      self.item_list = app_tables.items.search(Available=True, John_Magne=True)
-      
-
     self.character_items_flow_panel.clear()
-    for item in self.item_list:
+    for item in self.character['Items']:
       #display_mode = 'shrink_to_fit'
       display_mode = 'original_size'
       if item['Destilled']:
@@ -129,10 +119,9 @@ class CharacterItems(CharacterItemsTemplate):
       return
     if not confirm(items_string):
       return
-    player_name = self.player_name.replace(" ", "_")
+    
     for item in remove_item_list:
-      item[player_name] = False
-      item['AvailableCount'] += 1
-      item.update()
+      Utilites.remove_item(self.character, item)
+
     navigation.go_to_character(self.player_name)
 

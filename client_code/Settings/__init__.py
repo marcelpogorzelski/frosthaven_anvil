@@ -13,24 +13,15 @@ def parse_int_price(price):
     return int(price)
   return 0
 
-
 class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
-  def test_scenarios(self):
-    return
-    scenarios = app_tables.scenarios.search()
 
-    for scenario in scenarios:
-      treasures = scenario['Treasures']
-      if not treasures:
-        continue
-      if scenario['Status'] == 'Undiscovered':
-        continue
-      if all(map(lambda treasure: treasure['Looted'], treasures)):
-        scenario.update(Looted=True)
+    #self.test()
+    
+  def test(self):
+    pass
 
     # Any code you write here will run before the form opens.
   def export_button_click(self, **event_args):

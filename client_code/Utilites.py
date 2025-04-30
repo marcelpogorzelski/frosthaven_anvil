@@ -203,44 +203,54 @@ def transfer_all_to_frosthaven(character):
   prosperity = frosthaven['Prosperity'] + 2
   set_prosperity(frosthaven, prosperity)
 
-def reset_character(character, frosthaven):
-    prosperity_level = app_tables.frosthaven.search()[0]["ProsperityLevel"]
+def reset_character(character):
+  prosperity_level = app_tables.frosthaven.search()[0]["ProsperityLevel"]
 
-    starting_gold = (10 * prosperity_level) + 20
-    starintg_level = math.ceil(prosperity_level / 2)
+  starting_gold = (10 * prosperity_level) + 20
+  starintg_level = math.ceil(prosperity_level / 2)
 
-    starting_experience = get_experience(starintg_level)
-    next_level_experience = get_experience(starintg_level + 1)
+  starting_experience = get_experience(starintg_level)
+  next_level_experience = get_experience(starintg_level + 1)
 
-    retired_count = character['RetiredCount'] + 1
-    starting_perks = starintg_level - 1 + retired_count
-
-    character.update(
-      Name='',
-      Experience=starting_experience,
-      NextLevelExperience=next_level_experience,
-      Level=starintg_level,
-      Gold=starting_gold,
-      Lumber=0,
-      Metal=0,
-      Hide=0,
-      Arrowvine=0,
-      Axenut=0,
-      Corpsecap=0,
-      Flamefruit=0,
-      Rockroot=0,
-      Snowthistle=0,
-      CheckMarks=0,
-      MasteryCount=0,
-      Perks=starting_perks,
-      Mastery1=False,
-      Mastery2=False,
-      RetiredCount=retired_count,
-      Notes='',
-    )
+  retired_count = character['RetiredCount'] + 1
+  starting_perks = starintg_level - 1 + retired_count
+  
+  character.update(
+    Name='',
+    Experience=starting_experience,
+    NextLevelExperience=next_level_experience,
+    Level=starintg_level,
+    Gold=starting_gold,
+    Lumber=0,
+    Metal=0,
+    Hide=0,
+    Arrowvine=0,
+    Axenut=0,
+    Corpsecap=0,
+    Flamefruit=0,
+    Rockroot=0,
+    Snowthistle=0,
+    CheckMarks=0,
+    MasteryCount=0,
+    Perks=starting_perks,
+    Mastery1=False,
+    Mastery2=False,
+    RetiredCount=retired_count,
+    Notes='',
+  )
 
 def retire_character(character):
   add_to_retired(character)
   transfer_all_to_frosthaven(character)
   reset_character(character)
-  
+
+def remove_item(character, item):
+  character_items = character['Items']
+  if item in character_items:
+    character_items.remove(item)
+    character['Items'] = character_items
+
+  player_name = character['Player'].replace(" ", "_")
+  item[player_name] = False
+  item['AvailableCount'] += 1
+  item.update()
