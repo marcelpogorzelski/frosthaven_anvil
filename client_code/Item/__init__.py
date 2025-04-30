@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import navigation
+from .. import Utilites
 
 
 class Item(ItemTemplate):
@@ -66,11 +67,11 @@ class Item(ItemTemplate):
 
 
   def get_available_founds(self):
-    for resource in self.solo_resources:
+    for resource in Utilites.MATERIAL_AND_GOLD_RESOURCES:
       player_resource_count = self.player[resource]
       self.available_resources[resource] = {'Player': player_resource_count, 'Sum': -1}
       
-    for resource in self.combined_resources:
+    for resource in Utilites.HERB_RESOURCES:
       player_resource_count = self.player[resource]
       frosthaven_resource_count = self.frosthaven[resource]
       sum_resource_count = player_resource_count + frosthaven_resource_count

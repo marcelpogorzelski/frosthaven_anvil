@@ -1,5 +1,61 @@
 components:
 - components:
+  - components:
+    - layout_properties: {column: BKKTSA}
+      name: gold_image
+      properties: {height: '45', source: _/theme/resource_images/fh-money-bw-icon.png}
+      type: Image
+    - layout_properties: {column: KPWJHE}
+      name: gold_coins_image
+      properties: {height: '45', source: _/theme/resource_images/fh-treasure-chest-item-bw-icon.png}
+      type: Image
+    - layout_properties: {column: XIWIEI}
+      name: checks_image
+      properties: {height: '45', source: _/theme/fh-battle-goal-check-mark-bw-icon.png}
+      type: Image
+    - layout_properties: {column: CNEKNX}
+      name: lumber_image
+      properties: {height: '45', source: _/theme/resource_images/fh-lumber-bw-icon.png}
+      type: Image
+    - layout_properties: {column: IERWWQ}
+      name: metal_image
+      properties: {height: '45', source: _/theme/resource_images/fh-metal-bw-icon.png}
+      type: Image
+    - layout_properties: {column: XQTYTV}
+      name: hide_image
+      properties: {height: '45', source: _/theme/resource_images/fh-hide-bw-icon.png}
+      type: Image
+    - layout_properties: {column: BKAREF}
+      name: arrowvine_image
+      properties: {height: '45', source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
+      type: Image
+    - layout_properties: {column: GVVJXF}
+      name: axenut_image
+      properties: {height: '45', source: _/theme/resource_images/fh-axenut-bw-icon.png}
+      type: Image
+    - layout_properties: {column: XCBRVQ}
+      name: corpsecap_image
+      properties: {height: '45', source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
+      type: Image
+    - layout_properties: {column: RNKXAX}
+      name: flamefruit_image
+      properties: {height: '45', source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
+      type: Image
+    - layout_properties: {column: RKKWTJ}
+      name: rockroot_image
+      properties: {height: '45', source: _/theme/resource_images/fh-rockroot-bw-icon.png}
+      type: Image
+    - layout_properties: {column: JGRNRO}
+      name: snowthistle_image
+      properties: {height: '45', source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
+      type: Image
+    - layout_properties: {column: KYLSGG}
+      name: experience_image
+      properties: {height: '45', source: _/theme/fh-xp-bw-icon.png}
+      type: Image
+    name: header_data_row_panel
+    properties: {}
+    type: DataRowPanel
   - layout_properties: {}
     name: finish_scenario_repeating_panel
     properties: {item_template: FinishScenario.FinishScenarioRowTemplate}
@@ -7,6 +63,7 @@ components:
   layout_properties: {full_width_row: true, grid_position: 'DXIBMY,FNSWYS'}
   name: finish_scenario_data_grid
   properties:
+    auto_header: false
     columns:
     - {data_key: Player, id: YJVWJZ, title: Name, width: '150'}
     - {data_key: Experience, id: KYLSGG, title: Experience, width: '100'}
@@ -54,7 +111,7 @@ components:
         properties: {icon: 'fa:minus', text: ''}
         type: Button
       - data_bindings:
-        - {code: 'self.item[''RecommendedLevel''][''Level'']', property: text, writeback: false}
+        - {code: 'self.recommended_scenario_difficulty[''Level'']', property: text, writeback: false}
         event_bindings: {click: recommended_party_level_button_click}
         name: recommended_party_level_button
         properties: {text: ''}

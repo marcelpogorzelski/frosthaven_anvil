@@ -28,3 +28,7 @@ def go_to_finish_scenario(win):
   main_form = get_open_form()
   main_form.setup_active_scenario()
   main_form.open_finish_scenario(win)
+
+def go_to_calendar():
+  main_form = get_open_form()
+  main_form.open_calendar()

@@ -1,5 +1,61 @@
 components:
 - components:
+  - components:
+    - layout_properties: {column: DQHQWZ}
+      name: experience_image
+      properties: {height: '45', source: _/theme/fh-xp-bw-icon.png}
+      type: Image
+    - layout_properties: {column: SBSASQ}
+      name: checks_image
+      properties: {height: '45', source: _/theme/fh-battle-goal-check-mark-bw-icon.png}
+      type: Image
+    - layout_properties: {column: IYDZYZ}
+      name: gold_image
+      properties: {height: '45', source: _/theme/resource_images/fh-money-bw-icon.png}
+      type: Image
+    - layout_properties: {column: TWVBIC}
+      name: lumber_image
+      properties: {height: '45', source: _/theme/resource_images/fh-lumber-bw-icon.png}
+      type: Image
+    - layout_properties: {column: AOSTAK}
+      name: metal_image
+      properties: {height: '45', source: _/theme/resource_images/fh-metal-bw-icon.png}
+      type: Image
+    - layout_properties: {column: FOSWJJ}
+      name: hide_image
+      properties: {height: '45', source: _/theme/resource_images/fh-hide-bw-icon.png}
+      type: Image
+    - layout_properties: {column: QISJAP}
+      name: arrowvine_image
+      properties: {height: '45', source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
+      type: Image
+    - layout_properties: {column: UWWRFX}
+      name: axenut_image
+      properties: {height: '45', source: _/theme/resource_images/fh-axenut-bw-icon.png}
+      type: Image
+    - layout_properties: {column: YXYOUI}
+      name: corpsecap_image
+      properties: {height: '45', source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
+      type: Image
+    - layout_properties: {column: ZPALIO}
+      name: flamefruit_image
+      properties: {height: '45', source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
+      type: Image
+    - layout_properties: {column: HROJIF}
+      name: rockroot_image
+      properties: {height: '45', source: _/theme/resource_images/fh-rockroot-bw-icon.png}
+      type: Image
+    - layout_properties: {column: SSKCUR}
+      name: snowthistle_image
+      properties: {height: '45', source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
+      type: Image
+    - layout_properties: {column: GZOHUF}
+      name: notes_image
+      properties: {height: '45', source: _/theme/fh-section-bw-icon.png}
+      type: Image
+    name: data_row_panel_1
+    properties: {}
+    type: DataRowPanel
   - data_bindings: []
     layout_properties: {}
     name: character_repeating_panel
@@ -11,63 +67,64 @@ components:
       properties: {text: Frosthaven}
       type: Label
     - data_bindings:
-      - {code: 'self.item[''Lumber'']', property: text, writeback: true}
+      - {code: 'self.item[''Lumber'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: TWVBIC}
       name: frosthaven_lumber_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Metal'']', property: text, writeback: true}
+      - {code: 'self.item[''Metal'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: AOSTAK}
       name: frosthaven_metal_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Hide'']', property: text, writeback: true}
+      - {code: 'self.item[''Hide'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: FOSWJJ}
       name: frosthaven_hide_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Arrowvine'']', property: text, writeback: true}
+      - {code: 'self.item[''Arrowvine'']', property: text, writeback: false}
+      - {code: '''Arrowvine''', property: tag, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: QISJAP}
       name: frosthaven_arrowvine_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Axenut'']', property: text, writeback: true}
+      - {code: 'self.item[''Axenut'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: UWWRFX}
       name: frosthaven_axenut_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Corpsecap'']', property: text, writeback: true}
+      - {code: 'self.item[''Corpsecap'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: YXYOUI}
       name: frosthaven_corpsecap_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Flamefruit'']', property: text, writeback: true}
+      - {code: 'self.item[''Flamefruit'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: ZPALIO}
       name: frosthaven_flamefruit_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Rockroot'']', property: text, writeback: true}
+      - {code: 'self.item[''Rockroot'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: HROJIF}
       name: frosthaven_rockroot_text_box
       properties: {type: number}
       type: TextBox
     - data_bindings:
-      - {code: 'self.item[''Snowthistle'']', property: text, writeback: true}
+      - {code: 'self.item[''Snowthistle'']', property: text, writeback: false}
       event_bindings: {change: text_box_change}
       layout_properties: {column: SSKCUR}
       name: frosthaven_snowthistle_text_box
@@ -106,6 +163,12 @@ components:
       name: label_7
       properties: {visible: false}
       type: Label
+    - layout_properties: {column: XSAFZX}
+      name: label_8
+      properties: {align: left, text: Total}
+      type: Label
+    data_bindings:
+    - {code: self.total_resources, property: item, writeback: false}
     layout_properties: {}
     name: total_data_row_panel
     properties: {align: center}
@@ -113,6 +176,7 @@ components:
   layout_properties: {full_width_row: true, grid_position: 'MBXJUE,PFDFUW'}
   name: data_grid_1
   properties:
+    auto_header: false
     columns:
     - {data_key: Name, expand: false, id: XSAFZX, title: Name, width: '150'}
     - {data_key: column_1, id: DQHQWZ, title: Experience, width: '100'}

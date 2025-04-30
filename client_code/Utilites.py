@@ -8,6 +8,11 @@ import json
 from datetime import datetime
 import math
 
+MATERIAL_AND_GOLD_RESOURCES = ['Gold', 'Lumber', 'Metal', 'Hide']
+MATERIAL_RESOURCES = ['Lumber', 'Metal', 'Hide']
+HERB_RESOURCES = ['Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
+ALL_RESOURCES = ['Gold', 'Lumber', 'Metal', 'Hide', 'Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
+
 
 def set_experience(character, experience):
   experience = max(min(experience, 500),0)

@@ -6,9 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Utilites
-import math
-from ..Resources import Resources
-from ..Calendar import Calendar
+from .. import navigation
 
 
 def string_helper(player_resources, resource_list):
@@ -25,18 +23,16 @@ def string_helper(player_resources, resource_list):
 class FinishScenario(FinishScenarioTemplate):
   def __init__(self, win=False, **properties):
     self.scenario_difficulty = app_tables.scenario_info.get(Selected=True)
+    self.recommended_scenario_difficulty = app_tables.scenario_info.get(Recommended=True)
     self.bonus_experience = 0
     #self.set_bonus_exp()
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.item = app_tables.frosthaven.search()[0]
+    #self.item = app_tables.frosthaven.search()[0]
 
     if app_tables.available_buildings.get(Number=90)['CurrentLevel'] == 3:
       self.challenge_2_radio_button.visible = True
 
-    #print(Utilites.get_level(500))
-    
-    
     self.finish_scenario_repeating_panel.items = [
       {"Player": "Håvard"},
       {"Player": "John Magne"},
@@ -79,8 +75,8 @@ class FinishScenario(FinishScenarioTemplate):
     self.set_scenario_difficulty(new_difficulty)
 
   def recommended_party_level_button_click(self, **event_args):
-    new_difficulty = app_tables.scenario_info.get(Recommended=True)
-    self.set_scenario_difficulty(new_difficulty)
+    #new_difficulty = app_tables.scenario_info.get(Recommended=True)
+    self.set_scenario_difficulty(self.recommended_scenario_difficulty)
 
   def get_gold(self, player_resources):
     gold = player_resources["Gold"] or 0
@@ -221,9 +217,7 @@ class FinishScenario(FinishScenarioTemplate):
     if recommended_scenario_difficulty:
       alert(f"New recommended party level: {recommended_scenario_difficulty['Level']}")
 
-    main_form = get_open_form()
-    main_form.navbar_link_select(main_form.calendar_link)
-    main_form.change_form(Calendar())
+    navigation.go_to_calendar()
 
 
   def gold_conversion_background(self):

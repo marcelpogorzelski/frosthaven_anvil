@@ -129,7 +129,6 @@ class Scenario(ScenarioTemplate):
     self.show_link(self.chests_repeating_panel, self.chests_link)
 
   def scenario_difficulty_link_click(self, **event_args):
-    """This method is called when the link is clicked"""
     self.show_link(self.scenario_difficulty_data_grid, self.scenario_difficulty_link)
 
   def decrease_difficulty_link_click(self, **event_args):

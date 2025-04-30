@@ -27,7 +27,7 @@ class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
 
 
   def text_box_change(self, **event_args):
-    self.item[event_args['sender'].tag] = event_args['sender'].text
+    self.item[event_args['sender'].tag] = event_args['sender'].text or 0
     self.parent.raise_event('x-update-value')
     #resource_form = self.parent.parent.parent
     #resource_form.total_row_replace()

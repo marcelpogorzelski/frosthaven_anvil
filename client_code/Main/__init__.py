@@ -126,8 +126,11 @@ class Main(MainTemplate):
   def settings_link_click(self, **event_args):
     self.change_form(Settings(), event_args['sender'])
 
+  def open_calendar(self):
+    self.change_form(Calendar(), self.calendar_link)
+
   def calendar_link_click(self, **event_args):
-    self.change_form(Calendar(), event_args['sender'])
+    self.open_calendar()
 
   def open_scenarios(self):
     self.change_form(Scenarios(), self.scenarios_link)    
