@@ -16,28 +16,26 @@ class Item(ItemTemplate):
     self.item_image.source = item['Card']
     self.item = item
 
-    self.solo_resources = ['Gold', 'Lumber', 'Metal', 'Hide']
-    self.combined_resources = ['Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
+    self.frosthaven = app_tables.frosthaven.search()[0]
+
+    user = anvil.users.get_user(allow_remembered=True)
+    self.player = app_tables.characters.get(Player=user['email'])
     
     character_list = []
     character_list.append(('None', None))
     for character in app_tables.characters.search():
       character_list.append((str(character['Player']), character))
     self.character_drop_down.items = character_list
-    
-    self.frosthaven = app_tables.frosthaven.search()[0]
+    self.character_drop_down.selected_value = self.player
     
     self.craftable = True
-    self.player = None
-
     self.setup()
     
   def setup(self):
     self.reset()
     self.player = self.character_drop_down.selected_value
     if self.player:
-      player_name = self.player['Player'].replace(" ", "_")
-      if self.item[player_name]:
+      if self.item in self.player['Items']:
         self.price_label.text = 'You already own the item!'
         self.free_check_box.visible = False
         return
@@ -56,6 +54,7 @@ class Item(ItemTemplate):
       self.price_label.text = 'Add item for free'
       return
     self.parse_item_price(self.item)
+    
     if self.player:
       self.get_available_founds()
     
@@ -64,7 +63,6 @@ class Item(ItemTemplate):
     else:
       self.character_drop_down.visible = False
       self.character_label.visible = False
-
 
   def get_available_founds(self):
     for resource in Utilites.MATERIAL_AND_GOLD_RESOURCES:
@@ -79,13 +77,10 @@ class Item(ItemTemplate):
 
   def process_crafting(self):
     self.set_visible()
-    if not self.player:
-      return
 
   def parse_item_price(self, item):
     if self.player:
-      player_name = self.player['Player'].replace(" ", "_")
-      if item[player_name]:
+      if item in self.player['Items']:
         self.items_as_price.append(item)
         return
     for resource, price in self.prices.items():
@@ -165,7 +160,7 @@ class Item(ItemTemplate):
   
     any_2_drop_down_list = list()
     any_2_drop_down_list.append(('Please select a herb', None))
-    for herb_name in self.combined_resources:
+    for herb_name in Utilites.HERB_RESOURCES:
       price = self.prices[herb_name]['Price']
       available_player = self.available_resources[herb_name]['Player'] - price
       available_total = self.available_resources[herb_name]['Sum'] - price
@@ -273,9 +268,8 @@ class Item(ItemTemplate):
         return
       if not confirm(f"Do you want to add item:\n   {self.item['Number']} - {self.item['Name']}"):
         return
-      player_name = self.player['Player'].replace(" ", "_")
-      self.item[player_name] = True
-      self.item['AvailableCount'] -= 1
+
+      Utilites.add_item(self.player, self.item)
       navigation.go_to_character_items(self.player['Player'])
       return
 
@@ -326,13 +320,9 @@ class Item(ItemTemplate):
       
     self.player.update()
     self.frosthaven.update()
-    player_name = self.player['Player'].replace(" ", "_")
     for item in self.items_as_price:
-      item[player_name] = False
-      item['AvailableCount'] += 1
-      item.update()
-    self.item[player_name] = True
-    self.item['AvailableCount'] -= 1
+      Utilites.remove_item(self.player, item)
+    Utilites.add_item(self.player, self.item)
     navigation.go_to_character_items(self.player['Player'])
 
   def free_check_box_change(self, **event_args):

@@ -254,3 +254,11 @@ def remove_item(character, item):
   item[player_name] = False
   item['AvailableCount'] += 1
   item.update()
+
+def add_item(character, item):
+  character['Items'] = character['Items'].append(item)
+
+  player_name = character['Player'].replace(" ", "_")
+  item[player_name] = True
+  item['AvailableCount'] -= 1
+  item.update()

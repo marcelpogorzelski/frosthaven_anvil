@@ -8,7 +8,6 @@ from anvil.tables import app_tables
 from anvil.js.window import navigator
 from ..Item import Item
 
-
 class Items(ItemsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.

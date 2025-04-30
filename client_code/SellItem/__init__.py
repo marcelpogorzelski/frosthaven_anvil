@@ -6,16 +6,17 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import navigation
+from .. import Utilites
 
 
 class SellItem(SellItemTemplate):
   def __init__(self, player_name, item_list, gold_price, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    self.herb_names = ['Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
     
     self.player_name = player_name
+    self.character = app_tables.characters.get(Player=self.player_name)
+
     self.player_name_label.text = player_name
     self.gold_text_box.text = gold_price
 
@@ -35,31 +36,27 @@ class SellItem(SellItemTemplate):
 
   def add_herb_choice(self, item):
     if item['2Herbs']:
-      herb_drop_down_items = self.herb_names.copy()
+      herb_drop_down_items = Utilites.HERB_RESOURCES
     else:
       herb_drop_down_items = list()
-      for herb_name in self.herb_names:
+      for herb_name in Utilites.HERB_RESOURCES:
         if item[herb_name] > 0:
           herb_drop_down_items.append(herb_name)
     
     herb_drop_down = DropDown(items=herb_drop_down_items)
     self.sell_card.add_component(herb_drop_down)
     self.herb_choice_drop_down_list.append(herb_drop_down)
-    
 
   def sell_click(self, **event_args):
     if not confirm("Are you sure you want to sell"):
       return
     
-    player_name = self.player_name.replace(" ", "_")
-    
     for item in self.item_list:
-      item[player_name] = False
-      item['AvailableCount'] += 1
+      Utilites.remove_item(self.character, item)
 
-    character = app_tables.characters.get(Player=self.player_name)
-    character['Gold'] += self.gold_text_box.text
+    #character = app_tables.characters.get(Player=self.player_name)
+    self.character['Gold'] += self.gold_text_box.text
     for herb_drop_down in self.herb_choice_drop_down_list:
       herb_name = herb_drop_down.selected_value
-      character[herb_name] += 1
+      self.character[herb_name] += 1
     navigation.go_to_character(self.player_name)
