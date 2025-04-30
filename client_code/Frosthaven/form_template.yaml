@@ -39,22 +39,6 @@ components:
       name: name_outlined_card
       properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
       type: ColumnPanel
-    - components:
-      - layout_properties: {grid_position: 'OYESGM,GELTEQ'}
-        name: inspiration_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Inspiration:'}
-        type: Label
-      - data_bindings:
-        - {code: 'self.item[''Inspiration'']', property: text, writeback: true}
-        event_bindings: {}
-        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
-        name: inspiration_text_box
-        properties: {align: center, type: number}
-        type: TextBox
-      layout_properties: {column: VJQQOR}
-      name: inspiration_outlined_card
-      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
-      type: ColumnPanel
     name: data_row_panel_1
     properties: {}
     type: DataRowPanel
@@ -63,28 +47,11 @@ components:
   properties:
     auto_header: false
     columns:
-    - {data_key: column_1, expand: false, id: JKSDUP, title: Column 1, width: '600'}
-    - {data_key: column_2, id: VJQQOR, title: Column 2, width: '300'}
+    - {data_key: column_1, expand: false, id: JKSDUP, title: Column 1, width: '900'}
     show_page_controls: false
   type: DataGrid
 - components:
   - components:
-    - components:
-      - layout_properties: {grid_position: 'AASGLK,QQBPXJ'}
-        name: soldiers_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Soldiers:'}
-        type: Label
-      - data_bindings:
-        - {code: 'self.item[''Soldiers'']', property: text, writeback: true}
-        event_bindings: {}
-        layout_properties: {grid_position: 'UXVCFH,BVPOQR'}
-        name: soldiers_text_box
-        properties: {align: center, type: number}
-        type: TextBox
-      layout_properties: {column: OJLQEN}
-      name: soldiers_outlined_card
-      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
-      type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'OYESGM,GELTEQ'}
         name: prosperity_label
@@ -118,7 +85,78 @@ components:
       name: total_defense_outlined_card_copy
       properties: {col_widths: '{}', role: elevated-card}
       type: ColumnPanel
+    - components:
+      - data_bindings: []
+        layout_properties: {grid_position: 'HUIRBK,IOMOVJ'}
+        name: prosperity_next_level_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Next Level:'}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''ProsperityNextLevel'']', property: text, writeback: false}
+        event_bindings: {}
+        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
+        name: prosperity_next_level_text_box
+        properties: {align: center, enabled: false, type: number}
+        type: TextBox
+      layout_properties: {column: OJLQEN}
+      name: total_defense_outlined_card_copy_copy
+      properties: {col_widths: '{}', role: elevated-card}
+      type: ColumnPanel
     name: info_data_row_panel
+    properties: {}
+    type: DataRowPanel
+  - components:
+    - components:
+      - layout_properties: {grid_position: 'AASGLK,QQBPXJ'}
+        name: guards_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Guards:'}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''Guards'']', property: text, writeback: false}
+        event_bindings: {change: guards_text_box_change}
+        layout_properties: {grid_position: 'UXVCFH,BVPOQR'}
+        name: guards_text_box
+        properties: {align: center, type: number}
+        type: TextBox
+      layout_properties: {column: JKSDUP}
+      name: guards_card
+      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
+      type: ColumnPanel
+    - components:
+      - data_bindings: []
+        layout_properties: {grid_position: 'PEXYPI,GDNJBE'}
+        name: town_guard_check_marks_label
+        properties: {align: center, bold: true, role: input-prompt, text: Check Marks}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''TownGuardCheckMarks'']', property: text, writeback: false}
+        event_bindings: {}
+        layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
+        name: town_guard_check_marks_text_box
+        properties: {align: center, enabled: false, type: number}
+        type: TextBox
+      layout_properties: {column: VJQQOR}
+      name: town_guard_check_marks_card
+      properties: {col_widths: '{"SMCXRL":40}', role: elevated-card}
+      type: ColumnPanel
+    - components:
+      - layout_properties: {grid_position: 'OYESGM,GELTEQ'}
+        name: inspiration_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Inspiration:'}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''Inspiration'']', property: text, writeback: false}
+        - {code: '''Inspiration''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
+        layout_properties: {grid_position: 'GWBDXH,OCDLZZ'}
+        name: inspiration_text_box
+        properties: {align: center, type: number}
+        type: TextBox
+      layout_properties: {column: OJLQEN}
+      name: inspiration_card
+      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
+      type: ColumnPanel
+    name: town_guard_data_row_panel
     properties: {}
     type: DataRowPanel
   - components:
@@ -128,31 +166,32 @@ components:
         properties: {align: center, bold: true, role: input-prompt, text: 'Moral:'}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''Moral'']', property: text, writeback: true}
-        event_bindings: {change: total_defense_change}
+        - {code: 'self.item[''Moral'']', property: text, writeback: false}
+        event_bindings: {change: moral_text_box_change}
         layout_properties: {grid_position: 'AJPPQW,KXWMWB'}
         name: moral_text_box
         properties: {align: center, type: number}
         type: TextBox
       layout_properties: {column: JKSDUP}
-      name: moral_outlined_card
+      name: moral_card
       properties: {col_widths: '{"SMCXRL":20}', role: elevated-card}
       type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'YJQUYU,ZTNSDL'}
-        name: bonus_defense_label
-        properties: {align: center, bold: true, role: input-prompt, text: 'Wall Defense:'}
+        name: walls_label
+        properties: {align: center, bold: true, role: input-prompt, text: Walls}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''Defense'']', property: text, writeback: true}
-        event_bindings: {change: total_defense_change}
-        layout_properties: {grid_position: 'BJHTFD,TLOINS'}
-        name: bonus_defense_text_box
-        properties: {align: center, type: number}
-        type: TextBox
+        - {code: self.set_walls_drop_down(), property: items, writeback: false}
+        - {code: 'self.item[''Walls'']', property: selected_value, writeback: false}
+        event_bindings: {change: walls_drop_down_change}
+        layout_properties: {grid_position: 'QZGOCQ,ETWVAZ'}
+        name: walls_drop_down
+        properties: {align: center, role: null}
+        type: DropDown
       layout_properties: {column: VJQQOR}
-      name: bonus_defense_outlined_card
-      properties: {col_widths: '{"QIGRXS":10}', role: elevated-card}
+      name: walls_card
+      properties: {col_widths: '{}', role: elevated-card}
       type: ColumnPanel
     - components:
       - data_bindings: []
@@ -160,15 +199,16 @@ components:
         name: total_defense_label
         properties: {align: center, bold: true, role: input-prompt, text: 'Total Defense:'}
         type: Label
-      - data_bindings: []
+      - data_bindings:
+        - {code: 'self.item[''TotalDefense'']', property: text, writeback: false}
         event_bindings: {}
         layout_properties: {grid_position: 'BZTPAA,KDKXBL'}
         name: total_defense_text_box
         properties: {align: center, enabled: false, type: number}
         type: TextBox
       layout_properties: {column: OJLQEN}
-      name: total_defense_outlined_card
-      properties: {col_widths: '{"SMCXRL":40}', role: elevated-card}
+      name: total_defense_card
+      properties: {col_widths: '{}', role: elevated-card}
       type: ColumnPanel
     name: defense_data_row_panel
     properties: {}
@@ -183,7 +223,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-lumber-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Lumber'']', property: text, writeback: true}
+        - {code: 'self.item[''Lumber'']', property: text, writeback: false}
+        - {code: '''Lumber''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: lumber_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -198,7 +240,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-metal-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Metal'']', property: text, writeback: true}
+        - {code: 'self.item[''Metal'']', property: text, writeback: false}
+        - {code: '''Metal''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'TATUZF,GRPEGF'}
         name: metal_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -213,7 +257,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-hide-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Hide'']', property: text, writeback: true}
+        - {code: 'self.item[''Hide'']', property: text, writeback: false}
+        - {code: '''Hide''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'QJKEYD,HMRGEF'}
         name: hide_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -232,7 +278,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Arrowvine'']', property: text, writeback: true}
+        - {code: 'self.item[''Arrowvine'']', property: text, writeback: false}
+        - {code: '''Arrowvine''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: arrowvine_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -247,7 +295,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-axenut-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Axenut'']', property: text, writeback: true}
+        - {code: 'self.item[''Axenut'']', property: text, writeback: false}
+        - {code: '''Axenut''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: axenut_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -262,7 +312,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Corpsecap'']', property: text, writeback: true}
+        - {code: 'self.item[''Corpsecap'']', property: text, writeback: false}
+        - {code: '''Corpsecap''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: corpsecap_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -281,7 +333,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Flamefruit'']', property: text, writeback: true}
+        - {code: 'self.item[''Flamefruit'']', property: text, writeback: false}
+        - {code: '''Flamefruit''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: flamefruit_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -296,7 +350,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-rockroot-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Rockroot'']', property: text, writeback: true}
+        - {code: 'self.item[''Rockroot'']', property: text, writeback: false}
+        - {code: '''Rockroot''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: rockroot_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -311,7 +367,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Snowthistle'']', property: text, writeback: true}
+        - {code: 'self.item[''Snowthistle'']', property: text, writeback: false}
+        - {code: '''Snowthistle''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: snowthistle_text_box
         properties: {align: center, spacing_above: small, type: number}

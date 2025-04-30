@@ -28,8 +28,9 @@ class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
     self.snowthistle_text_box.tag = 'Snowthistle'
 
   def text_box_change(self, **event_args):
-    Utilites.bounded_text_box(event_args['sender'], 0, 10000)
-    self.item[event_args['sender'].tag] = event_args['sender'].text or 0
+    text_box = event_args['sender']
+    Utilites.bounded_text_box(text_box, 0, 10000)
+    self.item[text_box.tag] = text_box.text or 0
     self.parent.raise_event('x-update-value')
 
   def experience_text_box_change(self, **event_args):

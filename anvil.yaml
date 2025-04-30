@@ -166,7 +166,7 @@ db_schema:
       name: Defense
       type: number
     - admin_ui: {order: 4, width: 71}
-      name: Soldiers
+      name: Guards
       type: number
     - admin_ui: {order: 5, width: 112}
       name: Barracks Level
@@ -227,6 +227,12 @@ db_schema:
       type: number
     - admin_ui: {order: 23, width: 200}
       name: ProsperityNextLevel
+      type: number
+    - admin_ui: {order: 24, width: 200}
+      name: Walls
+      type: number
+    - admin_ui: {order: 25, width: 200}
+      name: TotalDefense
       type: number
     server: full
     title: Frosthaven

@@ -60,18 +60,18 @@ components:
       type: ColumnPanel
     - components:
       - data_bindings:
-        - {code: 'self.item[''Mastery1'']', property: checked, writeback: true}
+        - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
         event_bindings: {change: mastery_check_box_change}
         layout_properties: {grid_position: 'OQQKDT,XAKAHR'}
         name: mastery_check_box_1
         properties: {align: center, bold: true, text: Mastery 1}
         type: CheckBox
       - data_bindings:
-        - {code: 'self.item[''Mastery2'']', property: checked, writeback: true}
+        - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
         event_bindings: {change: mastery_check_box_change}
         layout_properties: {grid_position: 'ISEMNX,GRFKGR'}
         name: mastery_check_box_2
-        properties: {align: center, bold: true, text: Mastery 2}
+        properties: {align: center, bold: true, checked: false, text: Mastery 2}
         type: CheckBox
       layout_properties: {column: PGVFQE}
       name: masteries_outlined_card
@@ -87,7 +87,7 @@ components:
         properties: {align: center, bold: true, role: input-prompt, text: 'Experiance:'}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''Experience'']', property: text, writeback: true}
+        - {code: 'self.item[''Experience'']', property: text, writeback: false}
         event_bindings: {change: experience_text_box_change}
         layout_properties: {grid_position: 'PHYDAP,QQGNIB'}
         name: experience_text_box
@@ -104,7 +104,6 @@ components:
         type: Label
       - data_bindings:
         - {code: 'self.item[''Level'']', property: text, writeback: false}
-        - {code: 'f"Next Level in {self.item[''NextLevelExperience'']}"', property: tooltip, writeback: false}
         layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
         name: level_text_box
         properties: {align: center, enabled: false, type: number}
@@ -120,7 +119,6 @@ components:
         type: Label
       - data_bindings:
         - {code: 'self.item[''NextLevelExperience'']', property: text, writeback: false}
-        - {code: 'f"Next Level in {self.item[''NextLevelExperience'']}"', property: tooltip, writeback: false}
         layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
         name: next_level_text_box
         properties: {align: center, enabled: false, type: number}
@@ -154,7 +152,7 @@ components:
         properties: {align: center, bold: true, role: input-prompt, text: 'Check Marks:'}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''CheckMarks'']', property: text, writeback: true}
+        - {code: 'self.item[''CheckMarks'']', property: text, writeback: false}
         event_bindings: {change: check_marks_text_box_change}
         layout_properties: {grid_position: 'PHYDAP,QQGNIB'}
         name: check_marks_text_box
@@ -170,7 +168,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Gold'']', property: text, writeback: true}
+        - {code: 'self.item[''Gold'']', property: text, writeback: false}
+        - {code: '''Gold''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'SPLVKW,NADRLY'}
         name: gold_text_box
         properties: {align: center, spacing_above: none, type: number}
@@ -192,7 +192,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-lumber-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Lumber'']', property: text, writeback: true}
+        - {code: 'self.item[''Lumber'']', property: text, writeback: false}
+        - {code: '''Lumber''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: lumber_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -207,7 +209,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-metal-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Metal'']', property: text, writeback: true}
+        - {code: 'self.item[''Metal'']', property: text, writeback: false}
+        - {code: '''Metal''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'TATUZF,GRPEGF'}
         name: metal_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -222,7 +226,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-hide-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Hide'']', property: text, writeback: true}
+        - {code: 'self.item[''Hide'']', property: text, writeback: false}
+        - {code: '''Hide''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'QJKEYD,HMRGEF'}
         name: hide_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -241,7 +247,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Arrowvine'']', property: text, writeback: true}
+        - {code: 'self.item[''Arrowvine'']', property: text, writeback: false}
+        - {code: '''Arrowvine''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: arrowvine_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -256,7 +264,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-axenut-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Axenut'']', property: text, writeback: true}
+        - {code: 'self.item[''Axenut'']', property: text, writeback: false}
+        - {code: '''Axenut''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: axenut_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -271,7 +281,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-corpsecap-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Corpsecap'']', property: text, writeback: true}
+        - {code: 'self.item[''Corpsecap'']', property: text, writeback: false}
+        - {code: '''Corpsecap''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: corpsecap_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -290,7 +302,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-flamefruit-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Flamefruit'']', property: text, writeback: true}
+        - {code: 'self.item[''Flamefruit'']', property: text, writeback: false}
+        - {code: '''Flamefruit''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: flamefruit_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -305,7 +319,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-rockroot-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Rockroot'']', property: text, writeback: true}
+        - {code: 'self.item[''Rockroot'']', property: text, writeback: false}
+        - {code: '''Rockroot''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: rockroot_text_box
         properties: {align: center, spacing_above: small, type: number}
@@ -320,7 +336,9 @@ components:
         properties: {height: '50', source: _/theme/resource_images/fh-snowthistle-bw-icon.png}
         type: Image
       - data_bindings:
-        - {code: 'self.item[''Snowthistle'']', property: text, writeback: true}
+        - {code: 'self.item[''Snowthistle'']', property: text, writeback: false}
+        - {code: '''Snowthistle''', property: tag, writeback: false}
+        event_bindings: {change: text_box_change}
         layout_properties: {grid_position: 'YSXAFF,GOOUAS'}
         name: snowthistle_text_box
         properties: {align: center, spacing_above: small, type: number}

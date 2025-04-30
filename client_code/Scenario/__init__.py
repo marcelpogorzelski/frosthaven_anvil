@@ -32,7 +32,6 @@ class Scenario(ScenarioTemplate):
     self.set_treasures()
     self.set_scenario_difficulty_table()
     
-
   def reset_buttons(self):
     self.start_scenario_button.visible = False
     self.win_scenario_button.visible = False

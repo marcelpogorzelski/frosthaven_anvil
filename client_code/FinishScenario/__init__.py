@@ -50,7 +50,7 @@ class FinishScenario(FinishScenarioTemplate):
     bonus_experience = 0
     if self.win_radio_button.selected:
       bonus_experience = self.scenario_difficulty['Bonus Experience']
-    challenges_experience = int(self.challenge_0_radio_button.get_group_value() or 0) * 2
+    challenges_experience = self.get_challenge_value() * 2
 
     self.bonus_experience = bonus_experience + (self.other_experience_text_box.text or 0) + challenges_experience
     self.refresh_data_bindings()
@@ -77,6 +77,9 @@ class FinishScenario(FinishScenarioTemplate):
   def recommended_party_level_button_click(self, **event_args):
     #new_difficulty = app_tables.scenario_info.get(Recommended=True)
     self.set_scenario_difficulty(self.recommended_scenario_difficulty)
+
+  def get_challenge_value(self):
+    return int(self.challenge_0_radio_button.get_group_value() or 0)
 
   def get_gold(self, player_resources):
     gold = player_resources["Gold"] or 0
@@ -114,8 +117,25 @@ class FinishScenario(FinishScenarioTemplate):
     if new_perks > current_perks:
       return True
     return False
-  
 
+  def check_if_town_guard_perk(self, challenge_value):
+    frosthaven = app_tables.frosthaven.search()[0]
+
+    if int((challenge_value+frosthaven['TownGuardCheckMarks'])/3) > int(frosthaven['TownGuardCheckMarks']/3):
+      return True
+    return False
+
+  def get_town_guard_string(self):
+    player_string = ''
+    
+    challenge_value = self.get_challenge_value()
+    if challenge_value:
+      player_string += f"  - Town Guard Check Marks: {challenge_value}"
+      if self.check_if_town_guard_perk(challenge_value):
+        player_string += "\n  - New Town Guard Perk!"
+    
+    return player_string
+        
   def get_player_string(self, player_name, player_resources):
     player_string = player_name + ":\n"
 
@@ -154,6 +174,9 @@ class FinishScenario(FinishScenarioTemplate):
     if new_perk:
       player_string += "  - New Perk from check marks!"
 
+    if player_name == 'Frosthaven':
+      player_string += self.get_town_guard_string()
+
     player_string += "\n"
     return player_string
 
@@ -190,7 +213,7 @@ class FinishScenario(FinishScenarioTemplate):
 
       if player_name == "Frosthaven":
         database_entry = app_tables.frosthaven.search()[0]
-        town_guard_checks = int(self.challenge_0_radio_button.get_group_value() or 0)
+        town_guard_checks = self.get_challenge_value()
         if town_guard_checks > 0:
           database_entry['TownGuardCheckMarks'] += town_guard_checks
       else:

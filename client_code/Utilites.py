@@ -28,6 +28,18 @@ def add_experience(character, experience):
     return
   set_experience(character, character['Experience'] + experience)
 
+def set_masteries(character, mastery1, mastery2):
+  mastery_count = int(mastery1) + int(mastery2)
+  checkmarks = character['CheckMarks']
+  retired_count = character['RetiredCount']
+  level = character['Level'] - 1
+  
+  perks = retired_count + mastery_count + int(checkmarks/3) + level
+
+  character.update(Perks=perks, Mastery1=mastery1, Mastery2=mastery2, MasteryCount=mastery_count)
+  
+
+  
 def set_checkmarks(character, checkmarks):
   checkmarks = max(min(checkmarks, 18),0)
 
@@ -92,22 +104,28 @@ def set_prosperity(frosthaven, prosperity):
   level, next_level = get_prosperity_level(prosperity)
   frosthaven.update(Prosperity=prosperity, ProsperityLevel=level, ProsperityNextLevel=next_level)
 
-def get_total_defense(moral, defense):
-  moral_defense = 0
-  if moral < 3:
-    moral_defense = -10
-  if moral < 5:
-    moral_defense = -5
-  elif moral < 8:
-    moral_defense = 0
-  elif moral < 11:
-    moral_defense = 5
-  elif moral < 14:
-    moral_defense = 10
-  elif moral >= 14:
-    moral_defense = 15
+def get_moral_defense(moral):
+  moral_defense_break_points = [3, 5, 8, 11, 14]
+  for moral_defense, required_moral in zip(range(-10, 15, 5), moral_defense_break_points):
+    if moral < required_moral:
+      return moral_defense
+  return 15
+
+def update_total_defense(frosthaven):
+  frosthaven['TotalDefense'] = get_moral_defense(frosthaven['Moral']) + frosthaven['Defense']
+
+def set_moral(frosthaven, moral):
+  moral = max(min(moral, 20),0)
   
-  return moral_defense + defense
+  frosthaven['Moral'] = moral
+  update_total_defense(frosthaven)
+
+def set_walls(frosthaven, walls):
+  walls = max(min(walls, 5),0)
+  
+  frosthaven['Defense'] = walls * 5
+  frosthaven['Walls'] = walls
+  update_total_defense(frosthaven)
 
 def database_to_dict(database, linked_columns=None):
   dict_list = list()
@@ -128,9 +146,6 @@ def bounded_text_box(text_box, min_value, max_value):
     
   if text_box.text < min_value:
     text_box.text = min_value
-
-def retire_character(character):
-  pass
 
 def get_backup():
   backup = {}
@@ -157,4 +172,75 @@ def get_backup():
   backup_filename = f'Frosthaven_backup {now}.json'
   backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup, indent=4).encode('utf-8'), name=backup_filename)
   return backup_blob
+
+def add_to_retired(character):
+  player_name = character['Player']
+  name = character['Name']
+  experience = character['Experience']
+  level = character['Level']
+  character_class = character['Class']
+
+  perks = character['Perks']
+  master1 = character['Mastery1']
+  master2 = character['Mastery2']
+
+  app_tables.retired_characters.add_row(
+    Player=player_name,
+    Name=name,
+    Experience=experience,
+    Level=level,
+    Class=character_class,
+    Perks=perks,
+    Mastery1=master1,
+    Mastery2=master2,
+  )
+
+def transfer_all_to_frosthaven(character):
+  frosthaven = app_tables.frosthaven.search()[0]
+  for resource in MATERIAL_RESOURCES + HERB_RESOURCES:
+    frosthaven[resource] += character[resource]
+
+  prosperity = frosthaven['Prosperity'] + 2
+  set_prosperity(frosthaven, prosperity)
+
+def reset_character(character, frosthaven):
+    prosperity_level = app_tables.frosthaven.search()[0]["ProsperityLevel"]
+
+    starting_gold = (10 * prosperity_level) + 20
+    starintg_level = math.ceil(prosperity_level / 2)
+
+    starting_experience = get_experience(starintg_level)
+    next_level_experience = get_experience(starintg_level + 1)
+
+    retired_count = character['RetiredCount'] + 1
+    starting_perks = starintg_level - 1 + retired_count
+
+    character.update(
+      Name='',
+      Experience=starting_experience,
+      NextLevelExperience=next_level_experience,
+      Level=starintg_level,
+      Gold=starting_gold,
+      Lumber=0,
+      Metal=0,
+      Hide=0,
+      Arrowvine=0,
+      Axenut=0,
+      Corpsecap=0,
+      Flamefruit=0,
+      Rockroot=0,
+      Snowthistle=0,
+      CheckMarks=0,
+      MasteryCount=0,
+      Perks=starting_perks,
+      Mastery1=False,
+      Mastery2=False,
+      RetiredCount=retired_count,
+      Notes='',
+    )
+
+def retire_character(character):
+  add_to_retired(character)
+  transfer_all_to_frosthaven(character)
+  reset_character(character)
   
