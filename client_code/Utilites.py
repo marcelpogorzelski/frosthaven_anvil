@@ -244,21 +244,21 @@ def retire_character(character):
   transfer_all_to_frosthaven(character)
   reset_character(character)
 
-def remove_item(character, item):
-  character_items = character['Items']
-  if item in character_items:
-    character_items.remove(item)
+def remove_item(character, removed_item):
+  character['Items'] = [character_item for character_item in character['Items'] if character_item != removed_item]
+
+  #player_name = character['Player'].replace(" ", "_")
+  #item[player_name] = False
+  #item['AvailableCount'] += 1
+  #item.update()
+
+def add_item(character, added_item):
+  character_items = [character_item for character_item in character['Items']]
+  if added_item not in character_items:
+    character_items.append(added_item)
     character['Items'] = character_items
 
-  player_name = character['Player'].replace(" ", "_")
-  item[player_name] = False
-  item['AvailableCount'] += 1
-  item.update()
-
-def add_item(character, item):
-  character['Items'] = character['Items'].append(item)
-
-  player_name = character['Player'].replace(" ", "_")
-  item[player_name] = True
-  item['AvailableCount'] -= 1
-  item.update()
+  #player_name = character['Player'].replace(" ", "_")
+  #item[player_name] = True
+  #item['AvailableCount'] -= 1
+  #item.update()

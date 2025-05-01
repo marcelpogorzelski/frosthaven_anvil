@@ -19,10 +19,18 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
 
 
-    #self.test()
+    #self.check_items()
     
   def test(self):
     pass
+
+  def check_items(self):
+    for item in app_tables.items.search():
+      count = int(item['Marcel']) + int(item['Håvard']) + int(item['John_Magne']) + int(item['Kristian'])
+
+      available_count = item['TotalCount'] - count
+      if available_count != item['AvailableCount']:
+        print(item['Number'])
 
     # Any code you write here will run before the form opens.
   def export_button_click(self, **event_args):
