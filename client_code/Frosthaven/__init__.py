@@ -14,7 +14,7 @@ class Frosthaven(FrosthavenTemplate):
     self.item = app_tables.frosthaven.search()[0]
     
     self.init_components(**properties)
-
+  
     self.adjust_width()
 
 
