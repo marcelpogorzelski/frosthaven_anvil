@@ -5,10 +5,9 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ...SellItem import SellItem
+from .SellItem import SellItem
 from ... import navigation
 from ... import Utilites
-import math
 
 
 class CharacterItems(CharacterItemsTemplate):
@@ -44,7 +43,7 @@ class CharacterItems(CharacterItemsTemplate):
 
   def get_item_sell_price(self, item):
     if item['HasGoldCost']:
-      return math.floor(item['Gold'] / 2)
+      return int(item['Gold'] / 2)
     sell_price = 0
     for resource_name in self.resource_names:
       sell_price += item[resource_name]

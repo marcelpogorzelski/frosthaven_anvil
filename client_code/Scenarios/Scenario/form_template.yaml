@@ -1,0 +1,270 @@
+components:
+- components:
+  - components:
+    - data_bindings:
+      - {code: 'self.item[''Errata'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'URHURC,LWTQVK'}
+      name: errata_label
+      properties: {align: center, bold: false, role: title}
+      type: Label
+    layout_properties: {grid_position: 'NEFTFX,DZGDBL'}
+    name: errata_card
+    properties: {background: 'theme:Error', role: elevated-card, visible: false, wrap_on: never}
+    type: ColumnPanel
+  - components:
+    - data_bindings: []
+      layout_properties: {grid_position: 'URHURC,LWTQVK'}
+      name: road_label
+      properties: {align: center, bold: false, role: title, text: Don't draw a Road Card!}
+      type: Label
+    layout_properties: {grid_position: 'RUAORG,RANHPE'}
+    name: road_card_card
+    properties: {background: 'theme:Primary Container', role: elevated-card, visible: false, wrap_on: never}
+    type: ColumnPanel
+  - components:
+    - components:
+      - event_bindings: {click: start_scenario_button_click}
+        layout_properties: {}
+        name: start_scenario_button
+        properties: {role: elevated-button, text: Start Scenario, visible: false}
+        type: Button
+      - data_bindings: []
+        event_bindings: {click: win_scenario_button_click}
+        layout_properties: {}
+        name: win_scenario_button
+        properties: {role: elevated-button, text: Win Scenario, visible: false}
+        type: Button
+      - event_bindings: {click: lose_scenario_button_click}
+        layout_properties: {}
+        name: lose_scenario_button
+        properties: {role: elevated-button, text: Lose Scenario, visible: false}
+        type: Button
+      - event_bindings: {click: leave_scenario_button_click}
+        layout_properties: {}
+        name: leave_scenario_button
+        properties: {role: elevated-button, text: Leave Scenario, visible: false}
+        type: Button
+      layout_properties: {grid_position: 'XPYYVR,OUOFOX'}
+      name: buttons_flow_panel
+      properties: {}
+      type: FlowPanel
+    layout_properties: {grid_position: 'EASGDK,QEAODY'}
+    name: action_column_panel
+    properties: {role: null}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {full_width_row: false, grid_position: 'YJLBDI,HOKCSY XOLUMH,NTYSIB HNCHDV,RVMLND'}
+      name: scenario_number_label
+      properties: {align: right, role: input-prompt, text: Number}
+      type: Label
+    - layout_properties: {grid_position: 'YJLBDI,HOKCSY XOLUMH,NTYSIB OGVEDC,RTMUNU'}
+      name: scenario_label
+      properties: {align: right, role: input-prompt, text: Name}
+      type: Label
+    - layout_properties: {grid_position: 'YJLBDI,HOKCSY XOLUMH,NTYSIB RRNLCB,ATHAYQ'}
+      name: location_label
+      properties: {align: right, role: input-prompt, text: Location}
+      type: Label
+    - data_bindings:
+      - {code: 'self.item[''Number'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY XOLUMH,EBLQIG MSJFEA,OWFWBK'}
+      name: scenario_number_text_box
+      properties: {enabled: false, role: null}
+      type: TextBox
+    - layout_properties: {grid_position: 'YJLBDI,NFJQEX'}
+      name: scenario_image
+      properties: {height: 301.65966796875}
+      type: Image
+    - data_bindings:
+      - {code: 'self.item[''Name'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY XOLUMH,EBLQIG BZJPPW,VRJRME'}
+      name: scenario_name_text_box
+      properties: {enabled: false, role: null}
+      type: TextBox
+    - data_bindings:
+      - {code: 'self.item[''Location'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY XOLUMH,EBLQIG QYJJIB,UXPYQL'}
+      name: location_text_box
+      properties: {enabled: false, role: null}
+      type: TextBox
+    - layout_properties: {grid_position: 'YJLBDI,HOKCSY RFYKMF,BOJHGD'}
+      name: page_label
+      properties: {align: right, role: input-prompt, text: Page}
+      type: Label
+    - data_bindings:
+      - {code: 'self.item[''Page'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY RFYKMF,HCLWUC'}
+      name: page_text_box
+      properties: {enabled: false}
+      type: TextBox
+    - layout_properties: {grid_position: 'YJLBDI,HOKCSY JUAMES,ATHFOR SNJWLS,QRHOHE'}
+      name: status_label
+      properties: {align: right, role: input-prompt, text: Status}
+      type: Label
+    - layout_properties: {grid_position: 'YJLBDI,HOKCSY JUAMES,ATHFOR ABYLPG,CWXFHQ'}
+      name: complexity_label
+      properties: {align: right, role: input-prompt, text: Complexity}
+      type: Label
+    - data_bindings:
+      - {code: 'self.item[''Status'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY JUAMES,ZAOJPO HIDLVY,LSXLIP'}
+      name: status_text_box
+      properties: {enabled: false}
+      type: TextBox
+    - layout_properties: {grid_position: 'YJLBDI,HOKCSY JUAMES,ZAOJPO'}
+      name: complexity_image
+      properties: {height: '40', source: _/theme/complexity1.png}
+      type: Image
+    - data_bindings:
+      - {code: 'self.item[''HasRandomItem'']', property: visible, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY EEFRHH,WMNWDQ'}
+      name: random_item_label
+      properties: {align: right, role: input-prompt, text: Random Item Collected, visible: true}
+      type: Label
+    - data_bindings:
+      - {code: 'self.item[''RandomItemCollected'']', property: checked, writeback: true}
+      - {code: 'self.item[''HasRandomItem'']', property: visible, writeback: false}
+      layout_properties: {grid_position: 'YJLBDI,HOKCSY EEFRHH,HYSBBI'}
+      name: random_item_check_box
+      properties: {align: center, text: ''}
+      type: CheckBox
+    layout_properties: {grid_position: 'FCJSJW,LOGLIG'}
+    name: scenario_card
+    properties: {col_widths: '{"NTYSIB":30,"EBLQIG":30,"HOKCSY":35,"NFJQEX":25}', role: elevated-card, wrap_on: never}
+    type: ColumnPanel
+  - components:
+    - event_bindings: {click: scenario_difficulty_link_click}
+      layout_properties: {grid_position: 'JWRADN,ZYCYGV'}
+      name: scenario_difficulty_link
+      properties: {align: center, icon: 'fa:angle-double-down', icon_align: right_edge, text: Scenario Difficulty}
+      type: Link
+    - components:
+      - components:
+        - layout_properties: {column: OYBRYX}
+          name: level_image
+          properties: {height: '45', source: _/theme/fh-level-crown-bw-icon.png}
+          type: Image
+        - layout_properties: {column: GQQYMU}
+          name: gold_image
+          properties: {height: '45', source: _/theme/resource_images/fh-money-bw-icon.png}
+          type: Image
+        - layout_properties: {column: XDXDLP}
+          name: trap_image
+          properties: {height: '45', source: _/theme/fh-overlay-tile-trap-color-icon.png}
+          type: Image
+        - layout_properties: {column: XXAOGR}
+          name: hazard_image
+          properties: {height: '45', source: _/theme/fh-overlay-tile-hazardous-terrain-color-icon.png}
+          type: Image
+        - layout_properties: {column: NZCZNL}
+          name: experience_image
+          properties: {height: '45', source: _/theme/fh-xp-bw-icon.png}
+          type: Image
+        name: data_row_panel_1
+        properties: {}
+        type: DataRowPanel
+      - layout_properties: {}
+        name: scenario_difficulty_repeating_panel
+        properties: {background: '', item_template: Scenarios.Scenario.ScenarioiDifficultyRowTemplate, role: null}
+        type: RepeatingPanel
+      - components:
+        - layout_properties: {width: 29.9400634765625}
+          name: spacer_1
+          properties: {height: 32}
+          type: Spacer
+        - event_bindings: {click: decrease_difficulty_link_click}
+          layout_properties: {}
+          name: decrease_difficulty_link
+          properties: {align: center, icon: 'fa:minus'}
+          type: Link
+        - event_bindings: {click: reset_difficulty_link_click}
+          layout_properties: {}
+          name: reset_difficulty_link
+          properties: {align: center, icon: 'fa:repeat'}
+          type: Link
+        - event_bindings: {click: increase_difficulty_link_click}
+          layout_properties: {}
+          name: increase_difficulty_link
+          properties: {align: center, icon: 'fa:plus'}
+          type: Link
+        layout_properties: {slot: footer}
+        name: flow_panel_1
+        properties: {}
+        type: FlowPanel
+      layout_properties: {grid_position: 'HYLVRY,JPZLBT'}
+      name: scenario_difficulty_data_grid
+      properties:
+        columns:
+        - {data_key: Level, id: OYBRYX, title: Level}
+        - {data_key: Gold Conversion, id: GQQYMU, title: Gold Conversion}
+        - {data_key: Trap Damage, id: XDXDLP, title: Trap Damage}
+        - {data_key: Hazardous Terrain, id: XXAOGR, title: Hazardous Terrain}
+        - {data_key: Bonus Experience, id: NZCZNL, title: Bonus Experience}
+        role: tonal-data-grid
+        show_page_controls: false
+        visible: false
+      type: DataGrid
+    layout_properties: {grid_position: 'FMFBUO,CGDAVA'}
+    name: scenario_info_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - event_bindings: {click: chests_link_click}
+      layout_properties: {grid_position: 'ZHGYHI,YQKCVP'}
+      name: chests_link
+      properties: {align: center, icon: 'fa:angle-double-down', icon_align: right_edge, text: Treasure Chests}
+      type: Link
+    - layout_properties: {grid_position: 'SMDDIA,ZJWAPG'}
+      name: chests_repeating_panel
+      properties: {item_template: Scenarios.Scenario.TreasuresTemplate, visible: false}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'BCGWBG,EQFXNL'}
+    name: chests_column_card
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - event_bindings: {click: notes_show_link_click}
+      layout_properties: {grid_position: 'PHQIJU,KJLUGA'}
+      name: notes_show_link
+      properties: {align: center, icon: 'fa:angle-double-down', icon_align: right_edge, text: Notes}
+      type: Link
+    - data_bindings:
+      - {code: 'self.item[''Notes'']', property: text, writeback: true}
+      layout_properties: {grid_position: 'DUPRUW,IJURDU'}
+      name: notes_text_area
+      properties: {height: 266.3245849609375, visible: false}
+      type: TextArea
+    layout_properties: {grid_position: 'VQTYFM,CQNETJ'}
+    name: notes_card
+    properties: {col_widths: '{"IJURDU":45,"HYLSNQ":5}', role: elevated-card, wrap_on: mobile}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'RSMUFK,OTQDSX'}
+      name: key_image
+      properties: {display_mode: fill_width}
+      type: Image
+    - layout_properties: {grid_position: 'RSMUFK,YLDGZM'}
+      name: loot_image
+      properties: {display_mode: fill_width}
+      type: Image
+    layout_properties: {grid_position: 'FPASOB,KXAUIZ'}
+    name: key_and_loot_card
+    properties: {col_widths: '{"OTQDSX":50,"YLDGZM":10}', role: elevated-card, visible: false}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'GYCUWM,WAUOZT'}
+      name: map_layout_image
+      properties: {display_mode: fill_width}
+      type: Image
+    layout_properties: {grid_position: 'INPHVL,ZHDXQI'}
+    name: map_layout_card
+    properties: {col_widths: '{"WAUOZT":50}', role: elevated-card, visible: false}
+    type: ColumnPanel
+  layout_properties: {full_width_row: false, grid_position: 'UMXUYX,CSABPH'}
+  name: column_panel_1
+  properties: {role: null}
+  type: ColumnPanel
+container:
+  properties: {wrap_on: never}
+  type: ColumnPanel
+is_package: true

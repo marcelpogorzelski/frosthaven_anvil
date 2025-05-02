@@ -10,7 +10,7 @@ class Pets(PetsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    for pet in app_tables.pets.search():
+    for pet in app_tables.pets.search(Captured=True):
       self.pet_flow_panel.add_component(PetTemplate(pet))
       
 

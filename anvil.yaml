@@ -13,12 +13,19 @@ db_schema:
     - admin_ui: {order: 2, width: 200}
       name: CurrentLevel
       type: number
-    - admin_ui: {order: 3, width: 200}
-      name: Max Level
+    - admin_ui: {order: 7, width: 200}
+      name: MaxLevel
       type: number
     - admin_ui: {order: 4, width: 200}
       name: Available
       type: bool
+    - admin_ui: {order: 5, width: 200}
+      name: CurrentBuilding
+      target: buildings
+      type: link_single
+    - admin_ui: {order: 6, width: 200}
+      name: MinLevel
+      type: number
     server: full
     title: Available Buildings
   buildings:
@@ -142,9 +149,6 @@ db_schema:
     columns:
     - admin_ui: {order: 0, width: 200}
       name: Name
-      type: string
-    - admin_ui: {order: 1, width: 200}
-      name: xws
       type: string
     - admin_ui: {order: 2, width: 200}
       name: Nickname

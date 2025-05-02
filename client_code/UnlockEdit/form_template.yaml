@@ -5,31 +5,42 @@ components:
       name: edit_label
       properties: {align: center, role: title, text: Edit}
       type: Label
-    - data_bindings: []
+    - data_bindings:
+      - {code: self.scenarios_form, property: tag, writeback: false}
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG XEGFFX,QPHJFG'}
       name: scenario_radio_button
-      properties: {selected: true, text: Scenario, value: ''}
+      properties: {selected: true, text: Scenarios, value: ''}
       type: RadioButton
-    - data_bindings: []
+    - data_bindings:
+      - {code: self.buildings_form, property: tag, writeback: false}
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG BFNVNB,TPVVEC'}
       name: building_radio_button
-      properties: {text: Building}
+      properties: {text: Buildings}
       type: RadioButton
-    - data_bindings: []
+    - data_bindings:
+      - {code: self.items_form, property: tag, writeback: false}
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,TFKDTU'}
       name: item_radio_button
-      properties: {selected: false, text: Item, value: ''}
+      properties: {selected: false, text: Items, value: ''}
       type: RadioButton
-    - data_bindings: []
+    - data_bindings:
+      - {code: self.classes_from, property: tag, writeback: false}
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,TFKDTU LDXWGW,KTEMGX'}
       name: class_radio_button
-      properties: {text: Class}
+      properties: {text: Classes}
       type: RadioButton
-    layout_properties: {width: 500}
+    - data_bindings:
+      - {code: self.pets_form, property: tag, writeback: false}
+      event_bindings: {change: radio_button_clicked}
+      layout_properties: {grid_position: 'DNEAJR,TFKDTU EDLAGW,DBNZCV'}
+      name: pet_radio_button
+      properties: {text: Pets}
+      type: RadioButton
+    layout_properties: {width: 436.45452148437494}
     name: edit_card
     properties: {role: elevated-card}
     type: ColumnPanel
@@ -37,5 +48,11 @@ components:
   name: flow_panel_1
   properties: {}
   type: FlowPanel
-container: {type: ColumnPanel}
+- layout_properties: {full_width_row: true, grid_position: 'JZYAJS,RIJLVN'}
+  name: flow_panel_2
+  properties: {}
+  type: FlowPanel
+container:
+  data_bindings: []
+  type: ColumnPanel
 is_package: true

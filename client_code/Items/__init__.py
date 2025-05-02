@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import navigator
-from ..Item import Item
+from .Item import Item
 
 class Items(ItemsTemplate):
   def __init__(self, **properties):
@@ -32,7 +32,7 @@ class Items(ItemsTemplate):
       self.one_hand_image,
       self.two_hands_image,
       self.small_image
-                        )
+    )
     
     self.persistant_image.tag = 'Passive'
     self.spent_image.tag = 'Spent'
@@ -43,7 +43,7 @@ class Items(ItemsTemplate):
       self.spent_image,
       self.lost_image,
       self.flip_image
-                        )
+    )
 
     self.all_images = list()
     self.load_items()

@@ -13,7 +13,6 @@ class Character(CharacterTemplate):
   def __init__(self, player, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
     self.adjust_width()
 
     self.player_name = player

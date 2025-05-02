@@ -19,7 +19,7 @@ from ..Items import Items
 from ..Character.CharacterCards import CharacterCards
 from ..Character.CharacterDetails import CharacterDetails
 from ..Character.CharacterItems import CharacterItems
-from ..Scenario import Scenario
+from ..Scenarios.Scenario import Scenario
 from ..Pets import Pets
 
 class Main(MainTemplate):

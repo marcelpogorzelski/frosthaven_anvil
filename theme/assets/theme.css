@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+/* in theme.css */
+.anvil-role-icon-2x i.fa {
+    font-size: 2em;
+}
+
 /* Put things on a 4px grid (none of this 7px nonsense) */
 .has-text .anvil-component-icon.left-icon { margin-right: 8px; }
 .has-text .anvil-component-icon.right-icon { margin-left: 8px; }
