@@ -245,20 +245,18 @@ def retire_character(character):
   reset_character(character)
 
 def remove_item(character, removed_item):
+  if removed_item not in character['Items']:
+    return
+  
   character['Items'] = [character_item for character_item in character['Items'] if character_item != removed_item]
-
-  #player_name = character['Player'].replace(" ", "_")
-  #item[player_name] = False
-  #item['AvailableCount'] += 1
-  #item.update()
+  removed_item['AvailableCount'] += 1
 
 def add_item(character, added_item):
+  if added_item in character['Items']:
+    return
+    
   character_items = [character_item for character_item in character['Items']]
-  if added_item not in character_items:
-    character_items.append(added_item)
-    character['Items'] = character_items
-
-  #player_name = character['Player'].replace(" ", "_")
-  #item[player_name] = True
-  #item['AvailableCount'] -= 1
-  #item.update()
+  character_items.append(added_item)
+  character_items.sort(key=lambda item: item['Number'])
+  character['Items'] = character_items
+  added_item['AvailableCount'] -= 1

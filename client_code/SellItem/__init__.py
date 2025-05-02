@@ -54,7 +54,6 @@ class SellItem(SellItemTemplate):
     for item in self.item_list:
       Utilites.remove_item(self.character, item)
 
-    #character = app_tables.characters.get(Player=self.player_name)
     self.character['Gold'] += self.gold_text_box.text
     for herb_drop_down in self.herb_choice_drop_down_list:
       herb_name = herb_drop_down.selected_value

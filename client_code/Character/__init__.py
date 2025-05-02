@@ -57,23 +57,10 @@ class Character(CharacterTemplate):
     self.refresh_data_bindings()
 
   def retire_button_click(self, **event_args):
-    if self.player_name == 'Håvard':
-      item_list = app_tables.items.search(Available=True, Håvard=True)
-      
-    if self.player_name == 'Marcel':
-      item_list = app_tables.items.search(Available=True, Marcel=True)
-      
-    if self.player_name == 'Kristian':
-      item_list = app_tables.items.search(Available=True, Kristian=True)
-      
-    if self.player_name == 'John Magne':
-      item_list = app_tables.items.search(Available=True, John_Magne=True)
-
-    if len(item_list) > 0:
+    if len(self.item['Items']) > 0:
       alert("You have items left to sell")
       navigation.go_to_character_items(self.player_name)
       return
-      
     if not confirm("Are you retiring?"):
       return
     

@@ -50,7 +50,9 @@ class Frosthaven(FrosthavenTemplate):
     elif prosperity_level >= 4:
       walls = 4
 
-    offset = '‎ ' * 20
+    offset = ''
+    if window.innerWidth >= 900:
+      offset = '‎ ' * 20
     return [(f'{offset}{wall_number}{offset}', wall_number) for wall_number in range(0, walls+1)]
 
 
