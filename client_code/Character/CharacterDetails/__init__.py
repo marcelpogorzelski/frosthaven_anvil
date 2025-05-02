@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import window
-from .. import Frosthaven_info
+from ... import Frosthaven_info
 
 
 class CharacterDetails(CharacterDetailsTemplate):

@@ -59,7 +59,7 @@ class Scenario(ScenarioTemplate):
     self.complexity_image.source = complexity_images[self.item['Complexity']]
 
   def get_images(self):
-    if self.item['Number'][0:1] == 'So':
+    if self.item['Number'][0:2] == 'So':
       self.scenario_image.source = None
       return
     name = self.item['Name'].lower().replace('\'', '').replace(' ', '-')

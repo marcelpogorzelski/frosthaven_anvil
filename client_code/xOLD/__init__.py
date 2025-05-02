@@ -1,13 +1,12 @@
-from ._anvil_designer import RowTemplate3Template
+from ._anvil_designer import xOLDTemplate
 from anvil import *
-import anvil.server
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
 
-class RowTemplate3(RowTemplate3Template):
+class xOLD(xOLDTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

@@ -326,6 +326,26 @@ db_schema:
       type: bool
     server: full
     title: Items
+  pets:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Name
+      type: string
+    - admin_ui: {order: -1, width: 200}
+      name: Number
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: ImageURL
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: ImageBackURL
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: Captured
+      type: bool
+    server: full
+    title: Pets
   retired_characters:
     client: full
     columns:

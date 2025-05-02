@@ -2,7 +2,7 @@ components:
 - components:
   - data_bindings: []
     name: characters_repeating_panel
-    properties: {item_template: Party.PartyRowTemplate}
+    properties: {item_template: xOLD.Party.PartyRowTemplate}
     type: RepeatingPanel
   layout_properties: {full_width_row: false, grid_position: 'VQEZUT,WUURIE'}
   name: characters_data_grid
@@ -63,7 +63,7 @@ components:
   type: FlowPanel
 - components:
   - name: scenario_info_repeating_panel
-    properties: {item_template: Party.ScenarioDiffucultyRowTemplate}
+    properties: {item_template: xOLD.Party.ScenarioDiffucultyRowTemplate}
     type: RepeatingPanel
   layout_properties: {full_width_row: false, grid_position: 'FTGXDR,FCPOAA'}
   name: data_grid_1

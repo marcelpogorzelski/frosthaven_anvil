@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import navigator
 import json
-from .. import Frosthaven_info
+from ... import Frosthaven_info
 
 class CharacterCards(CharacterCardsTemplate):
   def __init__(self, player_name, **properties):

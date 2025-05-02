@@ -8,7 +8,6 @@ from anvil.tables import app_tables
 from ..UnlockEdit import UnlockEdit
 from ..Character import Character
 from ..Frosthaven import Frosthaven
-from ..Party import Party
 from ..Resources import Resources
 from ..Settings import Settings
 from ..Calendar import Calendar
@@ -17,10 +16,11 @@ from ..RetiredCharacters import RetiredCharacters
 from ..FinishScenario import FinishScenario
 from ..Buildings import Buildings
 from ..Items import Items
-from ..CharacterItems import CharacterItems
-from ..CharacterCards import CharacterCards
-from ..CharacterDetails import CharacterDetails
+from ..Character.CharacterCards import CharacterCards
+from ..Character.CharacterDetails import CharacterDetails
+from ..Character.CharacterItems import CharacterItems
 from ..Scenario import Scenario
+from ..Pets import Pets
 
 class Main(MainTemplate):
   def __init__(self, player_name, **properties):
@@ -94,9 +94,6 @@ class Main(MainTemplate):
   def frosthaven_link_click(self, **event_args):
     self.change_form(Frosthaven(), event_args['sender'])
 
-  def party_link_click(self, **event_args):
-    self.change_form(Party(), event_args['sender'])
-
   def resources_link_click(self, **event_args):
     self.change_form(Resources(), event_args['sender'])
 
@@ -162,4 +159,7 @@ class Main(MainTemplate):
 
   def items_link_click(self, **event_args):
     self.change_form(Items(), event_args['sender'])
+
+  def pets_link_click(self, **event_args):
+        self.change_form(Pets(), event_args['sender'])
 
