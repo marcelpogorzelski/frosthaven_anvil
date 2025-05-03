@@ -12,8 +12,12 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.image_1.source = self.get_image('https://raw.githubusercontent.com/teamducro/gloomhaven-storyline/refs/heads/master/resources/img/achievements/CBJ.png')
+    #self.check_items()
 
-    self.check_items()
+  def get_image(self, path):
+    #url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"
+    return URLMedia(path)
     
   def test(self):
     pass

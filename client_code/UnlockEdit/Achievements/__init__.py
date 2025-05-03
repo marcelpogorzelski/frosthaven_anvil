@@ -23,16 +23,13 @@ class Achievements(AchievementsTemplate):
 
   def get_image(self, path):
     url = f"https://raw.githubusercontent.com/teamducro/gloomhaven-storyline/refs/heads/master/resources/img/achievements/{path}.png"
-    print(url)
     return URLMedia(url)
 
   def get_image_source(self):
-    if not self.item['CurrentLevel']:
-      self.achievement_image.source = self.get_image(self.item['Id'])
-      return
-    number = ''
-    if not self.item['CurrentLevel'] > 0:
-      pass
+    image_name = self.item['Id']
+    if self.item['CurrentLevel'] > 1:
+      image_name += str(self.item['CurrentLevel'])
+    return self.get_image(image_name)
       
 
   def show_levels(self):

@@ -1,12 +1,16 @@
 components:
 - components:
   - components:
-    - layout_properties: {grid_position: 'EHUMSA,UOTRVN'}
+    - layout_properties: {grid_position: 'HOTCSX,OAXVMZ EHUMSA,UOTRVN'}
       name: export_label
       properties: {align: center, text: Export Frosthaven Data}
       type: Label
+    - layout_properties: {grid_position: 'HOTCSX,EQLYFF'}
+      name: image_1
+      properties: {}
+      type: Image
     - event_bindings: {click: export_button_click}
-      layout_properties: {grid_position: 'CEFMRD,LHVUCC'}
+      layout_properties: {grid_position: 'HOTCSX,OAXVMZ CEFMRD,LHVUCC'}
       name: export_button
       properties: {text: Export}
       type: Button
