@@ -21,9 +21,15 @@ class Achievements(AchievementsTemplate):
     self.achievement_drop_down.items = items
     self.item = self.achievement_drop_down.selected_value
 
+  def get_image(self, path):
+    url = f"https://raw.githubusercontent.com/teamducro/gloomhaven-storyline/refs/heads/master/resources/img/achievements/{path}.png"
+    print(url)
+    return URLMedia(url)
+
   def get_image_source(self):
     if not self.item['CurrentLevel']:
-      self.achievement_image.source = f"https://raw.githubusercontent.com/teamducro/gloomhaven-storyline/refs/heads/master/resources/img/achievements/{self.item['Id']}.png"
+      self.achievement_image.source = self.get_image(self.item['Id'])
+      return
     number = ''
     if not self.item['CurrentLevel'] > 0:
       pass
