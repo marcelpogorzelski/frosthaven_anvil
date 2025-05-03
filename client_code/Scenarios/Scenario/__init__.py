@@ -52,9 +52,9 @@ class Scenario(ScenarioTemplate):
 
   def set_complexity_image(self):
     complexity_images = {
-      1: '_/theme/complexity1.png',
-      2: '_/theme/complexity2.png',
-      3: '_/theme/complexity3.png',
+      1: '_/theme/scenario/complexity1.png',
+      2: '_/theme/scenario/complexity2.png',
+      3: '_/theme/scenario/complexity3.png',
     }
     self.complexity_image.source = complexity_images[self.item['Complexity']]
 

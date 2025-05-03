@@ -1,5 +1,10 @@
 unique_ids:
   assets:
+    character/.gitkeep: '1746308880375157870238234.7439'
+    character/check_mark.png: '1745992749558225513915056.79642'
+    character/experience.png: '174599259316353981011508.42027'
+    character/level.png: '1745996633169474811387922.0586'
+    character/level_next.png: '1746309346390196373361214.49478'
     class_icons/.gitkeep: '1746178677374283618808911.39246'
     class_icons/astral.png: '1746178736043990761711584.4463'
     class_icons/bannerspear.png: '1746178744891951316791305.5222'
@@ -19,10 +24,6 @@ unique_ids:
     class_icons/snowflake.png: '1746178882395865253678380.4856'
     class_icons/trap.png: '1746178887665280656771256.9732'
     communityIcon_99w87f5etxy91.png: '1718955508751763465329049.8501'
-    complexity1.png: '1745324285542654441603486.5806'
-    complexity2.png: '1745324292233973700604294.2139'
-    complexity3.png: '1745324299965352527687562.5385'
-    fh-battle-goal-check-mark-bw-icon.png: '1745992749558225513915056.79642'
     fh-equip-slot-body-bw-icon.png: '1736924288099574468212006.4983'
     fh-equip-slot-dual-hand-bw-icon.png: '1736924420141335611672151.3085'
     fh-equip-slot-head-bw-icon.png: '1736924196591666687719590.918'
@@ -31,7 +32,6 @@ unique_ids:
     fh-equip-slot-single-hand-bw-icon.png: '1736924398890696355585980.8965'
     fh-flip-back-to-front-generic-color-icon.png: '1736924750584906577102427.4431'
     fh-frosthaven-logo.png: '1745560484692411606219470.4916'
-    fh-level-crown-bw-icon.png: '1745996633169474811387922.0586'
     fh-lost-black-card-color-icon.png: '1736924712312524833466188.5012'
     fh-overlay-tile-hazardous-terrain-color-icon.png: '1745997527972358231183384.5621'
     fh-overlay-tile-trap-color-icon.png: '1745997518206975306310294.3616'
@@ -39,9 +39,11 @@ unique_ids:
     fh-return-card-bw-icon.png: '1746185335091466449211849.95026'
     fh-section-bw-icon.png: '1745993457366620044821549.5541'
     fh-tap-card-color-icon.png: '1736924694236701626679852.2623'
-    fh-xp-bw-icon.png: '174599259316353981011508.42027'
+    frosthaven/.gitkeep: '1746309846303463270963028.66064'
+    frosthaven/prosperity.png: '1746310258809405495404866.0426'
+    frosthaven/prosperity_level.png: '1746309886638330061465093.95795'
     resource_images/.gitkeep: '1717064476892415381207838.79395'
-    resource_images/fh-arrowvine-bw-icon.png: '1717064702521624984256951.733'
+    resource_images/arrowvine.png: '1717064702521624984256951.733'
     resource_images/fh-axenut-bw-icon.png: '1717064561649522186867982.00543'
     resource_images/fh-corpsecap-bw-icon.png: '171706459099128141231213.3249'
     resource_images/fh-flamefruit-bw-icon.png: '1717064625750338454453203.3529'
@@ -53,6 +55,9 @@ unique_ids:
     resource_images/fh-snowthistle-bw-icon.png: '1717064604111204932775281.25775'
     resource_images/fh-treasure-chest-item-bw-icon.png: '174549282776689527068516.65671'
     scenario/.gitkeep: '1746308233207354309213215.39764'
+    scenario/complexity1.png: '1745324285542654441603486.5806'
+    scenario/complexity2.png: '1745324292233973700604294.2139'
+    scenario/complexity3.png: '1745324299965352527687562.5385'
     standard-page.html: RHOF3TGLPFY5ZTMITZDJ6FAFZSRRLTUW
     theme.css: WJWPBKLEFA4NYVMXXRQ2SVLZ2OGYP67X
   forms:

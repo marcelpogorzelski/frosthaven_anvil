@@ -11,7 +11,7 @@ components:
       type: Image
     - layout_properties: {column: XIWIEI}
       name: checks_image
-      properties: {height: '45', source: _/theme/fh-battle-goal-check-mark-bw-icon.png}
+      properties: {height: '45', source: _/theme/character/check_mark.png}
       type: Image
     - layout_properties: {column: CNEKNX}
       name: lumber_image
@@ -27,7 +27,7 @@ components:
       type: Image
     - layout_properties: {column: BKAREF}
       name: arrowvine_image
-      properties: {height: '45', source: _/theme/resource_images/fh-arrowvine-bw-icon.png}
+      properties: {height: '45', source: _/theme/resource_images/arrowvine.png}
       type: Image
     - layout_properties: {column: GVVJXF}
       name: axenut_image
@@ -51,7 +51,7 @@ components:
       type: Image
     - layout_properties: {column: KYLSGG}
       name: experience_image
-      properties: {height: '45', source: _/theme/fh-xp-bw-icon.png}
+      properties: {height: '45', source: _/theme/character/experience.png}
       type: Image
     name: header_data_row_panel
     properties: {}
@@ -88,7 +88,7 @@ components:
       - components:
         - layout_properties: {column: QOBSHF}
           name: level_image
-          properties: {height: '40', source: _/theme/fh-level-crown-bw-icon.png}
+          properties: {height: '40', source: _/theme/character/level.png}
           type: Image
         - layout_properties: {column: MPBEYT}
           name: gold_conversion_image
@@ -96,7 +96,7 @@ components:
           type: Image
         - layout_properties: {column: QGMIKG}
           name: bonus_exp_image
-          properties: {height: '40', source: _/theme/fh-xp-bw-icon.png}
+          properties: {height: '40', source: _/theme/character/experience.png}
           type: Image
         name: data_row_panel_1
         properties: {}

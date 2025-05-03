@@ -10,15 +10,8 @@ class Achievements(AchievementsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    
     self.achievement_drop_down.items = [(achievement['Name'], achievement) for achievement in app_tables.achievements.search()]
-    items = list()
-    self.groups = {'JAR': list(), 'CORE': list()}
-    for achievement in app_tables.achievements.search():
-      if achievement['Group']:
-        self.groups[achievement['Group']].append(achievement)
-      items.append((achievement['Name'],achievement))
-    self.achievement_drop_down.items = items
     self.item = self.achievement_drop_down.selected_value
 
   def get_image(self, path):
@@ -39,15 +32,9 @@ class Achievements(AchievementsTemplate):
       return True
     return False
 
-  def change_group(self):
-    for achievement in self.groups[self.item['Group']]:
-      if achievement == self.item:
-        continue
-      achievement['Available'] = False
-
   def available_check_box_change(self, **event_args):
-    if self.item['Group'] and self.available_check_box.checked:
-      self.change_group()
+    if self.item['Connected'] and self.available_check_box.checked:
+      self.item['Connected']['Available'] = False
     self.item['Available'] = self.available_check_box.checked
     self.refresh_data_bindings()
 

@@ -47,7 +47,7 @@ components:
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE PADGPE,PCTKMJ'}
       name: arrowvine_image
-      properties: {height: '49', source: _/theme/resource_images/fh-arrowvine-bw-icon.png, visible: false}
+      properties: {height: '49', source: _/theme/resource_images/arrowvine.png, visible: false}
       type: Image
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE HESBIS,PLGLFD'}

@@ -251,6 +251,10 @@ components:
     name: logout_button
     properties: {role: outlined-button, text: Logout}
     type: Button
+  - layout_properties: {grid_position: 'IDBJNX,CCQWKV'}
+    name: spacer_6
+    properties: {height: 32}
+    type: Spacer
   layout_properties: {slot: left-nav}
   name: navbar_column_panel
   properties: {}
