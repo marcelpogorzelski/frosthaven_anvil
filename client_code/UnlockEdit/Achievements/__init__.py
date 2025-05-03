@@ -12,6 +12,10 @@ class Achievements(AchievementsTemplate):
     self.init_components(**properties)
 
     self.achievement_drop_down.items = [(achievement['Name'], achievement) for achievement in app_tables.achievements.search()]
+    items = list()
+    for achievement in app_tables.achievements.search():
+      if achievement
+    
     self.item = self.achievement_drop_down.selected_value
 
   def get_image_source(self):
