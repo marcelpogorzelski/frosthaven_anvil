@@ -23,7 +23,8 @@ components:
     name: amount_text_box
     properties: {align: center, enabled: false}
     type: TextBox
-  - layout_properties: {grid_position: 'TKZRQJ,QPYXGX'}
+  - data_bindings: []
+    layout_properties: {grid_position: 'TKZRQJ,QPYXGX'}
     name: achievement_image
     properties: {}
     type: Image

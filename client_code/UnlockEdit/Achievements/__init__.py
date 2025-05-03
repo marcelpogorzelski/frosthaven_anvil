@@ -13,9 +13,12 @@ class Achievements(AchievementsTemplate):
 
     self.achievement_drop_down.items = [(achievement['Name'], achievement) for achievement in app_tables.achievements.search()]
     items = list()
+    self.groups = {'JAR': list(), 'CORE': list()}
     for achievement in app_tables.achievements.search():
-      if achievement
-    
+      if achievement['Group']:
+        self.groups[achievement['Group']].append(achievement)
+      items.append((achievement['Name'],achievement))
+    self.achievement_drop_down.items = items
     self.item = self.achievement_drop_down.selected_value
 
   def get_image_source(self):
@@ -34,7 +37,7 @@ class Achievements(AchievementsTemplate):
     return False
 
   def change_group(self):
-    for achievement in app_tables.achievements.search(Group=self.item['Group']):
+    for achievement in self.groups[self.item['Group']]:
       if achievement == self.item:
         continue
       achievement['Available'] = False
