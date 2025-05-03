@@ -14,27 +14,45 @@ class Items(ItemsTemplate):
 
 
     # Any code you write here will run before the form opens.
-    self.current_item = self.number_text_box.text
+    prev = {'item': None}
+    drop_down_items = list()
+    self.items = dict()
+    
+    for item in app_tables.items.search():
+      drop_down_items.append(item['Number'])
+
+      self.items[item['Number']] = {'item': item, 'prev': prev['item'], 'next': None}
+      if prev:
+        prev['next'] = item
+      prev = self.items[item['Number']]
+      
+    self.item_drop_down.items = drop_down_items
+    
+    
     self.change_item()
 
   def change_item(self):
-    next_item = app_tables.items.search(Number=self.number_text_box.text)
-    if len(next_item) == 0:
-      alert(
-        f"{self.number_text_box.text} is not an item! Returning to item {self.current_item}"
-      )
-      self.number_text_box.text = self.current_item
-      return
-    self.item = next_item[0]
-      
-    self.current_item = self.number_text_box.text
-    print(self.current_item)
+    self.item = self.items[self.item_drop_down.selected_value]['item']
     self.refresh_data_bindings()
-
-  def number_text_box_pressed_enter(self, **event_args):
-    self.change_item()
 
   def available_check_box_change(self, **event_args):
-    """This method is called when this checkbox is checked or unchecked"""
     self.item['Available'] = self.available_check_box.checked
     self.refresh_data_bindings()
+
+  def item_drop_down_change(self, **event_args):
+    self.change_item()
+
+  def next_button_click(self, **event_args):
+    next = self.items[self.item['Number']]['next']
+    if not next:
+      return
+    #self.item = next
+    self.item_drop_down.selected_value = next['Number']
+    self.change_item()
+
+  def prev_button_click(self, **event_args):
+    prev = self.items[self.item['Number']]['prev']
+    if not prev:
+      return
+    self.item_drop_down.selected_value = prev['Number']
+    self.change_item()

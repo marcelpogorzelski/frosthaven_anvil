@@ -35,6 +35,7 @@ class Scenarios(ScenariosTemplate):
     sticker_media = URLMedia(
       f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{number:03d}-{name}.png?raw=true"
     )
+    
     self.scenario_image.source = sticker_media
 
   def scenario_drop_down_change(self, **event_args):

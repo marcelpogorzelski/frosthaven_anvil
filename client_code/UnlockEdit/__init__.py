@@ -16,13 +16,13 @@ from .Achievements import Achievements
 
 class UnlockEdit(UnlockEditTemplate):
   def __init__(self, **properties):
-    
+
     self.scenarios_form = Scenarios()
     self.items_form = Items()
     self.buildings_form = Buildings()
     self.classes_from = Classes()
-    self.pets_form = Pets()
     self.achievements_form = Achievements()
+    self.pets_form = Pets()
     
     self.init_components(**properties)
 

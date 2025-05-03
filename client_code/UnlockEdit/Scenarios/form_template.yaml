@@ -36,7 +36,7 @@ components:
     type: TextBox
   - data_bindings:
     - {code: self.available, property: visible, writeback: false}
-    layout_properties: {grid_position: 'BXJUAD,DAKKHO'}
+    layout_properties: {grid_position: 'GLMVAO,SFPZVA'}
     name: scenario_image
     properties: {}
     type: Image

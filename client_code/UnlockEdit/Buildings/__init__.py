@@ -11,7 +11,14 @@ class Buildings(BuildingsTemplate):
     
     self.init_components(**properties)
 
-    self.building_drop_down.items = [(str(building["Number"]), building) for building in app_tables.available_buildings.search()]
+    drop_down_items = list()
+    for building in app_tables.available_buildings.search():
+      if building['Available']:
+        drop_down_text = f"{building['Number']} - {building['Name']}"
+      else:
+        drop_down_text = str(building['Number'])
+      drop_down_items.append((drop_down_text, building))
+    self.building_drop_down.items = drop_down_items
     self.change_building()
 
   def change_building(self):
