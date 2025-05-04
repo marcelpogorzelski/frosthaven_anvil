@@ -23,8 +23,25 @@ class Achievements(AchievementsTemplate):
     if self.item['CurrentLevel'] > 1:
       image_name += str(self.item['CurrentLevel'])
     return self.get_image(image_name)
-      
 
+  def button_text(self):
+    if self.item['Descriptor']:
+      return f"Add new {self.item['Descriptor'][:-1]}"
+    return ''
+
+  def button_visible(self):
+    #print(1)
+    if self.item['Upgrades'] == 0:
+      return False
+    #print(2)
+    if not self.item['Available']:
+      return False
+    #print(3)
+    if self.item['Upgrades'] == self.item['CurrentLevel']:
+      return False
+
+    return True
+      
   def show_levels(self):
     if not self.item['Available']:
       return False
@@ -40,4 +57,8 @@ class Achievements(AchievementsTemplate):
 
   def achievement_drop_down_change(self, **event_args):
     self.item = self.achievement_drop_down.selected_value
+    self.refresh_data_bindings()
+
+  def upgrade_button_click(self, **event_args):
+    self.item['CurrentLevel'] += 1
     self.refresh_data_bindings()

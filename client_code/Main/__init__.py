@@ -21,6 +21,7 @@ from ..Character.CharacterDetails import CharacterDetails
 from ..Character.CharacterItems import CharacterItems
 from ..Scenarios.Scenario import Scenario
 from ..Pets import Pets
+from ..Achievements import Achievements
 
 class Main(MainTemplate):
   def __init__(self, player_name, **properties):
@@ -162,4 +163,7 @@ class Main(MainTemplate):
 
   def pets_link_click(self, **event_args):
         self.change_form(Pets(), event_args['sender'])
+
+  def achievements_link_click(self, **event_args):
+    self.change_form(Achievements(), event_args['sender'])
 
