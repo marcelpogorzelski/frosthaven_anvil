@@ -5,10 +5,6 @@ components:
       name: export_label
       properties: {align: center, text: Export Frosthaven Data}
       type: Label
-    - layout_properties: {grid_position: 'HOTCSX,EQLYFF'}
-      name: image_1
-      properties: {}
-      type: Image
     - event_bindings: {click: export_button_click}
       layout_properties: {grid_position: 'HOTCSX,OAXVMZ CEFMRD,LHVUCC'}
       name: export_button
@@ -26,7 +22,7 @@ components:
     - event_bindings: {change: import_file_loader_change}
       layout_properties: {grid_position: 'ZYFQWL,KWWJJA'}
       name: import_file_loader
-      properties: {enabled: true, visible: false}
+      properties: {enabled: false, visible: true}
       type: FileLoader
     - event_bindings: {click: action_button_click}
       layout_properties: {grid_position: 'XUVFYW,QPPHVA'}

@@ -31,6 +31,34 @@ class Scenario(ScenarioTemplate):
     self.get_images()
     self.set_treasures()
     self.set_scenario_difficulty_table()
+    self.set_requirements()
+    self.check_season()
+
+  def check_season(self):
+    week = len(app_tables.calendar.search(Finished=True))
+    print(week)
+    if ((week - 1) // 10 + 1) % 2:
+      #summer
+      return '#FFFFAD'
+    else:
+      return '#ADD8E6'
+
+  def set_requirements(self):
+    if not self.item['Requirements']:
+      return
+      
+    image_source = None
+    if 'Climbing Gear' in self.item['Requirements']:
+      image_source = '_/theme/outpost/climbing_gear.png'
+    if 'Boat' in self.item['Requirements']:
+      image_source = '_/theme/outpost/boat.png'
+    if 'Sled' in self.item['Requirements']:
+      image_source = '_/theme/outpost/sled.png'
+
+    if image_source:
+      self.req_image.source = image_source
+      self.req_image.visible = True
+
     
   def reset_buttons(self):
     self.start_scenario_button.visible = False
@@ -81,8 +109,6 @@ class Scenario(ScenarioTemplate):
   def set_treasures(self):
     self.chests_repeating_panel.items = self.item['Treasures']
     self.chests_repeating_panel.set_event_handler('x-check-looted', self.check_looted)
-
-  #def self.check_looted_event(self, **event_args)
 
   def check_looted(self, **event_args):
     if not self.item['Treasures']:

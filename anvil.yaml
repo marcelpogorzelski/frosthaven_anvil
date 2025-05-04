@@ -471,9 +471,6 @@ db_schema:
     - admin_ui: {order: 6, width: 64}
       name: Chests
       type: string
-    - admin_ui: {order: 5, width: 109}
-      name: Requirements
-      type: string
     - admin_ui: {order: 7, width: 112}
       name: Unlocked by
       type: string
@@ -514,6 +511,9 @@ db_schema:
     - admin_ui: {order: 18, width: 200}
       name: TreasuresSeen
       type: bool
+    - admin_ui: {order: 5, width: 200}
+      name: Requirements
+      type: simpleObject
     server: full
     title: Scenarios
   treasures:

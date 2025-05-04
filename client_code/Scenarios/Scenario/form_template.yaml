@@ -54,25 +54,29 @@ components:
     type: ColumnPanel
   - components:
     - components:
-      - layout_properties: {col_xs: 0, row: IGRWJB, width_xs: 5}
-        name: scenario_number_label
-        properties: {align: right, role: input-prompt, text: Number}
+      - layout_properties: {col_xs: 0, row: MRYRFL, width_xs: 2}
+        name: req_image
+        properties: {height: 45.835052490234375, source: _/theme/outpost/boat.png, visible: false}
+        type: Image
+      - layout_properties: {col_xs: 2, row: MRYRFL, width_xs: 3}
+        name: status_label
+        properties: {align: right, role: input-prompt, text: Status}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''Number'']', property: text, writeback: false}
-        layout_properties: {col_xs: 5, row: IGRWJB, width_xs: 7}
-        name: scenario_number_text_box
-        properties: {enabled: false, role: null}
+        - {code: 'self.item[''Status'']', property: text, writeback: false}
+        layout_properties: {col_xs: 5, row: MRYRFL, width_xs: 7}
+        name: status_text_box
+        properties: {enabled: false}
         type: TextBox
-      - layout_properties: {col_xs: 0, row: IYHGTM, width_xs: 5}
-        name: scenario_label
-        properties: {align: right, role: input-prompt, text: Name}
+      - layout_properties: {col_xs: 0, row: JFICEG, width_xs: 5}
+        name: page_label
+        properties: {align: right, role: input-prompt, text: Page}
         type: Label
       - data_bindings:
-        - {code: 'self.item[''Name'']', property: text, writeback: false}
-        layout_properties: {col_xs: 5, row: IYHGTM, width_xs: 7}
-        name: scenario_name_text_box
-        properties: {enabled: false, role: null}
+        - {code: 'self.item[''Page'']', property: text, writeback: false}
+        layout_properties: {col_xs: 5, row: JFICEG, width_xs: 7}
+        name: page_text_box
+        properties: {enabled: false}
         type: TextBox
       - layout_properties: {col_xs: 0, row: WWPWLC, width_xs: 5}
         name: location_label
@@ -83,26 +87,6 @@ components:
         layout_properties: {col_xs: 5, row: WWPWLC, width_xs: 7}
         name: location_text_box
         properties: {enabled: false, role: null}
-        type: TextBox
-      - layout_properties: {col_xs: 0, row: JGOOZB, width_xs: 5}
-        name: page_label
-        properties: {align: right, role: input-prompt, text: Page}
-        type: Label
-      - data_bindings:
-        - {code: 'self.item[''Page'']', property: text, writeback: false}
-        layout_properties: {col_xs: 5, row: JGOOZB, width_xs: 7}
-        name: page_text_box
-        properties: {enabled: false}
-        type: TextBox
-      - layout_properties: {col_xs: 0, row: ODFSPT, width_xs: 5}
-        name: status_label
-        properties: {align: right, role: input-prompt, text: Status}
-        type: Label
-      - data_bindings:
-        - {code: 'self.item[''Status'']', property: text, writeback: false}
-        layout_properties: {col_xs: 5, row: ODFSPT, width_xs: 7}
-        name: status_text_box
-        properties: {enabled: false}
         type: TextBox
       - layout_properties: {col_xs: 0, row: PMGIGV, width_xs: 5}
         name: complexity_label

@@ -12,12 +12,10 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.image_1.source = self.get_image('https://raw.githubusercontent.com/teamducro/gloomhaven-storyline/refs/heads/master/resources/img/achievements/CBJ.png')
+
+    
     #self.check_items()
 
-  def get_image(self, path):
-    #url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"
-    return URLMedia(path)
     
   def test(self):
     pass
@@ -58,17 +56,22 @@ class Settings(SettingsTemplate):
       treasures.append(treasure)
     scenario['Treasures'] = treasures
 
-  def parse_scenario_errata(self, scenario_id, scenario_data):
-    if not scenario_id.isdigit():
-        return
-      
-    #number = 'S' + str(scenario_id)
-    loot = scenario_data['loot']
-    name = scenario_data['title']
-    
-    scenario = app_tables.scenarios.get(Name=name)
+  def parse_scenario_errata(self, scenarios_data):
+    for scenario_id, scenario_data in scenarios_data.items():
+      print(scenario_id)
+      if not scenario_id.isdigit():
+          continue
+        
+      #number = 'S' + str(scenario_id)
+      requirements = scenario_data['requirements']
+      name = scenario_data['title']
 
-    scenario.update(Loot=loot)
+
+      scenario = app_tables.scenarios.get(Name=name)
+      if requirements[0] == "":
+        requirements = None
+  
+      scenario.update(Requirements=requirements)
 
   def parse_achievements(self, achievements):
     exclude = list()
@@ -89,7 +92,7 @@ class Settings(SettingsTemplate):
   def import_file_loader_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
     file_data = json.loads(file.get_bytes())
-    self.parse_achievements(file_data)
+    self.parse_scenario_errata(file_data)
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
