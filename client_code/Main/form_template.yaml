@@ -211,6 +211,12 @@ components:
     name: buildings_link
     properties: {align: center, text: Buildings}
     type: Link
+  - data_bindings: []
+    event_bindings: {click: buildings_link_click}
+    layout_properties: {grid_position: 'GHPWEJ,NNCUUQ'}
+    name: achievements_link
+    properties: {align: center, text: Achievements}
+    type: Link
   - components: []
     data_bindings: []
     event_bindings: {click: pets_link_click}
