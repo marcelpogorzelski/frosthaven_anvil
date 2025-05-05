@@ -1,5 +1,7 @@
 from ._anvil_designer import ScenarioTemplate
 from anvil import *
+import anvil.google.auth, anvil.google.drive
+from anvil.google.drive import app_files
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -34,7 +36,6 @@ class Scenario(ScenarioTemplate):
     
   def check_season(self):
     week = len(app_tables.calendar.search(Finished=True))
-    print(week)
     if ((week - 1) // 10 + 1) % 2:
       #summer
       self.season = 'Summer'
