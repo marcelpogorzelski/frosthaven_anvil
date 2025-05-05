@@ -15,6 +15,7 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     
+    
   def test(self):
     pass
 
