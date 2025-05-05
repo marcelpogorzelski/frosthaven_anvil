@@ -10,12 +10,9 @@ from anvil.tables import app_tables
 
 class Achievement(AchievementTemplate):
   def __init__(self, achievemnet, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.achievement_image.source = self.get_image(achievemnet['Id'])
 
   def get_image(self, path):
-    url = f"https://raw.githubusercontent.com/teamducro/gloomhaven-storyline/refs/heads/master/resources/img/achievements/{path}.png"
-    return URLMedia(url)
+    return app_files.achievements.get(path + '.png')
 
-    # Any code you write here will run before the form opens.

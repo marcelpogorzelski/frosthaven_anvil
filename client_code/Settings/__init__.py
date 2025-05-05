@@ -73,7 +73,7 @@ class Settings(SettingsTemplate):
     
   def import_file_loader_change(self, files, **event_args):
     for file in files:
-      app_files.scenariostickers.create_file(file.name, file)
+      app_files.achievements.create_file(file.name, file)
     
 
   def change_password_button_click(self, **event_args):
