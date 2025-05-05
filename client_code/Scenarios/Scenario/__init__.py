@@ -109,15 +109,15 @@ class Scenario(ScenarioTemplate):
     name = self.item['Name'].lower().replace('\'', '').replace(' ', '-')
     number = int(self.item['Number'][1:])
 
-    scenario_image_file = f"fh-{number:03d}-{name}.png"
-    map_layout_image_file = f"fh-{number:03d}-{name}-map-layout.png"
-    loot_image_file = f"fh-{number:03d}-{name}-loot.png"
-    key_image_file = f"fh-{number:03d}-{name}-scenario-key.png"
-    
-    self.scenario_image.source = app_files.scenariostickers.get(scenario_image_file)
-    self.map_layout_image.source = app_files.scenariolayout.get(map_layout_image_file)
-    self.loot_image.source = app_files.scenariolayout.get(loot_image_file)
-    self.key_image.source = app_files.scenariolayout.get(key_image_file)
+    scenario_image_file = app_files.scenariostickers.get(f"fh-{number:03d}-{name}.png")
+    map_layout_image_file = app_files.scenariolayout.get(f"fh-{number:03d}-{name}-map-layout.png")
+    loot_image_file = app_files.scenariolayout.get(f"fh-{number:03d}-{name}-loot.png")
+    key_image_file = app_files.scenariolayout.get(f"fh-{number:03d}-{name}-scenario-key.png")
+
+    self.scenario_image.source = scenario_image_file
+    self.map_layout_image.source = map_layout_image_file
+    self.loot_image.source = loot_image_file
+    self.key_image.source = key_image_file
 
   def set_scenario_difficulty_table(self):
     self.scenario_difficulty_repeating_panel.items = app_tables.scenario_info.search()
