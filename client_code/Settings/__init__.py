@@ -14,11 +14,6 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    #print(app_files.frosthaven.list_folders())
-    for test in app_files.frosthaven.list_folders():
-      print(test['title'])    
-    #self.check_items()
-
     
   def test(self):
     pass
@@ -68,34 +63,17 @@ class Settings(SettingsTemplate):
       #number = 'S' + str(scenario_id)
       requirements = scenario_data['requirements']
       name = scenario_data['title']
-
-
+      
       scenario = app_tables.scenarios.get(Name=name)
       if requirements[0] == "":
         requirements = None
   
       scenario.update(Requirements=requirements)
-
-  def parse_achievements(self, achievements):
-    exclude = list()
-
-    for achievement in achievements:
-      if achievement['id'] in exclude:
-        continue
-      id = achievement.get('id')
-      name = achievement.get('name')
-      group = achievement.get('group')
-      type = achievement.get('type')
-      upgrades = achievement.get('upgrades', [])
-      for upgrade in upgrades:
-        exclude.append(upgrade)
-      upgrades = len(upgrades)
-      app_tables.achievements.add_row(Id=id, Name=name, Group=group, Type=type, Upgrades=upgrades)
     
-  def import_file_loader_change(self, file, **event_args):
-    """This method is called when a new file is loaded into this FileLoader"""
-    file_data = json.loads(file.get_bytes())
-    self.parse_scenario_errata(file_data)
+  def import_file_loader_change(self, files, **event_args):
+    for file in files:
+      app_files.scenariolayout.create_file(file.name, file)
+    
 
   def change_password_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -104,15 +82,7 @@ class Settings(SettingsTemplate):
 
   def action_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    for pet in pets:
-      image_url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{pet['image']}"
-      image_back_url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{pet['imageBack']}"
-      app_tables.pets.add_row(
-        Number=pet['id'],
-        Name=pet['name'],
-        ImageURL=image_url,
-        ImageBackURL=image_back_url,
-        Captured=False)
+    pass
 
 
 
