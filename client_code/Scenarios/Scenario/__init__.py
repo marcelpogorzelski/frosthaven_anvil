@@ -114,7 +114,7 @@ class Scenario(ScenarioTemplate):
     loot_image_file = f"fh-{number:03d}-{name}-loot.png"
     key_image_file = f"fh-{number:03d}-{name}-scenario-key.png"
     
-    self.scenario_image.source = app_files.scenariolayout.get(scenario_image_file)
+    self.scenario_image.source = app_files.scenariostickers.get(scenario_image_file)
     self.map_layout_image.source = app_files.scenariolayout.get(map_layout_image_file)
     self.loot_image.source = app_files.scenariolayout.get(loot_image_file)
     self.key_image.source = app_files.scenariolayout.get(key_image_file)

@@ -33,12 +33,14 @@ class Scenarios(ScenariosTemplate):
       
     name = self.item['Name'].lower().replace('\'', '').replace(' ', '-')
     number = int(self.item['Number'][1:])
+
     
-    sticker_media = URLMedia(
-      f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{number:03d}-{name}.png?raw=true"
-    )
     
-    self.scenario_image.source = sticker_media
+    #sticker_media = URLMedia(
+    #  f"https://github.com/any2cards/frosthaven/blob/master/images/art/frosthaven/stickers/individual/location-stickers/fh-{number:03d}-{name}.png?raw=true"
+    #)
+    
+    self.scenario_image.source = app_files.scenariostickers.get(f'fh-{number:03d}-{name}.png')
 
   def scenario_drop_down_change(self, **event_args):
     self.change_scenario(set_image=True)
