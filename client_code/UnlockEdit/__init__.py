@@ -16,25 +16,25 @@ from .Achievements import Achievements
 
 class UnlockEdit(UnlockEditTemplate):
   def __init__(self, **properties):
-
-    self.scenarios_form = Scenarios()
-    self.items_form = Items()
-    self.buildings_form = Buildings()
-    self.classes_from = Classes()
-    self.achievements_form = Achievements()
-    self.pets_form = Pets()
-    
     self.init_components(**properties)
 
-    self.change_form(self.scenarios_form)
-    
-    self.form_flow_panel.add_component(self.scenarios_form)
-    self.form_flow_panel.add_component(self.items_form)
-    self.form_flow_panel.add_component(self.buildings_form)
-    self.form_flow_panel.add_component(self.classes_from)
-    self.form_flow_panel.add_component(self.pets_form)
-    self.form_flow_panel.add_component(self.achievements_form)
-    
+    self.setup_forms()
+    self.forms['Scenarios']['instance'] = self.forms['Scenarios']['form']()
+    self.current_form = self.forms['Scenarios']['instance']
+    self.form_flow_panel.add_component(self.forms['Scenarios']['instance'])
+
+  def setup_form(self, name, form, radio_button):
+    self.forms[name] = {'form': form, 'instance': None}
+    radio_button.tag = name
+
+  def setup_forms(self):
+    self.forms = dict()
+    self.setup_form('Scenarios', Scenarios, self.scenario_radio_button)
+    self.setup_form('Items', Items, self.item_radio_button)
+    self.setup_form('Buildings', Buildings, self.building_radio_button)
+    self.setup_form('Classes', Classes, self.class_radio_button)
+    self.setup_form('Achievements', Achievements, self.achievement_radio_button)
+    self.setup_form('Pets', Pets, self.pet_radio_button)
 
   def reset_forms(self):
     self.scenarios_form.visible = False
@@ -44,9 +44,13 @@ class UnlockEdit(UnlockEditTemplate):
     self.pets_form.visible = False
     self.achievements_form.visible = False
 
-  def change_form(self, form):
-    self.reset_forms()
-    form.visible = True
+  def change_form(self, name):
+    if not self.forms[name]['instance']:
+      self.forms[name]['instance'] = self.forms[name]['form']()
+      self.form_flow_panel.add_component(self.forms[name]['instance'])
+    self.current_form.visible = False
+    self.current_form = self.forms[name]['instance']
+    self.current_form.visible = True
 
   def radio_button_clicked(self, **event_args):
     self.change_form(event_args['sender'].tag)

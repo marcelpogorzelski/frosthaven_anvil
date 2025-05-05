@@ -23,26 +23,41 @@ class Scenario(ScenarioTemplate):
       self.errata_card.visible = True
     # Any code you write here will run before the form opens.
 
-    if self.item['Location'] == 'FR':
-      self.road_card_card.visible = True
-      
+    self.check_season()
+    self.set_road_card()
     self.activate_buttons()
     self.set_complexity_image()
     self.get_images()
     self.set_treasures()
     self.set_scenario_difficulty_table()
     self.set_requirements()
-    self.check_season()
-
+    
   def check_season(self):
     week = len(app_tables.calendar.search(Finished=True))
     print(week)
     if ((week - 1) // 10 + 1) % 2:
       #summer
-      return '#FFFFAD'
+      self.season = 'Summer'
+      self.season_background = '#FFFFAD'
     else:
-      return '#ADD8E6'
+      self.season = 'Winter'
+      self.season_background = '#ADD8E6'
 
+  def set_road_card(self):
+    if self.item['Requirements'] and 'Boat' in self.item['Requirements']:
+      event_text = "Draw a Boat Event Card"
+      event_backgorund = 'theme:Primary Container'
+    elif self.item['Location'] == 'FR':
+      event_text = "Don't draw any Event Card!"
+      event_backgorund = 'theme:Tertiary Container'
+    else:
+      event_text = f"Draw a {self.season} Road Event"
+      event_backgorund = self.season_background
+      
+    self.event_card_label.text = event_text
+    self.event_card_label.background = event_backgorund
+
+    
   def set_requirements(self):
     if not self.item['Requirements']:
       return

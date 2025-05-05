@@ -5,43 +5,37 @@ components:
       name: edit_label
       properties: {align: center, role: title, text: Edit}
       type: Label
-    - data_bindings:
-      - {code: self.scenarios_form, property: tag, writeback: false}
+    - data_bindings: []
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG XEGFFX,QPHJFG'}
       name: scenario_radio_button
       properties: {selected: true, text: Scenarios, value: ''}
       type: RadioButton
-    - data_bindings:
-      - {code: self.buildings_form, property: tag, writeback: false}
+    - data_bindings: []
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG BFNVNB,TPVVEC'}
       name: building_radio_button
       properties: {text: Buildings}
       type: RadioButton
-    - data_bindings:
-      - {code: self.achievements_form, property: tag, writeback: false}
+    - data_bindings: []
       event_bindings: {change: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG VYUKFG,ILFVBN'}
-      name: achievements_radio_button
+      name: achievement_radio_button
       properties: {text: Achievements}
       type: RadioButton
-    - data_bindings:
-      - {code: self.items_form, property: tag, writeback: false}
+    - data_bindings: []
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,TFKDTU'}
       name: item_radio_button
       properties: {selected: false, text: Items, value: ''}
       type: RadioButton
-    - data_bindings:
-      - {code: self.classes_from, property: tag, writeback: false}
+    - data_bindings: []
       event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,TFKDTU LDXWGW,KTEMGX'}
       name: class_radio_button
       properties: {text: Classes}
       type: RadioButton
-    - data_bindings:
-      - {code: self.pets_form, property: tag, writeback: false}
+    - data_bindings: []
       event_bindings: {change: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,TFKDTU EDLAGW,DBNZCV'}
       name: pet_radio_button
