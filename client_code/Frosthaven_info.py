@@ -4332,5 +4332,5 @@ class_cards_info = { "BB": [
     "initiative": 45,
     "level": 2
     }
-]
+  ]
 }

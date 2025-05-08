@@ -12,6 +12,7 @@ class Card(CardTemplate):
   def __init__(self, card, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    
     self.add_card_image(card['image'])
 
 

@@ -16,7 +16,6 @@ class CharacterItems(CharacterItemsTemplate):
   def __init__(self, player_name,  **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.resource_names = ['Lumber', 'Metal', 'Hide', 'Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
 
     self.total_price = 0
     self.total_herbs = 0
@@ -47,7 +46,7 @@ class CharacterItems(CharacterItemsTemplate):
     if item['HasGoldCost']:
       return int(item['Gold'] / 2)
     sell_price = 0
-    for resource_name in self.resource_names:
+    for resource_name in Utilites.MATERIAL_AND_HERB_RESOURCES:
       sell_price += item[resource_name]
     sell_price += len(item['Items'].split(',')) - 1
     return sell_price * 2
