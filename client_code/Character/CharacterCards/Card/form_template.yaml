@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'RTTAFW,JOGXNC'}
+  name: card_image
+  properties: {display_mode: shrink_to_fit, height: ''}
+  type: Image
+container: {type: ColumnPanel}
+is_package: true

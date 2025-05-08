@@ -7,7 +7,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from anvil.js.window import navigator
+from anvil.js.window import window
 from .Item import Item
 
 class Items(ItemsTemplate):
@@ -18,7 +18,7 @@ class Items(ItemsTemplate):
     self.orange = ' #FFA500'
 
     self.display_mode = 'original_size'
-    if navigator.userAgentData.mobile:
+    if window.innerWidth < 600:
       self.display_mode = 'shrink_to_fit'
     
     self.head_image.tag = 'Head'
