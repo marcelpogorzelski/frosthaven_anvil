@@ -16,6 +16,51 @@ HERB_RESOURCES = ['Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 
 MATERIAL_AND_HERB_RESOURCES = ['Lumber', 'Metal', 'Hide', 'Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
 ALL_RESOURCES = ['Gold', 'Lumber', 'Metal', 'Hide', 'Arrowvine', 'Axenut', 'Corpsecap', 'Flamefruit', 'Rockroot', 'Snowthistle']
 
+SCENARIO_FINISHED = 'Finished'
+SCENARIO_AVAILABLE = 'Available'
+SCENARIO_LOCKED = 'Locked'
+SCENARIO_UNDISCOVERED = 'Undiscovered'
+SCENARIO_UNFULFILLED = 'Unfulfilled Requirements'
+SCENARIO_AVAILABLE_STATUSES = [SCENARIO_AVAILABLE, SCENARIO_FINISHED, SCENARIO_LOCKED, SCENARIO_UNDISCOVERED]
+SCENARIO_UNFULFILLED_STATUSES = [SCENARIO_UNFULFILLED, SCENARIO_FINISHED, SCENARIO_LOCKED, SCENARIO_UNDISCOVERED]
+SCENARIO_ACTIVE_STATUSES = [SCENARIO_AVAILABLE, SCENARIO_UNFULFILLED]
+
+TRANSPORTS = ['Sled', 'Boat', 'Climbing Gear']
+
+def check_scenario_available(requirement):
+  achievement = app_tables.achievements.get(Name=requirement)
+  if achievement:
+    if achievement[SCENARIO_AVAILABLE]:
+      return True
+    else:
+      return False
+  if app_tables.achievements.get(Name='Coral Crown Shard')['CurrentLevel'] == 6:
+    return True
+  return False
+
+def set_scenario_available():
+  for scenario in app_tables.scenarios.search(Requirements=q.not_(None)):
+    if scenario['Status'] not in SCENARIO_ACTIVE_STATUSES:
+      continue
+    for requirement in scenario['Requirements']:
+      if requirement in TRANSPORTS:
+        continue
+      if check_scenario_available(requirement):
+        scenario['Status'] = SCENARIO_AVAILABLE
+      else:
+        scenario['Status'] = SCENARIO_UNFULFILLED
+
+def get_scenario_statuses(scenario):
+  if not scenario['Requirements']:
+    return SCENARIO_AVAILABLE_STATUSES
+  for requirement in scenario['Requirements']:
+    if requirement in TRANSPORTS:
+      continue
+    if check_scenario_available(requirement):
+      return SCENARIO_AVAILABLE_STATUSES 
+    else:
+      return SCENARIO_UNFULFILLED_STATUSES
+  return SCENARIO_AVAILABLE_STATUSES
 
 def set_experience(character, experience):
   experience = max(min(experience, 500),0)

@@ -7,6 +7,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ... import navigation
+from ... import Utilites
 
 
 class Scenario(ScenarioTemplate):
@@ -206,6 +207,7 @@ class Scenario(ScenarioTemplate):
     navigation.go_to_finish_scenario(win=win)
     
   def win_scenario_button_click(self, **event_args):
+    self.item['Status'] = Utilites.SCENARIO_FINISHED
     self.finish_scenario(win=True)
 
   def lose_scenario_button_click(self, **event_args):

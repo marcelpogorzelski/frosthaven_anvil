@@ -6,6 +6,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ... import Utilites
 
 
 class Achievements(AchievementsTemplate):
@@ -31,16 +32,12 @@ class Achievements(AchievementsTemplate):
     return ''
 
   def button_visible(self):
-    #print(1)
     if self.item['Upgrades'] == 0:
       return False
-    #print(2)
     if not self.item['Available']:
       return False
-    #print(3)
     if self.item['Upgrades'] == self.item['CurrentLevel']:
       return False
-
     return True
       
   def show_levels(self):
@@ -54,6 +51,8 @@ class Achievements(AchievementsTemplate):
     if self.item['Connected'] and self.available_check_box.checked:
       self.item['Connected']['Available'] = False
     self.item['Available'] = self.available_check_box.checked
+    if self.item['ScenarioCheck']:
+      Utilites.set_scenario_available()
     self.achievement_image.visible = self.available_check_box.checked
     self.refresh_data_bindings()
 

@@ -14,8 +14,7 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    #self.test()
-    
+    Utilites.set_scenario_available()
     
   def test(self):
     unmet_reqs = dict()

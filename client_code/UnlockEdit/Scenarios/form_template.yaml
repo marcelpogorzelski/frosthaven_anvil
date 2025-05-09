@@ -20,7 +20,6 @@ components:
     properties: {}
     type: DropDown
   - data_bindings:
-    - {code: '[''Available'', ''Finished'', ''Locked'', ''Undiscovered'']', property: items, writeback: false}
     - {code: 'self.item[''Status'']', property: selected_value, writeback: false}
     event_bindings: {change: status_drop_down_change}
     layout_properties: {grid_position: 'XCEASH,NSCFCY OXSWXJ,FLTIZN'}

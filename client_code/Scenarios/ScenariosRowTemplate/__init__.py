@@ -8,12 +8,14 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ... import navigation
+from ... import Utilites
 
 class ScenariosRowTemplate(ScenariosRowTemplateTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    self.status_drop_down.items = Utilites.get_scenario_statuses(self.item)
+    
   def foregroud_color(self, hex):
     red, green, blue = tuple(int(hex[i:i+2], 16) for i in (1, 3, 5))
     

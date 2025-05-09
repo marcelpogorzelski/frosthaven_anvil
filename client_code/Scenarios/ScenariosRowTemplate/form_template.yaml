@@ -12,7 +12,7 @@ components:
   layout_properties: {column: EGUNUE}
   name: status_drop_down
   properties:
-    items: [Available, Finished, Locked]
+    items: []
   type: DropDown
 - data_bindings:
   - {code: 'self.item[''Notes'']', property: text, writeback: true}
