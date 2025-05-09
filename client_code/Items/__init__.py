@@ -16,10 +16,10 @@ class Items(ItemsTemplate):
     self.init_components(**properties)
     
     self.orange = ' #FFA500'
-
-    self.display_mode = 'original_size'
+    self.display_mode = 'fill_width' 
+    self.image_width = 200
     if window.innerWidth < 600:
-      self.display_mode = 'shrink_to_fit'
+      self.image_width = 100
     
     self.head_image.tag = 'Head'
     self.body_image.tag = 'Body'
@@ -49,17 +49,26 @@ class Items(ItemsTemplate):
 
     self.all_images = list()
     self.load_items()
+    self.resize_items()
 
 
   def load_image(self, item):
     item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=item)
     item_image.add_event_handler('mouse_down', self.process_item)
-    self.items_flow_panel.add_component(item_image)
+    self.items_flow_panel.add_component(item_image, width=self.image_width)
     self.all_images.append(item_image)
 
   def load_items(self):
     for item in app_tables.items.search(Available=True):
       self.load_image(item)
+    self.items_flow_panel.visible = True
+
+  def resize_items(self):
+    print(self.image_width)
+    self.items_flow_panel.visible = False
+    self.items_flow_panel.clear()
+    for image in self.all_images:
+      self.items_flow_panel.add_component(image, width=self.image_width)
     self.items_flow_panel.visible = True
 
   def filter_item(self, item):
@@ -125,5 +134,19 @@ class Items(ItemsTemplate):
       event_args['sender'].background = self.orange
 
     self.update_visible_images()
+
+  def decrease_items_click(self, **event_args):
+    if self.image_width <= 100:
+      self.image_width -= 25
+    else:
+      self.image_width -= 50
+    self.resize_items()
+
+  def increase_items_click(self, **event_args):
+    if self.image_width < 100:
+      self.image_width += 25
+    else:
+      self.image_width += 50
+    self.resize_items()
 
     

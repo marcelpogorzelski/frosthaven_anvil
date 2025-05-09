@@ -66,6 +66,15 @@ components:
     name: item_number_text_box
     properties: {placeholder: Item Number, role: outlined, spacing_above: large}
     type: TextBox
+  - event_bindings: {click: decrease_items_click}
+    layout_properties: {}
+    name: decrease_items
+    properties: {icon: 'fa:minus-circle', spacing_above: large, text: ''}
+    type: Button
+  - event_bindings: {click: increase_items_click}
+    name: increase_items
+    properties: {icon: 'fa:plus-circle', spacing_above: large, text: ''}
+    type: Button
   layout_properties: {full_width_row: true, grid_position: 'IJKHNB,IYYZMH'}
   name: filter_flow_panel
   properties: {}

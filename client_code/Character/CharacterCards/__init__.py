@@ -29,5 +29,4 @@ class CharacterCards(CharacterCardsTemplate):
     class_cards_info = sorted(Frosthaven_info.class_cards_info[class_id], key=lambda card: card['level'] )
     for class_card_info in class_cards_info:
       card = Card(class_card_info)
-      print(card.test)
       self.cards_flow_panel.add_component(card, width=width)
