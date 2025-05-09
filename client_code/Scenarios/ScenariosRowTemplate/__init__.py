@@ -15,6 +15,10 @@ class ScenariosRowTemplate(ScenariosRowTemplateTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.status_drop_down.items = Utilites.get_scenario_statuses(self.item)
+
+  def check_name_link(self):
+    if self.item['Status'] == Utilites:
+      pass
     
   def foregroud_color(self, hex):
     red, green, blue = tuple(int(hex[i:i+2], 16) for i in (1, 3, 5))
@@ -26,5 +30,4 @@ class ScenariosRowTemplate(ScenariosRowTemplateTemplate):
       return "#000000"
 
   def name_link_click(self, **event_args):
-    """This method is called when the link is clicked"""
     navigation.go_to_scenario(self.item)
