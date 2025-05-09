@@ -39,7 +39,6 @@ components:
     - {data_key: Name, expand: false, id: GJCQIT, title: Name, width: '170'}
     - {data_key: Status, expand: false, id: EGUNUE, title: Status, width: 129.71868896484375}
     - {data_key: Requirements, id: ZFDBBU, title: Requirements, width: '150'}
-    - {data_key: Chests, id: IYJEPN, title: Chests, width: '150'}
     - {data_key: Unlocked by, id: ROGTEG, title: Unlocked by, width: '150'}
     - {data_key: Notes, expand: true, id: ZVPYTB, title: Notes, width: '200'}
     role: [tonal-data-grid, wide]

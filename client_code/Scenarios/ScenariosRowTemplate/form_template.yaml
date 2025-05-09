@@ -8,7 +8,8 @@ components:
   properties: {align: center, foreground: ''}
   type: Label
 - data_bindings:
-  - {code: 'self.item[''Status'']', property: selected_value, writeback: true}
+  - {code: 'self.item[''Status'']', property: selected_value, writeback: false}
+  event_bindings: {change: status_drop_down_change}
   layout_properties: {column: EGUNUE}
   name: status_drop_down
   properties:
@@ -27,12 +28,6 @@ components:
   properties: {}
   type: TextBox
 - data_bindings:
-  - {code: 'self.item[''Chests'']', property: text, writeback: true}
-  layout_properties: {column: IYJEPN}
-  name: chest_text_box
-  properties: {}
-  type: TextBox
-- data_bindings:
   - {code: 'self.item[''Unlocked by'']', property: text, writeback: true}
   layout_properties: {column: ROGTEG}
   name: text_box_1
@@ -40,11 +35,11 @@ components:
   type: TextBox
 - data_bindings:
   - {code: 'self.item[''Name'']', property: text, writeback: false}
-  event_bindings: {click: name_link_click}
+  event_bindings: {click: name_button_click}
   layout_properties: {column: GJCQIT}
-  name: name_link
-  properties: {}
-  type: Link
+  name: name_button
+  properties: {text: ''}
+  type: Button
 container:
   data_bindings: []
   properties: {align: center, background: ''}
