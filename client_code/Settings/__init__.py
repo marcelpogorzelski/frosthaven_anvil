@@ -14,10 +14,29 @@ class Settings(SettingsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    #self.test()
     
     
   def test(self):
-    pass
+    unmet_reqs = dict()
+    if not app_tables.achievements.get(Name='Into the Forest')['Available']:
+      unmet_reqs['Into the Forest'] = 'Unfulfilled Requirements'
+    if not app_tables.achievements.get(Name='Shard Seeker')['Available']:
+      unmet_reqs['Shard Seeker'] = 'Unfulfilled Requirements'
+    unmet_reqs['6Shards']  = 'Unfulfilled Requirements'
+
+    transport = ['Sled', 'Boat', 'Climbing Gear']
+
+    for scenario in app_tables.scenarios.search():
+      if scenario['Status'] != 'Available':
+        continue
+      if not scenario['Requirements']:
+        continue
+      for requirement in scenario['Requirements']:
+        if requirement in transport:
+          continue
+        if requirement in unmet_reqs:
+          print('Test')
 
   def check_items(self):
     character_items = dict()

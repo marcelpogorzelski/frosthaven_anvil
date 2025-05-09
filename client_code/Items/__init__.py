@@ -16,8 +16,8 @@ class Items(ItemsTemplate):
     self.init_components(**properties)
     
     self.orange = ' #FFA500'
-    self.display_mode = 'fill_width' 
-    self.image_width = 200
+    self.display_mode = 'fill_width'
+    self.image_width = 300
     if window.innerWidth < 600:
       self.image_width = 100
     
@@ -51,7 +51,6 @@ class Items(ItemsTemplate):
     self.load_items()
     self.resize_items()
 
-
   def load_image(self, item):
     item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=item)
     item_image.add_event_handler('mouse_down', self.process_item)
@@ -64,7 +63,6 @@ class Items(ItemsTemplate):
     self.items_flow_panel.visible = True
 
   def resize_items(self):
-    print(self.image_width)
     self.items_flow_panel.visible = False
     self.items_flow_panel.clear()
     for image in self.all_images:
