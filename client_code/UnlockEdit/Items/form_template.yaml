@@ -121,7 +121,7 @@ components:
       - {code: self.icon_image_height, property: height, writeback: false}
       layout_properties: {col_xs: 0, row: LEHGQT, width_xs: 2}
       name: arrowvine_image
-      properties: {height: '50', source: _/theme/resource_images/fh-arrowvine-bw-icon.png, visible: false}
+      properties: {height: '50', source: _/theme/resource_images/arrowvine.png, visible: false}
       type: Image
     - data_bindings:
       - {code: 'self.item[''Available'']', property: visible, writeback: false}
