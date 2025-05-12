@@ -18,5 +18,4 @@ class Character(CharacterTemplate):
     width = 900
     if window.innerWidth < 900:
       width = window.innerWidth
-    print(width)
     self.content_flow_panel.add_component(Content(player), width=width)
