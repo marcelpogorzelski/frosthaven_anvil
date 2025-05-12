@@ -1,4 +1,4 @@
-from ._anvil_designer import Character_copyTemplate
+from ._anvil_designer import ContentTemplate
 from anvil import *
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
@@ -7,16 +7,16 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from .. import Utilites
-from .. import navigation
+from ... import Utilites
+from ... import navigation
 from anvil.js.window import window
 
 
-class Character_copy(Character_copyTemplate):
+class Content(ContentTemplate):
   def __init__(self, player, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.adjust_width()
+    # self.adjust_width()
 
     self.player_name = player
     self.item = app_tables.characters.get(Player=self.player_name)
@@ -24,17 +24,10 @@ class Character_copy(Character_copyTemplate):
     self.populate_class_drop_down()
 
   def adjust_width(self):
-    if window.innerWidth >= 900:
-      return
-    column_width = (window.innerWidth / 3) - 10
-    character_data_grid_columns = self.character_data_grid.columns
-    for column in character_data_grid_columns:
-      column["width"] = column_width
-    self.character_data_grid.columns = character_data_grid_columns
-
-    label_data_grid_columns = self.label_data_grid.columns
-    label_data_grid_columns[0]["width"] = window.innerWidth - 30
-    self.label_data_grid.columns = label_data_grid_columns
+    width = 900
+    if window.innerWidth < 900:
+      width = window.innerWidth
+    return width
 
   def populate_class_drop_down(self):
     item_list = []

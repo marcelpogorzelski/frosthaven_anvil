@@ -1,81 +1,6 @@
 components:
 - components:
   - components:
-    - layout_properties: {grid_position: 'TAOCID,PMPVZF'}
-      name: class_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Class:'}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''Class'']', property: selected_value, writeback: true}
-      layout_properties: {grid_position: 'THRWQD,VTXHLI'}
-      name: class_drop_down
-      properties: {align: full, spacing_above: medium}
-      type: DropDown
-    layout_properties: {width: 300, x: 0, y: 5}
-    name: class_outlined_card
-    properties: {col_widths: '{}', role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'JZYWYM,OGQZJV'}
-      name: name_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Name:'}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''Name'']', property: text, writeback: true}
-      event_bindings: {}
-      layout_properties: {grid_position: 'WHLADJ,KOYEVC'}
-      name: name_text_box
-      properties: {align: center}
-      type: TextBox
-    layout_properties: {width: 300, x: 310, y: 5}
-    name: name_outlined_card
-    properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'PYBPTI,VRMKZY'}
-      name: mastery_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Masteries:', visible: true}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
-      event_bindings: {change: mastery_check_box_change}
-      layout_properties: {grid_position: 'ISEMNX,SEADCC'}
-      name: mastery_check_box_1
-      properties: {align: center, bold: true, spacing_above: small, spacing_below: medium, text: '1'}
-      type: CheckBox
-    - data_bindings:
-      - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
-      event_bindings: {change: mastery_check_box_change}
-      layout_properties: {grid_position: 'ISEMNX,GRFKGR'}
-      name: mastery_check_box_2
-      properties: {align: center, bold: true, checked: false, spacing_below: medium, text: '2'}
-      type: CheckBox
-    layout_properties: {width: 300, x: 620, y: 5}
-    name: masteries_outlined_card
-    properties: {role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'YGFUJB,LMFYOW'}
-      name: experience_image
-      properties: {height: '50', source: _/theme/character/experience.png}
-      type: Image
-    - data_bindings:
-      - {code: 'self.item[''Experience'']', property: text, writeback: false}
-      event_bindings: {change: experience_text_box_change}
-      layout_properties: {grid_position: 'PHYDAP,QQGNIB'}
-      name: experience_text_box
-      properties: {align: center, type: number}
-      type: TextBox
-    layout_properties: {width: 286.0069580078125, x: 0, y: 145}
-    name: experience_outlined_card
-    properties: {role: elevated-card}
-    type: ColumnPanel
-  layout_properties: {full_width_row: true, grid_position: 'NYJLYR,DSHQKE'}
-  name: xy_panel_1
-  properties: {height: 912.4895629882812, role: null}
-  type: XYPanel
-- components:
-  - components:
     - components:
       - data_bindings:
         - {code: 'self.item[''Player'']', property: text, writeback: false}
@@ -101,11 +26,77 @@ components:
     show_page_controls: false
   type: DataGrid
 - components:
-  - components: []
+  - components:
+    - components:
+      - layout_properties: {grid_position: 'TAOCID,PMPVZF'}
+        name: class_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Class:'}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''Class'']', property: selected_value, writeback: true}
+        layout_properties: {grid_position: 'THRWQD,VTXHLI'}
+        name: class_drop_down
+        properties: {align: full}
+        type: DropDown
+      layout_properties: {column: VVDSMS}
+      name: class_outlined_card
+      properties: {col_widths: '{}', role: elevated-card}
+      type: ColumnPanel
+    - components:
+      - layout_properties: {grid_position: 'JZYWYM,OGQZJV'}
+        name: name_label
+        properties: {align: center, bold: true, role: input-prompt, text: 'Name:'}
+        type: Label
+      - data_bindings:
+        - {code: 'self.item[''Name'']', property: text, writeback: true}
+        event_bindings: {}
+        layout_properties: {grid_position: 'WHLADJ,KOYEVC'}
+        name: name_text_box
+        properties: {align: center}
+        type: TextBox
+      layout_properties: {column: UHLZCU}
+      name: name_outlined_card
+      properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
+      type: ColumnPanel
+    - components:
+      - data_bindings:
+        - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
+        event_bindings: {change: mastery_check_box_change}
+        layout_properties: {grid_position: 'OQQKDT,XAKAHR'}
+        name: mastery_check_box_1
+        properties: {align: center, bold: true, text: Mastery}
+        type: CheckBox
+      - data_bindings:
+        - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
+        event_bindings: {change: mastery_check_box_change}
+        layout_properties: {grid_position: 'ISEMNX,GRFKGR'}
+        name: mastery_check_box_2
+        properties: {align: center, bold: true, checked: false, text: Mastery}
+        type: CheckBox
+      layout_properties: {column: PGVFQE}
+      name: masteries_outlined_card
+      properties: {role: elevated-card}
+      type: ColumnPanel
     name: info_data_row_panel
     properties: {}
     type: DataRowPanel
   - components:
+    - components:
+      - layout_properties: {grid_position: 'YGFUJB,LMFYOW'}
+        name: experience_image
+        properties: {height: '50', source: _/theme/character/experience.png}
+        type: Image
+      - data_bindings:
+        - {code: 'self.item[''Experience'']', property: text, writeback: false}
+        event_bindings: {change: experience_text_box_change}
+        layout_properties: {grid_position: 'PHYDAP,QQGNIB'}
+        name: experience_text_box
+        properties: {align: center, type: number}
+        type: TextBox
+      layout_properties: {column: VVDSMS}
+      name: experience_outlined_card
+      properties: {role: elevated-card}
+      type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'IMJEUP,PJIJSH'}
         name: level_image
