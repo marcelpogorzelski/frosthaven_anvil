@@ -53,6 +53,10 @@ components:
       name: notes_image
       properties: {height: '45', source: _/theme/fh-section-bw-icon.png}
       type: Image
+    - layout_properties: {column: IRNVWW}
+      name: level_image
+      properties: {height: '45', source: _/theme/character/level.png}
+      type: Image
     name: data_row_panel_1
     properties: {}
     type: DataRowPanel
@@ -146,6 +150,12 @@ components:
       name: label_6
       properties: {visible: false}
       type: Label
+    - data_bindings:
+      - {code: 'self.party_level[''Level'']', property: text, writeback: false}
+      layout_properties: {column: IRNVWW}
+      name: party_level_text_box
+      properties: {enabled: false}
+      type: TextBox
     layout_properties: {}
     name: frosthaven_data_row_panel
     properties: {align: center, visible: true}
@@ -157,7 +167,7 @@ components:
       type: Label
     - layout_properties: {column: GZOHUF}
       name: label_4
-      properties: {}
+      properties: {visible: false}
       type: Label
     - layout_properties: {column: SBSASQ}
       name: label_7
@@ -166,6 +176,10 @@ components:
     - layout_properties: {column: XSAFZX}
       name: label_8
       properties: {align: left, text: Total}
+      type: Label
+    - layout_properties: {column: IRNVWW}
+      name: label_9
+      properties: {visible: false}
       type: Label
     data_bindings:
     - {code: self.total_resources, property: item, writeback: false}
@@ -176,11 +190,9 @@ components:
   layout_properties: {full_width_row: true, grid_position: 'MBXJUE,PFDFUW'}
   name: data_grid_1
   properties:
-    auto_header: false
+    auto_header: true
     columns:
     - {data_key: Name, expand: false, id: XSAFZX, title: Name, width: '150'}
-    - {data_key: column_1, id: DQHQWZ, title: Experience, width: '100'}
-    - {data_key: CheckMarks, id: SBSASQ, title: Check Marks, width: '100'}
     - {data_key: Gold, expand: false, id: IYDZYZ, title: Gold, width: '100'}
     - {data_key: Lumber, id: TWVBIC, title: Lumber, width: '100'}
     - {data_key: Metal, id: AOSTAK, title: Metal, width: '100'}
@@ -191,6 +203,9 @@ components:
     - {data_key: Flamefruit, id: ZPALIO, title: Flamefruit, width: '100'}
     - {data_key: Rockroot, id: HROJIF, title: Rockroot, width: '100'}
     - {data_key: Snowthistle, id: SSKCUR, title: Snowthistle, width: '100'}
+    - {data_key: column_1, id: DQHQWZ, title: Experience, width: '100'}
+    - {data_key: CheckMarks, id: SBSASQ, title: Check Marks, width: '100'}
+    - {data_key: Level, id: IRNVWW, title: 'Level ', width: '100'}
     - {data_key: column_1, expand: true, id: GZOHUF, title: Notes, width: '300'}
     role: [tonal-data-grid, wide]
     show_page_controls: false

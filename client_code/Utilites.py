@@ -28,6 +28,10 @@ SCENARIO_NOT_AVAILABLE = [SCENARIO_LOCKED, SCENARIO_UNFULFILLED, SCENARIO_UNDISC
 
 TRANSPORTS = ['Sled', 'Boat', 'Climbing Gear']
 
+OUTPOST_PHASE = 'Outpost Phase'
+SCENARIO_PHASE = 'Scenario Phase'
+ENDING_SCENARIO = 'Ending a Scenario'
+
 def check_scenario_available(requirement):
   achievement = app_tables.achievements.get(Name=requirement)
   if achievement:

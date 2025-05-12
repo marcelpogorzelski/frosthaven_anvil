@@ -39,6 +39,7 @@ class ResourcesRowTemplate(ResourcesRowTemplateTemplate):
     Utilites.bounded_text_box(self.experience_text_box, 0, 500)
     
     Utilites.set_experience(self.item, self.experience_text_box.text or 0)
+    self.refresh_data_bindings()
 
   def check_text_box_change(self, **event_args):
     Utilites.bounded_text_box(self.check_text_box, 0, 18)

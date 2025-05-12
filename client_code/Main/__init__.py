@@ -23,7 +23,10 @@ from ..Character.CharacterDetails import CharacterDetails
 from ..Character.CharacterItems import CharacterItems
 from ..Scenarios.Scenario import Scenario
 from ..Pets import Pets
+from ..OutpostPhase import OutpostPhase
 from ..Achievements import Achievements
+from .. import Utilites
+
 
 class Main(MainTemplate):
   def __init__(self, player_name, **properties):
@@ -38,7 +41,8 @@ class Main(MainTemplate):
     self.setup_player('John Magne', self.john_magne_link, self.john_magne_sheet_link, self.john_magne_items_link, self.john_magne_cards_link, self.john_magne_details_link)
     self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link, self.kristian_details_link)
     self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link, self.marcel_details_link)
-    
+
+    self.setup_game_state()
     self.setup_active_scenario()
     if player_name == 'Frosthaven':
       if self.scenario:
@@ -49,6 +53,9 @@ class Main(MainTemplate):
       link = self.player_links[player_name]['Links'][0]
       self.open_player_link(link.tag['Player'], link)
 
+  def setup_game_state(self):
+    self.game_state_link.text = app_tables.frosthaven.search()[0]['GameState']
+    
   def setup_active_scenario(self):
     self.scenario = app_tables.frosthaven.search()[0]['ActiveScenario']
     if not self.scenario:
@@ -168,4 +175,16 @@ class Main(MainTemplate):
 
   def achievements_link_click(self, **event_args):
     self.change_form(Achievements(), event_args['sender'])
+
+  def game_state_link_click(self, **event_args):
+    game_state = self.game_state_link.text
+    if game_state == Utilites.OUTPOST_PHASE:
+      self.change_form(OutpostPhase(), event_args['sender'])
+    elif game_state == Utilites.SCENARIO_PHASE:
+      if self.scenario:
+        self.open_scenario(self.scenario)
+      else:
+        self.open_scenarios()
+        
+    
 

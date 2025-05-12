@@ -14,6 +14,7 @@ class Resources(ResourcesTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.total_resources = {resource: 0 for resource in Utilites.ALL_RESOURCES}
+    self.party_level = app_tables.scenario_info.get(Recommended=True)
     self.init_components(**properties)
 
     self.item = app_tables.frosthaven.search()[0]

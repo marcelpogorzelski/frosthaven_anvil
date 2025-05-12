@@ -97,5 +97,12 @@ components:
   name: check_text_box
   properties: {type: number}
   type: TextBox
+- data_bindings:
+  - {code: 'self.item[''Level'']', property: text, writeback: false}
+  event_bindings: {}
+  layout_properties: {column: IRNVWW}
+  name: level_text_box
+  properties: {enabled: false, type: number}
+  type: TextBox
 container: {type: DataRowPanel}
 is_package: true

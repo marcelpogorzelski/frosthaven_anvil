@@ -57,6 +57,16 @@ components:
     name: finish_scenario_link
     properties: {align: center, text: Finish Scenario, visible: true}
     type: Link
+  - layout_properties: {grid_position: 'QLHOAK,YYSQTA'}
+    name: spacer_8
+    properties: {height: 32}
+    type: Spacer
+  - data_bindings: []
+    event_bindings: {click: game_state_link_click}
+    layout_properties: {grid_position: 'YVBBSB,GBAFZA'}
+    name: game_state_link
+    properties: {align: center, text: '', visible: true}
+    type: Link
   - layout_properties: {grid_position: 'YHQDVR,AZWGWJ'}
     name: spacer_2
     properties: {height: 32}
