@@ -283,6 +283,17 @@ db_schema:
       type: string
     server: full
     title: Frosthaven
+  gamestate:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: ActiveScenario
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Phase
+      type: string
+    server: full
+    title: GameState
   items:
     client: full
     columns:

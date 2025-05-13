@@ -33,6 +33,15 @@ OUTPOST_PHASE = 'Outpost Phase'
 SCENARIO_PHASE = 'Scenario Phase'
 ENDING_SCENARIO = 'Ending a Scenario'
 
+PASSAGE_PHASE = 'PassageOfTime'
+OUTPOST_EVENT_PHASE = 'OutpostEvent'
+BUILDING_MLH_PHASE = 'BuildingOperationMLH'
+BUILDING_GARDEN_PHASE = 'BuildingOperationGarden'
+BUILDING_BARRACKS_PHASE = 'BuildingOperationBarracks'
+
+PHASES = [PASSAGE_PHASE, OUTPOST_EVENT_PHASE, BUILDING_MLH_PHASE, BUILDING_GARDEN_PHASE, BUILDING_BARRACKS_PHASE]
+
+
 def check_scenario_available(requirement):
   achievement = app_tables.achievements.get(Name=requirement)
   if achievement:
@@ -332,3 +341,15 @@ def is_winter():
   if ((week - 1) // 10 + 1) % 2:
     return False
   return True
+
+def next_phase():
+  state = app_tables.gamestate.search()[0]
+  #state['Phase']
+  index = PHASES.index(state['Phase'])
+  index += 1
+  if index == len(PHASES):
+    index = 0
+    
+  state['Phase'] = PHASES[index]
+  
+  

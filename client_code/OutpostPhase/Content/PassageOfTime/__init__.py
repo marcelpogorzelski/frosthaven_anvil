@@ -8,7 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class PassageOfTime(PassageOfTimeTemplate):
-  def __init__(self, week, **properties):
+  def __init__(self, week, enabled, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 

@@ -12,7 +12,6 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-
     self.resource_repeating_panel.items = [
       {'Image': '_/theme/resource_images/fh-lumber-bw-icon.png', 'BuildingNumber': 17},
       {'Image': '_/theme/resource_images/fh-metal-bw-icon.png', 'BuildingNumber': 5},
@@ -46,34 +45,7 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
           break
       if temp_total == total:
         break
-        
-    return
-      
-      
-
     
-    for character in self.characters:
-      tempInitialValue = initialValue
-      exclude = False
-      if character['Gold'] <= initialValue:
-        tempInitialValue = character['Gold']
-        remainder += initialValue - tempInitialValue
-        exclude = True
-      character_item = {'Character': character, 'InitialValue': tempInitialValue, 'Exclude': exclude}
-      self.character_items.append(character_item)
-
-    for character_item in reversed(self.character_items):
-      if remainder == 0:
-        break
-      if character_item['Exclude']:
-        continue
-      character_item['InitialValue'] += 1
-      remainder -= 1
-      
-    #print(self.character_items)
-      
-    
-
   def get_total_gold(self):
     self.total_gold = 0
     for resource in self.resource_repeating_panel.items:
@@ -82,4 +54,7 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
 
   def update_total_gold(self, **event_args):
     self.get_total_gold()
+
+  def buy_button_click(self, **event_args):
+    pass
 
