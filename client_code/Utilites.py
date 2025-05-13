@@ -9,6 +9,7 @@ from anvil import URLMedia
 import json
 from datetime import datetime
 import math
+from anvil.js.window import window
 
 MATERIAL_AND_GOLD_RESOURCES = ['Gold', 'Lumber', 'Metal', 'Hide']
 MATERIAL_RESOURCES = ['Lumber', 'Metal', 'Hide']
@@ -313,3 +314,9 @@ def add_item(character, added_item):
   character_items.sort(key=lambda item: item['Number'])
   character['Items'] = character_items
   added_item['AvailableCount'] -= 1
+
+def windowWidthWithMax(maxWidth=900):
+  if window.innerWidth < 900:
+    maxWidth = window.innerWidth
+  remainingWidth = window.innerWidth - maxWidth
+  return maxWidth, remainingWidth
