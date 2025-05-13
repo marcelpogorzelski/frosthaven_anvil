@@ -91,7 +91,7 @@ unique_ids:
     OutpostPhase: '1747085276258845525021601.8813'
     OutpostPhase.Content: '1747118173895311547167422.4475'
     OutpostPhase.Content.BuildingOperations: '1747122787902326855830776.5983'
-    OutpostPhase.Content.BuildingOperations.ItemTemplate1: '1747125226016253854926199.46027'
+    OutpostPhase.Content.BuildingOperations.ResourceItemTemplate: '1747125226016253854926199.46027'
     OutpostPhase.Content.Construction: '1747122833571471642858284.98145'
     OutpostPhase.Content.Downtime: '1747122814685875262218829.2266'
     OutpostPhase.Content.OutpostEvent: '174712270106168606836058.52535'

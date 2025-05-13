@@ -13,12 +13,19 @@ class BuildingOperations(BuildingOperationsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.max_amount = 1
+    max_amount = 3
+    self.total_gold = max_amount * 2 * 3
+    self.total_gold_text_box.text = self.total_gold
     self.resource_repeating_panel.items = [
-      {'Image': '_/theme/resource_images/fh-lumber-bw-icon.png', 'MaxAmount': self.max_amount},
-      {'Image': '_/theme/resource_images/fh-metal-bw-icon.png', 'MaxAmount': self.max_amount},
-      {'Image': '_/theme/resource_images/fh-hide-bw-icon.png', 'MaxAmount': self.max_amount},
+      {'Image': '_/theme/resource_images/fh-lumber-bw-icon.png', 'MaxAmount': max_amount, 'Amount': max_amount},
+      {'Image': '_/theme/resource_images/fh-metal-bw-icon.png', 'MaxAmount': max_amount, 'Amount': max_amount},
+      {'Image': '_/theme/resource_images/fh-hide-bw-icon.png', 'MaxAmount': max_amount, 'Amount': max_amount},
     ]
-    
+    self.resource_repeating_panel.set_event_handler('x-update-value', self.update_total_gold)
 
-    # Any code you write here will run before the form opens.
+  def update_total_gold(self, **event_args):
+    self.total_gold = 0
+    for resource in self.resource_repeating_panel.items:
+      self.total_gold += resource['Amount'] * 2
+    self.total_gold_text_box.text = self.total_gold
+

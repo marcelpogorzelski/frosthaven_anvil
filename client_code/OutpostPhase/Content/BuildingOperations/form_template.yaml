@@ -10,8 +10,21 @@ components:
     type: Label
   - layout_properties: {grid_position: 'QPWOZW,OMAJVH'}
     name: resource_repeating_panel
-    properties: {item_template: OutpostPhase.Content.BuildingOperations.ItemTemplate1}
+    properties: {item_template: OutpostPhase.Content.BuildingOperations.ResourceItemTemplate}
     type: RepeatingPanel
+  - components:
+    - layout_properties: {width: 50}
+      name: image_1
+      properties: {height: '50', source: _/theme/resource_images/fh-money-bw-icon.png}
+      type: Image
+    - layout_properties: {width: 85}
+      name: total_gold_text_box
+      properties: {align: center, enabled: false, type: number}
+      type: TextBox
+    layout_properties: {grid_position: 'SRYBQB,TQOILT'}
+    name: flow_panel_1
+    properties: {}
+    type: FlowPanel
   layout_properties: {grid_position: 'SIUXYU,ISVTMF'}
   name: building_operations_card
   properties: {role: elevated-card, wrap_on: never}
