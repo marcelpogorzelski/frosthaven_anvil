@@ -13,4 +13,12 @@ class BuildingOperations(BuildingOperationsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+    self.max_amount = 1
+    self.resource_repeating_panel.items = [
+      {'Image': '_/theme/resource_images/fh-lumber-bw-icon.png', 'MaxAmount': self.max_amount},
+      {'Image': '_/theme/resource_images/fh-metal-bw-icon.png', 'MaxAmount': self.max_amount},
+      {'Image': '_/theme/resource_images/fh-hide-bw-icon.png', 'MaxAmount': self.max_amount},
+    ]
+    
+
     # Any code you write here will run before the form opens.
