@@ -1,4 +1,4 @@
-from ._anvil_designer import PassageOfTimeTemplate
+from ._anvil_designer import ItemTemplate1Template
 from anvil import *
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
@@ -8,11 +8,9 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 
-class PassageOfTime(PassageOfTimeTemplate):
+class ItemTemplate1(ItemTemplate1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    self.item = app_tables.calendar.search(tables.order_by("Week", ascending=False),Finished=True)[0]
 
     # Any code you write here will run before the form opens.

@@ -15,28 +15,12 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     Utilites.set_scenario_available()
+    self.test()
     
   def test(self):
-    unmet_reqs = dict()
-    if not app_tables.achievements.get(Name='Into the Forest')['Available']:
-      unmet_reqs['Into the Forest'] = 'Unfulfilled Requirements'
-    if not app_tables.achievements.get(Name='Shard Seeker')['Available']:
-      unmet_reqs['Shard Seeker'] = 'Unfulfilled Requirements'
-    unmet_reqs['6Shards']  = 'Unfulfilled Requirements'
-
-    transport = ['Sled', 'Boat', 'Climbing Gear']
-
-    for scenario in app_tables.scenarios.search():
-      if scenario['Status'] != 'Available':
-        continue
-      if not scenario['Requirements']:
-        continue
-      for requirement in scenario['Requirements']:
-        if requirement in transport:
-          continue
-        if requirement in unmet_reqs:
-          print('Test')
-
+    for week in range(60):
+      print(f"{week}: {Utilites.is_winter(week)}")
+      
   def check_items(self):
     character_items = dict()
     for character in app_tables.characters.search():

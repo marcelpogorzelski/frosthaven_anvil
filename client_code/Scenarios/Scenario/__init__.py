@@ -36,9 +36,7 @@ class Scenario(ScenarioTemplate):
     self.set_requirements()
     
   def check_season(self):
-    week = len(app_tables.calendar.search(Finished=True))
-    if ((week - 1) // 10 + 1) % 2:
-      #summer
+    if Utilites.is_summer():
       self.season = 'Summer'
       self.season_background = '#FFFFAD'
     else:

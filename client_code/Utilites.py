@@ -320,3 +320,15 @@ def windowWidthWithMax(maxWidth=900):
     maxWidth = window.innerWidth
   remainingWidth = window.innerWidth - maxWidth
   return maxWidth, remainingWidth
+
+def is_summer():
+  week = len(app_tables.calendar.search(Finished=True))
+  if ((week - 1) // 10 + 1) % 2:
+    return True
+  return False
+
+def is_winter():
+  week = len(app_tables.calendar.search(Finished=True))
+  if ((week - 1) // 10 + 1) % 2:
+    return False
+  return True
