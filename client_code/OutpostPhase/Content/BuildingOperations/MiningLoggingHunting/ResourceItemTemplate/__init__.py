@@ -6,8 +6,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from .....Utilites import bounded_text_box
-
+from ......Utilites import bounded_text_box
 
 class ResourceItemTemplate(ResourceItemTemplateTemplate):
   def __init__(self, **properties):
@@ -15,9 +14,12 @@ class ResourceItemTemplate(ResourceItemTemplateTemplate):
     self.init_components(**properties)
     
     self.increase_button.enabled = False
+    self.max_amount = app_tables.available_buildings.get(Number=self.item['BuildingNumber'])['CurrentBuilding']['Level']
+    self.item['Amount'] = self.max_amount
+    self.refresh_data_bindings()
 
   def set_amount_text_box(self):
-    bounded_text_box(self.amount_text_box, 0, self.item['MaxAmount'])
+    bounded_text_box(self.amount_text_box, 0, self.max_amount)
     self.item['Amount'] = self.amount_text_box.text
     self.parent.raise_event('x-update-value')
     
@@ -26,7 +28,7 @@ class ResourceItemTemplate(ResourceItemTemplateTemplate):
     
     if self.amount_text_box.text == 0:
       self.decrease_button.enabled = False
-    if self.amount_text_box.text < self.item['MaxAmount']:
+    if self.amount_text_box.text < self.max_amount:
       self.increase_button.enabled = True
     
     self.set_amount_text_box()
@@ -34,7 +36,7 @@ class ResourceItemTemplate(ResourceItemTemplateTemplate):
   def increase_button_click(self, **event_args):
     self.amount_text_box.text += 1
     
-    if self.amount_text_box.text == self.item['MaxAmount']:
+    if self.amount_text_box.text == self.max_amount:
       self.increase_button.enabled = False
     if self.amount_text_box.text > 0:
       self.decrease_button.enabled = True

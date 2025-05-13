@@ -1,0 +1,23 @@
+components:
+- data_bindings: []
+  layout_properties: {grid_position: 'WQAUZW,XGQIJR'}
+  name: name_label
+  properties: {align: right, role: input-prompt, text: ''}
+  type: Label
+- layout_properties: {grid_position: 'WQAUZW,HGFQYP'}
+  name: gold_text_box
+  properties: {align: center}
+  type: TextBox
+- event_bindings: {click: decrease_button_click}
+  layout_properties: {grid_position: 'WQAUZW,RUAKLR'}
+  name: decrease_button
+  properties: {icon: 'fa:minus', text: ''}
+  type: Button
+- layout_properties: {grid_position: 'WQAUZW,HYBLLW'}
+  name: increase_button
+  properties: {icon: 'fa:plus', text: ''}
+  type: Button
+container:
+  properties: {col_widths: '{"XGQIJR":15,"HGFQYP":10,"RUAKLR":10,"HYBLLW":10}', wrap_on: never}
+  type: ColumnPanel
+is_package: true

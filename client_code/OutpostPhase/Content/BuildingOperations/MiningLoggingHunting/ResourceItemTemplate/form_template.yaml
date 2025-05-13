@@ -20,13 +20,9 @@ components:
 - event_bindings: {click: increase_button_click}
   layout_properties: {grid_position: 'EAGTLG,XFDGEI'}
   name: increase_button
-  properties: {icon: 'fa:plus', text: ''}
+  properties: {enabled: false, icon: 'fa:plus', text: ''}
   type: Button
-- layout_properties: {grid_position: 'EAGTLG,TOESSJ'}
-  name: spacer_1
-  properties: {height: 32}
-  type: Spacer
 container:
-  properties: {col_widths: '{"JAHNBO":10,"TOESSJ":82,"YWZBFQ":15,"IDUKMW":15,"XFDGEI":15}'}
+  properties: {col_widths: '{"JAHNBO":10,"TOESSJ":82,"YWZBFQ":15,"IDUKMW":15,"XFDGEI":15}', wrap_on: never}
   type: ColumnPanel
 is_package: true
