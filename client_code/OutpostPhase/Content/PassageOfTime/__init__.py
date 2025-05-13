@@ -1,4 +1,4 @@
-from ._anvil_designer import ItemTemplate1Template
+from ._anvil_designer import PassageOfTimeTemplate
 from anvil import *
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
@@ -7,10 +7,10 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-
-class ItemTemplate1(ItemTemplate1Template):
-  def __init__(self, **properties):
+class PassageOfTime(PassageOfTimeTemplate):
+  def __init__(self, week, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run before the form opens.
+    self.item = week
+    self.sections_repeating_panel.items = [section for section in self.item['Sections'].replace(' ', '').split(',')]
