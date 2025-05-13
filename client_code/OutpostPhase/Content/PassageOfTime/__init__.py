@@ -13,4 +13,11 @@ class PassageOfTime(PassageOfTimeTemplate):
     self.init_components(**properties)
 
     self.item = week
-    self.sections_repeating_panel.items = [section for section in self.item['Sections'].replace(' ', '').split(',')]
+    self.setup_section()
+
+  def setup_section(self):
+    if self.item['Sections'].strip():
+      self.sections_repeating_panel.items = [section for section in self.item['Sections'].replace(' ', '').split(',')]
+    else:
+      self.sections_repeating_panel.visible = False
+      self.sections_label.text = 'No Sections this week'

@@ -1,9 +1,12 @@
 components:
 - data_bindings:
   - {code: self.item, property: text, writeback: false}
-  layout_properties: {grid_position: 'QLYKJE,VMLTWG'}
-  name: section_label
-  properties: {}
-  type: Label
-container: {type: ColumnPanel}
+  event_bindings: {click: section_button_click}
+  layout_properties: {grid_position: 'QLYKJE,BJQREV'}
+  name: section_button
+  properties: {align: left, icon: 'fa:clipboard', icon_align: right, role: filled-button, text: ''}
+  type: Button
+container:
+  properties: {col_widths: '{"BJQREV":20,"EAVEGV":30}'}
+  type: ColumnPanel
 is_package: true
