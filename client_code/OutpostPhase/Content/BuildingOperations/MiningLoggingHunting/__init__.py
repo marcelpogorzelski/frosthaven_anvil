@@ -20,13 +20,59 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
     ]
     self.resource_repeating_panel.set_event_handler('x-update-value', self.update_total_gold)
     self.get_total_gold()
+    
+    self.characters = app_tables.characters.search(tables.order_by('Gold', ascending=False), tables.order_by('Player', ascending=False))
+    self.find_initial_values()
+    self.characters_repeating_panel.items = sorted(self.character_items, key=lambda x: x['Character']['Player'])
+    
 
-    self.characters_repeating_panel.items = [
-      {'Player': 'Håvard'},
-      {'Player': 'John Magne'},
-      {'Player': 'Kristian'},
-      {'Player': 'Marcel'},
+  def find_initial_values(self):
+    initialValue = int(self.total_gold / 4)
+    remainder = self.total_gold % 4
+    self.character_items = [
+      {'Character': character, 'InitialValue': 0, 'TotalGold': character['Gold'], 'TempTotalGold': character['Gold']} for character in self.characters
     ]
+
+    total = self.total_gold
+    while total > 0:
+      temp_total = total
+      for character_item in self.character_items:
+        if character_item['TempTotalGold'] == 0:
+          continue
+        character_item['InitialValue'] += 1
+        character_item['TempTotalGold'] -= 1
+        total -= 1
+        if total == 0:
+          break
+      if temp_total == total:
+        break
+        
+    return
+      
+      
+
+    
+    for character in self.characters:
+      tempInitialValue = initialValue
+      exclude = False
+      if character['Gold'] <= initialValue:
+        tempInitialValue = character['Gold']
+        remainder += initialValue - tempInitialValue
+        exclude = True
+      character_item = {'Character': character, 'InitialValue': tempInitialValue, 'Exclude': exclude}
+      self.character_items.append(character_item)
+
+    for character_item in reversed(self.character_items):
+      if remainder == 0:
+        break
+      if character_item['Exclude']:
+        continue
+      character_item['InitialValue'] += 1
+      remainder -= 1
+      
+    #print(self.character_items)
+      
+    
 
   def get_total_gold(self):
     self.total_gold = 0

@@ -12,11 +12,19 @@ class CharacterItemTemplate(CharacterItemTemplateTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
 
-    self.character = app_tables.characters.get(Player=self.item['Player'])
-    self.name_label.text = f"{self.item['Player']} ({self.character['Gold']})"
+    #self.character = app_tables.characters.get(Player=self.item['Player'])
+    self.name_label.text = f"{self.item['Character']['Player']} ({self.item['Character']['Gold']})"
+    self.gold_text_box.text = self.item['InitialValue']
     
-    #self.refresh_data_bindings()
 
   def decrease_button_click(self, **event_args):
     """This method is called when the button is clicked"""
+    pass
+
+  def increase_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def gold_text_box_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
     pass

@@ -4,7 +4,8 @@ components:
   name: name_label
   properties: {align: right, role: input-prompt, text: ''}
   type: Label
-- layout_properties: {grid_position: 'WQAUZW,HGFQYP'}
+- event_bindings: {change: gold_text_box_change}
+  layout_properties: {grid_position: 'WQAUZW,HGFQYP'}
   name: gold_text_box
   properties: {align: center}
   type: TextBox
@@ -13,7 +14,8 @@ components:
   name: decrease_button
   properties: {icon: 'fa:minus', text: ''}
   type: Button
-- layout_properties: {grid_position: 'WQAUZW,HYBLLW'}
+- event_bindings: {click: increase_button_click}
+  layout_properties: {grid_position: 'WQAUZW,HYBLLW'}
   name: increase_button
   properties: {icon: 'fa:plus', text: ''}
   type: Button
