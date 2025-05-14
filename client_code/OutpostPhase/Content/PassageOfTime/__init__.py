@@ -8,14 +8,16 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class PassageOfTime(PassageOfTimeTemplate):
-  def __init__(self, week, finished, phase_name, **properties):
+  def __init__(self, gamestate, finish_phase_tag, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.phase_name = phase_name
+    self.finish_phase_tag = finish_phase_tag
 
-    self.item = week
-    self.finished = finished
+    self.gamestate = gamestate
+    self.item = gamestate['Week']
+    self.finished = gamestate[finish_phase_tag]
+    
     if self.finished:
       self.disable_phase()
       
@@ -37,14 +39,18 @@ class PassageOfTime(PassageOfTimeTemplate):
 
   def set_as_finished(self):
     self.disable_phase()
-    if not self.finished:
-      self.raise_event('x-phase-finished')
+    self.gamestate[self.finish_phase_tag] = True
+    self.raise_event('x-phase-finished')
 
   def section_clicked(self, **event_args):
+    if self.finished:
+      return
+      
     for item in  self.sections_repeating_panel.items:
       if not item['Clicked']:
         return
     self.sections_finished = True
+    
     if self.item['Finished']:
       self.set_as_finished()
       

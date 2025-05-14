@@ -21,7 +21,7 @@ class ResourceItemTemplate(ResourceItemTemplateTemplate):
   def set_amount_text_box(self):
     bounded_text_box(self.amount_text_box, 0, self.max_amount)
     self.item['Amount'] = self.amount_text_box.text
-    self.parent.raise_event('x-update-value')
+    self.parent.raise_event('x-update-total-gold')
     
   def decrease_button_click(self, **event_args):
     self.amount_text_box.text -= 1

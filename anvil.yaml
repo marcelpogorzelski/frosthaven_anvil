@@ -292,9 +292,6 @@ db_schema:
     - admin_ui: {order: 1, width: 200}
       name: Phase
       type: string
-    - admin_ui: {order: 0.5, width: 200}
-      name: Week
-      type: number
     - admin_ui: {order: 3, width: 200}
       name: PassageOfTimeFinished
       type: bool
@@ -305,11 +302,18 @@ db_schema:
       name: BuildingOperationMLHFinished
       type: bool
     - admin_ui: {order: 6, width: 200}
-      name: BuildingOperationGarden
+      name: BuildingOperationGardenFinished
       type: bool
     - admin_ui: {order: 7, width: 301}
       name: BuildingOperationBarracksFinished
       type: bool
+    - admin_ui: {order: 4.5, width: 200}
+      name: BuildingOperationsFinished
+      type: bool
+    - admin_ui: {order: 0.5, width: 200}
+      name: Week
+      target: calendar
+      type: link_single
     server: full
     title: GameState
   items:

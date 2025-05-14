@@ -9,12 +9,17 @@ from anvil.tables import app_tables
 
 
 class OutpostEvent(OutpostEventTemplate):
-  def __init__(self, finished, phase_name, **properties):
+  def __init__(self, gamestate, finish_phase_tag, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
-    self.phase_name = phase_name
-    self.finished = finished
+
+    self.finish_phase_tag = finish_phase_tag
+    self.gamestate = gamestate
+
+    self.finished = gamestate[finish_phase_tag]
+
+    self.finished = True
+
     if self.finished:
       self.disable_phase()
       
@@ -23,6 +28,6 @@ class OutpostEvent(OutpostEventTemplate):
 
   def set_as_finished(self):
     self.disable_phase()
-    if not self.finished:
-      self.raise_event('x-phase-finished')
+    self.gamestate[self.finish_phase_tag] = True
+    self.raise_event('x-phase-finished')
     

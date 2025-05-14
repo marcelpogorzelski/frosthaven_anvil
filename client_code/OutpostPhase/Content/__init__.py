@@ -18,21 +18,35 @@ class Content(ContentTemplate):
     self.init_components(**properties)
 
     self.gamestate = app_tables.gamestate.search()[0]
-    self.week = app_tables.gamestate.search()[0]['Week']
-    self.item = app_tables.calendar.get(Week=self.gamestate['Week'])
+    
+    self.item = self.gamestate['Week']
 
+    self.phases = list()
 
-    self.passage_of_time = PassageOfTime(self.item, self.gamestate['PassageOfTimeFinished'], Utilites.PASSAGE_OF_TIME_PHASE)
+    self.passage_of_time = PassageOfTime(self.gamestate, Utilites.PASSAGE_OF_TIME_PHASE)
     self.passage_of_time.set_event_handler('x-phase-finished', self.phase_finished)
+    self.phases.append(self.passage_of_time)
     self.add_component(self.passage_of_time)
 
-    self.outpost_event = OutpostEvent(self.gamestate['OutpostEventFinished'], Utilites.OUTPOST_EVENT_PHASE)
+    self.outpost_event = OutpostEvent(self.gamestate, Utilites.OUTPOST_EVENT_PHASE)
     self.outpost_event.set_event_handler('x-phase-finished', self.phase_finished)
+    self.phases.append(self.outpost_event)
     self.add_component(self.outpost_event)
-    
-    self.add_component(BuildingOperations())
+
+    self.building_operations = BuildingOperations(self.gamestate)
+    self.building_operations.set_event_handler('x-phase-finished', self.phase_finished)
+    self.phases.append(self.building_operations)
+    self.add_component(self.building_operations)
+
+    #self.outpost_event.raise_event('x-phase-finished')
     # Any code you write here will run before the form opens.
 
   def phase_finished(self, **event_args):
-    self.gamestate[event_args['sender'].phase_name] = True
+    for phase in self.phases:
+      if not phase.finished:
+        return
+    self.disable_phase()
+
+  def disable_phase(self):
+    self.week_card.background = 'theme:Outline'
     

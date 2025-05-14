@@ -7,7 +7,7 @@ components:
 - event_bindings: {change: gold_text_box_change}
   layout_properties: {grid_position: 'WQAUZW,HGFQYP'}
   name: gold_text_box
-  properties: {align: center}
+  properties: {align: center, type: number}
   type: TextBox
 - event_bindings: {click: decrease_button_click}
   layout_properties: {grid_position: 'WQAUZW,RUAKLR'}
