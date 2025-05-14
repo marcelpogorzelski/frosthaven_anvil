@@ -18,8 +18,6 @@ class OutpostEvent(OutpostEventTemplate):
 
     self.finished = gamestate[finish_phase_tag]
 
-    self.finished = True
-
     if self.finished:
       self.disable_phase()
       
@@ -28,6 +26,7 @@ class OutpostEvent(OutpostEventTemplate):
 
   def set_as_finished(self):
     self.disable_phase()
+    self.finished = True
     self.gamestate[self.finish_phase_tag] = True
     self.raise_event('x-phase-finished')
     

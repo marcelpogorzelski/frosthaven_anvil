@@ -39,6 +39,7 @@ class PassageOfTime(PassageOfTimeTemplate):
 
   def set_as_finished(self):
     self.disable_phase()
+    self.finished = True
     self.gamestate[self.finish_phase_tag] = True
     self.raise_event('x-phase-finished')
 

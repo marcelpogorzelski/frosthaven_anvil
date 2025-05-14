@@ -22,7 +22,7 @@ class BuildingOperations(BuildingOperationsTemplate):
 
     self.buildings = list()
     
-    self.minig_logging_hunting = MiningLoggingHunting()
+    self.minig_logging_hunting = MiningLoggingHunting(self.gamestate, Utilites.BUILDING_MLH_PHASE)
     self.minig_logging_hunting.set_event_handler('x-building-finished', self.building_finished)
     self.buildings.append(self.minig_logging_hunting)
     self.building_operations_card.add_component(self.minig_logging_hunting)
@@ -35,11 +35,11 @@ class BuildingOperations(BuildingOperationsTemplate):
     self.gamestate[self.finish_phase_tag] = True
     self.raise_event('x-phase-finished')
 
-  def building_finished(self):
+  def building_finished(self, **event_args):
     for building in self.buildings:
       if not building.finished:
         return
-    print('BuildingsDone')
+    
 
 
     
