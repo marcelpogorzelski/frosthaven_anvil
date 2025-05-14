@@ -1,6 +1,6 @@
 components:
 - data_bindings:
-  - {code: self.item, property: text, writeback: false}
+  - {code: 'self.item[''Section'']', property: text, writeback: false}
   event_bindings: {click: section_button_click}
   layout_properties: {grid_position: 'QLYKJE,BJQREV'}
   name: section_button

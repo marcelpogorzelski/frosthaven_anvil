@@ -17,18 +17,20 @@ class Content(ContentTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.item = app_tables.calendar.search(tables.order_by("Week", ascending=True),Finished=False)[0]
-    passage_enabled = False
-    if app_tables.gamestate.search()[0]['Phase'] == Utilites.PASSAGE_PHASE:
-      passage_enabled = True
-    
-    passage = PassageOfTime(self.item, passage_enabled)
-    passage.set_event_handler('x-phase-finished', self.phase_finished)
-    
-    self.add_component(passage)
+    self.gamestate = app_tables.gamestate.search()[0]
+    self.week = app_tables.gamestate.search()[0]['Week']
+    #self.item = app_tables.calendar.search(tables.order_by("Week", ascending=True),Finished=False)[0]
+    self.item = app_tables.calendar.get(Week=self.gamestate['Week'])
+
+
+    self.passage_of_time = PassageOfTime(self.item, self.gamestate['PassageOfTimeFinished'], Utilites.PASSAGE_OF_TIME_PHASE)
+    self.passage_of_time.set_event_handler('x-passage-finished', self.phase_finished)
+   
+    self.add_component(self.passage)
     self.add_component(OutpostEvent())
     self.add_component(BuildingOperations())
     # Any code you write here will run before the form opens.
 
   def phase_finished(self, **event_args):
-    pass
+    self.gamestate[event_args['sender'].phase_name] = True
+    

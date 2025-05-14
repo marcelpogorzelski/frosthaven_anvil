@@ -33,13 +33,14 @@ OUTPOST_PHASE = 'Outpost Phase'
 SCENARIO_PHASE = 'Scenario Phase'
 ENDING_SCENARIO = 'Ending a Scenario'
 
-PASSAGE_PHASE = 'PassageOfTime'
+PASSAGE_OF_TIME_PHASE = 'PassageOfTime'
 OUTPOST_EVENT_PHASE = 'OutpostEvent'
 BUILDING_MLH_PHASE = 'BuildingOperationMLH'
 BUILDING_GARDEN_PHASE = 'BuildingOperationGarden'
 BUILDING_BARRACKS_PHASE = 'BuildingOperationBarracks'
 
-PHASES = [PASSAGE_PHASE, OUTPOST_EVENT_PHASE, BUILDING_MLH_PHASE, BUILDING_GARDEN_PHASE, BUILDING_BARRACKS_PHASE]
+OUTPOST_PHASES = [PASSAGE_OF_TIME_PHASE, OUTPOST_EVENT_PHASE, BUILDING_MLH_PHASE, BUILDING_GARDEN_PHASE, BUILDING_BARRACKS_PHASE]
+PHASES = [PASSAGE_OF_TIME_PHASE, OUTPOST_EVENT_PHASE, BUILDING_MLH_PHASE, BUILDING_GARDEN_PHASE, BUILDING_BARRACKS_PHASE]
 
 
 def check_scenario_available(requirement):
@@ -351,5 +352,15 @@ def next_phase():
     index = 0
     
   state['Phase'] = PHASES[index]
+
+def outpost_phase_finished(phase):
+  current_phase = app_tables.gamestate.search()[0]['Phase']
+
+  phase_index = OUTPOST_PHASES.index(phase)
+  current_phase_index = OUTPOST_PHASES.index(current_phase)
+  if current_phase_index > phase_index:
+    return True
+  return False
+  
   
   

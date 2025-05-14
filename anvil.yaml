@@ -292,6 +292,24 @@ db_schema:
     - admin_ui: {order: 1, width: 200}
       name: Phase
       type: string
+    - admin_ui: {order: 2, width: 200}
+      name: Week
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: PassageOfTimeFinished
+      type: bool
+    - admin_ui: {order: 4, width: 200}
+      name: OutpostEventFinished
+      type: bool
+    - admin_ui: {order: 5, width: 200}
+      name: BuildingOperationMLHFinished
+      type: bool
+    - admin_ui: {order: 6, width: 200}
+      name: BuildingOperationGarden
+      type: bool
+    - admin_ui: {order: 7, width: 200}
+      name: BuildingOperationBarracksFinished
+      type: bool
     server: full
     title: GameState
   items:
