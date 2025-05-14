@@ -19,15 +19,17 @@ class Content(ContentTemplate):
 
     self.gamestate = app_tables.gamestate.search()[0]
     self.week = app_tables.gamestate.search()[0]['Week']
-    #self.item = app_tables.calendar.search(tables.order_by("Week", ascending=True),Finished=False)[0]
     self.item = app_tables.calendar.get(Week=self.gamestate['Week'])
 
 
     self.passage_of_time = PassageOfTime(self.item, self.gamestate['PassageOfTimeFinished'], Utilites.PASSAGE_OF_TIME_PHASE)
-    self.passage_of_time.set_event_handler('x-passage-finished', self.phase_finished)
-   
-    self.add_component(self.passage)
-    self.add_component(OutpostEvent())
+    self.passage_of_time.set_event_handler('x-phase-finished', self.phase_finished)
+    self.add_component(self.passage_of_time)
+
+    self.outpost_event = OutpostEvent(self.gamestate['OutpostEventFinished'], Utilites.OUTPOST_EVENT_PHASE)
+    self.outpost_event.set_event_handler('x-phase-finished', self.phase_finished)
+    self.add_component(self.outpost_event)
+    
     self.add_component(BuildingOperations())
     # Any code you write here will run before the form opens.
 

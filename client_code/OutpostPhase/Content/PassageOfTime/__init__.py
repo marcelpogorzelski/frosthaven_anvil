@@ -17,8 +17,7 @@ class PassageOfTime(PassageOfTimeTemplate):
     self.item = week
     self.finished = finished
     if self.finished:
-      self.passage_card.background = 'theme:Outline'
-      self.week_passed_check_box.enabled = False
+      self.disable_phase()
       
     self.setup_section()
 
@@ -32,10 +31,14 @@ class PassageOfTime(PassageOfTimeTemplate):
       self.sections_label.text = 'No Sections this week'
       self.sections_finished = True
 
-  def set_as_finished(self):
+  def disable_phase(self):
+    self.week_passed_check_box.enabled = False
     self.passage_card.background = 'theme:Outline'
+
+  def set_as_finished(self):
+    self.disable_phase()
     if not self.finished:
-      self.raise_event('x-passage-finished')
+      self.raise_event('x-phase-finished')
 
   def section_clicked(self, **event_args):
     for item in  self.sections_repeating_panel.items:
@@ -45,7 +48,6 @@ class PassageOfTime(PassageOfTimeTemplate):
     if self.item['Finished']:
       self.set_as_finished()
       
-
   def week_passed_check_box_change(self, **event_args):
     self.week_passed_check_box.enabled = False
     if self.sections_finished:
