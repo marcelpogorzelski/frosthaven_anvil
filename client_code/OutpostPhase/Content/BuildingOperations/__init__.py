@@ -7,6 +7,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .MiningLoggingHunting import MiningLoggingHunting
+from .Garden import Garden
 from .... import Utilites
 
 
@@ -26,6 +27,11 @@ class BuildingOperations(BuildingOperationsTemplate):
     self.minig_logging_hunting.set_event_handler('x-building-finished', self.building_finished)
     self.buildings.append(self.minig_logging_hunting)
     self.building_operations_card.add_component(self.minig_logging_hunting)
+
+    self.garden = Garden(self.gamestate, Utilites.BUILDING_GARDEN_PHASE)
+    self.garden.set_event_handler('x-building-finished', self.building_finished)
+    self.buildings.append(self.garden)
+    self.building_operations_card.add_component(self.garden)
 
   def disable_phase(self):
     self.building_operations_card.background = 'theme:Outline'

@@ -1,3 +1,33 @@
-components: []
-container: {type: ColumnPanel}
+components:
+- components:
+  - layout_properties: {grid_position: 'TFRCRJ,ZDUXCU'}
+    name: name_label
+    properties: {role: title, text: Garden}
+    type: Label
+  - layout_properties: {grid_position: 'LFPXUV,WYEEVK'}
+    name: plot_flow_panel
+    properties: {}
+    type: FlowPanel
+  - components:
+    - event_bindings: {click: harvest_button_click}
+      layout_properties: {width: null}
+      name: harvest_button
+      properties: {enabled: false, role: filled-button, text: Harvest}
+      type: Button
+    - event_bindings: {click: finished_planting_button_click}
+      layout_properties: {}
+      name: finished_planting_button
+      properties: {enabled: false, role: filled-button, text: Finish Planting}
+      type: Button
+    layout_properties: {grid_position: 'CWKZNC,ZDKUID'}
+    name: button_flow_panel
+    properties: {}
+    type: FlowPanel
+  layout_properties: {grid_position: 'WIBKHP,XCEJTP'}
+  name: garden_column_panel
+  properties: {wrap_on: never}
+  type: ColumnPanel
+container:
+  properties: {wrap_on: never}
+  type: ColumnPanel
 is_package: true

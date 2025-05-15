@@ -314,6 +314,22 @@ db_schema:
       name: Week
       target: calendar
       type: link_single
+    - admin_ui: {order: 8, width: 200}
+      name: GardenHarvest
+      type: bool
+    - admin_ui: {order: 9, width: 200}
+      name: GardenBuilding
+      target: available_buildings
+      type: link_single
+    - admin_ui: {order: 10, width: 200}
+      name: GardenPlot1
+      type: string
+    - admin_ui: {order: 11, width: 200}
+      name: GardenPlot2
+      type: string
+    - admin_ui: {order: 12, width: 200}
+      name: GardenPlot3
+      type: string
     server: full
     title: GameState
   items:

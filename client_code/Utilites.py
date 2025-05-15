@@ -327,7 +327,7 @@ def add_item(character, added_item):
   added_item['AvailableCount'] -= 1
 
 def windowWidthWithMax(maxWidth=900):
-  if window.innerWidth < 900:
+  if window.innerWidth < maxWidth:
     maxWidth = window.innerWidth
   remainingWidth = window.innerWidth - maxWidth
   return maxWidth, remainingWidth
