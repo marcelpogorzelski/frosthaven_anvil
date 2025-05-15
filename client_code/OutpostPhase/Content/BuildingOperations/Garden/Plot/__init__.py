@@ -6,13 +6,15 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
+from .Planting import Planting
 
 class Plot(PlotTemplate):
-  def __init__(self, herb, plant, harvest, **properties):
+  def __init__(self, gamestate, plot_number, plant, harvest, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.herb = herb
+    self.herb = gamestate[plot_number]
+    self.gamestate = gamestate
+    self.plot_number = plot_number
     self.plant = plant
     self.harvest = harvest
     self.herb_images = {
@@ -31,10 +33,17 @@ class Plot(PlotTemplate):
 
     if not self.harvest:
       self.plant_button.enabled = True
-    #_/theme/garden/arrowvine-plot.png
 
-    # Any code you write here will run before the form opens.
 
   def plant_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    frosthaven = app_tables.frosthaven.search()[0]
+    
+    planted_herb = alert(content=Planting(frosthaven), title='Planting', large=True, dismissible=False, buttons=[('Cancel', None)])
+    if not planted_herb:
+      return
+    self.plant_button.enabled = False
+    self.herb = planted_herb
+    self.gamestate[self.plot_number] = planted_herb
+    frosthaven[planted_herb] -= 1
+    self.plot_image.source = self.herb_images.get(self.herb, '_/theme/garden/empty-plot.png')
+    

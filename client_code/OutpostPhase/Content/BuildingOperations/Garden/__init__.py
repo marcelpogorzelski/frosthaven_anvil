@@ -21,15 +21,13 @@ class Garden(GardenTemplate):
     self.finished = gamestate[finish_phase_tag]
 
     self.garden_level = self.gamestate['GardenBuilding']['CurrentBuilding']['Level']
-    self.garden_level = 4
+    #self.garden_level = 4
 
     self.check_harvest_and_plant()
     self.add_plots()
 
     if self.finished:
       self.disable_phase()
-
-
 
   def check_harvest_and_plant(self):
     if self.garden_level >= 3:
@@ -45,10 +43,8 @@ class Garden(GardenTemplate):
       self.harvest_button.enabled = True
       self.finished_planting_button.enabled = False
 
-
-
-  def add_plot(self, herb):
-    plot = Plot(herb, self.plant, self.harvest)
+  def add_plot(self, plot_number):
+    plot = Plot(self.gamestate, plot_number, self.plant, self.harvest)
     self.plots.append(plot)
     self.plot_flow_panel.add_component(plot, width=self.plot_width)
     
@@ -57,16 +53,19 @@ class Garden(GardenTemplate):
     self.plot_width = self.plot_width/3
     self.plots = list()
     if self.garden_level >= 1:
-      self.add_plot(self.gamestate['GardenPlot1'])
+      self.add_plot('GardenPlot1')
     if self.garden_level >= 2:
-      self.add_plot(self.gamestate['GardenPlot2'])
+      self.add_plot('GardenPlot2')
     if self.garden_level == 4:
-      self.add_plot(self.gamestate['GardenPlot3'])
+      self.add_plot('GardenPlot3')
 
   def disable_phase(self):
     self.garden_column_panel.background = 'theme:Outline'
     self.harvest_button.enabled = False
-    self.finished_planting_button.enabled = False
+    self.toggle_plant_buttons(False)
+    self.plot_flow_panel.visible = False
+    self.button_flow_panel.visible = False
+    self.name_label.text += " - Finished"
 
   def set_as_finished(self):
     self.disable_phase()

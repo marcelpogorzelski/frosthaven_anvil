@@ -22,6 +22,7 @@ class Content(ContentTemplate):
     self.item = self.gamestate['Week']
 
     self.phases = list()
+    self.finish = False
 
     self.passage_of_time = PassageOfTime(self.gamestate, Utilites.PASSAGE_OF_TIME_PHASE)
     self.passage_of_time.set_event_handler('x-phase-finished', self.phase_finished)
@@ -38,8 +39,13 @@ class Content(ContentTemplate):
     self.phases.append(self.building_operations)
     self.add_component(self.building_operations)
 
-    #self.outpost_event.raise_event('x-phase-finished')
-    # Any code you write here will run before the form opens.
+    self.finish_week_button = Button(text='Go on an adventure!', role='filled-button')
+    self.finish_week_button.set_event_handler('click', self.finish_week)
+
+    self.finish_card = ColumnPanel(role='elevated-card')
+    self.finish_card.add_component(self.finish_week_button)
+    self.add_component(self.finish_card)
+
 
   def phase_finished(self, **event_args):
     for phase in self.phases:
@@ -49,4 +55,10 @@ class Content(ContentTemplate):
 
   def disable_phase(self):
     self.week_card.background = 'theme:Outline'
+    self.finish = True
+
+  def finish_week(self, **event_args):
+    if not self.finish:
+      if not confirm("All Outpost Phases are not finished. Do you still want to leave?"):
+        return
     

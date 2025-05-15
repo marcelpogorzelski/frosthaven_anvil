@@ -33,6 +33,8 @@ class BuildingOperations(BuildingOperationsTemplate):
     self.buildings.append(self.garden)
     self.building_operations_card.add_component(self.garden)
 
+    self.building_finished()
+
   def disable_phase(self):
     self.building_operations_card.background = 'theme:Outline'
 

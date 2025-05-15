@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'IBCXLF,XLDCXX'}
+  name: plant_flow_panel
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true
