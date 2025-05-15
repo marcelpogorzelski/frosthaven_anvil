@@ -15,6 +15,7 @@ class Scenarios(ScenariosTemplate):
     self.init_components(**properties)
 
     #self.scenario_repeating_panel.items = app_tables.scenarios.search(q.not_(Status='Undiscovered'))
+    self.available_filter_button.role = 'filled-button'
     self.filter_on_status()
 
   def filter_on_status(self):

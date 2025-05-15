@@ -42,7 +42,6 @@ class Main(MainTemplate):
     self.setup_player('Kristian', self.kristian_link, self.kristian_sheet_link, self.kristian_items_link, self.kristian_cards_link, self.kristian_details_link)
     self.setup_player('Marcel', self.marcel_link, self.marcel_sheet_link, self.marcel_items_link, self.marcel_cards_link, self.marcel_details_link)
 
-    self.setup_game_state()
     self.setup_active_scenario()
     if player_name == 'Frosthaven':
       if self.scenario:
@@ -53,8 +52,7 @@ class Main(MainTemplate):
       link = self.player_links[player_name]['Links'][0]
       self.open_player_link(link.tag['Player'], link)
 
-  def setup_game_state(self):
-    self.game_state_link.text = app_tables.frosthaven.search()[0]['GameState']
+
     
   def setup_active_scenario(self):
     self.scenario = app_tables.frosthaven.search()[0]['ActiveScenario']
@@ -176,10 +174,17 @@ class Main(MainTemplate):
   def achievements_link_click(self, **event_args):
     self.change_form(Achievements(), event_args['sender'])
 
-  def game_state_link_click(self, **event_args):
-    game_state = self.game_state_link.text
+  def open_outpost(self):
+    self.change_form(OutpostPhase(), self.outpost_link)
+
+  def outpost_link_click(self, **event_args):
+    self.open_outpost()
+
+  def go_to_currect_phase(self):
+    game_state = app_tables.gamestate.search()[0]['Phase']
+               
     if game_state == Utilites.OUTPOST_PHASE:
-      self.change_form(OutpostPhase(), event_args['sender'])
+      self.open_outpost()
     elif game_state == Utilites.SCENARIO_PHASE:
       if self.scenario:
         self.open_scenario(self.scenario)

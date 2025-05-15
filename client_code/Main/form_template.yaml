@@ -62,10 +62,10 @@ components:
     properties: {height: 32}
     type: Spacer
   - data_bindings: []
-    event_bindings: {click: game_state_link_click}
+    event_bindings: {click: outpost_link_click}
     layout_properties: {grid_position: 'YVBBSB,GBAFZA'}
-    name: game_state_link
-    properties: {align: center, text: '', visible: true}
+    name: outpost_link
+    properties: {align: center, text: Outpost, visible: true}
     type: Link
   - layout_properties: {grid_position: 'YHQDVR,AZWGWJ'}
     name: spacer_2
