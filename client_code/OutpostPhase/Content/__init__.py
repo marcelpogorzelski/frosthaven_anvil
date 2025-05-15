@@ -10,6 +10,7 @@ from .PassageOfTime import PassageOfTime
 from .OutpostEvent import OutpostEvent
 from .BuildingOperations import BuildingOperations
 from ... import Utilites
+from ... import navigation
 
 
 class Content(ContentTemplate):
@@ -46,6 +47,7 @@ class Content(ContentTemplate):
     self.finish_card.add_component(self.finish_week_button)
     self.add_component(self.finish_card)
 
+    self.outpost_event.raise_event('x-phase-finished')
 
   def phase_finished(self, **event_args):
     for phase in self.phases:
@@ -57,8 +59,25 @@ class Content(ContentTemplate):
     self.week_card.background = 'theme:Outline'
     self.finish = True
 
+  def reset_week(self):
+    next_week = app_tables.calendar.get(Week=(self.item['Week'] + 1))
+    harvest = not self.gamestate['GardenHarvest']
+    self.gamestate.update(
+      Week=next_week,
+      GardenHarvest=harvest,
+      PassageOfTimeFinished=False,
+      OutpostEventFinished=False,
+      BuildingOperationsFinished=False,
+      BuildingOperationMLHFinished=False,
+      BuildingOperationGardenFinished=False,
+      BuildingOperationBarracksFinished=False,
+      DowntimeFinished=False,
+      ConstructionFinished=False
+    )
+
   def finish_week(self, **event_args):
     if not self.finish:
       if not confirm("All Outpost Phases are not finished. Do you still want to leave?"):
         return
-    
+    self.reset_week()
+    navigation.go_to_scenarios()

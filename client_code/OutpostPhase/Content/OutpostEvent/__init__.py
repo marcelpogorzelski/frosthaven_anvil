@@ -17,6 +17,7 @@ class OutpostEvent(OutpostEventTemplate):
     self.gamestate = gamestate
 
     self.finished = gamestate[finish_phase_tag]
+    self.finished = True #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     if self.finished:
       self.disable_phase()
