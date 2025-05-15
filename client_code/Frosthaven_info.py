@@ -7,6 +7,11 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 #https://github.com/cmlenius/gloomhaven-card-browser/blob/main/data/scripts/characters.js
+# Summer Outpost: 65
+# Summer Road: 52
+# Winter Outpost: 81
+# Winter Road: 49
+# Boat: 19
 
 
 class_names = {

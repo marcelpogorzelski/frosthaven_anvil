@@ -15,11 +15,18 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     Utilites.set_scenario_available()
-    self.test()
+    #self.test()
     
   def test(self):
-    for week in range(60):
-      print(f"{week}: {Utilites.is_winter(week)}")
+    return
+    for event in app_tables.events.search():
+      cards = list()
+      for card_number in range(1, event['Count']+1):
+        cards.append(card_number)
+      event['Inactive'] = cards
+      event['Active'] = list()
+      event['Lost'] = list()
+        
       
   def check_items(self):
     character_items = dict()
