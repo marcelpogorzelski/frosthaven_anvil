@@ -242,7 +242,7 @@ class FinishScenario(FinishScenarioTemplate):
     if recommended_scenario_difficulty:
       alert(f"New recommended party level: {recommended_scenario_difficulty['Level']}")
 
-    navigation.go_to_calendar()
+    navigation.go_to_outpost()
 
 
   def gold_conversion_background(self):

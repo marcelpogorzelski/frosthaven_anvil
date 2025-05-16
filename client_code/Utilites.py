@@ -414,8 +414,3 @@ def remove_current_event(event_type):
     CurrentEvent=None,
     PreviousEvents=previous_events
   )
-  
-  
-  
-  
-  
