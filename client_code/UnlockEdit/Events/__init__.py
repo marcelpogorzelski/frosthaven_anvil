@@ -58,6 +58,9 @@ class Events(EventsTemplate):
   def add_event(self, **event_args):
     event_button = event_args['sender']
     event_number = event_button.tag
+
+    if not confirm(f"Do you want to add {self.event_entry['Type']} Event {event_number:02}?"):
+      return
     
     active_list = self.event_entry['Active']
     inactive_list = self.event_entry['Inactive']
@@ -79,6 +82,9 @@ class Events(EventsTemplate):
   def remove_event(self, **event_args):
     event_button = event_args['sender']
     event_number = event_button.tag
+
+    if not confirm(f"Do you want to remove {self.event_entry['Type']} Event {event_number:02}?"):
+      return
 
     active_list = self.event_entry['Active']
     inactive_list = self.event_entry['Inactive']
