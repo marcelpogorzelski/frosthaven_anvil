@@ -87,22 +87,26 @@ class OutpostEvent(OutpostEventTemplate):
     self.current_outpost_event['Number'] = event_number
     self.current_outpost_event['Text'] = f"{event_number:02}"
     self.gamestate['CurrentOutpostEvent'] = self.current_outpost_event
+    self.enable_event_card()
 
   def draw_event_button_click(self, **event_args):
     self.get_outpost_event(self.season)
-    self.enable_event_card()
+    
 
   def wrong_season_button_click(self, **event_args):
     if not confirm(f"Draw {self.wrong_season} Outpost Event instead?"):
       return
     self.get_outpost_event(self.wrong_season)
-    self.enable_event_card()
 
   def return_button_click(self, **event_args):
+    if not confirm(f"Do you want to return {self.current_outpost_event['Label']} Event {self.current_outpost_event['Text']} to the bottom of the deck?"):
+      return
     Utilites.return_current_event(self.current_outpost_event['Label'])
     self.set_as_finished()
 
   def remove_button_click(self, **event_args):
+    if not confirm(f"Do you want to remove {self.current_outpost_event['Label']} Event {self.current_outpost_event['Text']}?"):
+      return
     Utilites.remove_current_event(self.current_outpost_event['Label'])
     self.set_as_finished()
     

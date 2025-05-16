@@ -246,12 +246,16 @@ class Scenario(ScenarioTemplate):
     Notification("Event copied to clipboard. Go to forteller.gg", timeout=6).show()
 
   def return_event_button_click(self, **event_args):
+    if not confirm(f"Do you want to return {self.current_road_event['Label']} Event {self.current_road_event['Text']} to the bottom of the deck?"):
+      return
     Utilites.return_current_event(self.current_road_event['Label'])
     self.current_road_event['Resolved'] = True
     self.gamestate['CurrentRoadEvent'] = self.current_road_event
     self.enable_event_card()
 
   def remove_event_button_click(self, **event_args):
+    if not confirm(f"Do you want to remove {self.current_road_event['Label']} Event {self.current_road_event['Text']}?"):
+      return
     Utilites.remove_current_event(self.current_road_event['Label'])
     self.current_road_event['Resolved'] = True
     self.gamestate['CurrentRoadEvent'] = self.current_road_event
@@ -266,14 +270,13 @@ class Scenario(ScenarioTemplate):
     self.current_road_event['Text'] = f"{event_number:02}"
     self.current_road_event['Resolved'] = False
     self.gamestate['CurrentRoadEvent'] = self.current_road_event
+    self.enable_event_card()
 
   def draw_event_button_click(self, **event_args):
     self.get_outpost_event(self.event_type)
-    self.enable_event_card()
 
   def wrong_event_button_click(self, **event_args):
     event_type = alert(content=ChooseEventType(), title='Choose Event Type', dismissible=False, buttons=[('Cancel', None)])
     if not event_type:
       Notification("Canceled").show()
     self.get_outpost_event(event_type)
-    self.enable_event_card()
