@@ -43,5 +43,7 @@ components:
   name: scenario_card
   properties: {role: elevated-card, wrap_on: never}
   type: ColumnPanel
-container: {type: ColumnPanel}
+container:
+  properties: {wrap_on: never}
+  type: ColumnPanel
 is_package: true

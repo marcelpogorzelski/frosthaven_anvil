@@ -1,0 +1,25 @@
+components:
+- components:
+  - event_bindings: {click: choose_event_button_click}
+    layout_properties: {grid_position: 'VAAGSI,IHYWGN'}
+    name: summer_road_button
+    properties: {role: filled-button, text: Summer Road}
+    type: Button
+  - event_bindings: {click: choose_event_button_click}
+    layout_properties: {grid_position: 'TNDGEP,UEDOWQ'}
+    name: winter_road_button
+    properties: {role: filled-button, text: Winter Road}
+    type: Button
+  - event_bindings: {click: choose_event_button_click}
+    layout_properties: {grid_position: 'FMHBMS,FJFYPH'}
+    name: boat_button
+    properties: {role: filled-button, text: Boat}
+    type: Button
+  layout_properties: {grid_position: 'YGECVT,RTNWFG'}
+  name: choose_event_type_column_panel
+  properties: {wrap_on: never}
+  type: ColumnPanel
+container:
+  properties: {wrap_on: never}
+  type: ColumnPanel
+is_package: true

@@ -30,7 +30,6 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
     
     self.characters = app_tables.characters.search(tables.order_by('Gold', ascending=False), tables.order_by('Player', ascending=False))
     self.find_initial_values()
-    #self.characters_repeating_panel.items = sorted(self.character_items, key=lambda x: x['Character']['Player'])
     self.characters_repeating_panel.set_event_handler('x-funds-updated', self.funds_updated)
 
     self.check_funds()
@@ -109,8 +108,23 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
       Hide=hide
     )
 
+    notification_text = "Added:"
+    for resource, amount in resource_amounts.items():
+      if not amount:
+        continue
+      notification_text += f"\n  {resource}: {amount}"
+
+    notification_text += "\nPaying:"
+
     for character_item in self.character_items:
-      character_item['Character']['Gold'] -= character_item['Cost']
+      cost = character_item['Cost']
+      if not cost:
+        continue
+      character = character_item['Character']
+      notification_text += f"\n  {character['Player']}: {cost} Gold"
+      character['Gold'] -= character_item['Cost']
+
+    Notification(notification_text, timeout=6).show()
 
     self.set_as_finished()
 

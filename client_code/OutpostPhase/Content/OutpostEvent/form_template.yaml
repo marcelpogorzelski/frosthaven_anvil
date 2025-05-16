@@ -4,6 +4,50 @@ components:
     name: outpost_event_label
     properties: {align: center, role: title, text: Outpost Event}
     type: Label
+  - components:
+    - event_bindings: {click: draw_event_button_click}
+      layout_properties: {}
+      name: draw_event_button
+      properties: {role: filled-button, text: Outpost Event}
+      type: Button
+    - event_bindings: {click: wrong_season_button_click}
+      layout_properties: {}
+      name: wrong_season_button
+      properties: {role: tonal-button, text: Wrong Season}
+      type: Button
+    layout_properties: {grid_position: 'FULJVF,ISLVTG'}
+    name: button_flow_panel
+    properties: {align: center}
+    type: FlowPanel
+  - components:
+    - components:
+      - layout_properties: {grid_position: 'GRZLIN,TJEUMT'}
+        name: card_label
+        properties: {align: center}
+        type: Label
+      - event_bindings: {click: event_number_button_click}
+        layout_properties: {grid_position: 'NITGQQ,WPJHTI'}
+        name: event_number_button
+        properties: {icon: 'fa:clipboard', icon_align: right, role: filled-button, text: ''}
+        type: Button
+      - event_bindings: {click: return_button_click}
+        layout_properties: {grid_position: 'RWSDBR,AJDRIG'}
+        name: return_button
+        properties: {role: filled-button, text: Return}
+        type: Button
+      - event_bindings: {click: remove_button_click}
+        layout_properties: {grid_position: 'RWSDBR,CISGWU'}
+        name: remove_button
+        properties: {role: filled-button, text: Remove}
+        type: Button
+      layout_properties: {width: 300}
+      name: card_card
+      properties: {role: outlined-card, visible: false, wrap_on: never}
+      type: ColumnPanel
+    layout_properties: {grid_position: 'KXCAWD,XCNWVF'}
+    name: card_flow_panel
+    properties: {align: center}
+    type: FlowPanel
   layout_properties: {grid_position: 'SIUXYU,ISVTMF'}
   name: outpost_event_card
   properties: {role: elevated-card, wrap_on: never}

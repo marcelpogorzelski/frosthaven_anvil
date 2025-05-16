@@ -6,8 +6,10 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil.js.window import navigator
 from ... import navigation
 from ... import Utilites
+from .ChooseEventType import ChooseEventType
 
 
 class Scenario(ScenarioTemplate):
@@ -16,6 +18,7 @@ class Scenario(ScenarioTemplate):
     self.init_components(**properties)
 
     self.frosthaven = app_tables.frosthaven.search()[0]
+    self.gamestate = app_tables.gamestate.search()[0]
     
     if scenario:
       self.item = scenario
@@ -26,8 +29,17 @@ class Scenario(ScenarioTemplate):
       self.errata_card.visible = True
     # Any code you write here will run before the form opens.
 
-    self.check_season()
-    self.set_road_card()
+    self.event_backgrounds = {
+      'Summer Road': '#FFFFAD',
+      'Winter Road': '#ADD8E6',
+      'Boat': 'theme:Primary Container'
+    }
+
+    self.get_event_type()
+    if self.event_type:
+      self.draw_event_button.text = f"Draw {self.event_type} Event"
+    self.check_road_event()
+    
     self.activate_buttons()
     self.set_complexity_image()
     self.get_images()
@@ -35,28 +47,41 @@ class Scenario(ScenarioTemplate):
     self.set_scenario_difficulty_table()
     self.set_requirements()
     
-  def check_season(self):
-    if Utilites.is_summer():
-      self.season = 'Summer'
-      self.season_background = '#FFFFAD'
-    else:
-      self.season = 'Winter'
-      self.season_background = '#ADD8E6'
-
-  def set_road_card(self):
+  def get_event_type(self):
+    if self.item['Location'] == 'FR':
+      self.event_type = None
+      self.event_card_flow_panel.visible = False
+      self.event_button_flow_panel.visible = False
+      self.no_event_label.visible = True
+      return
     if self.item['Requirements'] and 'Boat' in self.item['Requirements']:
-      event_text = "Draw a Boat Event Card"
-      event_backgorund = 'theme:Primary Container'
-    elif self.item['Location'] == 'FR':
-      event_text = "Don't draw any Event Card!"
-      event_backgorund = 'theme:Tertiary Container'
+      self.event_type = 'Boat'
+      return
+    elif Utilites.is_summer():
+      self.event_type = 'Summer Road'
     else:
-      event_text = f"Draw a {self.season} Road Event"
-      event_backgorund = self.season_background
-      
-    self.event_card_label.text = event_text
-    self.event_card_label.background = event_backgorund
+      self.event_type = 'Winter Road'
 
+  def enable_event_card(self):
+    self.event_button_flow_panel.visible = False
+    self.draw_event_button.enabled = False
+    self.draw_event_button.visible = False
+    self.wrong_event_button.enabled = False
+    self.wrong_event_button.visible = False
+    self.event_card.visible = True
+    self.event_card_label.text = self.current_road_event['Label']
+    self.event_card.background = self.current_road_event['Background']
+    self.event_number_button.text = self.current_road_event['Text']
+    if self.current_road_event['Resolved']:
+      self.return_event_button.enabled = False
+      self.return_event_button.visible = False
+      self.remove_event_button.enabled = False
+      self.remove_event_button.visible = False
+
+  def check_road_event(self):
+    self.current_road_event = self.gamestate['CurrentRoadEvent']
+    if self.current_road_event:
+      self.enable_event_card()
     
   def set_requirements(self):
     if not self.item['Requirements']:
@@ -91,6 +116,7 @@ class Scenario(ScenarioTemplate):
     self.leave_scenario_button.visible = True
     self.key_and_loot_card.visible = True
     self.map_layout_card.visible = True
+    self.event_column_panel.visible = True
 
 
   def set_complexity_image(self):
@@ -205,8 +231,49 @@ class Scenario(ScenarioTemplate):
     navigation.go_to_finish_scenario(win=win)
     
   def win_scenario_button_click(self, **event_args):
+    self.gamestate['CurrentRoadEvent'] = None
     self.item['Status'] = Utilites.SCENARIO_FINISHED
     self.finish_scenario(win=True)
 
   def lose_scenario_button_click(self, **event_args):
+    self.gamestate['CurrentRoadEvent'] = None
     self.finish_scenario(win=False)
+
+  def event_number_button_click(self, **event_args):
+    event_number = self.event_number_button.text
+    forteller_search_value = f"{self.event_card_label.text} Event {event_number:02}"
+    navigator.clipboard.writeText(forteller_search_value)
+    Notification("Event copied to clipboard. Go to forteller.gg", timeout=6).show()
+
+  def return_event_button_click(self, **event_args):
+    Utilites.return_current_event(self.current_road_event['Label'])
+    self.current_road_event['Resolved'] = True
+    self.gamestate['CurrentRoadEvent'] = self.current_road_event
+    self.enable_event_card()
+
+  def remove_event_button_click(self, **event_args):
+    Utilites.remove_current_event(self.current_road_event['Label'])
+    self.current_road_event['Resolved'] = True
+    self.gamestate['CurrentRoadEvent'] = self.current_road_event
+    self.enable_event_card()
+
+  def get_outpost_event(self, event_type):
+    event_number = Utilites.get_next_event(event_type)
+    self.current_road_event = dict()
+    self.current_road_event['Label'] = event_type
+    self.current_road_event['Background'] = self.event_backgrounds[event_type]
+    self.current_road_event['Number'] = event_number
+    self.current_road_event['Text'] = f"{event_number:02}"
+    self.current_road_event['Resolved'] = False
+    self.gamestate['CurrentRoadEvent'] = self.current_road_event
+
+  def draw_event_button_click(self, **event_args):
+    self.get_outpost_event(self.event_type)
+    self.enable_event_card()
+
+  def wrong_event_button_click(self, **event_args):
+    event_type = alert(content=ChooseEventType(), title='Choose Event Type', dismissible=False, buttons=[('Cancel', None)])
+    if not event_type:
+      Notification("Canceled").show()
+    self.get_outpost_event(event_type)
+    self.enable_event_card()

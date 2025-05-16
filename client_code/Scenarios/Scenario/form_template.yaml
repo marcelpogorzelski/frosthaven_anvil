@@ -43,15 +43,64 @@ components:
     properties: {role: null}
     type: ColumnPanel
   - components:
+    - layout_properties: {grid_position: 'FDVNMB,NFJVVZ'}
+      name: no_event_label
+      properties: {align: center, role: headline, text: Don't draw any event, visible: false}
+      type: Label
     - components:
-      - layout_properties: {col_xs: 0, row: WIXJDW, width_xs: 2}
+      - event_bindings: {click: draw_event_button_click}
+        layout_properties: {}
+        name: draw_event_button
+        properties: {role: filled-button, text: Draw Event}
+        type: Button
+      - event_bindings: {click: wrong_event_button_click}
+        layout_properties: {}
+        name: wrong_event_button
+        properties: {role: tonal-button, text: Wrong Event}
+        type: Button
+      layout_properties: {grid_position: 'TTLHVW,AKHERI'}
+      name: event_button_flow_panel
+      properties: {align: center}
+      type: FlowPanel
+    - components:
+      - components:
+        - layout_properties: {grid_position: 'OTADKV,FUBYGD'}
+          name: event_card_label
+          properties: {align: center, text: ''}
+          type: Label
+        - event_bindings: {click: event_number_button_click}
+          layout_properties: {grid_position: 'ZJYNRY,JAKUED'}
+          name: event_number_button
+          properties: {icon: 'fa:clipboard', icon_align: right, role: filled-button, text: ''}
+          type: Button
+        - event_bindings: {click: return_event_button_click}
+          layout_properties: {grid_position: 'GPVTDU,NWKJCP'}
+          name: return_event_button
+          properties: {role: filled-button, text: Return}
+          type: Button
+        - event_bindings: {click: remove_event_button_click}
+          layout_properties: {grid_position: 'GPVTDU,OLMLFL'}
+          name: remove_event_button
+          properties: {role: filled-button, text: Remove}
+          type: Button
+        layout_properties: {width: 300}
+        name: event_card
+        properties: {role: outlined-card, visible: false, wrap_on: never}
+        type: ColumnPanel
+      layout_properties: {grid_position: 'MFELBX,KONRXE'}
+      name: event_card_flow_panel
+      properties: {align: center}
+      type: FlowPanel
+    layout_properties: {grid_position: 'ZPBXVJ,MRYNWG'}
+    name: event_column_panel
+    properties: {role: elevated-card, visible: false, wrap_on: never}
+    type: ColumnPanel
+  - components:
+    - components:
+      - layout_properties: {col_xs: 0, row: MRYRFL, width_xs: 2}
         name: req_image
         properties: {height: 45.835052490234375, source: _/theme/outpost/boat.png, visible: false}
         type: Image
-      - layout_properties: {col_xs: 2, row: WIXJDW, width_xs: 10}
-        name: event_card_label
-        properties: {align: center, background: '', role: input-prompt}
-        type: Label
       - layout_properties: {col_xs: 2, row: MRYRFL, width_xs: 3}
         name: status_label
         properties: {align: right, role: input-prompt, text: Status}
@@ -189,7 +238,7 @@ components:
       type: DataGrid
     layout_properties: {grid_position: 'FMFBUO,CGDAVA'}
     name: scenario_info_card
-    properties: {role: elevated-card}
+    properties: {role: elevated-card, wrap_on: never}
     type: ColumnPanel
   - components:
     - event_bindings: {click: chests_link_click}
@@ -203,7 +252,7 @@ components:
       type: RepeatingPanel
     layout_properties: {grid_position: 'BCGWBG,EQFXNL'}
     name: chests_column_card
-    properties: {role: elevated-card}
+    properties: {role: elevated-card, wrap_on: never}
     type: ColumnPanel
   - components:
     - event_bindings: {click: notes_show_link_click}
@@ -219,7 +268,7 @@ components:
       type: TextArea
     layout_properties: {grid_position: 'VQTYFM,CQNETJ'}
     name: notes_card
-    properties: {col_widths: '{"IJURDU":45,"HYLSNQ":5}', role: elevated-card, wrap_on: mobile}
+    properties: {col_widths: '{"IJURDU":45,"HYLSNQ":5}', role: elevated-card, wrap_on: never}
     type: ColumnPanel
   - components:
     - layout_properties: {grid_position: 'RSMUFK,OTQDSX'}
@@ -232,7 +281,7 @@ components:
       type: Image
     layout_properties: {grid_position: 'FPASOB,KXAUIZ'}
     name: key_and_loot_card
-    properties: {col_widths: '{"OTQDSX":50,"YLDGZM":10}', role: elevated-card, visible: false}
+    properties: {col_widths: '{"OTQDSX":50,"YLDGZM":10}', role: elevated-card, visible: false, wrap_on: never}
     type: ColumnPanel
   - components:
     - layout_properties: {grid_position: 'GYCUWM,WAUOZT'}
@@ -241,7 +290,7 @@ components:
       type: Image
     layout_properties: {grid_position: 'INPHVL,ZHDXQI'}
     name: map_layout_card
-    properties: {col_widths: '{"WAUOZT":50}', role: elevated-card, visible: false}
+    properties: {col_widths: '{"WAUOZT":50}', role: elevated-card, visible: false, wrap_on: never}
     type: ColumnPanel
   layout_properties: {full_width_row: false, grid_position: 'UMXUYX,CSABPH'}
   name: column_panel_1

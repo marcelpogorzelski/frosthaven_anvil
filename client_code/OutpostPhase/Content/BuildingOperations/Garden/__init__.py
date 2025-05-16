@@ -82,10 +82,15 @@ class Garden(GardenTemplate):
     self.harvest_button.enabled = False
     frosthaven = app_tables.frosthaven.search()[0]
 
+    herbs_added = list()
     for plot in self.plots:
       if not plot.herb:
         continue
+      herbs_added.append(plot.herb)
       frosthaven[plot.herb] += 1
+
+    herb_text = ", ".join(herbs_added)
+    Notification(f"{herb_text} added to Frosthaven", timeout=6).show()
 
     if not self.plant:
       self.set_as_finished()

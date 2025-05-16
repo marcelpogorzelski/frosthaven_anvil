@@ -72,7 +72,8 @@ class Content(ContentTemplate):
       BuildingOperationGardenFinished=False,
       BuildingOperationBarracksFinished=False,
       DowntimeFinished=False,
-      ConstructionFinished=False
+      ConstructionFinished=False,
+      CurrentOutpostEvent=None
     )
 
   def finish_week(self, **event_args):
