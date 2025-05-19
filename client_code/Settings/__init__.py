@@ -15,7 +15,6 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     Utilites.set_scenario_available()
-    #self.test()
     
   def test(self):
     return

@@ -435,6 +435,10 @@ db_schema:
     - admin_ui: {width: 200}
       name: Destilled
       type: bool
+    - admin_ui: {order: 16.5, width: 200}
+      name: Items2
+      target: items
+      type: link_multiple
     server: full
     title: Items
   pets:
