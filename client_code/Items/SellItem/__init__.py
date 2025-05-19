@@ -13,9 +13,32 @@ from ... import Utilites
 
 class SellItem(SellItemTemplate):
   def __init__(self, sell_item, **properties):
+
+    # Set Form properties and Data Bindings.
+    self.init_components(**properties)
+
+
+    self.text_box_backgrounds = {
+      'Player': '',
+      'Frosthaven': 'theme:Primary Container',
+      'Insufficient': 'theme:Tertiary Container'
+    }
+    
+    self.images_and_inputs = { 
+      'Gold': {'image': self.gold_image, 'text_box': self.gold_text_box},
+      'Lumber': {'image': self.lumber_image, 'text_box': self.lumber_text_box},
+      'Metal': {'image': self.metal_image, 'text_box': self.metal_text_box},
+      'Hide': {'image': self.hide_image, 'text_box': self.hide_text_box},
+      'Arrowvine': {'image': self.arrowvine_image, 'text_box': self.arrowvine_text_box},
+      'Axenut': {'image': self.axenut_image, 'text_box': self.axenut_text_box},
+      'Corpsecap': {'image': self.corpsecap_image, 'text_box': self.corpsecap_text_box},
+      'Flamefruit': {'image': self.flamefruit_image, 'text_box': self.flamefruit_text_box},
+      'Rockroot': {'image': self.rockroot_image, 'text_box': self.rockroot_text_box},
+      'Snowthistle': {'image': self.snowthistle_image, 'text_box': self.snowthistle_text_box},
+    }
+    
     init_gold_and_material_price = { resource: 0 for resource in  Utilites.MATERIAL_AND_GOLD_RESOURCES}
     init_herb_price = { resource: 0 for resource in  Utilites.HERB_RESOURCES}
-    #display_text = { resource: {'visible': False} for resource in Utilites.ALL_RESOURCES}
 
     self.item = {
       'character': None,
@@ -31,14 +54,13 @@ class SellItem(SellItemTemplate):
     self.parse_full_item_price(self.item, sell_item)
     self.item['display_text'] = self.get_full_display_text(self.item)
 
-    # Set Form properties and Data Bindings.
-    self.init_components(**properties)
+
     self.item_image.source = sell_item["Card"]
-    #self.item = app_tables.items.get(Number=item['Number'])
-    #self.item = None
     self.sell_item = sell_item
 
     self.frosthaven = app_tables.frosthaven.search()[0]
+
+    self.update_display()
 
     if not self.item_in_store():
       self.price_label.text = (
@@ -53,14 +75,17 @@ class SellItem(SellItemTemplate):
     self.player = app_tables.characters.get(Player=user["email"])
 
     character_items = []
-    character_items.append(("None", None))
-
+    character_items.append(("None", self.item))
     for character in app_tables.characters.search():
       character_setup = self.setup_character(character)
       character_item = (str(character["Player"]), character_setup)
       character_items.append(character_item)
     self.character_drop_down.items = character_items
-    self.character_drop_down.selected_value = self.player
+    if self.player:
+      self.character_drop_down.selected_value = self.player
+    else:
+      self.character_drop_down.selected_value = self.item
+      
 
   def item_in_store(self):
     if self.sell_item["AvailableCount"] == 0:
@@ -100,37 +125,43 @@ class SellItem(SellItemTemplate):
     
     for resource, price in character_setup['gold_and_material_price'].items():
       visible = price > 0
+      background = 'Player'
       if not visible:
-        display_text[resource] = {'price_text': '0', 'visible': visible}
+        display_text[resource] = {'price_text': '0', 'visible': visible, 'background': self.text_box_backgrounds[background]}
         continue
 
       remainder_text = ""
       if character[resource] < price:
+        background = 'Insufficient'
         character_setup['insufficient_resources'] = True
         remainder_amount = character[resource] or 'No'
         remainder_text = f" ({remainder_amount} {resource.lower()} available)"
 
       price_text = f"{price}{remainder_text}"
-      display_text[resource] = {'price_text': price_text, 'visible': visible}
+      display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds[background]}
 
     for resource, price in character_setup['herb_price'].items():
       visible = price > 0
+      background = 'Player'
       if not visible:
-        display_text[resource] = {'price_text': '0', 'visible': visible}
+        display_text[resource] = {'price_text': '0', 'visible': visible, 'background': self.text_box_backgrounds[background]}
         continue
       combined_resource = character[resource] + self.frosthaven[resource]
 
+      remainder_text = ''
       if  combined_resource < price:
+        background = 'Insufficient'
         character_setup['insufficient_resources'] = True
         remainder_amount = combined_resource or 'No'
         remainder_text = f" ({remainder_amount} {resource.lower()} available)"
 
       elif character[resource] < price:
+        background = 'Frosthaven'
         frosthaven_price = price - character[resource]
         remainder_text = f" ({frosthaven_price} taken from Frosthaven)"
         
       price_text = f"{price}{remainder_text}"
-      display_text[resource] = {'price_text': price_text, 'visible': visible}
+      display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds[background]}
     return display_text
 
   def parse_character_item_price(self, character_setup, item):
@@ -165,14 +196,23 @@ class SellItem(SellItemTemplate):
   def get_full_display_text(self, full_setup):
     display_text = {}
 
-    for resource, price in full_setup['gold_and_material_price'].items():
+    for resource, price in full_setup['herb_price'].items():
       visible = price > 0
       if not visible:
-        display_text[resource] = {'price_text': '0', 'visible': visible}
+        display_text[resource] = {'price_text': '0', 'visible': visible, 'background': self.text_box_backgrounds['Player']}
         continue
 
       price_text = f"{price}"
-      display_text[resource] = {'price_text': price_text, 'visible': visible}
+      display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds['Player']}
+      
+    for resource, price in full_setup['gold_and_material_price'].items():
+      visible = price > 0
+      if not visible:
+        display_text[resource] = {'price_text': '0', 'visible': visible, 'background': self.text_box_backgrounds['Player']}
+        continue
+
+      price_text = f"{price}"
+      display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds['Player']}
     return display_text
 
   def parse_full_item_price(self, full_setup, item):
@@ -199,12 +239,25 @@ class SellItem(SellItemTemplate):
       full_setup['item_components'].append(item)
 
 
+  def update_display(self):
+
+    for resource, display_text in self.item['display_text'].items():
+      self.images_and_inputs[resource]['image'].visible = display_text['visible']
+      self.images_and_inputs[resource]['text_box'].visible = display_text['visible']
+      self.images_and_inputs[resource]['text_box'].text = display_text['price_text']
+      self.images_and_inputs[resource]['text_box'].background = display_text['background']
+      
+
 
   def character_drop_down_change(self, **event_args):
-    print(self.character_drop_down.selected_value)
+    self.item = self.character_drop_down.selected_value
+    self.update_display()
 
 
 
+
+
+  
 
 
 

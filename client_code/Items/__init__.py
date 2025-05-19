@@ -112,9 +112,9 @@ class Items(ItemsTemplate):
     self.items_flow_panel.visible = True
 
   def process_item(self, **event_args):
-    item = event_args['sender']
-    #get_open_form().change_form(Item(item.tag))
-    get_open_form().change_form(SellItem(item.tag))
+    item = event_args['sender']-
+    get_open_form().change_form(Item(item.tag))
+    #get_open_form().change_form(SellItem(item.tag))
 
 
   def filter_mouse_down(self, x, y, button, keys, **event_args):
