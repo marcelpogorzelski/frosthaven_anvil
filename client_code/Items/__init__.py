@@ -9,6 +9,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import window
 from .Item import Item
+from .SellItem import SellItem
 
 class Items(ItemsTemplate):
   def __init__(self, **properties):
@@ -112,7 +113,9 @@ class Items(ItemsTemplate):
 
   def process_item(self, **event_args):
     item = event_args['sender']
-    get_open_form().change_form(Item(item.tag))
+    #get_open_form().change_form(Item(item.tag))
+    get_open_form().change_form(SellItem(item.tag))
+
 
   def filter_mouse_down(self, x, y, button, keys, **event_args):
     if event_args['sender'].background:
