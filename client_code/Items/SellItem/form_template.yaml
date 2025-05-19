@@ -15,11 +15,6 @@ components:
       name: character_drop_down
       properties: {}
       type: DropDown
-    - event_bindings: {change: free_check_box_change}
-      layout_properties: {grid_position: 'YCAHPM,KFGYWX SHIJNA,KUNKNM'}
-      name: free_check_box
-      properties: {text: Free}
-      type: CheckBox
     - layout_properties: {grid_position: 'ITNYRH,VASWTU'}
       name: price_label
       properties: {align: center, role: title, text: Price}
@@ -154,6 +149,10 @@ components:
       layout_properties: {grid_position: 'MWJGNO,EMLDFP'}
       name: buy_button
       properties: {enabled: false, role: filled-button, text: Buy, visible: false}
+      type: Button
+    - layout_properties: {grid_position: 'MWJGNO,QJUPGW'}
+      name: add_button
+      properties: {enabled: false, role: filled-button, text: Add for free, visible: false}
       type: Button
     layout_properties: {width: 500}
     name: price_outlined_card
