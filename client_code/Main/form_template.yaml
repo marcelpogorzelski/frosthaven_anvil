@@ -55,7 +55,7 @@ components:
     event_bindings: {click: scenario_link_click}
     layout_properties: {grid_position: 'UXQREM,PGCKDR'}
     name: scenario_link
-    properties: {align: center, text: '', visible: false}
+    properties: {align: center, text: '', visible: true}
     type: Link
   - data_bindings: []
     event_bindings: {click: finish_scenario_link_click}

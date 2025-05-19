@@ -242,6 +242,8 @@ class FinishScenario(FinishScenarioTemplate):
     if recommended_scenario_difficulty:
       alert(f"New recommended party level: {recommended_scenario_difficulty['Level']}")
 
+    gamestate = app_tables.gamestate.search()[0]
+    gamestate['Phase'] = Utilites.OUTPOST_PHASE
     navigation.go_to_outpost()
 
 

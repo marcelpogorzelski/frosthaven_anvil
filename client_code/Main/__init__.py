@@ -44,26 +44,34 @@ class Main(MainTemplate):
 
     self.setup_active_scenario()
     if player_name == 'Frosthaven':
-      if self.scenario:
-        self.open_scenario(self.scenario)
-      else:
-        self.change_form(Frosthaven(),self.frosthaven_link)
+      self.open_game_flow()
     else:
       link = self.player_links[player_name]['Links'][0]
       self.open_player_link(link.tag['Player'], link)
 
+  def open_game_flow(self):
+    gamestate = app_tables.gamestate.search()[0]
+    phase = gamestate['Phase']
+    if phase == Utilites.OUTPOST_PHASE:
+      self.open_outpost()
+    elif phase == Utilites.CHOOSE_SCENARIO_PHASE:
+      self.open_scenarios()
+    elif phase == Utilites.SCENARIO_PHASE:
+      if self.scenario:
+        self.open_scenario(self.scenario)
+      else:
+        self.open_scenarios()
+    elif phase == Utilites.ENDING_SCENARIO_PHASE:
+      self.open_finish_scenario(win=gamestate['LastScenarioWon'])
 
-    
   def setup_active_scenario(self):
-    self.scenario = app_tables.frosthaven.search()[0]['ActiveScenario']
+    #self.scenario = app_tables.frosthaven.search()[0]['ActiveScenario']
+    self.scenario = app_tables.gamestate.search()[0]['ActiveScenario']
     if not self.scenario:
-      self.scenario_link.visible = False
-      self.scenario_link.text = ''
+      self.scenario_link.text = 'Choose Scenario'
       return
-    self.scenario_link.visible = True
     self.scenario_link.text = self.scenario['Number']
     
-
   def setup_player(self, player, player_link, sheet_link, items_link, cards_link, details_link):
     player_link.tag = player
     sheet_link.tag = {'Player': player, 'Next': items_link, 'Form': Character}
@@ -148,7 +156,10 @@ class Main(MainTemplate):
 
   def scenario_link_click(self, **event_args):
     self.setup_active_scenario()
-    self.open_scenario(self.scenario)
+    if self.scenario:
+      self.open_scenario(self.scenario)
+    else:
+      self.open_scenarios()
 
   def retired_characters_link_click(self, **event_args):
     self.change_form(RetiredCharacters(), event_args['sender'])

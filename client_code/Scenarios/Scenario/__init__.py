@@ -17,13 +17,13 @@ class Scenario(ScenarioTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.frosthaven = app_tables.frosthaven.search()[0]
+    #self.frosthaven = app_tables.frosthaven.search()[0]
     self.gamestate = app_tables.gamestate.search()[0]
     
     if scenario:
       self.item = scenario
     else:
-      self.item = self.frosthaven['ActiveScenario']
+      self.item = self.gamestate['ActiveScenario']
       
     if self.item['Errata']:
       self.errata_card.visible = True
@@ -108,7 +108,7 @@ class Scenario(ScenarioTemplate):
 
   def activate_buttons(self):
     self.reset_buttons()
-    if self.frosthaven['ActiveScenario'] != self.item:
+    if self.gamestate['ActiveScenario'] != self.item:
       self.start_scenario_button.visible = True
       return
     self.win_scenario_button.visible = True
@@ -164,15 +164,13 @@ class Scenario(ScenarioTemplate):
   def start_scenario_button_click(self, **event_args):
     self.key_and_loot_card.visible = True
     self.map_layout_card.visible = True
-    self.frosthaven['ActiveScenario'] = self.item
-    main_form = get_open_form()
-    main_form.setup_active_scenario()
+    self.gamestate.update(ActiveScenario=self.item, Phase=Utilites.SCENARIO_PHASE)
+    navigation.setup_active_scenario()
     self.activate_buttons()
 
   def leave_scenario_button_click(self, **event_args):
-    self.frosthaven['ActiveScenario'] = None
-    main_form = get_open_form()
-    main_form.setup_active_scenario()
+    self.gamestate.update(ActiveScenario=None, Phase=Utilites.CHOOSE_SCENARIO_PHASE)
+    navigation.setup_active_scenario()
     navigation.go_to_scenarios()
 
   def show_link(self, component, link):
@@ -223,21 +221,15 @@ class Scenario(ScenarioTemplate):
     new_difficulty['Selected'] = True
 
     self.set_scenario_difficulty_table()
-
-  def finish_scenario(self, win):
-    if win:
-      self.item['Status'] = 'Finished'
-    self.frosthaven['ActiveScenario'] = None
-    navigation.go_to_finish_scenario(win=win)
     
   def win_scenario_button_click(self, **event_args):
-    self.gamestate['CurrentRoadEvent'] = None
+    self.gamestate.update(Phase=Utilites.ENDING_SCENARIO_PHASE, CurrentRoadEvent=None, LastScenarioWon=True, ActiveScenario=None)
     self.item['Status'] = Utilites.SCENARIO_FINISHED
-    self.finish_scenario(win=True)
+    navigation.go_to_finish_scenario(win=True)
 
   def lose_scenario_button_click(self, **event_args):
-    self.gamestate['CurrentRoadEvent'] = None
-    self.finish_scenario(win=False)
+    self.gamestate.update(Phase=Utilites.ENDING_SCENARIO_PHASE, CurrentRoadEvent=None, LastScenarioWon=False, ActiveScenario=None)
+    navigation.go_to_finish_scenario(win=False)
 
   def event_number_button_click(self, **event_args):
     event_number = self.event_number_button.text

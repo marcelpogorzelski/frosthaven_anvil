@@ -17,8 +17,6 @@ class CharacterItems(CharacterItemsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.total_price = 0
-    self.total_herbs = 0
     self.player_name = player_name
     self.character = app_tables.characters.get(Player=player_name)
 
@@ -27,6 +25,10 @@ class CharacterItems(CharacterItemsTemplate):
     self.populate_items()
 
   def populate_items(self):
+    self.sell_value_text_box.text = 0
+    self.herbs_back_text_box.text = 0
+    self.total_price = 0
+    self.total_herbs = 0
     self.character_items_flow_panel.clear()
     for item in self.character['Items']:
       #display_mode = 'shrink_to_fit'
@@ -122,6 +124,10 @@ class CharacterItems(CharacterItemsTemplate):
     
     for item in remove_item_list:
       Utilites.remove_item(self.character, item)
-
-    navigation.go_to_character(self.player_name)
+      
+    if self.character['Items']:
+      self.populate_items()
+    else:
+      navigation.go_to_character(self.player_name)
+    
 

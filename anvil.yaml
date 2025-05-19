@@ -302,9 +302,6 @@ db_schema:
     client: full
     columns:
     - admin_ui: {width: 200}
-      name: ActiveScenario
-      type: string
-    - admin_ui: {width: 200}
       name: Week
       target: calendar
       type: link_single
@@ -357,6 +354,13 @@ db_schema:
     - admin_ui: {order: 14, width: 200}
       name: CurrentRoadEvent
       type: simpleObject
+    - admin_ui: {order: 15, width: 200}
+      name: LastScenarioWon
+      type: bool
+    - admin_ui: {order: -0.5, width: 200}
+      name: ActiveScenario
+      target: scenarios
+      type: link_single
     server: full
     title: GameState
   items:
@@ -428,18 +432,6 @@ db_schema:
     - admin_ui: {width: 119}
       name: AvailableCount
       type: number
-    - admin_ui: {width: 67}
-      name: Håvard
-      type: bool
-    - admin_ui: {width: 63}
-      name: Marcel
-      type: bool
-    - admin_ui: {width: 99}
-      name: John_Magne
-      type: bool
-    - admin_ui: {width: 69}
-      name: Kristian
-      type: bool
     - admin_ui: {width: 200}
       name: Destilled
       type: bool

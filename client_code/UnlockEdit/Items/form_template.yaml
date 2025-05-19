@@ -39,6 +39,13 @@ components:
     properties: {}
     type: GridPanel
   - data_bindings:
+    - {code: 'self.item[''Available'']', property: visible, writeback: false}
+    event_bindings: {click: give_button_click}
+    layout_properties: {grid_position: 'EEUXBX,SURLOV'}
+    name: give_button
+    properties: {role: filled-button, text: Give to player, visible: false}
+    type: Button
+  - data_bindings:
     - {code: 'self.item[''Card'']', property: source, writeback: false}
     - {code: 'self.item[''Available'']', property: visible, writeback: false}
     layout_properties: {grid_position: 'HNOFGH,LODUHT'}

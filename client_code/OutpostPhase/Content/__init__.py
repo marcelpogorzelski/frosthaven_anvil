@@ -64,6 +64,7 @@ class Content(ContentTemplate):
     harvest = not self.gamestate['GardenHarvest']
     self.gamestate.update(
       Week=next_week,
+      Phase=Utilites.CHOOSE_SCENARIO_PHASE,
       GardenHarvest=harvest,
       PassageOfTimeFinished=False,
       OutpostEventFinished=False,

@@ -30,8 +30,9 @@ SCENARIO_NOT_AVAILABLE = [SCENARIO_LOCKED, SCENARIO_UNFULFILLED, SCENARIO_UNDISC
 TRANSPORTS = ['Sled', 'Boat', 'Climbing Gear']
 
 OUTPOST_PHASE = 'Outpost Phase'
+CHOOSE_SCENARIO_PHASE = 'Choose Scenario Phase'
 SCENARIO_PHASE = 'Scenario Phase'
-ENDING_SCENARIO = 'Ending a Scenario'
+ENDING_SCENARIO_PHASE = 'Ending a Scenario Phase'
 
 PASSAGE_OF_TIME_PHASE = 'PassageOfTimeFinished'
 OUTPOST_EVENT_PHASE = 'OutpostEventFinished'
@@ -345,16 +346,6 @@ def is_winter():
   if ((week - 1) // 10 + 1) % 2:
     return False
   return True
-
-def next_phase():
-  state = app_tables.gamestate.search()[0]
-  #state['Phase']
-  index = PHASES.index(state['Phase'])
-  index += 1
-  if index == len(PHASES):
-    index = 0
-    
-  state['Phase'] = PHASES[index]
 
 def outpost_phase_finished(phase):
   current_phase = app_tables.gamestate.search()[0]['Phase']

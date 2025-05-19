@@ -38,3 +38,7 @@ def go_to_calendar():
 def go_to_outpost():
   main_form = get_open_form()
   main_form.open_outpost()
+
+def setup_active_scenario():
+  main_form = get_open_form()
+  main_form.setup_active_scenario()

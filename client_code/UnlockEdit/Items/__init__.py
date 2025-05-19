@@ -6,6 +6,8 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .GiveToPlayer import GiveToPlayer
+from ...Utilites import add_item
 
 
 class Items(ItemsTemplate):
@@ -58,3 +60,8 @@ class Items(ItemsTemplate):
       return
     self.item_drop_down.selected_value = prev['Number']
     self.change_item()
+
+  def give_button_click(self, **event_args):
+    character = alert(content=GiveToPlayer())
+    add_item(character, self.item)
+    Notification(f"{self.item['Name']} given to {character['Player']}", timeout=6).show()
