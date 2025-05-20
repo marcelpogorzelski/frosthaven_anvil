@@ -11,7 +11,7 @@ components:
       type: Label
     - data_bindings: []
       event_bindings: {change: character_drop_down_change}
-      layout_properties: {grid_position: 'YCAHPM,KFGYWX WIIJJT,XZUWYA'}
+      layout_properties: {grid_position: 'YCAHPM,KFGYWX'}
       name: character_drop_down
       properties: {}
       type: DropDown
@@ -70,14 +70,14 @@ components:
       properties: {height: '49', source: _/theme/resource_images/fh-snowthistle-bw-icon.png, visible: false}
       type: Image
     - data_bindings: []
+      layout_properties: {grid_position: 'JVUTZA,BKDSXE TRXATU,EBFYBF'}
+      name: any_2_label
+      properties: {role: input-prompt, text: Any 2, visible: false}
+      type: Label
+    - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,BKDSXE TMRINP,UGYJNF'}
       name: any_1_label
       properties: {role: input-prompt, text: Any 1, visible: false}
-      type: Label
-    - data_bindings: []
-      layout_properties: {grid_position: 'JVUTZA,BKDSXE MSDYPY,WPSQHQ'}
-      name: any_2_label
-      properties: {role: input-prompt, text: Any 2, visible: false}
       type: Label
     - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,FAVSNB JEWXWD,OXGAKJ'}
@@ -131,14 +131,14 @@ components:
       type: TextBox
     - data_bindings:
       - {code: '['''', ''Arrowvine'',''Axenut'',''Corpsecap'',''Flamefruit'',''Rockroot'',''Snowthistle'']', property: items, writeback: false}
-      layout_properties: {grid_position: 'JVUTZA,FAVSNB XZBCPH,BEZDYC'}
-      name: any_1_drop_down
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB JRLXNC,EDGUKA'}
+      name: any_2_drop_down
       properties: {visible: false}
       type: DropDown
     - data_bindings:
       - {code: '['''', ''Arrowvine'',''Axenut'',''Corpsecap'',''Flamefruit'',''Rockroot'',''Snowthistle'']', property: items, writeback: false}
-      layout_properties: {grid_position: 'JVUTZA,FAVSNB BBJGEM,SHWUPJ'}
-      name: any_2_drop_down
+      layout_properties: {grid_position: 'JVUTZA,FAVSNB XZBCPH,BEZDYC'}
+      name: any_1_drop_down
       properties: {visible: false}
       type: DropDown
     - layout_properties: {grid_position: 'DVOAJN,GVAMQQ'}
@@ -150,7 +150,8 @@ components:
       name: buy_button
       properties: {enabled: false, role: filled-button, text: Buy, visible: false}
       type: Button
-    - layout_properties: {grid_position: 'MWJGNO,QJUPGW'}
+    - event_bindings: {click: add_button_click}
+      layout_properties: {grid_position: 'MWJGNO,QJUPGW'}
       name: add_button
       properties: {enabled: false, role: filled-button, text: Add for free, visible: false}
       type: Button

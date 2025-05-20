@@ -50,7 +50,10 @@ class CharacterItems(CharacterItemsTemplate):
     sell_price = 0
     for resource_name in Utilites.MATERIAL_AND_HERB_RESOURCES:
       sell_price += item[resource_name]
-    sell_price += len(item['Items'].split(',')) - 1
+    item_compnent_count = 0
+    if item['Items']:
+      item_compnent_count = len(item['Items'])
+    sell_price += item_compnent_count
     return sell_price * 2
       
   def item_image_click(self, **event_args):

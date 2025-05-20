@@ -423,9 +423,6 @@ db_schema:
     - admin_ui: {width: 64}
       name: 2Herbs
       type: bool
-    - admin_ui: {width: 61}
-      name: Items
-      type: string
     - admin_ui: {width: 91}
       name: TotalCount
       type: number
@@ -436,7 +433,7 @@ db_schema:
       name: Destilled
       type: bool
     - admin_ui: {order: 16.5, width: 200}
-      name: Items2
+      name: Items
       target: items
       type: link_multiple
     server: full

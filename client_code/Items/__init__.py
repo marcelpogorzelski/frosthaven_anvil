@@ -9,7 +9,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import window
 from .Item import Item
-from .SellItem import SellItem
+from .BuyItem import BuyItem
 
 class Items(ItemsTemplate):
   def __init__(self, **properties):
@@ -54,7 +54,7 @@ class Items(ItemsTemplate):
 
   def load_image(self, item):
     item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=item)
-    item_image.add_event_handler('mouse_down', self.process_item)
+    item_image.add_event_handler('mouse_down', self.process_image)
     self.items_flow_panel.add_component(item_image, width=self.image_width)
     self.all_images.append(item_image)
 
@@ -111,10 +111,9 @@ class Items(ItemsTemplate):
         image.visible = False
     self.items_flow_panel.visible = True
 
-  def process_item(self, **event_args):
-    item = event_args['sender']
-    get_open_form().change_form(Item(item.tag))
-    #get_open_form().change_form(SellItem(item.tag))
+  def process_image(self, **event_args):
+    image = event_args['sender']
+    alert(BuyItem(image.tag), large=True, buttons=[("Cancel", None)])
 
 
   def filter_mouse_down(self, x, y, button, keys, **event_args):

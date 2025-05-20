@@ -1,4 +1,4 @@
-from ._anvil_designer import SellItemTemplate
+from ._anvil_designer import BuyItemTemplate
 from anvil import *
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
@@ -11,11 +11,14 @@ from ... import navigation
 from ... import Utilites
 
 
-class SellItem(SellItemTemplate):
-  def __init__(self, sell_item, **properties):
+class BuyItem(BuyItemTemplate):
+  def __init__(self, buy_item, **properties):
 
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
+    self.item_image.source = buy_item["Card"]
+    self.buy_item = buy_item
 
     self.text_box_backgrounds = {
       'Player': '',
@@ -37,25 +40,19 @@ class SellItem(SellItemTemplate):
     }
     
     self.item = self.init_setup(None)
-    self.parse_full_item_price(self.item, sell_item)
+    self.parse_full_item_price(self.item, buy_item)
+    self.get_full_display_text(self.item)
+    
     if self.item['uncraftable']:
       self.set_uncraftable()
       return
-    self.item['display_text'] = self.get_full_display_text(self.item)
-
-    self.item_image.source = sell_item["Card"]
-    self.sell_item = sell_item
-
-    self.frosthaven = app_tables.frosthaven.search()[0]
 
     if not self.item_in_store():
-      self.price_label.text = (
-        f"No more copies of item: {self.sell_item['Number']} - {self.sell_item['Name']}"
-      )
-      self.character_drop_down.visible = False
-      self.character_label.visible = False
+      self.set_not_in_store()
       return
 
+    self.frosthaven = app_tables.frosthaven.search()[0]
+    
     user = anvil.users.get_user(allow_remembered=True)
     self.player = app_tables.characters.get(Player=user["email"])
 
@@ -77,14 +74,23 @@ class SellItem(SellItemTemplate):
   def set_uncraftable(self):
     item_list = ", ".join(self.item['uncraftable'])
     self.price_label.text = f"Cannot craft item. Missing item(s): {item_list}"
+    self.character_drop_down.visible = False
+    self.character_label.visible = False
+
+  def set_not_in_store(self):
+    self.price_label.text = (
+      f"No more copies of item: {self.buy_item['Number']} - {self.buy_item['Name']}"
+    )
+    self.character_drop_down.visible = False
+    self.character_label.visible = False
       
   def item_in_store(self):
-    if self.sell_item["AvailableCount"] == 0:
+    if self.buy_item["AvailableCount"] == 0:
       return False
     return True
 
   def item_owned(self, character):
-    if self.sell_item in character["Items"]:
+    if self.buy_item in character["Items"]:
       return True
     return False
 
@@ -96,8 +102,10 @@ class SellItem(SellItemTemplate):
       item_owned = self.item_owned(character)
     init_setup = {
       'character': character,
+      'display_text': dict(),
       'gold_and_material_price': init_gold_and_material_price,
       'herb_price': init_herb_price,
+      'herb_payment': dict(),
       'item_components': list(),
       'one_herb': False,
       'two_herbs': False,
@@ -114,13 +122,14 @@ class SellItem(SellItemTemplate):
     if character_setup['item_owned']:
       return character_setup
 
-    self.parse_character_item_price(character_setup, self.sell_item)
-    character_setup['display_text'] = self.get_display_text(character_setup)
+    self.parse_character_item_price(character_setup, self.buy_item)
+    self.get_display_text(character_setup)
     return character_setup
 
   def get_display_text(self, character_setup):
     character = character_setup['character']
-    display_text = {}
+    display_text = character_setup['display_text']
+    herb_payment = character_setup['herb_payment']
     
     for resource, price in character_setup['gold_and_material_price'].items():
       visible = price > 0
@@ -142,9 +151,12 @@ class SellItem(SellItemTemplate):
     for resource, price in character_setup['herb_price'].items():
       visible = price > 0
       background = 'Player'
+      combined_rest = character[resource] + self.frosthaven[resource]
+      herb_payment[resource] = {'Player': 0, 'Frosthaven': 0, 'PlayerRest': character[resource], 'FrosthavenRest': self.frosthaven[resource], 'CombinedRest': combined_rest}
       if not visible:
         display_text[resource] = {'price_text': '0', 'visible': visible, 'background': self.text_box_backgrounds[background]}
         continue
+        
       combined_resource = character[resource] + self.frosthaven[resource]
 
       remainder_text = ''
@@ -156,12 +168,21 @@ class SellItem(SellItemTemplate):
 
       elif character[resource] < price:
         background = 'Frosthaven'
+        player_price = character[resource]
         frosthaven_price = price - character[resource]
+        frosthaven_rest = self.frosthaven[resource] - frosthaven_price
         remainder_text = f" ({frosthaven_price} taken from Frosthaven)"
-        
+        herb_payment[resource] = {'Player': player_price, 'Frosthaven': frosthaven_price, 'PlayerRest': 0, 'FrosthavenRest': frosthaven_rest, 'CombinedRest': frosthaven_rest}
+      else:
+        player_price = price
+        player_rest = character[resource] - price
+        frosthaven_price = 0
+        frosthaven_rest = self.frosthaven[resource]
+        combined_rest = player_rest + frosthaven_rest
+        herb_payment[resource] = {'Player': player_price, 'Frosthaven': frosthaven_price, 'PlayerRest': player_rest, 'FrosthavenRest': frosthaven_rest, 'CombinedRest': combined_rest}
+
       price_text = f"{price}{remainder_text}"
       display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds[background]}
-    return display_text
 
   def parse_character_item_price(self, character_setup, item):
     character = character_setup['character']
@@ -183,14 +204,14 @@ class SellItem(SellItemTemplate):
     if item["2Herbs"]:
       character_setup['two_herbs'] = True
 
-    if not item['Items2']:
+    if not item['Items']:
       return
       
-    for craft_component_item in item['Items2']:
+    for craft_component_item in item['Items']:
       self.parse_character_item_price(character_setup, craft_component_item)
 
   def get_full_display_text(self, full_setup):
-    display_text = {}
+    display_text = full_setup['display_text']
 
     for resource, price in full_setup['herb_price'].items():
       visible = price > 0
@@ -209,7 +230,6 @@ class SellItem(SellItemTemplate):
 
       price_text = f"{price}"
       display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds['Player']}
-    return display_text
 
   def parse_full_item_price(self, full_setup, item):
     for resource in Utilites.MATERIAL_AND_GOLD_RESOURCES:
@@ -225,14 +245,20 @@ class SellItem(SellItemTemplate):
     if item["2Herbs"]:
       full_setup['two_herbs'] = True
 
-    if not item['Items2']:
+    if not item['Items']:
       return
 
-    for craft_component_item in item['Items2']:
-      if not item['Available']:
-        full_setup['uncraftable'].append(item['Number'])
-        continue
-      full_setup['item_components'].append(item)
+    for craft_component_item in item['Items']:
+      self.check_uncraftable(full_setup, craft_component_item)
+      full_setup['item_components'].append(craft_component_item)
+
+  def check_uncraftable(self, full_setup, item):
+    if item['Items']:
+      for craft_component_item in item['Items']:
+        self.check_uncraftable(full_setup, item)
+        
+    if not item['Available']:
+      full_setup['uncraftable'].append(item['Number'])
 
   def display_resource(self, resource, visible, price_text, background):
     self.images_and_inputs[resource]['image'].visible = visible
@@ -245,6 +271,34 @@ class SellItem(SellItemTemplate):
       images_and_inputs['image'].visible = False
       images_and_inputs['text_box'].visible = False
 
+  def handle_any_2_drop_down(self):
+    self.any_2_drop_down.visible = self.item['two_herbs']
+    self.any_2_label.visible = self.item['two_herbs']
+    if not self.item['two_herbs']:
+      self.any_2_drop_down.selected_value = None
+      return
+
+    drop_down_items = [('Choose herb', None)]
+    for resource, payment in self.item['herb_payment'].items():
+      if payment['CombinedRest'] < 2:
+        continue
+        
+      drop_down_item_text = f"2 {resource}"   
+      if payment['PlayerRest'] < 2:
+        frosthaven_price = 2 - payment['PlayerRest']
+        drop_down_item_text += f"  ({frosthaven_price} from Frosthaven)"
+      drop_down_items.append((drop_down_item_text, resource))
+    self.any_2_drop_down.items = drop_down_items
+
+  def handle_any_1_drop_down(self):
+    self.any_1_drop_down.visible = self.item['one_herb']
+    self.any_1_label.visible = self.item['one_herb']
+    if not self.item['one_herb']:
+      self.any_1_drop_down.selected_value = None
+      return
+
+    
+    
   def update_display(self):
     if self.item['item_owned']:
       self.price_label.text = 'You already own the item!'
@@ -254,6 +308,8 @@ class SellItem(SellItemTemplate):
     for resource, display_text in self.item['display_text'].items():
       self.display_resource(resource, display_text['visible'], display_text['price_text'], display_text['background'])
 
+    self.handle_any_2_drop_down()
+    self.handle_any_1_drop_down()
 
     if not self.item['character']:
       self.buy_button.visible = False
@@ -262,17 +318,16 @@ class SellItem(SellItemTemplate):
     
     self.buy_button.visible = True
     self.add_button.visible = True
-    #self.buy_button.enable = self.item['insufficient_resources']
-    self.add_button.enable = True
-    print(self.add_button.visible)
-
-    
-      
-
+    self.buy_button.enabled = not self.item['insufficient_resources']
+    self.add_button.enabled = True
 
   def character_drop_down_change(self, **event_args):
     self.item = self.character_drop_down.selected_value
     self.update_display()
+
+  def add_button_click(self, **event_args):
+    Utilites.add_item(self.item['character'], self.buy_item)
+    self.raise_event("x-close-alert")
 
 
 
@@ -280,241 +335,6 @@ class SellItem(SellItemTemplate):
 
   
 
-
-
-
-      
-
-  def get_character_resources(self, character):
-    character_resources = {}
-    for resource in Utilites.MATERIAL_AND_GOLD_RESOURCES:
-      character_resources[resource] = {"Player": character[resource], "Sum": -1}
-
-    for resource in Utilites.HERB_RESOURCES:
-      sum_resource = character[resource] + self.frosthaven[resource]
-      character_resources[resource] = {
-        "Player": character[resource],
-        "Sum": sum_resource,
-      }
-    return character_resources
-
-
-  def item_free(self):
-    if self.free_check_box.checked and self.character_drop_down.selected_value:
-      self.buy_button.text = "Add item"
-      self.buy_button.enabled = True
-      self.buy_button.visible = True
-      self.price_label.text = "Add item for free"
-      return True
-    return False
-
-  def parse_full_item_price2(self, item):
-    for resource, price in self.prices.items():
-      if item[resource] > 0:
-        price["Price"] += item[resource]
-    if item["1Herb"]:
-      self.one_herb = True
-    if item["2Herbs"]:
-      self.two_herbs = True
-      
-    for craft_component_item in item['Items2']:
-      if not craft_component_item["Available"]:
-        self.uncraftable(craft_component_item)
-        return
-      self.items_as_price.append(craft_component_item)
-
-  def uncraftable(self, item):
-    self.craftable = False
-    item_number = item["Number"]
-    if self.price_label.text == "Price":
-      self.price_label.text = f"Cannot craft item. Missing item(s): {item_number}"
-    else:
-      self.price_label.text += f", {item_number}"
-
-  def show_resource(self, resource_name):
-    resource = self.prices[resource_name]
-    if resource["Price"] == 0:
-      return
-
-    if not self.player:
-      resource["TextBox"].text = resource["Price"]
-      resource["Image"].visible = True
-      resource["TextBox"].visible = True
-      return
-
-    price = resource["Price"]
-    available_player = self.available_resources[resource_name]["Player"]
-    available_total = self.available_resources[resource_name]["Sum"]
-
-    if available_player >= price:
-      resource["TextBox"].text = price
-      self.payment[resource_name] = {"Player": price, "Frosthaven": 0}
-    elif available_total >= price:
-      remainder = price - available_player
-      resource["TextBox"].type = "text"
-      resource["TextBox"].text = f"{price} ({remainder} taken from Frosthaven)"
-      resource["TextBox"].background = "theme:Tertiary Container"
-      if available_player > 0:
-        self.payment[resource_name] = {
-          "Player": available_player,
-          "Frosthaven": remainder,
-        }
-      else:
-        self.payment[resource_name] = {"Player": 0, "Frosthaven": remainder}
-    else:
-      self.insufficient_funds = True
-      resource["TextBox"].type = "text"
-      if available_total == -1:
-        available_total = available_player
-      if available_total == 0:
-        resource["TextBox"].text = f"{price} (No {resource_name.lower()} available)"
-      else:
-        resource[
-          "TextBox"
-        ].text = f"{price} ({available_total} {resource_name.lower()} available)"
-      resource["TextBox"].background = "theme:Primary Container"
-
-    resource["Image"].visible = True
-    resource["TextBox"].visible = True
-
-  def show_two_herbs(self):
-    if not self.two_herbs:
-      return
-
-    if not self.player:
-      self.any_2_label.visible = True
-      self.any_2_drop_down.visible = True
-      return
-
-    any_2_drop_down_list = list()
-    any_2_drop_down_list.append(("Please select a herb", None))
-    for herb_name in Utilites.HERB_RESOURCES:
-      price = self.prices[herb_name]["Price"]
-      available_player = self.available_resources[herb_name]["Player"] - price
-      available_total = self.available_resources[herb_name]["Sum"] - price
-
-      if available_player >= 2:
-        drop_down_text = herb_name
-        drop_down_select = {"Player": 2, "Frosthaven": 0, "Herb": herb_name}
-        any_2_drop_down_list.append((drop_down_text, drop_down_select))
-      elif available_total >= 2:
-        frosthaven_portion = 2 - available_player
-        drop_down_text = f"{herb_name} ({frosthaven_portion} from Frosthaven)"
-        drop_down_select = {
-          "Player": available_player,
-          "Frosthaven": frosthaven_portion,
-          "Herb": herb_name,
-        }
-        any_2_drop_down_list.append((drop_down_text, drop_down_select))
-
-    if len(any_2_drop_down_list) == 1:
-      self.insufficient_funds = True
-      any_2_drop_down_list = ["Insufficient herbs"]
-      self.any_2_drop_down.enabled = False
-
-    self.any_2_drop_down.items = any_2_drop_down_list
-
-    self.any_2_label.visible = True
-    self.any_2_drop_down.visible = True
-
-  def set_visible(self):
-    for resource in self.prices.keys():
-      self.show_resource(resource)
-
-    self.show_two_herbs()
-
-    for item in self.items_as_price:
-      self.items_as_price_flow_panel.add_component(Image(source=item["Card"]))
-
-    if self.one_herb:
-      self.any_1_label.visible = True
-      self.any_1_drop_down.visible = True
-
-    if not self.player:
-      return
-
-    if self.insufficient_funds:
-      self.buy_button.text = "Insufficient resources"
-    else:
-      self.buy_button.enabled = True
-    self.buy_button.visible = True
-
-  def reset_prices(self):
-    self.prices = {
-      "Gold": {"Price": 0, "TextBox": self.gold_text_box, "Image": self.gold_image},
-      "Lumber": {
-        "Price": 0,
-        "TextBox": self.lumber_text_box,
-        "Image": self.lumber_image,
-      },
-      "Metal": {"Price": 0, "TextBox": self.metal_text_box, "Image": self.metal_image},
-      "Hide": {"Price": 0, "TextBox": self.hide_text_box, "Image": self.hide_image},
-      "Arrowvine": {
-        "Price": 0,
-        "TextBox": self.arrowvine_text_box,
-        "Image": self.arrowvine_image,
-      },
-      "Axenut": {
-        "Price": 0,
-        "TextBox": self.axenut_text_box,
-        "Image": self.axenut_image,
-      },
-      "Corpsecap": {
-        "Price": 0,
-        "TextBox": self.corpsecap_text_box,
-        "Image": self.corpsecap_image,
-      },
-      "Flamefruit": {
-        "Price": 0,
-        "TextBox": self.flamefruit_text_box,
-        "Image": self.flamefruit_image,
-      },
-      "Rockroot": {
-        "Price": 0,
-        "TextBox": self.rockroot_text_box,
-        "Image": self.rockroot_image,
-      },
-      "Snowthistle": {
-        "Price": 0,
-        "TextBox": self.snowthistle_text_box,
-        "Image": self.snowthistle_image,
-      },
-    }
-
-  def reset(self):
-    self.reset_prices()
-    for price in self.prices.values():
-      price["Image"].visible = False
-      price["TextBox"].visible = False
-      price["TextBox"].text = 0
-      price["TextBox"].type = "number"
-      price["TextBox"].background = ""
-
-    self.payment = dict()
-
-    self.one_herb = False
-    self.two_herbs = False
-    self.any_1_drop_down.selected_value = ""
-    self.any_2_drop_down.selected_value = ""
-    self.any_1_label.visible = False
-    self.any_2_label.visible = False
-    self.any_1_drop_down.visible = False
-    self.any_2_drop_down.visible = False
-    self.any_2_drop_down.enabled = True
-
-    self.insufficient_funds = False
-    self.buy_button.text = "Buy"
-    self.buy_button.visible = False
-    self.buy_button.enabled = False
-
-    self.price_label.text = "Price"
-
-    self.available_resources = dict()
-
-    self.items_as_price = list()
-    self.items_as_price_flow_panel.clear()
-
-    self.free_check_box.visible = True
 
 
 
@@ -591,5 +411,5 @@ class SellItem(SellItemTemplate):
     Utilites.add_item(self.player, self.item)
     navigation.go_to_character_items(self.player["Player"])
 
-  def free_check_box_change(self, **event_args):
-    self.setup()
+
+
