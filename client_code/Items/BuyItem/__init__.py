@@ -56,7 +56,7 @@ class BuyItem(BuyItemTemplate):
     user = anvil.users.get_user(allow_remembered=True)
     self.player = app_tables.characters.get(Player=user["email"])
 
-    selected_value = self.item
+    selected_value = None
     
     character_items = []
     character_items.append(("None", self.item))
@@ -68,8 +68,12 @@ class BuyItem(BuyItemTemplate):
       character_items.append(character_item)
     self.character_drop_down.items = character_items
     
-    self.character_drop_down.selected_value = selected_value
-    self.update_display()
+    if selected_value:
+      self.character_drop_down.selected_value = selected_value
+      self.item = selected_value
+      self.update_display()
+    else:
+      self.update_full_display()
 
   def set_uncraftable(self):
     item_list = ", ".join(self.item['uncraftable'])
@@ -124,8 +128,11 @@ class BuyItem(BuyItemTemplate):
 
     self.parse_character_item_price(character_setup, self.buy_item)
     self.get_display_text(character_setup)
-    self.check_if_any_drop_down_sufficient(character_setup)
+    #self.check_if_any_drop_down_sufficient(character_setup)
     return character_setup
+
+        
+      
 
   def check_if_any_drop_down_sufficient(self, character_setup):
     count2 = 0
@@ -149,11 +156,26 @@ class BuyItem(BuyItemTemplate):
       if total == 0:
         character_setup['insufficient_resources'] = True
 
+
+  def get_herb_display_text(self, price_value, player_resource, frosthaven_resource, resource):
+    if (player_resource + frosthaven_resource) < price_value:
+      return None
+    player_price = min(price_value, player_resource)
+    frosthaven_price = price_value - player_price
+
+    background = 'Player'
+    remainder_text = ''
+    if frosthaven_resource:
+      background = 'Frosthaven'
+      remainder_text = f" ({frosthaven_price} taken from Frosthaven)"
+    price_text = f"{price_value} {resource} {remainder_text}"
+    return {'price_text': price_text, 'visible': True, 'background': self.text_box_backgrounds[background], 'herb_price': {'Player': player_price, 'Frosthaven': frosthaven_price}}
+
   def get_display_text(self, character_setup):
     character = character_setup['character']
     display_text = character_setup['display_text']
     herb_payment = character_setup['herb_payment']
-    
+
     for resource, price in character_setup['gold_and_material_price'].items():
       visible = price > 0
       background = 'Player'
@@ -165,47 +187,62 @@ class BuyItem(BuyItemTemplate):
       if character[resource] < price:
         background = 'Insufficient'
         character_setup['insufficient_resources'] = True
-        remainder_amount = character[resource] or 'No'
-        remainder_text = f" ({remainder_amount} {resource.lower()} available)"
+        remainder_amount = character[resource] or 'None'
+        remainder_text = f" ({remainder_amount} available)"
 
       price_text = f"{price}{remainder_text}"
       display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds[background]}
 
     for resource, price in character_setup['herb_price'].items():
-      visible = price > 0
-      background = 'Player'
-      combined_rest = character[resource] + self.frosthaven[resource]
-      herb_payment[resource] = {'Player': 0, 'Frosthaven': 0, 'PlayerRest': character[resource], 'FrosthavenRest': self.frosthaven[resource], 'CombinedRest': combined_rest}
-      if not visible:
-        display_text[resource] = {'price_text': '0', 'visible': visible, 'background': self.text_box_backgrounds[background]}
-        continue
-        
-      combined_resource = character[resource] + self.frosthaven[resource]
+      player_resource = character[resource]
+      frosthaven_resource = self.frosthaven[resource]
+      combined_resource = player_resource + frosthaven_resource
 
-      remainder_text = ''
-      if  combined_resource < price:
-        background = 'Insufficient'
-        character_setup['insufficient_resources'] = True
-        remainder_amount = combined_resource or 'No'
-        remainder_text = f" ({remainder_amount} {resource.lower()} available)"
-
-      elif character[resource] < price:
-        background = 'Frosthaven'
-        player_price = character[resource]
-        frosthaven_price = price - character[resource]
-        frosthaven_rest = self.frosthaven[resource] - frosthaven_price
-        remainder_text = f" ({frosthaven_price} taken from Frosthaven)"
-        herb_payment[resource] = {'Player': player_price, 'Frosthaven': frosthaven_price, 'PlayerRest': 0, 'FrosthavenRest': frosthaven_rest, 'CombinedRest': frosthaven_rest}
+      if price == 0:
+        none = {'price_text': '0', 'visible': False, 'background': self.text_box_backgrounds['Player']}
       else:
-        player_price = price
-        player_rest = character[resource] - price
-        frosthaven_price = 0
-        frosthaven_rest = self.frosthaven[resource]
-        combined_rest = player_rest + frosthaven_rest
-        herb_payment[resource] = {'Player': player_price, 'Frosthaven': frosthaven_price, 'PlayerRest': player_rest, 'FrosthavenRest': frosthaven_rest, 'CombinedRest': combined_rest}
+        none = self.get_herb_display_text(price, player_resource, frosthaven_resource, resource)
+        if not none:
+          background = 'Insufficient'
+          character_setup['insufficient_resources'] = True
+          remainder_amount = combined_resource or 'None'
+          remainder_text = f" ({remainder_amount} available)"
+          price_text = f"{price}{remainder_text}"
+          none = {'price_text': price_text, 'visible': True, 'background': self.text_box_backgrounds['Insufficient']}
 
-      price_text = f"{price}{remainder_text}"
-      display_text[resource] = {'price_text': price_text, 'visible': visible, 'background': self.text_box_backgrounds[background]}
+      one_herb = self.get_herb_display_text(price+1, player_resource, frosthaven_resource, resource)
+      two_herbs = self.get_herb_display_text(price+2, player_resource, frosthaven_resource, resource)
+      both = self.get_herb_display_text(price+3, player_resource, frosthaven_resource, resource)
+      
+      display_text[resource] = none
+      herb_payment[resource] = dict()
+      herb_payment[resource]['none'] = none
+      herb_payment[resource]['one_herb'] = one_herb
+      herb_payment[resource]['two_herbs'] = two_herbs
+      herb_payment[resource]['both'] = both
+
+    count, count2, count3 = (0,0,0)
+    for _, herb_payment in herb_payment.items():
+      if herb_payment['two_herbs']:
+        count2 += 1
+      if herb_payment['one_herb']:
+        count += 1
+      if herb_payment['both']:
+        count3 += 1
+        
+    if character_setup['two_herbs']:
+      insufficient = True
+      if count2 > 0:
+        insufficient = False
+      character_setup['insufficient_resources'] = insufficient
+  
+    if character_setup['one_herb']:
+      insufficient = True
+      if count3 > 0:
+        insufficient = False
+      elif count > 1:
+        insufficient = False
+      character_setup['insufficient_resources'] = insufficient
 
   def parse_character_item_price(self, character_setup, item):
     character = character_setup['character']
@@ -295,34 +332,28 @@ class BuyItem(BuyItemTemplate):
       images_and_inputs['text_box'].visible = False
 
   def handle_any_2_drop_down(self):
-    self.any_2_drop_down.visible = self.item['two_herbs']
-    self.any_2_label.visible = self.item['two_herbs']
-    self.any_2_drop_down.items = [('', None)]
-    self.any_2_drop_down.selected_value = None
-    if not self.item['character'] or self.item['insufficient_resources']:
-      self.any_2_drop_down.enabled = False
+    if not self.item['two_herbs']:
       return
-    if not self.item['two_herbs']:  
+    self.any_2_drop_down.visible = True
+    self.any_2_label.visible = True
+    if self.item['insufficient_resources']:
       return
 
-    self.any_2_drop_down.enabled = True
-    
-    drop_down_items = [('Choose herb', None)]
-    for resource, payment in self.item['herb_payment'].items():
-      if payment['CombinedRest'] < 2:
+    drop_down_tag = 'two_herbs'
+    if self.any_1_drop_down.selected_value:
+      drop_down_tag = 'both'
+
+    drop_down_items = list()
+    drop_down_items.append(('Choose Herb', None))
+    for resource, herb_payment in self.item['herb_payment'].items():
+      if not herb_payment[drop_down_tag]:
         continue
-      drop_down_item_text = f"2 {resource}"   
-      if payment['PlayerRest'] < 2:
-        frosthaven_price = 2 - payment['PlayerRest']
-        drop_down_item_text += f"  ({frosthaven_price} from Frosthaven)"
-      drop_down_items.append((drop_down_item_text, resource))
+      drop_down_items.append((herb_payment[drop_down_tag]['price_text'], resource))
+      
     self.any_2_drop_down.items = drop_down_items
-    if len(drop_down_items) == 2:
-      self.any_2_drop_down.selected_value = drop_down_items[-1][1]
-
-    if not self.any_2_drop_down.selected_value:
-      self.buy_button.enabled = False
-  
+      
+        
+    
   def handle_any_1_drop_down(self):
     self.any_1_drop_down.visible = self.item['one_herb']
     self.any_1_label.visible = self.item['one_herb']
@@ -345,27 +376,51 @@ class BuyItem(BuyItemTemplate):
       self.hide_all()
       return
     self.price_label.text = 'Price'
+
+    self.handle_any_2_drop_down()
+      
+    
     for resource, display_text in self.item['display_text'].items():
       self.display_resource(resource, display_text['visible'], display_text['price_text'], display_text['background'])
-
-
-
-    if not self.item['character']:
-      self.buy_button.visible = False
-      self.add_button.visible = False
-      return
     
     self.buy_button.visible = True
     self.add_button.visible = True
     self.buy_button.enabled = not self.item['insufficient_resources']
     self.add_button.enabled = True
 
-    self.handle_any_2_drop_down()
-    self.handle_any_1_drop_down()
+    #self.handle_any_2_drop_down()
+    #self.handle_any_1_drop_down()
+
+  def update_full_display(self):
+    for resource, display_text in self.item['display_text'].items():
+      self.display_resource(resource, display_text['visible'], display_text['price_text'], display_text['background'])
+
+  def reset_display(self):
+    if self.item['character']:
+      for resource in Utilites.HERB_RESOURCES:
+        self.item['display_text'][resource] = self.item['herb_payment'][resource]['none']
+    self.buy_button.visible = False
+    self.add_button.visible = False
+    
+    self.any_1_drop_down.items = [('', None)]
+    self.any_1_drop_down.selected_value = None
+    self.any_1_drop_down.visible = False
+    self.any_1_label.visible = False
+
+    self.any_2_drop_down.items = [('', None)]
+    self.any_2_drop_down.selected_value = None
+    self.any_2_drop_down.visible = False
+    self.any_2_label.visible = False
+    
+    self.price_label.text = 'Price'
 
   def character_drop_down_change(self, **event_args):
+    self.reset_display()
     self.item = self.character_drop_down.selected_value
-    self.update_display()
+    if self.item['character']:
+      self.update_display()
+    else:
+      self.update_full_display()
 
   def add_button_click(self, **event_args):
     Utilites.add_item(self.item['character'], self.buy_item)
@@ -422,7 +477,12 @@ class BuyItem(BuyItemTemplate):
     self.raise_event("x-close-alert")
 
   def any_2_drop_down_change(self, **event_args):
-    if self.any_2_drop_down.selected_value:
-      self.buy_button.enabled = True
-    else:
-      self.buy_button.enabled = False
+    if self.item['character']:
+      for resource in Utilites.HERB_RESOURCES:
+        self.item['display_text'][resource] = self.item['herb_payment'][resource]['none']
+    resource = self.any_2_drop_down.selected_value
+    if resource:
+      self.item['display_text'][resource] = self.item['herb_payment'][resource]['two_herbs']
+    self.update_display()
+
+
