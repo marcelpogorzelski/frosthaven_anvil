@@ -113,7 +113,7 @@ class Items(ItemsTemplate):
 
   def process_image(self, **event_args):
     image = event_args['sender']
-    alert(BuyItem(image.tag), large=True, buttons=[("Cancel", None)])
+    #alert(BuyItem(image.tag), large=True, buttons=[("Cancel", None)])
 
 
   def filter_mouse_down(self, x, y, button, keys, **event_args):

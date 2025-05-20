@@ -129,14 +129,13 @@ components:
       name: snowthistle_text_box
       properties: {enabled: false, spacing_above: medium, text: '0', type: text, visible: false}
       type: TextBox
-    - data_bindings:
-      - {code: '['''', ''Arrowvine'',''Axenut'',''Corpsecap'',''Flamefruit'',''Rockroot'',''Snowthistle'']', property: items, writeback: false}
+    - data_bindings: []
+      event_bindings: {change: any_2_drop_down_change}
       layout_properties: {grid_position: 'JVUTZA,FAVSNB JRLXNC,EDGUKA'}
       name: any_2_drop_down
       properties: {visible: false}
       type: DropDown
-    - data_bindings:
-      - {code: '['''', ''Arrowvine'',''Axenut'',''Corpsecap'',''Flamefruit'',''Rockroot'',''Snowthistle'']', property: items, writeback: false}
+    - data_bindings: []
       layout_properties: {grid_position: 'JVUTZA,FAVSNB XZBCPH,BEZDYC'}
       name: any_1_drop_down
       properties: {visible: false}
