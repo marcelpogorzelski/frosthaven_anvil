@@ -12,8 +12,7 @@ from ... import Utilites
 
 
 class BuyItem(BuyItemTemplate):
-  def __init__(self, buy_item, **properties):
-
+  def __init__(self, init_character, buy_item, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
@@ -52,17 +51,13 @@ class BuyItem(BuyItemTemplate):
       return
 
     self.frosthaven = app_tables.frosthaven.search()[0]
-    
-    user = anvil.users.get_user(allow_remembered=True)
-    self.player = app_tables.characters.get(Player=user["email"])
-
     selected_value = None
     
     character_items = []
     character_items.append(("None", self.item))
     for character in app_tables.characters.search():
       character_setup = self.setup_character(character)
-      if character['Player'] == user["email"]:
+      if character == init_character:
         selected_value = character_setup
       character_item = (str(character["Player"]), character_setup)
       character_items.append(character_item)
@@ -435,7 +430,7 @@ class BuyItem(BuyItemTemplate):
     if not confirm(f"Add {self.buy_item['Name']}?"):
       return
     Utilites.add_item(self.item['character'], self.buy_item)
-    self.raise_event("x-close-alert")
+    self.close_alert()
 
 
   def buy_button_click(self, **event_args):
@@ -450,7 +445,7 @@ class BuyItem(BuyItemTemplate):
       
       if player_payment[resource] < 0:
         Notification(f"Not enought {resource}", timeout=10).show()
-        self.raise_event("x-close-alert")
+        self.close_alert()
         return
 
     any_1_resource = self.any_1_drop_down.selected_value
@@ -471,7 +466,7 @@ class BuyItem(BuyItemTemplate):
       
       if (player_payment[resource] < 0) or (frosthaven_payment[resource] < 0):
         Notification(f"Not enought {resource}", timeout=10).show()
-        self.raise_event("x-close-alert")
+        self.close_alert()
         return
     
     character.update(
@@ -499,7 +494,7 @@ class BuyItem(BuyItemTemplate):
     Utilites.add_item(character, self.buy_item)
     for item in self.item['item_components']:
       Utilites.remove_item(character, item)
-    self.raise_event("x-close-alert")
+    self.close_alert()
 
   def process_any_drop_downs(self):
     if self.item['character']:
@@ -523,6 +518,9 @@ class BuyItem(BuyItemTemplate):
   def any_drop_down_change(self, **event_args):
     self.process_any_drop_downs()
     self.update_display()
+
+  def close_alert(self):
+    self.raise_event("x-close-alert", value=self.item['character'])
 
 
 

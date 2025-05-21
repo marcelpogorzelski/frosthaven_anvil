@@ -8,13 +8,15 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import window
-from .Item import Item
 from .BuyItem import BuyItem
 
 class Items(ItemsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
+    user = anvil.users.get_user(allow_remembered=True)
+    self.character = app_tables.characters.get(Player=user["email"])
     
     self.orange = ' #FFA500'
     self.display_mode = 'fill_width'
@@ -113,8 +115,7 @@ class Items(ItemsTemplate):
 
   def process_image(self, **event_args):
     image = event_args['sender']
-    alert(BuyItem(image.tag), large=True, buttons=[("Cancel", None)])
-
+    self.character = alert(BuyItem(self.character, image.tag), large=True, buttons=[("Cancel", self.character)])
 
   def filter_mouse_down(self, x, y, button, keys, **event_args):
     if event_args['sender'].background:
