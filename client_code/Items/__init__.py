@@ -10,6 +10,14 @@ from anvil.tables import app_tables
 from anvil.js.window import window
 from .BuyItem import BuyItem
 
+import anvil.js
+
+def scale_up_icon(component, scale=2):
+  dom_node = anvil.js.get_dom_node(component)
+  for icon in dom_node.querySelectorAll('i'):
+    icon.style.fontSize = f'{scale}em'
+
+
 class Items(ItemsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -17,6 +25,9 @@ class Items(ItemsTemplate):
 
     user = anvil.users.get_user(allow_remembered=True)
     self.character = app_tables.characters.get(Player=user["email"])
+
+    scale_up_icon(self.increase_items, 2)
+    scale_up_icon(self.decrease_items, 2)
     
     self.orange = ' #FFA500'
     self.display_mode = 'fill_width'
@@ -53,9 +64,11 @@ class Items(ItemsTemplate):
     self.all_images = list()
     self.load_items()
     self.resize_items()
+    #self.update_visible_images()
 
   def load_image(self, item):
-    item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=item)
+    visible = item['AvailableCount'] > 0
+    item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=item, visible=visible)
     item_image.add_event_handler('mouse_down', self.process_image)
     self.items_flow_panel.add_component(item_image, width=self.image_width)
     self.all_images.append(item_image)
@@ -77,7 +90,7 @@ class Items(ItemsTemplate):
       return False
     if item['Usage'] not in self.current_usage_filters:
       return False
-    if self.in_store_link.background:
+    if not self.in_store_image.background:
       if item['AvailableCount'] == 0:
         return False
     if self.gold_image.background:
@@ -126,14 +139,6 @@ class Items(ItemsTemplate):
     self.update_visible_images()
 
   def item_number_text_box_pressed_enter(self, **event_args):
-    self.update_visible_images()
-
-  def in_store_link_click(self, **event_args):
-    if event_args['sender'].background:
-      event_args['sender'].background = None
-    else:
-      event_args['sender'].background = self.orange
-
     self.update_visible_images()
 
   def decrease_items_click(self, **event_args):

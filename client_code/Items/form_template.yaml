@@ -56,11 +56,11 @@ components:
     name: gold_image
     properties: {height: '60', source: _/theme/resource_images/fh-money-bw-icon.png}
     type: Image
-  - event_bindings: {click: in_store_link_click}
+  - event_bindings: {mouse_down: filter_mouse_down}
     layout_properties: {}
-    name: in_store_link
-    properties: {foreground: 'theme:On Primary Container', role: headline, text: In Store}
-    type: Link
+    name: in_store_image
+    properties: {height: '60', source: _/theme/fh-return-card-bw-icon.png}
+    type: Image
   - event_bindings: {pressed_enter: item_number_text_box_pressed_enter}
     layout_properties: {width: 173.869544921875}
     name: item_number_text_box
@@ -69,11 +69,12 @@ components:
   - event_bindings: {click: decrease_items_click}
     layout_properties: {}
     name: decrease_items
-    properties: {icon: 'fa:minus-circle', spacing_above: large, text: ''}
+    properties: {icon: 'fa:minus-circle', spacing_above: small, text: ''}
     type: Button
   - event_bindings: {click: increase_items_click}
+    layout_properties: {}
     name: increase_items
-    properties: {icon: 'fa:plus-circle', spacing_above: large, text: ''}
+    properties: {icon: 'fa:plus-circle', spacing_above: small, text: ''}
     type: Button
   layout_properties: {full_width_row: true, grid_position: 'IJKHNB,IYYZMH'}
   name: filter_flow_panel
