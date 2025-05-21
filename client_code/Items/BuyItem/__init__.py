@@ -71,8 +71,10 @@ class BuyItem(BuyItemTemplate):
     if selected_value:
       self.character_drop_down.selected_value = selected_value
       self.item = selected_value
+      self.reset_item_components()
       self.update_display()
     else:
+      self.reset_item_components()
       self.update_full_display()
 
   def set_uncraftable(self):
@@ -306,7 +308,6 @@ class BuyItem(BuyItemTemplate):
       images_and_inputs['image'].visible = False
       images_and_inputs['text_box'].visible = False
 
-
   def handle_any_2_drop_down(self):
     if not self.item['two_herbs']:
       return
@@ -392,6 +393,11 @@ class BuyItem(BuyItemTemplate):
     for resource, display_text in self.item['display_text'].items():
       self.display_resource(resource, display_text['visible'], display_text['price_text'], display_text['background'])
 
+    if self.item['two_herbs']:
+      self.any_2_drop_down.visible = True
+    if self.item['one_herb']:
+      self.any_1_drop_down.visible = True
+
   def reset_display(self):
     if self.item['character'] and not self.item['item_owned']:   
       for resource in Utilites.HERB_RESOURCES:
@@ -412,7 +418,7 @@ class BuyItem(BuyItemTemplate):
     self.price_label.text = 'Price'
 
   def reset_item_components(self):
-    self.item_component_flow_panel.clear()        ################################
+    self.item_component_flow_panel.clear()
     for item in self.item['item_components']:
       self.item_component_flow_panel.add_component(Image(source=item['Card']))
 
@@ -491,6 +497,8 @@ class BuyItem(BuyItemTemplate):
     )
     
     Utilites.add_item(character, self.buy_item)
+    for item in self.item['item_components']:
+      Utilites.remove_item(character, item)
     self.raise_event("x-close-alert")
 
   def process_any_drop_downs(self):

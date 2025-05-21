@@ -157,11 +157,13 @@ components:
       type: Button
     layout_properties: {width: 500}
     name: price_outlined_card
-    properties: {col_widths: '{"BKDSXE":10,"FAVSNB":50,"CAEFXC":10,"KFGYWX":50}', role: elevated-card}
+    properties: {col_widths: '{"BKDSXE":10,"FAVSNB":50,"CAEFXC":10,"KFGYWX":50}', role: elevated-card, wrap_on: never}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'LYPSVI,IUVTHR'}
   name: flow_panel_1
   properties: {background: ''}
   type: FlowPanel
-container: {type: ColumnPanel}
+container:
+  properties: {wrap_on: never}
+  type: ColumnPanel
 is_package: true
