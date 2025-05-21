@@ -522,5 +522,8 @@ class BuyItem(BuyItemTemplate):
   def close_alert(self):
     self.raise_event("x-close-alert", value=self.item['character'])
 
+  def cancel_button_click(self, **event_args):
+    self.close_alert()
+
 
 

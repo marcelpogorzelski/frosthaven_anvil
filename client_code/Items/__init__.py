@@ -128,7 +128,7 @@ class Items(ItemsTemplate):
 
   def process_image(self, **event_args):
     image = event_args['sender']
-    self.character = alert(BuyItem(self.character, image.tag), large=True, buttons=[("Cancel", self.character)])
+    self.character = alert(BuyItem(self.character, image.tag), large=True, buttons=[], dismissible=False)
 
   def filter_mouse_down(self, x, y, button, keys, **event_args):
     if event_args['sender'].background:
