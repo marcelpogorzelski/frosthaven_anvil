@@ -1,10 +1,6 @@
 components:
 - components:
   - layout_properties: {}
-    name: player_name_label
-    properties: {align: center, icon_align: left, role: headline}
-    type: Label
-  - layout_properties: {}
     name: mat_front_image
     properties: {display_mode: original_size, height: '', horizontal_align: left}
     type: Image

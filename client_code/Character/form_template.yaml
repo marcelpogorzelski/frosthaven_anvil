@@ -53,10 +53,10 @@ components:
   name: tab_flow_panel
   properties: {gap: tiny, spacing_above: none, spacing_below: none, vertical_align: full}
   type: FlowPanel
-- layout_properties: {full_width_row: true, grid_position: 'WTPWQJ,HITVEU'}
-  name: contenct_column_panel
-  properties: {wrap_on: never}
-  type: ColumnPanel
+- layout_properties: {full_width_row: true, grid_position: 'RPAWJN,ZJWTTM'}
+  name: label_flow_panel
+  properties: {}
+  type: FlowPanel
 - layout_properties: {full_width_row: true, grid_position: 'UPBGQE,OZBZWG'}
   name: content_flow_panel
   properties: {align: left}

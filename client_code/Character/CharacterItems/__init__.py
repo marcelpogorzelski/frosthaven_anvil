@@ -20,7 +20,6 @@ class CharacterItems(CharacterItemsTemplate):
     self.player_name = player_name
     self.character = app_tables.characters.get(Player=player_name)
 
-    self.player_label.text = player_name
     self.image_border = 'thick solid green'
     self.populate_items()
 

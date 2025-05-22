@@ -21,9 +21,7 @@ class CharacterCards(CharacterCardsTemplate):
     width = 300
     if window.innerWidth < 600:
       width = 180
-    
-    self.character_label.text = player_name
-
+  
     class_id = self.character['Class']['Id']
     
     class_cards_info = sorted(Frosthaven_info.class_cards_info[class_id], key=lambda card: card['level'] )

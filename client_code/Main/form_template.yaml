@@ -75,32 +75,6 @@ components:
     name: havard_link
     properties: {align: center, text: Håvard}
     type: Link
-  - data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'XTEYQR,SOADVY'}
-    name: havard_sheet_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Sheet, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'AWTZES,KEDARH'}
-    name: havard_items_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Items, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'XAIGQT,ZJMCLB'}
-    name: havard_cards_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Cards, visible: false}
-    type: Link
-  - data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'WCNBHY,VJMGEJ'}
-    name: havard_details_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Details, visible: false}
-    type: Link
   - components: []
     data_bindings:
     - {code: '''John Magne''', property: tag, writeback: false}
@@ -108,33 +82,6 @@ components:
     layout_properties: {grid_position: 'RLVNAZ,TAKGTV'}
     name: john_magne_link
     properties: {align: center, text: John Magne}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'YKYBZO,YSRTYI'}
-    name: john_magne_sheet_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Sheet, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'PXWRZW,YNRUDP'}
-    name: john_magne_items_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Items, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'ZVKMUI,CPZFOR'}
-    name: john_magne_cards_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Cards, visible: false}
-    type: Link
-  - data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'SSEXLX,ZJOZJH'}
-    name: john_magne_details_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Details, visible: false}
     type: Link
   - data_bindings:
     - {code: '''Kristian''', property: tag, writeback: false}
@@ -144,65 +91,12 @@ components:
     properties: {align: center, text: Kristian}
     type: Link
   - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'KGXMVY,DCTKUI'}
-    name: kristian_sheet_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Sheet, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'GHYUZU,HJSULY'}
-    name: kristian_items_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Items, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'OLQZEV,JHHXDE'}
-    name: kristian_cards_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Cards, visible: false}
-    type: Link
-  - data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'SFKSMZ,MUEUQY'}
-    name: kristian_details_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Details, visible: false}
-    type: Link
-  - components: []
     data_bindings:
     - {code: '''Marcel''', property: tag, writeback: false}
     event_bindings: {click: player_link_click}
     layout_properties: {grid_position: 'ZWYOUQ,EDAGAJ'}
     name: marcel_link
     properties: {align: center, text: Marcel}
-    type: Link
-  - data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'WSGZSJ,VNGFKU'}
-    name: marcel_sheet_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Sheet, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'GLOCVZ,KAFDXB'}
-    name: marcel_items_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Items, visible: false}
-    type: Link
-  - components: []
-    data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'YOFJOK,RLWPFD'}
-    name: marcel_cards_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Cards, visible: false}
-    type: Link
-  - data_bindings: []
-    event_bindings: {click: player_sublink_click}
-    layout_properties: {grid_position: 'NDXVXM,USRJVL'}
-    name: marcel_details_link
-    properties: {align: center, col_spacing: medium, icon: 'fa:genderless', role: null, text: Details, visible: false}
     type: Link
   - layout_properties: {grid_position: 'QJIFIK,AYLIYF'}
     name: spacer_3

@@ -71,6 +71,7 @@ class Main(MainTemplate):
   def change_form(self, form, link=None):
     if link:
       self.navbar_link_select(link)
+      self.current_link = link
     self.content_panel.clear()
     self.content_panel.add_component(form, full_width_row=True)
 
@@ -97,7 +98,11 @@ class Main(MainTemplate):
 
   def open_character(self, player_name, tab='CharacterSheet'):
     player_link = self.player_links[player_name]
-    self.change_form(Character(player_name, tab), player_link)
+    if self.current_link == player_link:
+      self.selected_character.open_next_tab()
+    else:
+      self.selected_character = Character(player_name, tab)
+      self.change_form(self.selected_character, player_link)
 
   def player_link_click(self, **event_args):
     player_name = event_args['sender'].tag

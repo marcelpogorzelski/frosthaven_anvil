@@ -21,17 +21,14 @@ class Character(CharacterTemplate):
     self.init_components(**properties)
     self.player_name = player_name
 
-    #tabs = ['CharacterItems', 'CharacterItems', 'CharacterCards', 'CharacterDetails']
-    #tab = islice(cycle(tabs),tab,None)
+    tabs_setup = ['CharacterSheet', 'CharacterItems', 'CharacterCards', 'CharacterDetails']
+    tabs = [self.open_sheet, self.open_items, self.open_cards, self.open_details]
+    
+    index = tabs_setup.index(tab)
+    self.next_tab = islice(cycle(tabs),index, None)
 
-    if tab == 'CharacterItems':
-      self.open_items()
-    elif tab == 'CharacterCards':
-      self.open_cards()
-    elif tab == 'CharacterDetails':
-      self.open_details()
-    else:
-      self.open_sheet()
+    self.setup_label()
+    self.open_next_tab()
 
   def set_tab(self, selected_link):
     for tab_card in self.tab_column_panel.get_components():
@@ -40,6 +37,9 @@ class Character(CharacterTemplate):
 
     selected_link.foreground = 'theme:Secondary Container'
     selected_link.parent.background = 'theme:Secondary'
+
+  def open_next_tab(self):
+    next(self.next_tab)()
 
   def open_tab(self, character_form, width=None):
     self.content_flow_panel.clear()
@@ -75,3 +75,10 @@ class Character(CharacterTemplate):
 
   def details_link_click(self, **event_args):
     self.open_details()
+
+  def setup_label(self):
+    name_label = Label(text=self.player_name, role='title', align='center')
+    name_card = ColumnPanel(role='elevated-card', wrap_on='naver')
+    name_card.add_component(name_label)
+    self.label_flow_panel.add_component(name_card, width=900)
+

@@ -1,8 +1,4 @@
 components:
-- layout_properties: {full_width_row: true, grid_position: 'DQXNFG,PTWAHK'}
-  name: player_label
-  properties: {align: center, role: headline}
-  type: Label
 - components:
   - event_bindings: {click: select_all_button_click}
     layout_properties: {expand: false, width: null}
