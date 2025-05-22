@@ -2,77 +2,77 @@ components:
 - components:
   - data_bindings: []
     event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: head_image
     properties: {background: '', border: '', display_mode: shrink_to_fit, height: '60', source: _/theme/fh-equip-slot-head-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: body_image
     properties: {background: '', height: '60', source: _/theme/fh-equip-slot-body-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: feet_image
     properties: {height: '60', source: _/theme/fh-equip-slot-legs-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: one_hand_image
     properties: {height: '60', source: _/theme/fh-equip-slot-single-hand-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: two_hands_image
     properties: {height: '60', source: _/theme/fh-equip-slot-dual-hand-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: small_image
     properties: {height: '60', source: _/theme/fh-equip-slot-item-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: persistant_image
     properties: {height: '60', source: _/theme/fh-persistent-bonus-color-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: spent_image
     properties: {height: '60', source: _/theme/fh-tap-card-color-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: lost_image
     properties: {height: '60', source: _/theme/fh-lost-black-card-color-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: flip_image
     properties: {height: '60', source: _/theme/fh-flip-back-to-front-generic-color-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: gold_image
     properties: {height: '60', source: _/theme/resource_images/fh-money-bw-icon.png}
     type: Image
   - event_bindings: {mouse_down: filter_mouse_down}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: in_store_image
     properties: {height: '60', source: _/theme/fh-return-card-bw-icon.png}
     type: Image
   - event_bindings: {pressed_enter: item_number_text_box_pressed_enter}
-    layout_properties: {width: 173.869544921875}
+    layout_properties: {width: 100}
     name: item_number_text_box
     properties: {placeholder: Item Number, role: outlined, spacing_above: large}
     type: TextBox
   - event_bindings: {click: decrease_items_click}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: decrease_items
     properties: {icon: 'fa:minus-circle', spacing_above: small, text: ''}
     type: Button
   - event_bindings: {click: increase_items_click}
-    layout_properties: {}
+    layout_properties: {width: 60}
     name: increase_items
     properties: {icon: 'fa:plus-circle', spacing_above: small, text: ''}
     type: Button
@@ -84,5 +84,7 @@ components:
   name: items_flow_panel
   properties: {visible: false}
   type: FlowPanel
-container: {type: ColumnPanel}
+container:
+  properties: {wrap_on: never}
+  type: ColumnPanel
 is_package: true

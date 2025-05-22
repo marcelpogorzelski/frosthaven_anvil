@@ -31,7 +31,7 @@ class Items(ItemsTemplate):
     
     self.orange = ' #FFA500'
     self.display_mode = 'fill_width'
-    self.image_width = 300
+    self.image_width = 200
     if window.innerWidth < 600:
       self.image_width = 100
     
