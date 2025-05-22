@@ -86,7 +86,7 @@ unique_ids:
     Character.CharacterDetails: '1740659308118710150191859.5996'
     Character.CharacterItems: '1739519781070876616567157.5161'
     Character.CharacterItems.SellItem: '1740130183203996940930872.4814'
-    Character.Content: '1747052750265789406925217.5497'
+    Character.CharacterSheet: '1747052750265789406925217.5497'
     FinishScenario: '1745572905961434502213620.1313'
     FinishScenario.FinishScenarioRowTemplate: '1745573118297295789484542.7931'
     FinishScenario.ScenarioInfoRowTemplate: '1745575349871588857247092.5839'

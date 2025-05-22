@@ -343,7 +343,7 @@ components:
     name: retire_button
     properties: {background: '', role: filled-button, text: Retire}
     type: Button
-  layout_properties: {full_width_row: false, grid_position: 'IGQDGY,FVEIGX'}
+  layout_properties: {grid_position: 'KVQOET,PBZUYY'}
   name: content_column_panel
   properties: {wrap_on: never}
   type: ColumnPanel

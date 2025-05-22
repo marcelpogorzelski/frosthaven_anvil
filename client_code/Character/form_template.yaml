@@ -1,8 +1,65 @@
 components:
-- components: []
-  layout_properties: {full_width_row: true, grid_position: 'LLPCKD,MDXKSE'}
+- components:
+  - components:
+    - components:
+      - data_bindings: []
+        event_bindings: {click: sheet_link_click}
+        layout_properties: {grid_position: 'THFCPZ,IWNOSH'}
+        name: sheet_link
+        properties: {align: center, foreground: 'theme:Secondary Container', text: Sheet, wrap_on: never}
+        type: Link
+      layout_properties: {grid_position: 'CJMJHV,QKRBKI'}
+      name: sheet_card
+      properties: {background: 'theme:Secondary', role: tonal-card, wrap_on: never}
+      type: ColumnPanel
+    - components:
+      - data_bindings: []
+        event_bindings: {click: items_link_click}
+        layout_properties: {grid_position: 'THFCPZ,IWNOSH'}
+        name: items_link
+        properties: {align: center, text: Items, wrap_on: never}
+        type: Link
+      layout_properties: {grid_position: 'CJMJHV,EJVETJ'}
+      name: items_card
+      properties: {background: '', role: tonal-card, wrap_on: never}
+      type: ColumnPanel
+    - components:
+      - data_bindings: []
+        event_bindings: {click: cards_link_click}
+        layout_properties: {grid_position: 'THFCPZ,IWNOSH'}
+        name: cards_link
+        properties: {align: center, text: Cards, wrap_on: never}
+        type: Link
+      layout_properties: {grid_position: 'CJMJHV,SHNDFD'}
+      name: cards_card
+      properties: {background: '', role: tonal-card, wrap_on: never}
+      type: ColumnPanel
+    - components:
+      - data_bindings: []
+        event_bindings: {click: details_link_click}
+        layout_properties: {grid_position: 'THFCPZ,IWNOSH'}
+        name: details_link
+        properties: {align: center, text: Details, wrap_on: never}
+        type: Link
+      layout_properties: {grid_position: 'CJMJHV,ROANCA'}
+      name: details_card
+      properties: {background: '', role: tonal-card, wrap_on: never}
+      type: ColumnPanel
+    layout_properties: {width: 900}
+    name: tab_column_panel
+    properties: {col_spacing: tiny, wrap_on: never}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'AJQMKQ,TGNHUK'}
+  name: tab_flow_panel
+  properties: {gap: tiny, spacing_above: none, spacing_below: none, vertical_align: full}
+  type: FlowPanel
+- layout_properties: {full_width_row: true, grid_position: 'WTPWQJ,HITVEU'}
+  name: contenct_column_panel
+  properties: {wrap_on: never}
+  type: ColumnPanel
+- layout_properties: {full_width_row: true, grid_position: 'UPBGQE,OZBZWG'}
   name: content_flow_panel
-  properties: {}
+  properties: {align: left}
   type: FlowPanel
 container:
   properties: {col_spacing: small}

@@ -1,4 +1,4 @@
-from ._anvil_designer import ContentTemplate
+from ._anvil_designer import CharacterSheetTemplate
 from anvil import *
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
@@ -12,7 +12,7 @@ from ... import navigation
 from anvil.js.window import window
 
 
-class Content(ContentTemplate):
+class CharacterSheet(CharacterSheetTemplate):
   def __init__(self, player, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
