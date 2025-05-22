@@ -10,6 +10,7 @@ from anvil.tables import app_tables
 from .SellItem import SellItem
 from ... import navigation
 from ... import Utilites
+from anvil.js.window import window
 
 
 class CharacterItems(CharacterItemsTemplate):
@@ -19,6 +20,11 @@ class CharacterItems(CharacterItemsTemplate):
 
     self.player_name = player_name
     self.character = app_tables.characters.get(Player=player_name)
+
+    self.display_mode = 'fill_width'
+    self.image_width = 300
+    if window.innerWidth < 600:
+      self.image_width = 100
 
     self.image_border = 'thick solid green'
     self.populate_items()
@@ -30,8 +36,6 @@ class CharacterItems(CharacterItemsTemplate):
     self.total_herbs = 0
     self.character_items_flow_panel.clear()
     for item in self.character['Items']:
-      #display_mode = 'shrink_to_fit'
-      display_mode = 'original_size'
       if item['Destilled']:
         tag = {'Item': item}
         self.total_herbs += 1
@@ -39,9 +43,9 @@ class CharacterItems(CharacterItemsTemplate):
         sell_price = self.get_item_sell_price(item)
         self.total_price += sell_price
         tag = {'Item': item, 'Sell_Price': sell_price}
-      item_image = Image(source=item['Card'], display_mode=display_mode, tooltip=f"Item {item['Number']}", tag=tag)
+      item_image = Image(source=item['Card'], display_mode=self.display_mode, tooltip=f"Item {item['Number']}", tag=tag)
       item_image.add_event_handler('mouse_down', self.item_image_click)
-      self.character_items_flow_panel.add_component(item_image)
+      self.character_items_flow_panel.add_component(item_image, width=self.image_width)
 
   def get_item_sell_price(self, item):
     if item['HasGoldCost']:
@@ -131,5 +135,5 @@ class CharacterItems(CharacterItemsTemplate):
       self.populate_items()
     else:
       navigation.go_to_character(self.player_name)
-    
 
+    
