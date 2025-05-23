@@ -7,6 +7,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from itertools import cycle
+
 class MiningLoggingHunting(MiningLoggingHuntingTemplate):
   def __init__(self, gamestate, finish_phase_tag, **properties):
     # Set Form properties and Data Bindings.
