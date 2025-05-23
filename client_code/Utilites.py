@@ -210,6 +210,7 @@ def bounded_text_box(text_box, min_value, max_value):
 def table_to_dict(table):
   table_dict = dict()
   table_dict['ColumnInfo'] = table.list_columns()
+  table_dict['Columns'] = list()
   
   link_single = list()
   link_multiple = list()
@@ -220,80 +221,66 @@ def table_to_dict(table):
     if column['type'] == 'link_multiple':
       link_multiple.append(column['name'])
 
-
   for row in table.search():
     row_dict = dict(row)
     
     for column_name in link_single:
+      if not row_dict[column_name]:
+        continue
       row_dict[column_name] = row_dict[column_name].get_id()
       
     for column_name in link_multiple:
       if not row_dict[column_name]:
         continue
       row_dict[column_name] = [ value.get_id() for value in row_dict[column_name]]
+    table_dict['Columns'].append(row_dict)
+    
+  return table_dict
 
-      print(row_dict)
-      break
-
-
-  
-    #for column in linked_columns:
-      #row_dict[column] = row_dict[column].get_id()
-    #dict_list.append(row_dict)
-  #return dict_list
 
 def get_backup_folder():
   root_backup_folder = app_files.backup
   todays_date = datetime.now().strftime("%d-%m-%Y")
 
-  backup_folder = root_backup_folder.get(todays_date)
-  if not backup_folder:
-    backup_folder = root_backup_folder.create_folder(todays_date)
+  todays_backup_folder = root_backup_folder.get(todays_date)
+  if not todays_backup_folder:
+    todays_backup_folder = root_backup_folder.create_folder(todays_date)
 
-  if len(backup_folder.folders) >= 5:
+  backup_count = len(todays_backup_folder.folders)
+
+  print(F"Backup count: {backup_count}")
+  if backup_count >= 5:
     return False
-  
+
+  backup_folder = todays_backup_folder.create_folder(f"Backup {backup_count + 1}")
+
   return backup_folder
-  
+
+def backup_table_to_drive(backup_folder, table, table_name):
+  table_dict = table_to_dict(table)
+  table_backup_filename = f'{table_name}.json'
+  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(table_dict, indent=4).encode('utf-8'), name=table_backup_filename)
+  backup_folder.create_file(table_backup_filename, backup_blob)
+
 def backup_tables_to_drive():
-  #backup_folder = get_backup()
-  #if not backup_folder:
-  #  return False
-  character = app_tables.characters
-  #for column in character.list_columns():
-  #  print(column)
+  backup_folder = get_backup_folder()
+  if not backup_folder:
+    return False
 
-  table_to_dict(character)
-  
-  #if isinstance(character['Arrowvine'], anvil.tables.Row):
-  #  print("Yes")
-
-
-def get_backup():
-  backup = {}
-
-  calendar_database = app_tables.calendar.search()
-  backup['Calendar'] = database_to_dict(calendar_database)
-  
-  characters_database = app_tables.characters.search()
-  backup['Characters'] = database_to_dict(characters_database, linked_columns=['Class'])
-
-  classes_database = app_tables.classes.search()
-  backup['Classes'] =  database_to_dict(classes_database)
-
-  frosthaven_database = app_tables.frosthaven.search()
-  backup['Frosthaven'] = database_to_dict(frosthaven_database)
-
-  scenarios_database = app_tables.scenarios.search()
-  backup['Scenarios'] = database_to_dict(scenarios_database)
-
-  retired_characters_database = app_tables.retired_characters.search()
-  backup['Retired Characters'] = database_to_dict(retired_characters_database, linked_columns=['Class'])
-
-  now = datetime.now().strftime("%d-%m-%Y %H%M%S")
-  backup_filename = f'Frosthaven_backup {now}.json'
-  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(backup, indent=4).encode('utf-8'), name=backup_filename)
-  return backup_blob
+  backup_table_to_drive(backup_folder, app_tables.achievements, 'Achievements')
+  backup_table_to_drive(backup_folder, app_tables.available_buildings, 'AvailableBuildings')
+  backup_table_to_drive(backup_folder, app_tables.calendar, 'Calendar')
+  backup_table_to_drive(backup_folder, app_tables.characters, 'Characters')
+  backup_table_to_drive(backup_folder, app_tables.classes, 'Classes')
+  backup_table_to_drive(backup_folder, app_tables.events, 'Events')
+  backup_table_to_drive(backup_folder, app_tables.frosthaven, 'Frosthaven')
+  backup_table_to_drive(backup_folder, app_tables.gamestate, 'GameState')
+  backup_table_to_drive(backup_folder, app_tables.pets, 'Pets')
+  backup_table_to_drive(backup_folder, app_tables.retired_characters, 'RetiredCharacters')
+  backup_table_to_drive(backup_folder, app_tables.scenario_info, 'ScenarioInfo')
+  backup_table_to_drive(backup_folder, app_tables.scenarios, 'Scenarios')
+  backup_table_to_drive(backup_folder, app_tables.treasures, 'Treasures')
+  return True
 
 def add_to_retired(character):
   player_name = character['Player']
