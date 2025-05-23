@@ -195,15 +195,7 @@ def set_walls(frosthaven, walls):
   frosthaven['Walls'] = walls
   update_total_defense(frosthaven)
 
-def database_to_dict(database, linked_columns=None):
-  dict_list = list()
-  for row in database:
-    row_dict = dict(row)
-    if linked_columns:
-      for column in linked_columns:
-        row_dict[column] = dict(row_dict[column])
-    dict_list.append(row_dict)
-  return dict_list
+
 
 def bounded_text_box(text_box, min_value, max_value):
   if not text_box.text:
@@ -214,6 +206,68 @@ def bounded_text_box(text_box, min_value, max_value):
     
   if text_box.text < min_value:
     text_box.text = min_value
+
+def table_to_dict(table):
+  table_dict = dict()
+  table_dict['ColumnInfo'] = table.list_columns()
+  
+  link_single = list()
+  link_multiple = list()
+  
+  for column in table.list_columns():
+    if column['type'] == 'link_single':
+      link_single.append(column['name'])
+    if column['type'] == 'link_multiple':
+      link_multiple.append(column['name'])
+
+
+  for row in table.search():
+    row_dict = dict(row)
+    
+    for column_name in link_single:
+      row_dict[column_name] = row_dict[column_name].get_id()
+      
+    for column_name in link_multiple:
+      if not row_dict[column_name]:
+        continue
+      row_dict[column_name] = [ value.get_id() for value in row_dict[column_name]]
+
+      print(row_dict)
+      break
+
+
+  
+    #for column in linked_columns:
+      #row_dict[column] = row_dict[column].get_id()
+    #dict_list.append(row_dict)
+  #return dict_list
+
+def get_backup_folder():
+  root_backup_folder = app_files.backup
+  todays_date = datetime.now().strftime("%d-%m-%Y")
+
+  backup_folder = root_backup_folder.get(todays_date)
+  if not backup_folder:
+    backup_folder = root_backup_folder.create_folder(todays_date)
+
+  if len(backup_folder.folders) >= 5:
+    return False
+  
+  return backup_folder
+  
+def backup_tables_to_drive():
+  #backup_folder = get_backup()
+  #if not backup_folder:
+  #  return False
+  character = app_tables.characters
+  #for column in character.list_columns():
+  #  print(column)
+
+  table_to_dict(character)
+  
+  #if isinstance(character['Arrowvine'], anvil.tables.Row):
+  #  print("Yes")
+
 
 def get_backup():
   backup = {}

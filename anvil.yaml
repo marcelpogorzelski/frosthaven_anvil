@@ -794,6 +794,52 @@ services:
       userPermission: {etag: '"n1jeDvl8GadCmvUZ06PRSscKWyE"', id: me, kind: drive#permission, pendingOwner: false, role: owner, selfLink: 'https://www.googleapis.com/drive/v2/files/1u3ISoYoM8qaveV3OaCeybuTHuCY0JHPx/permissions/me', type: user}
       version: '2'
       writersCanShare: true
+    - alternateLink: https://drive.google.com/drive/folders/1v3dOiGK4nixVEXMjQb14lk_Y1FeYZr19
+      appDataContents: false
+      capabilities: {canCopy: false, canEdit: true}
+      copyRequiresWriterPermission: false
+      copyable: false
+      createdDate: '2025-05-23T05:08:11.104Z'
+      editable: true
+      embedLink: https://drive.google.com/embeddedfolderview?id=1v3dOiGK4nixVEXMjQb14lk_Y1FeYZr19
+      etag: '"MTc0Nzk3Njg5MTEwNA"'
+      explicitlyTrashed: false
+      iconLink: https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder
+      id: 1v3dOiGK4nixVEXMjQb14lk_Y1FeYZr19
+      kind: drive#file
+      labels: {hidden: false, restricted: false, starred: false, trashed: false, viewed: true}
+      lastModifyingUser:
+        displayName: Marcel Strøm
+        emailAddress: marcelpogorzelski@gmail.com
+        isAuthenticatedUser: true
+        kind: drive#user
+        permissionId: '00267163511984515600'
+        picture: {url: 'https://lh3.googleusercontent.com/a/ACg8ocLVrmlBU9OwpHsdEw53JDUdNu28xW4gELS1kRP9QiX6snMtV8s7Tg=s64'}
+      lastModifyingUserName: Marcel Strøm
+      lastViewedByMeDate: '2025-05-23T05:08:11.104Z'
+      markedViewedByMeDate: '1970-01-01T00:00:00.000Z'
+      mimeType: application/vnd.google-apps.folder
+      modifiedByMeDate: '2025-05-23T05:08:11.104Z'
+      modifiedDate: '2025-05-23T05:08:11.104Z'
+      ownerNames: [Marcel Strøm]
+      owners:
+      - displayName: Marcel Strøm
+        emailAddress: marcelpogorzelski@gmail.com
+        isAuthenticatedUser: true
+        kind: drive#user
+        permissionId: '00267163511984515600'
+        picture: {url: 'https://lh3.googleusercontent.com/a/ACg8ocLVrmlBU9OwpHsdEw53JDUdNu28xW4gELS1kRP9QiX6snMtV8s7Tg=s64'}
+      parents:
+      - {id: 1Qap_2DmR1fzlEK8fnb9IoAjmSpWbAroy, isRoot: false, kind: drive#parentReference, parentLink: 'https://www.googleapis.com/drive/v2/files/1Qap_2DmR1fzlEK8fnb9IoAjmSpWbAroy', selfLink: 'https://www.googleapis.com/drive/v2/files/1v3dOiGK4nixVEXMjQb14lk_Y1FeYZr19/parents/1Qap_2DmR1fzlEK8fnb9IoAjmSpWbAroy'}
+      python_name: backup
+      quotaBytesUsed: '0'
+      selfLink: https://www.googleapis.com/drive/v2/files/1v3dOiGK4nixVEXMjQb14lk_Y1FeYZr19
+      shared: false
+      spaces: [drive]
+      title: Backup
+      userPermission: {etag: '"cxRvus86USoqm8TgPZXeACp-Z9U"', id: me, kind: drive#permission, pendingOwner: false, role: owner, selfLink: 'https://www.googleapis.com/drive/v2/files/1v3dOiGK4nixVEXMjQb14lk_Y1FeYZr19/permissions/me', type: user}
+      version: '2'
+      writersCanShare: true
   server_config: {client_id: '', client_secret_enc: ZR7X/TnkCswOFV+1eAM2RNwXwZYazcXDaK6k7Xz1NX4LKZRE3K3cFH9K0y6ohd0g/oYykOtiZVyCAzq6WjI9b24H4E1sOK/12DMF8HCrWE/EMFpwAyOhsVVREpLPo8Cs8AUMxceOPRyEHTKVlGBLx5aa1/TZ8bqLbbK3VsdmE4dbvx5Jy3qF5rUG2x0/eU1TZWc=, enc_delegation_refresh_token: qXbgEtBeafuMasE/jsDk6JjbFkzhXVAoFG6BCnOuF1hTQJzn5v7tNlu/3mY6EvVYBD7/jdX2qBNvuK25wCi7cEb3OCim4eprhDzy/4yHToCxZJlaRFLRw1Qkhi77oJyCvhM5C9HQibyz6WvjHd2A0ZnpbO+G5j7eBejeFLeotDzLJb++rwdSW0kCHTOeDsBPyM0XLwVR+bdC1ix5NWWiGNF3fdEMQ+B1FCRM3yNTdoz4hpzvtw2ioLg8S46YbUNksUAk0B6S+XGb2eEiUnbggyZPwCa4LPTlnwHqmMIKl588lovERCsdXwOsN6MCtQ==}
   source: /runtime/services/google.yml
 startup: {module: Login, type: form}

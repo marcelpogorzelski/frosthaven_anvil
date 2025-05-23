@@ -34,13 +34,6 @@ class Settings(SettingsTemplate):
       if available_count != item['AvailableCount']:
         print('New: ', item['Number'])
 
-      
-
-    # Any code you write here will run before the form opens.
-  def export_button_click(self, **event_args):
-    backup_blob = Utilites.get_backup()
-    download(backup_blob)
-
   def parse_scenario(self, scenario_data):
     if 'treasures' not in scenario_data:
         return
@@ -72,18 +65,25 @@ class Settings(SettingsTemplate):
       scenario.update(Requirements=requirements)
     
   def import_file_loader_change(self, files, **event_args):
+    return
     for file in files:
       app_files.achievements.create_file(file.name, file)
     
 
   def change_password_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
+    return
     anvil.users.change_password_with_form(require_old_password=False)
     #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
   def action_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     pass
+
+  def backup_button_click(self, **event_args):
+    notification_text = "Databases are all backed up!"
+    if not Utilites.backup_tables_to_drive():
+      notification_text = "No backup. Reached the daily quota"
+    Notification(notification_text, timeout=6).show()
 
 
 

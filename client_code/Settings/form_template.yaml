@@ -1,14 +1,10 @@
 components:
 - components:
   - components:
-    - layout_properties: {grid_position: 'HOTCSX,OAXVMZ EHUMSA,UOTRVN'}
-      name: export_label
-      properties: {align: center, text: Export Frosthaven Data}
-      type: Label
-    - event_bindings: {click: export_button_click}
-      layout_properties: {grid_position: 'HOTCSX,OAXVMZ CEFMRD,LHVUCC'}
-      name: export_button
-      properties: {text: Export}
+    - event_bindings: {click: backup_button_click}
+      layout_properties: {grid_position: 'XEBKVO,WIWDGL'}
+      name: backup_button
+      properties: {text: Backup}
       type: Button
     layout_properties: {width: 284.6816674804687}
     name: outlined_card_1
