@@ -53,6 +53,7 @@ class Scenario(ScenarioTemplate):
   def check_pets(self):
     if self.gamestate['PetCaught']:
       self.set_pet_caught()
+      return
       
     self.capturable_pets = list()
     for pet in self.item['Pets']:
@@ -305,7 +306,7 @@ class Scenario(ScenarioTemplate):
     self.get_outpost_event(event_type)
 
   def pets_button_click(self, **event_args):
-    pet = alert(self.pets_form, large=True, buttons=[('Cancel', None)], dismissible=True)
+    pet = alert(self.pets_form, buttons=[('Cancel', None)], dismissible=True)
     if not pet:
       return
     self.set_pet_caught()

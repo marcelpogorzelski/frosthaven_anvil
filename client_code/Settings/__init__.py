@@ -37,6 +37,7 @@ class Settings(SettingsTemplate):
 
     
   def import_file_loader_change(self, file, **event_args):
+    return
     scenarios = json.loads(file.get_bytes())
 
     pets = {pet['Name']: pet for pet in app_tables.pets.search()}
