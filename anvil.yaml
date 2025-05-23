@@ -361,6 +361,9 @@ db_schema:
       name: ActiveScenario
       target: scenarios
       type: link_single
+    - admin_ui: {order: 16, width: 200}
+      name: PetCaught
+      type: bool
     server: full
     title: GameState
   items:
@@ -589,6 +592,10 @@ db_schema:
     - admin_ui: {width: 200}
       name: TreasuresSeen
       type: bool
+    - admin_ui: {order: 19, width: 200}
+      name: Pets
+      target: pets
+      type: link_multiple
     server: full
     title: Scenarios
   treasures:

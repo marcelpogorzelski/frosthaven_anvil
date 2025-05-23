@@ -34,40 +34,33 @@ class Settings(SettingsTemplate):
       if available_count != item['AvailableCount']:
         print('New: ', item['Number'])
 
-  def parse_scenario(self, scenario_data):
-    if 'treasures' not in scenario_data:
-        return
-    scenario_id = 'S' + str(scenario_data['id'])
 
-    scenario = app_tables.scenarios.get(Number=scenario_id)
     
-    treasures = list()
+  def import_file_loader_change(self, file, **event_args):
+    scenarios = json.loads(file.get_bytes())
 
-    for treasure_id in scenario_data['treasures']:
-      treasure = app_tables.treasures.get(Number=treasure_id)
-      treasures.append(treasure)
-    scenario['Treasures'] = treasures
+    pets = {pet['Name']: pet for pet in app_tables.pets.search()}
+    scenario_rows = {scenario_row['Name']:scenario_row for scenario_row in app_tables.scenarios.search()}
 
-  def parse_scenario_errata(self, scenarios_data):
-    for scenario_id, scenario_data in scenarios_data.items():
-      print(scenario_id)
+    for scenario_id, scenario in scenarios.items():
       if not scenario_id.isdigit():
-          continue
-        
-      #number = 'S' + str(scenario_id)
-      requirements = scenario_data['requirements']
-      name = scenario_data['title']
-      
-      scenario = app_tables.scenarios.get(Name=name)
-      if requirements[0] == "":
-        requirements = None
-  
-      scenario.update(Requirements=requirements)
+        continue
+      monsters = scenario.get('monsters', list())
+      if not monsters:
+        monsters.extend(scenarios[f"{scenario_id}A"]['monsters'])
+        monsters.extend(scenarios[f"{scenario_id}B"]['monsters'])
     
-  def import_file_loader_change(self, files, **event_args):
-    return
-    for file in files:
-      app_files.achievements.create_file(file.name, file)
+      monsters_names = [ monster['name'] for monster in monsters]
+      pets_in_scenario = list()
+      for pet_name, pet in pets.items():
+        if pet_name not in monsters_names:
+          continue
+        pets_in_scenario.append(pet)
+      if not pets_in_scenario:
+        continue
+        
+      scenario_rows[scenario['title']].update(Pets=pets_in_scenario)
+
     
 
   def change_password_button_click(self, **event_args):
@@ -80,6 +73,8 @@ class Settings(SettingsTemplate):
     pass
 
   def backup_button_click(self, **event_args):
+    if not confirm("Sure?"):
+      return
     notification_text = "Databases are all backed up!"
     if not Utilites.backup_tables_to_drive():
       notification_text = "No backup. Reached the daily quota"

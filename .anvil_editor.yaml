@@ -120,6 +120,7 @@ unique_ids:
     Scenarios: '1717756850229953035950991.7052'
     Scenarios.Scenario: '1745487033953549923426008.0668'
     Scenarios.Scenario.ChooseEventType: '1747387192296552345936084.9739'
+    Scenarios.Scenario.Pets: '1747998538363141629854571.1876'
     Scenarios.Scenario.ScenarioiDifficultyRowTemplate: '1745582708971724463104774.8065'
     Scenarios.Scenario.TreasuresTemplate: '1745568919659139926430667.20856'
     Scenarios.ScenariosRowTemplate: '1717760060079427219016337.0888'

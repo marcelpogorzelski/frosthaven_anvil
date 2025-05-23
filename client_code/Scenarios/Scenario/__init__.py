@@ -9,6 +9,7 @@ from anvil.tables import app_tables
 from anvil.js.window import navigator
 from ... import navigation
 from ... import Utilites
+from .Pets import Pets
 from .ChooseEventType import ChooseEventType
 
 
@@ -46,6 +47,33 @@ class Scenario(ScenarioTemplate):
     self.set_treasures()
     self.set_scenario_difficulty_table()
     self.set_requirements()
+
+    self.check_pets()
+
+  def check_pets(self):
+    if self.gamestate['PetCaught']:
+      self.set_pet_caught()
+      
+    self.capturable_pets = list()
+    for pet in self.item['Pets']:
+      if not pet['Captured']:
+        self.capturable_pets.append(pet)
+
+    self.setup_pets()
+
+  def setup_pets(self):
+    if not self.capturable_pets:
+      return
+      
+    self.pets_button.visible = True
+    self.pets_button.enabled = True
+    self.pets_form = Pets(self.capturable_pets, self.gamestate, self.pets_button)
+
+  def set_pet_caught(self):
+    self.pets_button.visible = True
+    self.pets_button.enabled = False
+    self.pets_button.text = 'Already caught'
+    self.gamestate.update(PetCaught=True)
     
   def get_event_type(self):
     if self.item['Location'] == 'FR':
@@ -221,14 +249,17 @@ class Scenario(ScenarioTemplate):
     new_difficulty['Selected'] = True
 
     self.set_scenario_difficulty_table()
+
+  def reset_gamestate(self, last_scenario_won):
+    self.gamestate.update(Phase=Utilites.ENDING_SCENARIO_PHASE, CurrentRoadEvent=None, LastScenarioWon=True, ActiveScenario=None, PetCaught=False)
     
   def win_scenario_button_click(self, **event_args):
-    self.gamestate.update(Phase=Utilites.ENDING_SCENARIO_PHASE, CurrentRoadEvent=None, LastScenarioWon=True, ActiveScenario=None)
+    self.reset_gamestate(True)
     self.item['Status'] = Utilites.SCENARIO_FINISHED
     navigation.go_to_finish_scenario(win=True)
 
   def lose_scenario_button_click(self, **event_args):
-    self.gamestate.update(Phase=Utilites.ENDING_SCENARIO_PHASE, CurrentRoadEvent=None, LastScenarioWon=False, ActiveScenario=None)
+    self.reset_gamestate(False)
     navigation.go_to_finish_scenario(win=False)
 
   def event_number_button_click(self, **event_args):
@@ -272,3 +303,9 @@ class Scenario(ScenarioTemplate):
     if not event_type:
       Notification("Canceled").show()
     self.get_outpost_event(event_type)
+
+  def pets_button_click(self, **event_args):
+    pet = alert(self.pets_form, large=True, buttons=[('Cancel', None)], dismissible=True)
+    if not pet:
+      return
+    self.set_pet_caught()

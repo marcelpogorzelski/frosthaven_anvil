@@ -19,7 +19,7 @@ components:
       event_bindings: {change: import_file_loader_change}
       layout_properties: {grid_position: 'ZYFQWL,KWWJJA'}
       name: import_file_loader
-      properties: {enabled: false, multiple: true, visible: true}
+      properties: {enabled: true, multiple: false, visible: true}
       type: FileLoader
     - event_bindings: {click: action_button_click}
       layout_properties: {grid_position: 'XUVFYW,QPPHVA'}
