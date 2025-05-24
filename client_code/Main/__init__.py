@@ -32,7 +32,7 @@ class Main(MainTemplate):
   def __init__(self, player_name, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    self.current_link = None
     self.player_links = {
       'Håvard': self.havard_link,
       'John Magne': self.john_magne_link,
