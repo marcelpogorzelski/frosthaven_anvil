@@ -4,13 +4,25 @@ components:
     name: name_label
     properties: {role: title, text: Barracks}
     type: Label
+  - components:
+    - event_bindings: {click: start_button_click}
+      layout_properties: {}
+      name: start_button
+      properties: {role: filled-button, text: Start}
+      type: Button
+    layout_properties: {grid_position: 'UPEAWC,MYYSYU'}
+    name: barracks_start_flow_panel
+    properties: {}
+    type: FlowPanel
+  - data_bindings:
+    - {code: self.phase_enabled, property: visible, writeback: false}
+    layout_properties: {grid_position: 'BWOGTX,NDWSNA'}
+    name: missing_guard_label
+    properties: {role: input-prompt}
+    type: Label
   layout_properties: {grid_position: 'CEDOUG,CVXYVH'}
   name: barracks_column_panel
   properties: {wrap_on: never}
   type: ColumnPanel
-- layout_properties: {grid_position: 'YKUJBV,EXUEHA'}
-  name: missing_guard_label
-  properties: {role: input-prompt}
-  type: Label
 container: {type: ColumnPanel}
 is_package: true
