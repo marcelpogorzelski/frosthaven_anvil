@@ -8,6 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .MiningLoggingHunting import MiningLoggingHunting
 from .Garden import Garden
+from .Barracks import Barracks
 from .... import Utilites
 
 
@@ -32,6 +33,11 @@ class BuildingOperations(BuildingOperationsTemplate):
     self.garden.set_event_handler('x-building-finished', self.building_finished)
     self.buildings.append(self.garden)
     self.building_operations_card.add_component(self.garden)
+
+    self.barracts = Barracks(self.gamestate, Utilites.BUILDING_BARRACKS_PHASE)
+    self.barracts.set_event_handler('x-building-finished', self.building_finished)
+    self.buildings.append(self.barracts)
+    self.building_operations_card.add_component(self.barracts)
 
     self.building_finished()
 

@@ -20,8 +20,22 @@ class Barracks(BarracksTemplate):
     if self.finished:
       self.disable_phase()
 
+    self.barracks_level = app_tables.available_buildings.get(Number=98)['CurrentBuilding']['Level']
+    self.guard_count = app_tables.frosthaven.search()[0]['Guards']
+    self.max_guard_count = 2 + (self.barracks_level * 2)
+    self.missing_quard_count = self.max_guard_count - self.guard_count
+    if self.missing_quard_count == 0:
+      self.disable_phase()
+
+    self.missing_guard_label.text = f"Missing {self.missing_quard_count} guards"
+
+    self.buy_count = int((self.barracks_level + 1) / 2)
+    
+
+    
+
   def disable_phase(self):
-    pass
+    self.missing_guard_label.visible = False
 
   def set_as_finished(self):
     self.disable_phase()

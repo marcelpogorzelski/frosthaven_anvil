@@ -1,3 +1,16 @@
-components: []
+components:
+- components:
+  - layout_properties: {grid_position: 'BNGEOH,KGVUSV'}
+    name: name_label
+    properties: {role: title, text: Barracks}
+    type: Label
+  layout_properties: {grid_position: 'CEDOUG,CVXYVH'}
+  name: barracks_column_panel
+  properties: {wrap_on: never}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'YKUJBV,EXUEHA'}
+  name: missing_guard_label
+  properties: {role: input-prompt}
+  type: Label
 container: {type: ColumnPanel}
 is_package: true
