@@ -10,8 +10,7 @@ from anvil.tables import app_tables
 
 class Barracks(BarracksTemplate):
   def __init__(self, gamestate, finish_phase_tag, **properties):
-    self.barracks_column_panel.visible = False
-    self.phase_enabled = True
+    self.phase_enabled = False
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
@@ -31,12 +30,23 @@ class Barracks(BarracksTemplate):
 
     if self.missing_quard_count == 0:
       self.set_as_finished()
+    
+    if self.missing_quard_count >= 2 and self.barracks_level >= 3:
+      self.max_recruit = 2
+    else:
+      self.max_recruit = 1
 
+    self.count_text_box.text = self.max_recruit
+    
     self.missing_guard_label.text = f"Missing {self.missing_quard_count} guards"
 
     self.buy_count = int((self.barracks_level + 1) / 2)
+
+    self.phase_enabled = True
+    self.refresh_data_bindings()
     
   def disable_phase(self):
+    self.barracks_column_panel.background = 'theme:Outline'
     self.phase_enabled = False
     self.refresh_data_bindings()
 
@@ -49,4 +59,16 @@ class Barracks(BarracksTemplate):
   def start_button_click(self, **event_args):
     self.barracks_start_flow_panel.visible = False
     self.setup_barracks()
+
+  def count_increase_button_click(self, **event_args):
+    self.count_text_box.text += 1
+    if self.count_text_box.text == self.max_recruit:
+      self.count_increase_button.enabled = False
+    self.count_decrease_button.enabled = True
+
+  def count_decrease_button_click(self, **event_args):
+    self.count_text_box.text -= 1
+    if self.count_text_box.text == 0:
+      self.count_decrease_button.enabled = False
+    self.count_increase_button.enabled = True
     

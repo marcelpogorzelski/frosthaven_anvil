@@ -23,24 +23,31 @@ class BuildingOperations(BuildingOperationsTemplate):
     self.finished = gamestate[self.finish_phase_tag]
 
     self.buildings = list()
-    
+
+    self.setup_minig_logging_hunting()
+    self.setup_garden()
+    self.setup_barracks()
+
+    self.building_finished()
+
+  def setup_minig_logging_hunting(self):
     self.minig_logging_hunting = MiningLoggingHunting(self.gamestate, Utilites.BUILDING_MLH_PHASE)
     self.minig_logging_hunting.set_event_handler('x-building-finished', self.building_finished)
     self.buildings.append(self.minig_logging_hunting)
     self.building_operations_card.add_component(self.minig_logging_hunting)
 
+  def setup_garden(self):
     self.garden = Garden(self.gamestate, Utilites.BUILDING_GARDEN_PHASE)
     self.garden.set_event_handler('x-building-finished', self.building_finished)
     self.buildings.append(self.garden)
     self.building_operations_card.add_component(self.garden)
 
-    self.barracts = Barracks(self.gamestate, Utilites.BUILDING_BARRACKS_PHASE)
-    self.barracts.set_event_handler('x-building-finished', self.building_finished)
-    self.buildings.append(self.barracts)
-    self.building_operations_card.add_component(self.barracts)
-
-    self.building_finished()
-
+  def setup_barracks(self):
+    self.barracks = Barracks(self.gamestate, Utilites.BUILDING_BARRACKS_PHASE)
+    self.barracks.set_event_handler('x-building-finished', self.building_finished)
+    self.buildings.append(self.barracks)
+    self.building_operations_card.add_component(self.barracks)
+    
   def disable_phase(self):
     self.building_operations_card.background = 'theme:Outline'
 
