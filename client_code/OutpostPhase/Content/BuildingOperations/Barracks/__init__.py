@@ -6,6 +6,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .....Utilites import MATERIAL_RESOURCES, bounded_text_box
 
 
 class Barracks(BarracksTemplate):
@@ -41,9 +42,23 @@ class Barracks(BarracksTemplate):
     self.missing_guard_label.text = f"Missing {self.missing_quard_count} guards"
 
     self.buy_count = int((self.barracks_level + 1) / 2)
+    self.setup_material_resource( self.max_recruit)
 
     self.phase_enabled = True
     self.refresh_data_bindings()
+
+  def setup_material_resource(self, max_recruit):
+    self.frosthaven = app_tables.frosthaven.search()[0]
+
+    resource_items = list()
+    for resource in MATERIAL_RESOURCES:
+      if self.frosthaven[resource] == 0:
+        continue
+      image = f"_/theme/resource_images/fh-{resource.lower()}-bw-icon.png"
+      resource_item = {'Image': image, 'Resource': resource, 'Count': self.frosthaven[resource], 'MaxRecruit': max_recruit}
+      resource_items.append(resource_item)
+    
+    self.meterial_repeating_panel.items = resource_items
     
   def disable_phase(self):
     self.barracks_column_panel.background = 'theme:Outline'
@@ -62,13 +77,17 @@ class Barracks(BarracksTemplate):
 
   def count_increase_button_click(self, **event_args):
     self.count_text_box.text += 1
-    if self.count_text_box.text == self.max_recruit:
-      self.count_increase_button.enabled = False
-    self.count_decrease_button.enabled = True
+    self.count_increase_button.enabled = self.count_text_box.text < self.max_recruit
+    self.count_decrease_button.enabled = self.count_text_box.text > 0
 
   def count_decrease_button_click(self, **event_args):
     self.count_text_box.text -= 1
-    if self.count_text_box.text == 0:
-      self.count_decrease_button.enabled = False
-    self.count_increase_button.enabled = True
+    self.count_increase_button.enabled = self.count_text_box.text < self.max_recruit
+    self.count_decrease_button.enabled = self.count_text_box.text > 0
+
+  def count_text_box_change(self, **event_args):
+    bounded_text_box(self.count_text_box, 0, self.max_recruit)
+    self.count_increase_button.enabled = self.count_text_box.text < self.max_recruit
+    self.count_decrease_button.enabled = self.count_text_box.text > 0
+    
     

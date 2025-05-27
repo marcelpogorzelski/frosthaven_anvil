@@ -100,6 +100,7 @@ unique_ids:
     OutpostPhase.Content: '1747118173895311547167422.4475'
     OutpostPhase.Content.BuildingOperations: '1747131762899804909907148.4847'
     OutpostPhase.Content.BuildingOperations.Barracks: '1747284922575886774652694.4199'
+    OutpostPhase.Content.BuildingOperations.Barracks.MaterialItemTemplate: '1748333243435178392097240.89954'
     OutpostPhase.Content.BuildingOperations.Garden: '1747284805162382247589999.8048'
     OutpostPhase.Content.BuildingOperations.Garden.Plot: '1747286813431905095812002.5883'
     OutpostPhase.Content.BuildingOperations.Garden.Plot.Planting: '1747293650749569455129993.165'
