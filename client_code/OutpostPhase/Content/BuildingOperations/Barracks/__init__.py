@@ -7,6 +7,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .....Utilites import MATERIAL_RESOURCES, bounded_text_box
+from ..CharacterPay import CharacterPay
 
 
 class Barracks(BarracksTemplate):
@@ -42,15 +43,22 @@ class Barracks(BarracksTemplate):
     self.missing_guard_label.text = f"Missing {self.missing_quard_count} guards"
 
     self.buy_count = int((self.barracks_level + 1) / 2)
+    self.total_gold = self.buy_count * 3
+    
     self.setup_material_resource( self.max_recruit)
+    self.setup_character_pay()
 
     self.phase_enabled = True
     self.refresh_data_bindings()
+
+  def setup_character_pay(self):
+    self.character_pay_flow_panel.add_component(CharacterPay(self.total_gold), width=500)
 
   def setup_material_resource(self, max_recruit):
     self.frosthaven = app_tables.frosthaven.search()[0]
 
     resource_items = list()
+    
     for resource in MATERIAL_RESOURCES:
       if self.frosthaven[resource] == 0:
         continue
