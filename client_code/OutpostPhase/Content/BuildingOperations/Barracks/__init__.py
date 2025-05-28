@@ -23,6 +23,8 @@ class Barracks(BarracksTemplate):
     if self.finished:
       self.disable_phase()
 
+    self.character_pay_form = None
+
   def setup_barracks(self):
     self.barracks_level = app_tables.available_buildings.get(Number=98)['CurrentBuilding']['Level']
     self.guard_count = app_tables.frosthaven.search()[0]['Guards']
@@ -43,30 +45,37 @@ class Barracks(BarracksTemplate):
     self.missing_guard_label.text = f"Missing {self.missing_quard_count} guards"
 
     self.buy_count = int((self.barracks_level + 1) / 2)
-    self.total_gold = self.buy_count * 3
     
-    self.setup_material_resource( self.max_recruit)
+    self.setup_material_resource()
     self.setup_character_pay()
 
     self.phase_enabled = True
     self.refresh_data_bindings()
 
-  def setup_character_pay(self):
-    self.character_pay_flow_panel.add_component(CharacterPay(self.total_gold), width=500)
-
-  def setup_material_resource(self, max_recruit):
+  def setup_material_resource(self):
     self.frosthaven = app_tables.frosthaven.search()[0]
-
     resource_items = list()
     
     for resource in MATERIAL_RESOURCES:
       if self.frosthaven[resource] == 0:
         continue
       image = f"_/theme/resource_images/fh-{resource.lower()}-bw-icon.png"
-      resource_item = {'Image': image, 'Resource': resource, 'Count': self.frosthaven[resource], 'MaxRecruit': max_recruit}
+      resource_item = {'Image': image, 'Resource': resource, 'Count': self.frosthaven[resource], 'MaxRecruit': self.max_recruit, 'Init': 0}
       resource_items.append(resource_item)
-    
+
+    for _ in range(self.count_text_box.text):
+      init = max(resource_items, key=lambda x: x['Count'] - x['Init'])
+      init['Init'] += 1
+
     self.meterial_repeating_panel.items = resource_items
+
+  def setup_character_pay(self):
+    self.total_gold = self.count_text_box.text * 3
+    if self.character_pay_form:
+      self.character_pay_form.update_total_gold( self.total_gold)
+    else:
+      self.character_pay_form = CharacterPay(self.total_gold)
+      self.character_pay_flow_panel.add_component(self.character_pay_form, width=500)
     
   def disable_phase(self):
     self.barracks_column_panel.background = 'theme:Outline'
@@ -82,20 +91,31 @@ class Barracks(BarracksTemplate):
   def start_button_click(self, **event_args):
     self.barracks_start_flow_panel.visible = False
     self.setup_barracks()
-
-  def count_increase_button_click(self, **event_args):
-    self.count_text_box.text += 1
+    
+  def set_buttons(self):
     self.count_increase_button.enabled = self.count_text_box.text < self.max_recruit
     self.count_decrease_button.enabled = self.count_text_box.text > 0
+    
+  def count_increase_button_click(self, **event_args):
+    self.count_text_box.text += 1
+    self.set_buttons()
+    self.setup_material_resource()
+    self.setup_character_pay()
 
   def count_decrease_button_click(self, **event_args):
     self.count_text_box.text -= 1
-    self.count_increase_button.enabled = self.count_text_box.text < self.max_recruit
-    self.count_decrease_button.enabled = self.count_text_box.text > 0
+    self.set_buttons()
+    self.setup_material_resource()
+    self.setup_character_pay()
 
   def count_text_box_change(self, **event_args):
     bounded_text_box(self.count_text_box, 0, self.max_recruit)
-    self.count_increase_button.enabled = self.count_text_box.text < self.max_recruit
-    self.count_decrease_button.enabled = self.count_text_box.text > 0
+    self.set_buttons()
+    self.setup_material_resource()
+    self.setup_character_pay()
+
+  def recruit_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
     
     

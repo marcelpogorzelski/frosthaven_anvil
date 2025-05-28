@@ -23,14 +23,12 @@ class CharacterPay(CharacterPayTemplate):
     self.total_gold = total_gold
     self.setup_character_gold_pay()
 
-
   def setup_character_gold_pay(self):
     self.character_items = [
       {'Character': character, 'Payment': 0, 'TotalGold': character['Gold'], 'Cost': self.total_gold} for character in self.characters
     ]
 
     character_total = reduce(lambda sum, character: sum + character['TotalGold'], self.character_items, 0)
-    #character_total = int(character_total / 2) * 2
 
     total = min(self.total_gold, character_total)
 
@@ -44,3 +42,7 @@ class CharacterPay(CharacterPayTemplate):
         break
 
     self.character_pay_repeating_panel.items = sorted(self.character_items, key=lambda x: x['Character']['Player'])
+
+  def update_total_gold(self, total_gold):
+    self.total_gold = total_gold
+    self.setup_character_gold_pay()

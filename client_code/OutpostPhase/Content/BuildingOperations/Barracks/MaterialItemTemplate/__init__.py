@@ -14,6 +14,7 @@ class MaterialItemTemplate(MaterialItemTemplateTemplate):
     self.init_components(**properties)
     
     self.max_count = min(self.item['MaxRecruit'], self.item['Count'])
+    self.count_text_box.text = self.item['Init']
     self.set_buttons()
 
   def set_buttons(self):

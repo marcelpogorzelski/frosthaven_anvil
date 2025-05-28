@@ -22,8 +22,6 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
     if self.finished:
       self.disable_phase()
 
-    print(self.characters_repeating_panel.item_template)
-
     self.resource_repeating_panel.items = [
       {'Image': '_/theme/resource_images/fh-lumber-bw-icon.png', 'BuildingNumber': 17, 'Resource': 'Lumber'},
       {'Image': '_/theme/resource_images/fh-metal-bw-icon.png', 'BuildingNumber': 5, 'Resource': 'Metal'},
