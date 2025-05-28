@@ -34,6 +34,7 @@ class Barracks(BarracksTemplate):
 
     if self.missing_quard_count == 0:
       self.set_as_finished()
+      return
     
     if self.missing_quard_count >= 2 and self.barracks_level >= 3:
       self.max_recruit = 2
@@ -87,6 +88,7 @@ class Barracks(BarracksTemplate):
     
   def disable_phase(self):
     self.barracks_column_panel.background = 'theme:Outline'
+    self.barracks_start_flow_panel.visible = False
     self.phase_enabled = False
     self.refresh_data_bindings()
 
@@ -132,8 +134,9 @@ class Barracks(BarracksTemplate):
     self.recruit_button.enabled = button_enabled
 
   def recruit_button_click(self, **event_args):
-    if self.count_text_box.text == 0:
-      Notification("No recruitment", timeout=6).show()
+    guards_recruited = self.count_text_box.text
+    if guards_recruited == 0:
+      Notification("No guards recruited", timeout=6).show()
       self.set_as_finished()
       return
       
@@ -146,14 +149,22 @@ class Barracks(BarracksTemplate):
     lumber = frosthaven['Lumber'] - resource_amounts['Lumber']
     metal = frosthaven['Metal'] - resource_amounts['Metal']
     hide = frosthaven['Hide'] - resource_amounts['Hide']
+    guards = frosthaven['Guards'] + guards_recruited
 
     frosthaven.update(
       Lumber=lumber,
       Metal=metal,
-      Hide=hide
+      Hide=hide,
+      Guards=guards
     )
     
     self.character_pay_form.pay()
+
+    notification_text = "One guard recruited"
+    if guards_recruited >= 2:
+      notification_text = f"{guards_recruited} guards recruited"
+
+    Notification(notification_text, timeout=6).show()
     
     self.set_as_finished()
     

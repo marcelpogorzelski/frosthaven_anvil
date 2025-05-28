@@ -26,7 +26,7 @@ class BuildingOperations(BuildingOperationsTemplate):
 
     self.setup_minig_logging_hunting()
     self.setup_garden()
-    #self.setup_barracks()
+    self.setup_barracks()
 
     self.building_finished()
 
