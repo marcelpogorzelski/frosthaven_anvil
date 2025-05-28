@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'NLHIOQ,SONDRA'}
+  name: event_image
+  properties: {}
+  type: Image
+container: {type: ColumnPanel}
+is_package: true

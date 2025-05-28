@@ -15,6 +15,7 @@ class Settings(SettingsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     Utilites.set_scenario_available()
+
     
   def test(self):
     return
@@ -34,10 +35,26 @@ class Settings(SettingsTemplate):
       if available_count != item['AvailableCount']:
         print('New: ', item['Number'])
 
+  def import_multi_file_loader_change(self, files, **event_args):
+    pass
+    #self.events(files, 'Winter Road')
 
     
   def import_file_loader_change(self, file, **event_args):
-    return
+    pass
+
+  def events(self, files, event_type):
+    event_prefix = 'fh-' + ''.join([word[0] for word in event_type.lower().split()]) + 'e-'
+    event_folder = app_files.events.create_folder(event_type)
+    for event_file in files:
+      event_filename = event_file.name
+      event_filename = event_filename.replace(event_prefix, '')
+      event_filename = event_filename.replace('f.png', event_type + '-Front.png')
+      event_filename = event_filename.replace('b.png', event_type + '-Back.png')
+      print(f"Uploading: {event_filename}")
+      event_folder.create_file(event_filename, event_file)
+
+  def scenario_errata(self, file):
     scenarios = json.loads(file.get_bytes())
 
     pets = {pet['Name']: pet for pet in app_tables.pets.search()}
@@ -50,7 +67,7 @@ class Settings(SettingsTemplate):
       if not monsters:
         monsters.extend(scenarios[f"{scenario_id}A"]['monsters'])
         monsters.extend(scenarios[f"{scenario_id}B"]['monsters'])
-    
+
       monsters_names = [ monster['name'] for monster in monsters]
       pets_in_scenario = list()
       for pet_name, pet in pets.items():
@@ -59,10 +76,8 @@ class Settings(SettingsTemplate):
         pets_in_scenario.append(pet)
       if not pets_in_scenario:
         continue
-        
-      scenario_rows[scenario['title']].update(Pets=pets_in_scenario)
 
-    
+      scenario_rows[scenario['title']].update(Pets=pets_in_scenario)
 
   def change_password_button_click(self, **event_args):
     return
@@ -80,6 +95,7 @@ class Settings(SettingsTemplate):
     if not Utilites.backup_tables_to_drive():
       notification_text = "No backup. Reached the daily quota"
     Notification(notification_text, timeout=6).show()
+
 
 
 
