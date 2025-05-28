@@ -44,13 +44,19 @@ class Barracks(BarracksTemplate):
     
     self.missing_guard_label.text = f"Missing {self.missing_quard_count} guards"
 
-    self.buy_count = int((self.barracks_level + 1) / 2)
+    #self.buy_count = int((self.barracks_level + 1) / 2)
     
-    self.setup_material_resource()
-    self.setup_character_pay()
+    self.update_input()
+
+    self.material_repeating_panel.set_event_handler('x-update-resources', self.check_recruit_button)
 
     self.phase_enabled = True
     self.refresh_data_bindings()
+
+  def update_input(self):
+    self.setup_material_resource()
+    self.setup_character_pay()
+    self.update_resource()
 
   def setup_material_resource(self):
     self.frosthaven = app_tables.frosthaven.search()[0]
@@ -60,21 +66,23 @@ class Barracks(BarracksTemplate):
       if self.frosthaven[resource] == 0:
         continue
       image = f"_/theme/resource_images/fh-{resource.lower()}-bw-icon.png"
-      resource_item = {'Image': image, 'Resource': resource, 'Count': self.frosthaven[resource], 'MaxRecruit': self.max_recruit, 'Init': 0}
+      resource_item = {'Image': image, 'Resource': resource, 'Count': self.frosthaven[resource], 'MaxRecruit': self.count_text_box.text, 'Init': 0}
       resource_items.append(resource_item)
 
     for _ in range(self.count_text_box.text):
       init = max(resource_items, key=lambda x: x['Count'] - x['Init'])
       init['Init'] += 1
 
-    self.meterial_repeating_panel.items = resource_items
+    self.material_repeating_panel.items = resource_items
 
   def setup_character_pay(self):
     self.total_gold = self.count_text_box.text * 3
     if self.character_pay_form:
-      self.character_pay_form.update_total_gold( self.total_gold)
+      self.character_pay_form.update_total_gold(self.total_gold)
     else:
-      self.character_pay_form = CharacterPay(self.total_gold)
+      event_handler = 'x-update-gold'
+      self.character_pay_form = CharacterPay(self.total_gold, event_handler)
+      self.character_pay_form.set_event_handler(event_handler, self.check_recruit_button)
       self.character_pay_flow_panel.add_component(self.character_pay_form, width=500)
     
   def disable_phase(self):
@@ -84,9 +92,9 @@ class Barracks(BarracksTemplate):
 
   def set_as_finished(self):
     self.disable_phase()
-    #self.finished = True
-    #self.gamestate[self.finish_phase_tag] = True
-    #self.raise_event("x-building-finished")
+    self.finished = True
+    self.gamestate[self.finish_phase_tag] = True
+    self.raise_event("x-building-finished")
 
   def start_button_click(self, **event_args):
     self.barracks_start_flow_panel.visible = False
@@ -99,23 +107,54 @@ class Barracks(BarracksTemplate):
   def count_increase_button_click(self, **event_args):
     self.count_text_box.text += 1
     self.set_buttons()
-    self.setup_material_resource()
-    self.setup_character_pay()
+    self.update_input()
 
   def count_decrease_button_click(self, **event_args):
     self.count_text_box.text -= 1
     self.set_buttons()
-    self.setup_material_resource()
-    self.setup_character_pay()
+    self.update_input()
 
   def count_text_box_change(self, **event_args):
     bounded_text_box(self.count_text_box, 0, self.max_recruit)
     self.set_buttons()
-    self.setup_material_resource()
-    self.setup_character_pay()
+    self.update_input()
+
+  def check_recruit_button(self, **event_args):
+    self.update_resource()
+
+  def update_resource(self):
+    material_sum = sum(resource_item['Amount'] for resource_item in self.material_repeating_panel.items)
+    button_enabled = True
+    if material_sum != self.count_text_box.text:
+      button_enabled = False
+    if self.character_pay_form.sum_gold != self.total_gold:
+      button_enabled = False
+    self.recruit_button.enabled = button_enabled
 
   def recruit_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    if self.count_text_box.text == 0:
+      Notification("No recruitment", timeout=6).show()
+      self.set_as_finished()
+      return
+      
+    frosthaven = app_tables.frosthaven.search()[0]
+
+    resource_amounts = dict()
+    for resource in self.material_repeating_panel.items:
+      resource_amounts[resource['Resource']] = resource['Amount']
+
+    lumber = frosthaven['Lumber'] - resource_amounts['Lumber']
+    metal = frosthaven['Metal'] - resource_amounts['Metal']
+    hide = frosthaven['Hide'] - resource_amounts['Hide']
+
+    frosthaven.update(
+      Lumber=lumber,
+      Metal=metal,
+      Hide=hide
+    )
+    
+    self.character_pay_form.pay()
+    
+    self.set_as_finished()
     
     

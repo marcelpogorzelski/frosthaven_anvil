@@ -47,7 +47,7 @@ components:
     type: FlowPanel
   - components:
     - layout_properties: {width: 400}
-      name: meterial_repeating_panel
+      name: material_repeating_panel
       properties: {item_template: OutpostPhase.Content.BuildingOperations.Barracks.MaterialItemTemplate}
       type: RepeatingPanel
     data_bindings:
@@ -66,7 +66,7 @@ components:
     - event_bindings: {click: recruit_button_click}
       layout_properties: {}
       name: recruit_button
-      properties: {role: filled-button, text: Recruit}
+      properties: {enabled: false, role: filled-button, text: Recruit}
       type: Button
     data_bindings:
     - {code: self.phase_enabled, property: visible, writeback: false}

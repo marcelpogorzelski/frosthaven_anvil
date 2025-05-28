@@ -15,19 +15,14 @@ class CharacterItemTemplate(CharacterItemTemplateTemplate):
     self.name_label.text = f"{self.item['Character']['Player']} ({self.item['Character']['Gold']})"
 
     self.gold_text_box.text = self.item['Payment']
-    self.reset_cost(self.item['Cost'])
+    self.max_amount = min(self.item['Character']['Gold'], self.item['Cost'])
     self.set_buttons()
-
-  def reset_cost(self, cost):
-    self.item['Cost'] = cost
-    self.max_amount = min(self.item['Character']['Gold'], cost)
-    self.set_cost()
 
   def set_cost(self):
     bounded_text_box(self.gold_text_box, 0, self.max_amount)
-    self.set_buttons()
     self.item['Payment'] = self.gold_text_box.text
-    #self.parent.raise_event('x-funds-updated')
+    self.set_buttons()
+    self.parent.raise_event('x-update-gold')
 
   def set_buttons(self):
     self.decrease_button.enabled = self.gold_text_box.text > 0

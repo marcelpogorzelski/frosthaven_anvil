@@ -21,26 +21,19 @@ class ResourceItemTemplate(ResourceItemTemplateTemplate):
   def set_amount_text_box(self):
     bounded_text_box(self.amount_text_box, 0, self.max_amount)
     self.item['Amount'] = self.amount_text_box.text
+    self.set_buttons()
     self.parent.raise_event('x-update-total-gold')
+
+  def set_buttons(self):
+    self.increase_button.enabled = self.amount_text_box.text < self.max_amount
+    self.decrease_button.enabled = self.amount_text_box.text > 0
     
   def decrease_button_click(self, **event_args):
     self.amount_text_box.text -= 1
-    
-    if self.amount_text_box.text == 0:
-      self.decrease_button.enabled = False
-    if self.amount_text_box.text < self.max_amount:
-      self.increase_button.enabled = True
-    
     self.set_amount_text_box()
 
   def increase_button_click(self, **event_args):
     self.amount_text_box.text += 1
-    
-    if self.amount_text_box.text == self.max_amount:
-      self.increase_button.enabled = False
-    if self.amount_text_box.text > 0:
-      self.decrease_button.enabled = True
-      
     self.set_amount_text_box()
 
   def amount_text_box_change(self, **event_args):
