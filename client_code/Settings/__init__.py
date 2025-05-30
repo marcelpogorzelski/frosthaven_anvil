@@ -16,7 +16,6 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
-    
   def test(self):
     return
       
