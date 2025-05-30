@@ -591,8 +591,8 @@ db_schema:
     - admin_ui: {width: 200}
       name: RandomItemCollected
       type: bool
-    - admin_ui: {width: 200}
-      name: Loot
+    - admin_ui: {order: 17, width: 200}
+      name: Loot2
       type: simpleObject
     - admin_ui: {width: 200}
       name: TreasuresSeen
@@ -601,6 +601,18 @@ db_schema:
       name: Pets
       target: pets
       type: link_multiple
+    - admin_ui: {order: 20, width: 200}
+      name: Loot
+      type: media
+    - admin_ui: {order: 21, width: 200}
+      name: Layout
+      type: media
+    - admin_ui: {order: 22, width: 200}
+      name: Key1
+      type: media
+    - admin_ui: {order: 23, width: 200}
+      name: Key2
+      type: media
     server: full
     title: Scenarios
   treasures:
