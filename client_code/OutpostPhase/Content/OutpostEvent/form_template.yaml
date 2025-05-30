@@ -28,15 +28,29 @@ components:
       - event_bindings: {click: event_number_button_click}
         layout_properties: {grid_position: 'NITGQQ,WPJHTI'}
         name: event_number_button
-        properties: {icon: 'fa:clipboard', icon_align: right, role: filled-button, text: ''}
+        properties: {icon: 'fa:clipboard', icon_align: left, role: filled-button, text: Copy}
+        type: Button
+      - data_bindings:
+        - {code: '''Front''', property: tag, writeback: false}
+        event_bindings: {click: show_button_click}
+        layout_properties: {grid_position: 'RWSDBR,AJDRIG ABPPTP,BUQFUC'}
+        name: show_front_button
+        properties: {role: filled-button, text: Show Front}
         type: Button
       - event_bindings: {click: return_button_click}
-        layout_properties: {grid_position: 'RWSDBR,AJDRIG'}
+        layout_properties: {grid_position: 'RWSDBR,AJDRIG MWDQKD,XGFUQY'}
         name: return_button
         properties: {role: filled-button, text: Return}
         type: Button
+      - data_bindings:
+        - {code: '''Back''', property: tag, writeback: false}
+        event_bindings: {click: show_button_click}
+        layout_properties: {grid_position: 'RWSDBR,CISGWU QAHJGM,JIBQFM'}
+        name: show_back_button
+        properties: {role: filled-button, text: Show Back}
+        type: Button
       - event_bindings: {click: remove_button_click}
-        layout_properties: {grid_position: 'RWSDBR,CISGWU'}
+        layout_properties: {grid_position: 'RWSDBR,CISGWU KIVWVA,LZEULX'}
         name: remove_button
         properties: {role: filled-button, text: Remove}
         type: Button

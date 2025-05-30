@@ -73,13 +73,27 @@ components:
           name: event_number_button
           properties: {icon: 'fa:clipboard', icon_align: right, role: filled-button, text: ''}
           type: Button
+        - data_bindings:
+          - {code: '''Front''', property: tag, writeback: false}
+          event_bindings: {click: show_outpost_event_button_click}
+          layout_properties: {grid_position: 'GPVTDU,NWKJCP FEOSHK,EATDGH'}
+          name: show_front_button
+          properties: {role: filled-button, text: Show Front}
+          type: Button
         - event_bindings: {click: return_event_button_click}
-          layout_properties: {grid_position: 'GPVTDU,NWKJCP'}
+          layout_properties: {grid_position: 'GPVTDU,NWKJCP KAGCGZ,HSUCPG'}
           name: return_event_button
           properties: {role: filled-button, text: Return}
           type: Button
+        - data_bindings:
+          - {code: '''Back''', property: tag, writeback: false}
+          event_bindings: {click: show_outpost_event_button_click}
+          layout_properties: {grid_position: 'GPVTDU,OLMLFL RJOHZI,SVKILK'}
+          name: show_back_button
+          properties: {role: filled-button, text: Show Back}
+          type: Button
         - event_bindings: {click: remove_event_button_click}
-          layout_properties: {grid_position: 'GPVTDU,OLMLFL'}
+          layout_properties: {grid_position: 'GPVTDU,OLMLFL TEFZWP,YGVSSW'}
           name: remove_event_button
           properties: {role: filled-button, text: Remove}
           type: Button

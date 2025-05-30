@@ -11,6 +11,7 @@ from ... import navigation
 from ... import Utilites
 from .Pets import Pets
 from .ChooseEventType import ChooseEventType
+from ...Event import Event
 
 
 class Scenario(ScenarioTemplate):
@@ -304,6 +305,12 @@ class Scenario(ScenarioTemplate):
     if not event_type:
       Notification("Canceled").show()
     self.get_outpost_event(event_type)
+
+  def show_outpost_event_button_click(self, **event_args):
+    event_type = self.gamestate['CurrentRoadEvent']['Label']
+    event_number = self.gamestate['CurrentRoadEvent']['Text']
+    event_side = event_args['sender'].tag
+    alert(Event(event_type, event_number, event_side), large=True)
 
   def pets_button_click(self, **event_args):
     pet = alert(self.pets_form, buttons=[('Cancel', None)], dismissible=True)

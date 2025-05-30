@@ -1,7 +1,17 @@
 components:
-- layout_properties: {grid_position: 'NLHIOQ,SONDRA'}
-  name: event_image
-  properties: {}
-  type: Image
+- components:
+  - layout_properties: {grid_position: 'RGYAIX,ZEBWFW'}
+    name: event_image
+    properties: {display_mode: original_size}
+    type: Image
+  - event_bindings: {click: flip_button_click}
+    layout_properties: {grid_position: 'TSUHXN,GIVJYD'}
+    name: flip_button
+    properties: {icon: 'fa:mail-forward', role: filled-button, text: Flip}
+    type: Button
+  layout_properties: {full_width_row: true, grid_position: 'MPARPP,OSVDCO'}
+  name: event_column_panel
+  properties: {wrap_on: never}
+  type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

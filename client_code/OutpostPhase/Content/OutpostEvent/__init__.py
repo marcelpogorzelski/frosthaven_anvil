@@ -8,6 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import navigator
 from .... import Utilites
+from ....Event import Event
 
 
 class OutpostEvent(OutpostEventTemplate):
@@ -91,7 +92,6 @@ class OutpostEvent(OutpostEventTemplate):
 
   def draw_event_button_click(self, **event_args):
     self.get_outpost_event(self.season)
-    
 
   def wrong_season_button_click(self, **event_args):
     if not confirm(f"Draw {self.wrong_season} Outpost Event instead?"):
@@ -109,4 +109,10 @@ class OutpostEvent(OutpostEventTemplate):
       return
     Utilites.remove_current_event(self.current_outpost_event['Label'])
     self.set_as_finished()
+
+  def show_button_click(self, **event_args):
+    event_type = self.gamestate['CurrentOutpostEvent']['Label']
+    event_number = self.gamestate['CurrentOutpostEvent']['Text']
+    event_side = event_args['sender'].tag
+    alert(Event(event_type, event_number, event_side), large=True)
     

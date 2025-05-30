@@ -12,7 +12,6 @@ from .CharacterItems import CharacterItems
 from .CharacterCards import CharacterCards
 from .CharacterDetails import CharacterDetails
 from ..Utilites import windowWidthWithMax
-from itertools import cycle, islice
 
 
 class Character(CharacterTemplate):
@@ -21,14 +20,16 @@ class Character(CharacterTemplate):
     self.init_components(**properties)
     self.player_name = player_name
 
-    tabs_setup = ['CharacterSheet', 'CharacterItems', 'CharacterCards', 'CharacterDetails']
-    tabs = [self.open_sheet, self.open_items, self.open_cards, self.open_details]
+    self.tabs = {
+      'CharacterSheet': {'OpenForm': self.open_sheet, 'Next': 'CharacterItems'},
+      'CharacterItems': {'OpenForm': self.open_items, 'Next': 'CharacterCards'},
+      'CharacterCards': {'OpenForm': self.open_cards, 'Next': 'CharacterDetails'},
+      'CharacterDetails': {'OpenForm': self.open_details, 'Next': 'CharacterSheet'},
+    }
+    self.current_tab = self.tabs[tab]
     
-    index = tabs_setup.index(tab)
-    self.next_tab = islice(cycle(tabs),index, None)
-
     self.setup_label()
-    self.open_next_tab()
+    self.current_tab['OpenForm']()
 
   def set_tab(self, selected_link):
     for tab_card in self.tab_column_panel.get_components():
@@ -39,7 +40,8 @@ class Character(CharacterTemplate):
     selected_link.parent.background = 'theme:Secondary'
 
   def open_next_tab(self):
-    next(self.next_tab)()
+    self.current_tab = self.tabs[self.current_tab['Next']]
+    self.current_tab['OpenForm']()
 
   def open_tab(self, character_form, width=None):
     self.content_flow_panel.clear()
@@ -65,15 +67,19 @@ class Character(CharacterTemplate):
     self.open_tab(CharacterDetails(self.player_name))
     
   def sheet_link_click(self, **event_args):
+    self.current_tab = self.tabs['CharacterSheet']
     self.open_sheet()
 
   def items_link_click(self, **event_args):
+    self.current_tab = self.tabs['CharacterItems']
     self.open_items()
 
   def cards_link_click(self, **event_args):
+    self.current_tab = self.tabs['CharacterCards']
     self.open_cards()
 
   def details_link_click(self, **event_args):
+    self.current_tab = self.tabs['CharacterDetails']
     self.open_details()
 
   def setup_label(self):
