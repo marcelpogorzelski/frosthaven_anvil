@@ -42,6 +42,8 @@ class MiningLoggingHunting(MiningLoggingHuntingTemplate):
     self.resource_repeating_panel.visible = False
     self.buy_flow_panel.visible = False
     self.name_label.text += " - Finished"
+    self.flow_panel_2.visible = False
+    self.flow_panel_3.visible = False
 
   def set_as_finished(self):
     self.disable_phase()

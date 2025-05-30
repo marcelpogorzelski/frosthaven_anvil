@@ -91,6 +91,7 @@ class Barracks(BarracksTemplate):
     self.barracks_start_flow_panel.visible = False
     self.phase_enabled = False
     self.refresh_data_bindings()
+    self.name_label.text += " - Finished"
 
   def set_as_finished(self):
     self.disable_phase()
