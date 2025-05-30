@@ -35,12 +35,47 @@ class Settings(SettingsTemplate):
         print('New: ', item['Number'])
 
   def import_multi_file_loader_change(self, files, **event_args):
-    pass
-    #self.events(files, 'Winter Road')
+    self.layouts_upload(files, )
 
     
   def import_file_loader_change(self, file, **event_args):
     pass
+
+  def layouts_upload(self, files):
+    layouts_data = dict()
+    for layout_file in files:
+      _ , number, *rest = layout_file.name.split('-')
+
+      s_number = 'S' + str(int(number))
+  
+      if s_number not in layouts_data:
+        layouts_data[s_number] = {
+          'loot': None,
+          'layout': None,
+          'key1': None,
+          'key2': None
+        }
+  
+      layout_data = layouts_data[s_number]
+  
+      if rest[-1] == 'loot.png':
+        layout_data['loot'] = layout_file
+      elif rest[-1] == 'layout.png':
+        layout_data['layout'] = layout_file
+      elif rest[-1] == 'b.png':
+        layout_data['key2'] = layout_file
+      else:
+        layout_data['key1'] = layout_file
+
+    for scenartio in app_tables.scenarios.search():
+      layout_data = layouts_data[scenartio['Number']]
+      
+      scenartio.update(
+        Loot=layout_data['loot'],
+        Layout=layout_data['layout'],
+        Key1=layout_data['key1'],
+        Key2=layout_data['key2']
+      )
 
   def events(self, files, event_type):
     event_prefix = 'fh-' + ''.join([word[0] for word in event_type.lower().split()]) + 'e-'
