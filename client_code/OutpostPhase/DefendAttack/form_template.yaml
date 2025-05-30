@@ -1,0 +1,31 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'WZSHNV,RDZJAO'}
+    name: title_label
+    properties: {align: center, role: title, text: Defend}
+    type: Label
+  - layout_properties: {grid_position: 'TAJWRT,MACXAG'}
+    name: guards_label
+    properties: {align: right, role: input-prompt, text: Guards}
+    type: Label
+  - data_bindings:
+    - {code: 'self.item[''Guards'']', property: text, writeback: false}
+    layout_properties: {grid_position: 'TAJWRT,RNEQQY'}
+    name: guards_text_box
+    properties: {enabled: false, type: number}
+    type: TextBox
+  - layout_properties: {grid_position: 'JQCLRF,IZTCQJ'}
+    name: attack_mod_label
+    properties: {align: center, role: input-prompt, text: Effect}
+    type: Label
+  - event_bindings: {click: use_guard_button_click}
+    layout_properties: {grid_position: 'FOZEAU,HNGSJI'}
+    name: use_guard_button
+    properties: {role: filled-button, text: Use Guard}
+    type: Button
+  layout_properties: {full_width_row: true, grid_position: 'KIMYGS,LKRDOC'}
+  name: defense_column_panel
+  properties: {wrap_on: never}
+  type: ColumnPanel
+container: {type: ColumnPanel}
+is_package: true

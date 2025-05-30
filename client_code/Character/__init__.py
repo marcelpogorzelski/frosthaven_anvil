@@ -21,10 +21,10 @@ class Character(CharacterTemplate):
     self.player_name = player_name
 
     self.tabs = {
-      'CharacterSheet': {'OpenForm': self.open_sheet, 'Next': 'CharacterItems'},
-      'CharacterItems': {'OpenForm': self.open_items, 'Next': 'CharacterCards'},
-      'CharacterCards': {'OpenForm': self.open_cards, 'Next': 'CharacterDetails'},
-      'CharacterDetails': {'OpenForm': self.open_details, 'Next': 'CharacterSheet'},
+      'CharacterSheet': {'OpenForm': self.open_sheet, 'Next': 'CharacterItems', 'Current': 'CharacterSheet'},
+      'CharacterItems': {'OpenForm': self.open_items, 'Next': 'CharacterCards', 'Current': 'CharacterItems'},
+      'CharacterCards': {'OpenForm': self.open_cards, 'Next': 'CharacterDetails', 'Current': 'CharacterCards'},
+      'CharacterDetails': {'OpenForm': self.open_details, 'Next': 'CharacterSheet', 'Current': 'CharacterDetails'},
     }
     self.current_tab = self.tabs[tab]
     
@@ -32,7 +32,8 @@ class Character(CharacterTemplate):
     self.current_tab['OpenForm']()
 
   def set_tab(self, selected_link):
-    for tab_card in self.tab_column_panel.get_components():
+    for tab_link in self.tab_column_panel.get_components():
+      tab_card = tab_link.get_components()[0]
       tab_card.background = ''
       tab_card.get_components()[0].foreground = ''
 
@@ -51,36 +52,27 @@ class Character(CharacterTemplate):
       self.content_flow_panel.add_component(character_form)
 
   def open_sheet(self):
-    self.set_tab(self.sheet_link)
+    self.set_tab(self.sheet_label)
     self.open_tab(CharacterSheet(self.player_name), 900)
 
   def open_items(self):
-    self.set_tab(self.items_link)
+    self.set_tab(self.items_label)
     self.open_tab(CharacterItems(self.player_name))
 
   def open_cards(self):
-    self.set_tab(self.cards_link)
+    self.set_tab(self.cards_label)
     self.open_tab(CharacterCards(self.player_name))
 
   def open_details(self):
-    self.set_tab(self.details_link)
+    self.set_tab(self.details_label)
     self.open_tab(CharacterDetails(self.player_name))
-    
-  def sheet_link_click(self, **event_args):
-    self.current_tab = self.tabs['CharacterSheet']
-    self.open_sheet()
 
-  def items_link_click(self, **event_args):
-    self.current_tab = self.tabs['CharacterItems']
-    self.open_items()
-
-  def cards_link_click(self, **event_args):
-    self.current_tab = self.tabs['CharacterCards']
-    self.open_cards()
-
-  def details_link_click(self, **event_args):
-    self.current_tab = self.tabs['CharacterDetails']
-    self.open_details()
+  def tab_click(self, **event_args):
+    tab = event_args['sender'].tag
+    if self.current_tab['Current'] == tab:
+      return
+    self.current_tab = self.tabs[tab]
+    self.current_tab['OpenForm']()
 
   def setup_label(self):
     name_label = Label(text=self.player_name, role='title', align='center')

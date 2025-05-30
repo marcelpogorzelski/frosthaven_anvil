@@ -11,6 +11,7 @@ from .OutpostEvent import OutpostEvent
 from .BuildingOperations import BuildingOperations
 from ... import Utilites
 from ... import navigation
+from ..DefendAttack import DefendAttack
 
 
 class Content(ContentTemplate):
@@ -83,3 +84,6 @@ class Content(ContentTemplate):
         return
     self.reset_week()
     navigation.go_to_scenarios()
+
+  def defend_link_click(self, **event_args):
+    alert(DefendAttack())
