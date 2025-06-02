@@ -16,8 +16,18 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
+    for achievement in app_tables.achievements.search():
+      self.get_image_source(achievement)
+
   def test(self):
     return
+
+  def get_image_source(self, achievement):
+    image_name = achievement['Id']
+    if achievement['CurrentLevel'] > 1:
+      image_name += str(achievement['CurrentLevel'])
+    image = app_files.achievements.get(image_name + '.png')
+    achievement['Image'] = image
       
   def check_items(self):
     character_items = dict()

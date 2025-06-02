@@ -16,15 +16,6 @@ class Achievements(AchievementsTemplate):
     
     self.achievement_drop_down.items = [(achievement['Name'], achievement) for achievement in app_tables.achievements.search()]
     self.item = self.achievement_drop_down.selected_value
-    self.get_image_source()
-
-  def get_image_source(self):
-    image_name = self.item['Id']
-    if self.item['CurrentLevel'] > 1:
-      image_name += str(self.item['CurrentLevel'])
-    self.achievement_image.visible = False
-    self.achievement_image.source = app_files.achievements.get(image_name + '.png')
-    self.achievement_image.visible = self.item['Available']
 
   def button_text(self):
     if self.item['Descriptor']:
@@ -58,10 +49,8 @@ class Achievements(AchievementsTemplate):
 
   def achievement_drop_down_change(self, **event_args):
     self.item = self.achievement_drop_down.selected_value
-    self.get_image_source()
     self.refresh_data_bindings()
 
   def upgrade_button_click(self, **event_args):
     self.item['CurrentLevel'] += 1
-    self.get_image_source()
     self.refresh_data_bindings()

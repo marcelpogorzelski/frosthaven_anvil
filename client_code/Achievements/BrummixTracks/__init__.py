@@ -13,10 +13,8 @@ class BrummixTracks(BrummixTracksTemplate):
   def __init__(self, achievement, **properties):
     self.init_components(**properties)
 
-    brummix_image_path = self.get_image(achievement['Id'])
+    brummix_image_path = achievement['Image']
 
     for _ in repeat(None, achievement['CurrentLevel']):
       self.achievemnet_flow_panel.add_component(Image(source=brummix_image_path))
 
-  def get_image(self, path):
-    return app_files.achievements.get(path + '.png')

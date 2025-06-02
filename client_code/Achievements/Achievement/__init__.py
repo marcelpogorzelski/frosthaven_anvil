@@ -9,10 +9,8 @@ from anvil.tables import app_tables
 
 
 class Achievement(AchievementTemplate):
-  def __init__(self, achievemnet, **properties):
+  def __init__(self, achievement, **properties):
     self.init_components(**properties)
-    self.achievement_image.source = self.get_image(achievemnet['Id'])
+    self.achievement_image.source = achievement['Image']
 
-  def get_image(self, path):
-    return app_files.achievements.get(path + '.png')
 

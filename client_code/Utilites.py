@@ -214,15 +214,23 @@ def table_to_dict(table):
   
   link_single = list()
   link_multiple = list()
+  media = list()
   
   for column in table.list_columns():
     if column['type'] == 'link_single':
       link_single.append(column['name'])
     if column['type'] == 'link_multiple':
       link_multiple.append(column['name'])
+    if column['type'] == 'media':
+      media.append(column['name'])
 
   for row in table.search():
     row_dict = dict(row)
+
+    for column_name in media:
+      if not row_dict[column_name]:
+        continue
+      row_dict[column_name] = None
     
     for column_name in link_single:
       if not row_dict[column_name]:
@@ -233,6 +241,7 @@ def table_to_dict(table):
       if not row_dict[column_name]:
         continue
       row_dict[column_name] = [ value.get_id() for value in row_dict[column_name]]
+      
     table_dict['Columns'].append(row_dict)
     
   return table_dict
@@ -269,12 +278,14 @@ def backup_tables_to_drive():
 
   backup_table_to_drive(backup_folder, app_tables.achievements, 'Achievements')
   backup_table_to_drive(backup_folder, app_tables.available_buildings, 'AvailableBuildings')
+  backup_table_to_drive(backup_folder, app_tables.buildings, 'Buildings')
   backup_table_to_drive(backup_folder, app_tables.calendar, 'Calendar')
   backup_table_to_drive(backup_folder, app_tables.characters, 'Characters')
   backup_table_to_drive(backup_folder, app_tables.classes, 'Classes')
   backup_table_to_drive(backup_folder, app_tables.events, 'Events')
   backup_table_to_drive(backup_folder, app_tables.frosthaven, 'Frosthaven')
   backup_table_to_drive(backup_folder, app_tables.gamestate, 'GameState')
+  backup_table_to_drive(backup_folder, app_tables.items, 'Items')
   backup_table_to_drive(backup_folder, app_tables.pets, 'Pets')
   backup_table_to_drive(backup_folder, app_tables.retired_characters, 'RetiredCharacters')
   backup_table_to_drive(backup_folder, app_tables.scenario_info, 'ScenarioInfo')
