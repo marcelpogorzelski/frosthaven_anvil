@@ -16,21 +16,16 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
-    self.test()
 
   def test(self):
-    for scenario in app_tables.scenarios.search():
-      self.set_scenario_image(scenario)
+    return
+    for pet in app_tables.pets.search():
+      self.set_pet_image(pet)
 
-  def set_scenario_image(self, scenario):
-    if scenario['Number'][0:2] == 'So':
-      return
-    print(scenario['Number'])
-    
-    name = scenario['Name'].lower().replace('\'', '').replace(' ', '-')
-    number = int(scenario['Number'][1:])
-    
-    scenario['Sticker'] = app_files.scenariostickers.get(f'fh-{number:03d}-{name}.png')
+  def set_pet_image(self, pet):
+    image = anvil.URLMedia(pet['ImageURL'])
+    imageBack = anvil.URLMedia(pet['ImageBackURL'])
+    pet.update(Image=image, ImageBack=imageBack)
       
   def check_items(self):
     character_items = dict()

@@ -7,7 +7,7 @@ components:
     properties: {align: center, role: title}
     type: Label
   - data_bindings:
-    - {code: 'self.pet[''ImageURL'']', property: source, writeback: false}
+    - {code: 'self.pet[''Image'']', property: source, writeback: false}
     layout_properties: {full_width_row: true, grid_position: 'EYPYEL,AQGMOP'}
     name: pet_image_1
     properties: {display_mode: fill_width}
