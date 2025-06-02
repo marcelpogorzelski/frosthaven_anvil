@@ -1,6 +1,18 @@
 components:
+- layout_properties: {full_width_row: true, grid_position: 'EUUEEC,QUDQFL'}
+  name: campaign_label
+  properties: {align: center, role: title, text: Campaign}
+  type: Label
 - layout_properties: {full_width_row: true, grid_position: 'IZANHS,ZIOAGK'}
-  name: achievements_flow_panel
+  name: campaign_flow_panel
+  properties: {}
+  type: FlowPanel
+- layout_properties: {full_width_row: true, grid_position: 'WYYOYB,KFCSLE'}
+  name: outpost_label
+  properties: {align: center, role: title, text: Outpost}
+  type: Label
+- layout_properties: {full_width_row: true, grid_position: 'QSFGJG,RAHDSP'}
+  name: outpost_flow_panel
   properties: {}
   type: FlowPanel
 container: {type: ColumnPanel}

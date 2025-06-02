@@ -22,4 +22,9 @@ class Achievements(AchievementsTemplate):
         achievement_form = BrummixTracks(achievement)
       elif achievement['Name'] == 'Coral Crown Shard':
         achievement_form = CoralCrownShard(achievement)
-      self.achievements_flow_panel.add_component(achievement_form)
+      
+      if achievement['Type'] == 'Campaign':
+        self.campaign_flow_panel.add_component(achievement_form)
+      elif achievement['Type'] == 'Outpost':
+        self.outpost_flow_panel.add_component(achievement_form)
+      

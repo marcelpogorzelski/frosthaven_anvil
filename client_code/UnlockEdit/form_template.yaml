@@ -21,7 +21,7 @@ components:
       event_bindings: {change: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG VYUKFG,ILFVBN'}
       name: achievement_radio_button
-      properties: {text: Achievements}
+      properties: {text: Stickers}
       type: RadioButton
     - event_bindings: {clicked: radio_button_clicked}
       layout_properties: {grid_position: 'DNEAJR,MTFVQG EUVCWV,PEVUFY'}
