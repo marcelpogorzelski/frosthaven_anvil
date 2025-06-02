@@ -41,7 +41,10 @@ class Scenario(ScenarioTemplate):
     if self.event_type:
       self.draw_event_button.text = f"Draw {self.event_type} Event"
     self.check_road_event()
-    
+
+    if not self.item['Key2']:
+      self.key2_image.remove_from_parent()
+
     self.activate_buttons()
     self.set_complexity_image()
     self.get_images()
@@ -161,21 +164,7 @@ class Scenario(ScenarioTemplate):
     self.complexity_image.source = complexity_images[self.item['Complexity']]
 
   def get_images(self):
-    if self.item['Number'][0:2] == 'So':
-      self.scenario_image.source = None
-      return
-    name = self.item['Name'].lower().replace('\'', '').replace(' ', '-')
-    number = int(self.item['Number'][1:])
-
-    scenario_image_file = app_files.scenariostickers.get(f"fh-{number:03d}-{name}.png")
-    #map_layout_image_file = app_files.scenariolayout.get(f"fh-{number:03d}-{name}-map-layout.png")
-    #loot_image_file = app_files.scenariolayout.get(f"fh-{number:03d}-{name}-loot.png")
-    #key_image_file = app_files.scenariolayout.get(f"fh-{number:03d}-{name}-scenario-key.png")
-
-    self.scenario_image.source = scenario_image_file
-    #self.map_layout_image.source = map_layout_image_file
-    #self.loot_image.source = loot_image_file
-    #self.key_image.source = key_image_file
+    return
     self.loot_image.source = self.item['Loot']
     self.key_image.source = self.item['Key1']
     self.map_layout_image.source = self.item['Layout']

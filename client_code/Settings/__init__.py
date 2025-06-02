@@ -16,14 +16,21 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
-    for ach in ['Ice Spike', 'Portcullis', 'Stage']:
-      app_tables.achievements.add_row(Available=False, Id=None, Name=ach, Type='Outpost', Upgrades=0, CurrentLevel=0, ScenarioCheck=False)
-      
-
-
+    self.test()
 
   def test(self):
-    return
+    for scenario in app_tables.scenarios.search():
+      self.set_scenario_image(scenario)
+
+  def set_scenario_image(self, scenario):
+    if scenario['Number'][0:2] == 'So':
+      return
+    print(scenario['Number'])
+    
+    name = scenario['Name'].lower().replace('\'', '').replace(' ', '-')
+    number = int(scenario['Number'][1:])
+    
+    scenario['Sticker'] = app_files.scenariostickers.get(f'fh-{number:03d}-{name}.png')
       
   def check_items(self):
     character_items = dict()

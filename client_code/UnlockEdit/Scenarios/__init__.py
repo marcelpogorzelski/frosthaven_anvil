@@ -26,19 +26,8 @@ class Scenarios(ScenariosTemplate):
 
     if change:
       self.get_scenario_statuses()
-      self.set_scenario_image()
     
     self.refresh_data_bindings()
-
-  def set_scenario_image(self):
-    if self.item['Number'][0:2] == 'So':
-      self.scenario_image.source = None
-      return
-      
-    name = self.item['Name'].lower().replace('\'', '').replace(' ', '-')
-    number = int(self.item['Number'][1:])
-    
-    self.scenario_image.source = app_files.scenariostickers.get(f'fh-{number:03d}-{name}.png')
 
   def scenario_drop_down_change(self, **event_args):
     self.change_scenario(change=True)
