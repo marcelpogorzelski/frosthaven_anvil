@@ -17,54 +17,33 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
-    #self.test()
+    self.test()
 
   def test(self):
-    return
-    unlocked_classes = [unlocked_class['Nickname'] for unlocked_class in app_tables.classes.search(Available=True)]
-    for nickname, frost_class in Frosthaven_info.class_names.items():
-      if nickname in unlocked_classes:
-        self.update_class(nickname, frost_class)
-      else:
-        self.add_class(nickname, frost_class)
+    for char_class in app_tables.classes.search(Available=True):
+      self.add_class_cards(char_class)
+      
 
 
-  def update_class(self, nickname, frost_class):
-    matImage = self.get_image(frost_class['matImage'])
-    matBackImage = self.get_image(frost_class['matImageBack'])
-    sheet = self.get_image(frost_class['sheetImage'])
+  def add_class_cards(self, char_class):
+    for card in Frosthaven_info.class_cards_info[char_class['Id']]:
+      name = card['name']
+      initiative = card['initiative']
+      level = card['level']
+      image = self.get_image(card['image'])
 
-    data_class = app_tables.classes.get(Nickname=nickname)
-    if data_class['MatImage']:
-      return
-
-    matImage = self.get_image(frost_class['matImage'])
-    matBackImage = self.get_image(frost_class['matImageBack'])
-    sheet = self.get_image(frost_class['sheetImage'])
+      if not image:
+        print(char_class['Name'], name)
+      
+      app_tables.classcards.add_row(
+        Name=name,
+        Class=char_class,
+        Level=level,
+        Initiative=initiative,
+        Image=image
+      )
+      
     
-    data_class.update(
-      MatImage=matImage,
-      MatBackImage=matBackImage,
-      SheetImage=sheet
-    )
-
-  def add_class(self, nickname, frost_class):
-    class_name = frost_class["name"]
-    class_id = frost_class["id"]
-
-    matImage = self.get_image(frost_class['matImage'])
-    matBackImage = self.get_image(frost_class['matImageBack'])
-    sheet = self.get_image(frost_class['sheetImage'])
-
-    app_tables.classes.add_row(
-      Available=False,
-      Name=class_name,
-      Nickname=nickname,
-      Id=class_id,
-      MatImage=matImage,
-      MatBackImage=matBackImage,
-      SheetImage=sheet
-    )
 
   def get_image(self, path):
     url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"

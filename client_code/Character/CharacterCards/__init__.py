@@ -22,9 +22,7 @@ class CharacterCards(CharacterCardsTemplate):
     if window.innerWidth < 600:
       width = 180
   
-    class_id = self.character['Class']['Id']
-    
-    class_cards_info = sorted(Frosthaven_info.class_cards_info[class_id], key=lambda card: card['level'] )
-    for class_card_info in class_cards_info:
-      card = Card(class_card_info)
+    for card in app_tables.classcards.search(tables.order_by("Level"), Class=self.character['Class']):
+      card = Card(card)
       self.cards_flow_panel.add_component(card, width=width)
+

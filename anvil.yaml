@@ -183,6 +183,27 @@ db_schema:
       type: link_multiple
     server: full
     title: Characters
+  classcards:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Name
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Class
+      target: classes
+      type: link_single
+    - admin_ui: {order: 2, width: 200}
+      name: Level
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: Initiative
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: Image
+      type: media
+    server: full
+    title: ClassCards
   classes:
     client: full
     columns:
