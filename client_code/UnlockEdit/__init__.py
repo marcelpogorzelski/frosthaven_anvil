@@ -16,6 +16,7 @@ from .Classes import Classes
 from .Pets import Pets
 from .Achievements import Achievements
 from .Events import Events
+from .GloomhavenItems import GloomhavenItems
 
 class UnlockEdit(UnlockEditTemplate):
   def __init__(self, **properties):
@@ -39,6 +40,7 @@ class UnlockEdit(UnlockEditTemplate):
     self.setup_form('Achievements', Achievements, self.achievement_radio_button)
     self.setup_form('Pets', Pets, self.pet_radio_button)
     self.setup_form('Events', Events, self.events_radio_button)
+    self.setup_form('GloomhavenItems', GloomhavenItems, self.gloomhaven_item_radio_button)
 
   def change_form(self, name):
     edit_form = self.forms[name]

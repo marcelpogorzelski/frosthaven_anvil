@@ -11,6 +11,7 @@ components:
     type: TextBox
   - data_bindings:
     - {code: self.card_selected, property: visible, writeback: false}
+    - {code: self.image_file, property: source, writeback: false}
     layout_properties: {grid_position: 'KPMIUO,CWQCBU'}
     name: card_image
     properties: {}

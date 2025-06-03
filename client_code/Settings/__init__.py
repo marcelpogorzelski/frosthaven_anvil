@@ -21,15 +21,6 @@ class Settings(SettingsTemplate):
 
   def test(self):
     return
-    items = json.loads(app_tables.files.get(path='other_items.js')['file'].get_bytes())
-
-    find_item = 21
-    print(f"{find_item:03}")
-    for item in items:
-      if item['expansion'] != 'Gloomhaven':
-        continue
-      if item['name'] == f"item {find_item:03}":
-        print(item)
     
 
     
