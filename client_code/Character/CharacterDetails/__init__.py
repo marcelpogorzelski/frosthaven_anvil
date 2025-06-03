@@ -18,13 +18,9 @@ class CharacterDetails(CharacterDetailsTemplate):
     #self.adjust_width()
 
     self.character = app_tables.characters.get(Player=player_name)
-    class_info = Frosthaven_info.class_names[self.character['Class']['Nickname']]
-    self.mat_front_image.source = self.get_image(class_info['matImage'])
-    self.mat_back_image.source = self.get_image(class_info['matImageBack'])
-    self.sheet_image.source = self.get_image(class_info['sheetImage'])
     
-  def get_image(self, path):
-    url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"
-    return URLMedia(url)
+    self.mat_front_image.source = self.character['Class']['MatImage']
+    self.mat_back_image.source = self.character['Class']['MatBackImage']
+    self.sheet_image.source = self.character['Class']['SheetImage']
 
 

@@ -9,6 +9,7 @@ import anvil.tables.query as q
 import json
 from anvil.tables import app_tables
 from .. import Utilites
+from .. import Frosthaven_info
 
 class Settings(SettingsTemplate):
   def __init__(self, **properties):
@@ -16,17 +17,59 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
+    #self.test()
 
   def test(self):
     return
-    for pet in app_tables.pets.search():
-      self.set_pet_image(pet)
+    unlocked_classes = [unlocked_class['Nickname'] for unlocked_class in app_tables.classes.search(Available=True)]
+    for nickname, frost_class in Frosthaven_info.class_names.items():
+      if nickname in unlocked_classes:
+        self.update_class(nickname, frost_class)
+      else:
+        self.add_class(nickname, frost_class)
 
-  def set_pet_image(self, pet):
-    image = anvil.URLMedia(pet['ImageURL'])
-    imageBack = anvil.URLMedia(pet['ImageBackURL'])
-    pet.update(Image=image, ImageBack=imageBack)
-      
+
+  def update_class(self, nickname, frost_class):
+    matImage = self.get_image(frost_class['matImage'])
+    matBackImage = self.get_image(frost_class['matImageBack'])
+    sheet = self.get_image(frost_class['sheetImage'])
+
+    data_class = app_tables.classes.get(Nickname=nickname)
+    if data_class['MatImage']:
+      return
+
+    matImage = self.get_image(frost_class['matImage'])
+    matBackImage = self.get_image(frost_class['matImageBack'])
+    sheet = self.get_image(frost_class['sheetImage'])
+    
+    data_class.update(
+      MatImage=matImage,
+      MatBackImage=matBackImage,
+      SheetImage=sheet
+    )
+
+  def add_class(self, nickname, frost_class):
+    class_name = frost_class["name"]
+    class_id = frost_class["id"]
+
+    matImage = self.get_image(frost_class['matImage'])
+    matBackImage = self.get_image(frost_class['matImageBack'])
+    sheet = self.get_image(frost_class['sheetImage'])
+
+    app_tables.classes.add_row(
+      Available=False,
+      Name=class_name,
+      Nickname=nickname,
+      Id=class_id,
+      MatImage=matImage,
+      MatBackImage=matBackImage,
+      SheetImage=sheet
+    )
+
+  def get_image(self, path):
+    url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"
+    return URLMedia(url)
+
   def check_items(self):
     character_items = dict()
     for character in app_tables.characters.search():

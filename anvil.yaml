@@ -195,6 +195,18 @@ db_schema:
     - admin_ui: {width: 200}
       name: Id
       type: string
+    - admin_ui: {order: 4, width: 200}
+      name: Available
+      type: bool
+    - admin_ui: {order: 5, width: 200}
+      name: MatImage
+      type: media
+    - admin_ui: {order: 6, width: 200}
+      name: MatBackImage
+      type: media
+    - admin_ui: {order: 7, width: 200}
+      name: SheetImage
+      type: media
     server: full
     title: Classes
   events:

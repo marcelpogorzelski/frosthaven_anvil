@@ -31,7 +31,7 @@ class CharacterSheet(CharacterSheetTemplate):
 
   def populate_class_drop_down(self):
     item_list = []
-    for row in app_tables.classes.search():
+    for row in app_tables.classes.search(Available=True):
       item_list.append((row["Name"], row))
     self.class_drop_down.items = item_list
 
