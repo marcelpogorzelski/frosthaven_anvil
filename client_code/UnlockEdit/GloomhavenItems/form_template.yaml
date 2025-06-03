@@ -7,14 +7,14 @@ components:
   - event_bindings: {pressed_enter: number_text_box_pressed_enter}
     layout_properties: {grid_position: 'JIZVOH,NFLGYF'}
     name: number_text_box
-    properties: {}
+    properties: {type: number}
     type: TextBox
   - data_bindings:
     - {code: self.card_selected, property: visible, writeback: false}
-    - {code: self.image_file, property: source, writeback: false}
+    - {code: self.get_image(), property: source, writeback: false}
     layout_properties: {grid_position: 'KPMIUO,CWQCBU'}
     name: card_image
-    properties: {}
+    properties: {display_mode: fill_width}
     type: Image
   - data_bindings:
     - {code: self.card_selected, property: visible, writeback: false}
@@ -24,6 +24,7 @@ components:
     type: Image
   - data_bindings:
     - {code: self.card_selected, property: visible, writeback: false}
+    - {code: 'self.item[''cost'']', property: text, writeback: false}
     layout_properties: {grid_position: 'WFGBIE,XOJIXV'}
     name: gold_text_box
     properties: {type: number}
