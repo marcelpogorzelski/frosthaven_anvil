@@ -20,6 +20,7 @@ from .GloomhavenItems import GloomhavenItems
 
 class UnlockEdit(UnlockEditTemplate):
   def __init__(self, **properties):
+    
     self.init_components(**properties)
 
     self.setup_forms()

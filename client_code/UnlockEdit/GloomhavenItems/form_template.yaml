@@ -11,7 +11,7 @@ components:
     type: TextBox
   - data_bindings:
     - {code: self.card_selected, property: visible, writeback: false}
-    - {code: self.get_image(), property: source, writeback: false}
+    - {code: 'self.item[''image_file'']', property: source, writeback: false}
     layout_properties: {grid_position: 'KPMIUO,CWQCBU'}
     name: card_image
     properties: {display_mode: fill_width}
@@ -31,14 +31,28 @@ components:
     type: TextBox
   - data_bindings:
     - {code: self.card_selected, property: visible, writeback: false}
+    layout_properties: {grid_position: 'HHPOPU,TDSKMQ'}
+    name: usage_label
+    properties: {role: input-prompt, text: Usage}
+    type: Label
+  - data_bindings:
+    - {code: 'self.item[''usage'']', property: text, writeback: false}
+    - {code: self.card_selected, property: visible, writeback: false}
+    layout_properties: {grid_position: 'HHPOPU,MHEQHD'}
+    name: usage_text_box
+    properties: {}
+    type: TextBox
+  - data_bindings:
+    - {code: self.card_selected, property: visible, writeback: false}
     event_bindings: {click: add_button_click}
     layout_properties: {grid_position: 'NFFVVC,HJEFQE'}
     name: add_button
     properties: {role: filled-button, text: Add to Store}
     type: Button
+  data_bindings: []
   layout_properties: {grid_position: 'PZTTRB,QEUOHM'}
   name: gloomhaven_items_card
-  properties: {col_widths: '{"LESUTU":15,"NFLGYF":45,"TSPBEG":5,"XOJIXV":55}', role: elevated-card, wrap_on: never}
+  properties: {col_widths: '{"LESUTU":15,"NFLGYF":45,"TSPBEG":5,"XOJIXV":55,"TDSKMQ":15,"MHEQHD":45}', role: elevated-card, wrap_on: never}
   type: ColumnPanel
 container:
   properties: {wrap_on: never}

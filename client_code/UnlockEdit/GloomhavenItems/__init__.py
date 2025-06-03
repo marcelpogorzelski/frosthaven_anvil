@@ -8,16 +8,26 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import json
 
+SLOT_CONVERSION = {
+  'legs': 'Feet',
+  '1h': 'One Hand',
+  'small': 'Small',
+  'head': 'Head',
+  '2h': 'Two Hands',
+  'body': 'Body'
+}
+
 class GloomhavenItems(GloomhavenItemsTemplate):
   def __init__(self, **properties):
 
     self.card_selected = False
     self.none_item = {
-      'image': None,
-      'cost': None
+      'image_file': None,
+      'cost': None,
+      'usage': None,
     }
     
-    self.item = self.none_item
+    self.item = dict()
 
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -27,28 +37,32 @@ class GloomhavenItems(GloomhavenItemsTemplate):
 
   def number_text_box_pressed_enter(self, **event_args):
     item_number = self.number_text_box.text
-    self.item = next(filter(lambda item: item['id'] == item_number, self.gloomhaven_items), self.none_item)
+    self.item = next(filter(lambda item: item['id'] == item_number, self.gloomhaven_items), dict())
 
-    self.show_item()
+    if not self.item:
+      self.hide_item()
+    else:
+      self.show_item()
 
   def hide_item(self):
-    self.item = None
     self.number_text_box.text = None
     self.card_selected = False
-    self.image_file = None
     self.refresh_data_bindings()
 
   def show_item(self):
-    if self.item is self.none_item:
-      self.card_selected = False
-      self.number_text_box.text = None
-    else:
-      self.card_selected = True
+    self.card_selected = True
+    if 'image_file' not in self.item:
+      self.item['image_file'] = self.get_image()
+    if 'usage' not in self.item:
+      self.item['usage'] = 'Passive'
+      if 'spent' in self.item:
+        self.item['usage'] = 'Spent'
+      if 'consumed' in self.item:
+        self.item['usage'] = 'Lost'
+        
     self.refresh_data_bindings()
 
   def get_image(self):
-    if self.item is self.none_item:
-      return None
     url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{self.item['image']}"
     return URLMedia(url)
     
