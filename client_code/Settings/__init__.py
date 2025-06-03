@@ -20,31 +20,19 @@ class Settings(SettingsTemplate):
     self.test()
 
   def test(self):
-    for char_class in app_tables.classes.search(Available=True):
-      self.add_class_cards(char_class)
-      
+    return
+    items = json.loads(app_tables.files.get(path='other_items.js')['file'].get_bytes())
 
-
-  def add_class_cards(self, char_class):
-    for card in Frosthaven_info.class_cards_info[char_class['Id']]:
-      name = card['name']
-      initiative = card['initiative']
-      level = card['level']
-      image = self.get_image(card['image'])
-
-      if not image:
-        print(char_class['Name'], name)
-      
-      app_tables.classcards.add_row(
-        Name=name,
-        Class=char_class,
-        Level=level,
-        Initiative=initiative,
-        Image=image
-      )
-      
+    find_item = 21
+    print(f"{find_item:03}")
+    for item in items:
+      if item['expansion'] != 'Gloomhaven':
+        continue
+      if item['name'] == f"item {find_item:03}":
+        print(item)
     
 
+    
   def get_image(self, path):
     url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"
     return URLMedia(url)
