@@ -1,29 +1,29 @@
 components:
 - components:
   - event_bindings: {clicked: event_radio_button_clicked}
-    layout_properties: {grid_position: 'MXIKPC,YUEMCG'}
+    layout_properties: {grid_position: 'MXIKPC,YUEMCG CUKZDP,BDABMQ'}
     name: summer_road_radio_button
-    properties: {group_name: eventRadioGroup, selected: true, text: Summer Road}
+    properties: {background: '#FFFFAD', group_name: eventRadioGroup, selected: true, text: Summer Road}
     type: RadioButton
   - event_bindings: {clicked: event_radio_button_clicked}
-    layout_properties: {grid_position: 'MXIKPC,YUEMCG LDMVJC,HZCGSK'}
-    name: winter_road_radio_button
-    properties: {group_name: eventRadioGroup, text: Winter Road}
-    type: RadioButton
-  - event_bindings: {clicked: event_radio_button_clicked}
-    layout_properties: {grid_position: 'MXIKPC,HNGUPP HESRQJ,CLKFWU'}
+    layout_properties: {grid_position: 'MXIKPC,YUEMCG EMEDES,CQEHOW'}
     name: summer_outpost_radio_button
-    properties: {group_name: eventRadioGroup, text: Summer Outpost}
+    properties: {background: '#FFFFAD', group_name: eventRadioGroup, text: Summer Outpost}
+    type: RadioButton
+  - event_bindings: {clicked: event_radio_button_clicked}
+    layout_properties: {grid_position: 'MXIKPC,HNGUPP UNMQYQ,YRZHYF'}
+    name: winter_road_radio_button
+    properties: {background: '#ADD8E6', group_name: eventRadioGroup, text: Winter Road}
     type: RadioButton
   - event_bindings: {clicked: event_radio_button_clicked}
     layout_properties: {grid_position: 'MXIKPC,HNGUPP HMUWQD,BCMKRX'}
     name: winter_outpost_radio_button
-    properties: {group_name: eventRadioGroup, text: Winter Outpost}
+    properties: {background: '#ADD8E6', group_name: eventRadioGroup, text: Winter Outpost}
     type: RadioButton
   - event_bindings: {clicked: event_radio_button_clicked}
     layout_properties: {grid_position: 'DNCCTZ,NSPZHL'}
     name: boat_radio_button
-    properties: {group_name: eventRadioGroup, text: Boat}
+    properties: {background: 'theme:Primary Container', group_name: eventRadioGroup, text: Boat}
     type: RadioButton
   - layout_properties: {grid_position: 'EBWTFR,UCSGZO'}
     name: add_label
@@ -39,6 +39,21 @@ components:
     type: Label
   - layout_properties: {grid_position: 'XDRGPC,YLHLUP'}
     name: active_flow_panel
+    properties: {}
+    type: FlowPanel
+  - components:
+    - event_bindings: {click: shuffle_button_click}
+      layout_properties: {}
+      name: shuffle_button
+      properties: {role: filled-button, text: Shuffle}
+      type: Button
+    - event_bindings: {click: front_button_click}
+      layout_properties: {}
+      name: front_button
+      properties: {role: filled-button, text: Put on top}
+      type: Button
+    layout_properties: {grid_position: 'OWXVUV,LEZIDD'}
+    name: buttons_flow_panel
     properties: {}
     type: FlowPanel
   layout_properties: {grid_position: 'OGSXNF,QGDZZU'}

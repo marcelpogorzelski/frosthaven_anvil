@@ -129,7 +129,6 @@ class Settings(SettingsTemplate):
     #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
   def action_button_click(self, **event_args):
-    return
     if not confirm("Test?"):
       return
     events_backup = json.loads(Backup.get_backup_file('Events.json').get_bytes())

@@ -7,6 +7,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import random
+from .MoveTop import MoveTop
 
 
 class Events(EventsTemplate):
@@ -105,3 +106,30 @@ class Events(EventsTemplate):
 
   def event_radio_button_clicked(self, **event_args):
     self.change_event_type(event_args['sender'].text)
+
+  def shuffle_button_click(self, **event_args):
+    if not confirm(f"Do you want to shuffle {self.event_entry['Type']} Events Deck?"):
+      return
+    active_list = self.event_entry['Active']
+    random.shuffle(active_list)
+    self.event_entry['Active'] = active_list
+    
+    Notification(f"{self.event_entry['Type']} Event Deck is shuffled", timeout=6).show()
+
+
+  def front_button_click(self, **event_args):
+    active_list = self.event_entry['Active']
+    event_number = alert(MoveTop(active_list), buttons=[("Cancel", None)])
+    
+    if not event_number:
+      return
+      
+    active_list.remove(event_number)
+    active_list.insert(0, event_number)
+
+    self.event_entry['Active'] = active_list
+    
+    Notification(f"{self.event_entry['Type']} Event {event_number:02} is put on top of the Deck ", timeout=6).show()
+
+    
+    
