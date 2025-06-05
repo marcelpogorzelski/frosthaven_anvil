@@ -129,14 +129,23 @@ class Settings(SettingsTemplate):
     #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
   def action_button_click(self, **event_args):
+    return
     if not confirm("Test?"):
       return
     events_backup = json.loads(Backup.get_backup_file('Events.json').get_bytes())
 
-    for event in events_backup['Rows']:
+    for backuo_event in events_backup['Rows']:
+      current_event = app_tables.events.get(Type=backuo_event['Type'])
+      current_event.update(
+        Count=backuo_event['Count'],
+        Active=backuo_event['Active'],
+        Inactive=backuo_event['Inactive'],
+        CurrentEvent=backuo_event['CurrentEvent'],
+        PreviousEvents=backuo_event['PreviousEvents']
+      )
       
-      print(type(event['PreviousEvents']))
-    
+      print(f"Restored: {backuo_event['Type']}")
+
 
   def backup_button_click(self, **event_args):
     if not confirm("Sure?"):
