@@ -109,8 +109,8 @@ def backup_tables_to_drive():
 
 
 def newest_backup_folder():
-  backup_info = app_files.backup.get(BACKUP_INFO_FILE).get_bytes()
-  if '05-06-2025' == backup_info:
-    print('yea')
+  backup_info = app_files.backup.get(BACKUP_INFO_FILE).get_bytes().decode('ascii')
+  backup_folder = app_files.backup.get(backup_info)
+  
   
   
