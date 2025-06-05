@@ -7,6 +7,8 @@ from anvil.tables import app_tables
 import json
 from datetime import datetime
 
+BACKUP_INFO_FILE = "backup_info.txt"
+
 
 def table_to_dict(table):
   table_dict = dict()
@@ -54,14 +56,24 @@ def backup_table_to_drive(backup_folder, table, table_name):
   backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(table_dict, indent=4).encode('utf-8'), name=table_backup_filename)
   backup_folder.create_file(table_backup_filename, backup_blob)
 
+def new_backup_folder(todays_date):
+  new_backup_folder = app_files.backup.create_folder(todays_date)
+  
+  backup_info = app_files.backup.get(BACKUP_INFO_FILE)
+  if backup_info:
+    backup_info.trash()
+    
+  app_files.backup.create_file(BACKUP_INFO_FILE, todays_date)
+
+  return new_backup_folder
+
 
 def get_backup_folder():
-  root_backup_folder = app_files.backup
   todays_date = datetime.now().strftime("%d-%m-%Y")
 
-  todays_backup_folder = root_backup_folder.get(todays_date)
+  todays_backup_folder = app_files.backup.get(todays_date)
   if not todays_backup_folder:
-    todays_backup_folder = root_backup_folder.create_folder(todays_date)
+    todays_backup_folder = new_backup_folder(todays_date)
 
   backup_count = len(todays_backup_folder.folders)
 
@@ -94,3 +106,11 @@ def backup_tables_to_drive():
   backup_table_to_drive(backup_folder, app_tables.scenarios, 'Scenarios')
   backup_table_to_drive(backup_folder, app_tables.treasures, 'Treasures')
   return True
+
+
+def newest_backup_folder():
+  backup_info = app_files.backup.get(BACKUP_INFO_FILE).get_bytes()
+  if '05-06-2025' == backup_info:
+    print('yea')
+  
+  

@@ -129,8 +129,9 @@ class Settings(SettingsTemplate):
     #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
   def action_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    if not confirm("Test?"):
+      return
+    Backup.newest_backup_folder()
 
   def backup_button_click(self, **event_args):
     if not confirm("Sure?"):
