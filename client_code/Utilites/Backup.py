@@ -13,7 +13,7 @@ BACKUP_INFO_FILE = "backup_info.txt"
 def table_to_dict(table):
   table_dict = dict()
   table_dict['ColumnInfo'] = table.list_columns()
-  table_dict['Columns'] = list()
+  table_dict['Rows'] = list()
 
   link_single = list()
   link_multiple = list()
@@ -45,7 +45,7 @@ def table_to_dict(table):
         continue
       row_dict[column_name] = [ value.get_id() for value in row_dict[column_name]]
 
-    table_dict['Columns'].append(row_dict)
+    table_dict['Rows'].append(row_dict)
 
   return table_dict
 
@@ -110,7 +110,15 @@ def backup_tables_to_drive():
 
 def newest_backup_folder():
   backup_info = app_files.backup.get(BACKUP_INFO_FILE).get_bytes().decode('ascii')
-  backup_folder = app_files.backup.get(backup_info)
-  
+  date_folder = app_files.backup.get(backup_info)
+  backup_count = len(date_folder.folders)
+  backup_folder = date_folder.get(f"Backup {backup_count}")
+
+  return backup_folder
+
+def get_backup_file(backup_name):
+  backup_folder = newest_backup_folder()
+
+  return backup_folder.get(backup_name)
   
   

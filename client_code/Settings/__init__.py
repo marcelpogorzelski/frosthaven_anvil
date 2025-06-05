@@ -131,7 +131,12 @@ class Settings(SettingsTemplate):
   def action_button_click(self, **event_args):
     if not confirm("Test?"):
       return
-    Backup.newest_backup_folder()
+    events_backup = json.loads(Backup.get_backup_file('Events.json').get_bytes())
+
+    for event in events_backup['Rows']:
+      
+      print(type(event['PreviousEvents']))
+    
 
   def backup_button_click(self, **event_args):
     if not confirm("Sure?"):
