@@ -9,6 +9,7 @@ from anvil.tables import app_tables
 from anvil.js.window import navigator
 from ... import navigation
 from ... import Utilites
+from ...Utilites import Events
 from .Pets import Pets
 from .ChooseEventType import ChooseEventType
 from ...Event import Event
@@ -268,7 +269,7 @@ class Scenario(ScenarioTemplate):
   def return_event_button_click(self, **event_args):
     if not confirm(f"Do you want to return {self.current_road_event['Label']} Event {self.current_road_event['Text']} to the bottom of the deck?"):
       return
-    Utilites.return_current_event(self.current_road_event['Label'])
+    Events.return_current_event(self.current_road_event['Label'])
     self.current_road_event['Resolved'] = True
     self.gamestate['CurrentRoadEvent'] = self.current_road_event
     self.enable_event_card()
@@ -276,13 +277,13 @@ class Scenario(ScenarioTemplate):
   def remove_event_button_click(self, **event_args):
     if not confirm(f"Do you want to remove {self.current_road_event['Label']} Event {self.current_road_event['Text']}?"):
       return
-    Utilites.remove_current_event(self.current_road_event['Label'])
+    Events.remove_current_event(self.current_road_event['Label'])
     self.current_road_event['Resolved'] = True
     self.gamestate['CurrentRoadEvent'] = self.current_road_event
     self.enable_event_card()
 
   def get_outpost_event(self, event_type):
-    event_number = Utilites.get_next_event(event_type)
+    event_number = Events.get_next_event(event_type)
     self.current_road_event = dict()
     self.current_road_event['Label'] = event_type
     self.current_road_event['Background'] = self.event_backgrounds[event_type]

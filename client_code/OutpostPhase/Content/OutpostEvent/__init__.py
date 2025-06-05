@@ -8,6 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from anvil.js.window import navigator
 from .... import Utilites
+from ....Utilites import Events
 from ....Event import Event
 
 
@@ -81,7 +82,7 @@ class OutpostEvent(OutpostEventTemplate):
     Notification("Event copied to clipboard. Go to forteller.gg", timeout=6).show()
 
   def get_outpost_event(self, season):
-    event_number = Utilites.get_next_event(f"{season} Outpost")
+    event_number = Events.get_next_event(f"{season} Outpost")
     self.current_outpost_event = dict()
     self.current_outpost_event['Label'] = f"{season} Outpost"
     self.current_outpost_event['Background'] = self.season_backgrounds[season]
@@ -101,13 +102,13 @@ class OutpostEvent(OutpostEventTemplate):
   def return_button_click(self, **event_args):
     if not confirm(f"Do you want to return {self.current_outpost_event['Label']} Event {self.current_outpost_event['Text']} to the bottom of the deck?"):
       return
-    Utilites.return_current_event(self.current_outpost_event['Label'])
+    Events.return_current_event(self.current_outpost_event['Label'])
     self.set_as_finished()
 
   def remove_button_click(self, **event_args):
     if not confirm(f"Do you want to remove {self.current_outpost_event['Label']} Event {self.current_outpost_event['Text']}?"):
       return
-    Utilites.remove_current_event(self.current_outpost_event['Label'])
+    Events.remove_current_event(self.current_outpost_event['Label'])
     self.set_as_finished()
 
   def show_button_click(self, **event_args):

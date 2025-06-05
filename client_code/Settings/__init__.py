@@ -9,6 +9,7 @@ import anvil.tables.query as q
 import json
 from anvil.tables import app_tables
 from .. import Utilites
+from ..Utilites import Backup
 from .. import Frosthaven_info
 
 class Settings(SettingsTemplate):
@@ -17,11 +18,11 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
-    self.test()
+
+    #self.test()
 
   def test(self):
     return
-    
 
     
   def get_image(self, path):
@@ -135,7 +136,7 @@ class Settings(SettingsTemplate):
     if not confirm("Sure?"):
       return
     notification_text = "Databases are all backed up!"
-    if not Utilites.backup_tables_to_drive():
+    if not Backup.backup_tables_to_drive():
       notification_text = "No backup. Reached the daily quota"
     Notification(notification_text, timeout=6).show()
 

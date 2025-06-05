@@ -150,6 +150,8 @@ unique_ids:
   modules:
     Frosthaven_info: '174064204803772941692685.63255'
     Utilites: '1716982197761702742842671.3378'
+    Utilites.Backup: '1749102551501716765070926.571'
+    Utilites.Events: '174910301477942047442519.3299'
     navigation: '1745486245126335554350468.75256'
   scripts: {}
   server_modules: {}

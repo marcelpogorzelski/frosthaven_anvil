@@ -195,8 +195,6 @@ def set_walls(frosthaven, walls):
   frosthaven['Walls'] = walls
   update_total_defense(frosthaven)
 
-
-
 def bounded_text_box(text_box, min_value, max_value):
   if not text_box.text:
     return
@@ -207,91 +205,6 @@ def bounded_text_box(text_box, min_value, max_value):
   if text_box.text < min_value:
     text_box.text = min_value
 
-def table_to_dict(table):
-  table_dict = dict()
-  table_dict['ColumnInfo'] = table.list_columns()
-  table_dict['Columns'] = list()
-  
-  link_single = list()
-  link_multiple = list()
-  media = list()
-  
-  for column in table.list_columns():
-    if column['type'] == 'link_single':
-      link_single.append(column['name'])
-    if column['type'] == 'link_multiple':
-      link_multiple.append(column['name'])
-    if column['type'] == 'media':
-      media.append(column['name'])
-
-  for row in table.search():
-    row_dict = dict(row)
-
-    for column_name in media:
-      if not row_dict[column_name]:
-        continue
-      row_dict[column_name] = None
-    
-    for column_name in link_single:
-      if not row_dict[column_name]:
-        continue
-      row_dict[column_name] = row_dict[column_name].get_id()
-      
-    for column_name in link_multiple:
-      if not row_dict[column_name]:
-        continue
-      row_dict[column_name] = [ value.get_id() for value in row_dict[column_name]]
-      
-    table_dict['Columns'].append(row_dict)
-    
-  return table_dict
-
-
-def get_backup_folder():
-  root_backup_folder = app_files.backup
-  todays_date = datetime.now().strftime("%d-%m-%Y")
-
-  todays_backup_folder = root_backup_folder.get(todays_date)
-  if not todays_backup_folder:
-    todays_backup_folder = root_backup_folder.create_folder(todays_date)
-
-  backup_count = len(todays_backup_folder.folders)
-
-  print(F"Backup count: {backup_count}")
-  if backup_count >= 5:
-    return False
-
-  backup_folder = todays_backup_folder.create_folder(f"Backup {backup_count + 1}")
-
-  return backup_folder
-
-def backup_table_to_drive(backup_folder, table, table_name):
-  table_dict = table_to_dict(table)
-  table_backup_filename = f'{table_name}.json'
-  backup_blob = anvil.BlobMedia(content_type='application/json', content=json.dumps(table_dict, indent=4).encode('utf-8'), name=table_backup_filename)
-  backup_folder.create_file(table_backup_filename, backup_blob)
-
-def backup_tables_to_drive():
-  backup_folder = get_backup_folder()
-  if not backup_folder:
-    return False
-
-  backup_table_to_drive(backup_folder, app_tables.achievements, 'Achievements')
-  backup_table_to_drive(backup_folder, app_tables.available_buildings, 'AvailableBuildings')
-  backup_table_to_drive(backup_folder, app_tables.buildings, 'Buildings')
-  backup_table_to_drive(backup_folder, app_tables.calendar, 'Calendar')
-  backup_table_to_drive(backup_folder, app_tables.characters, 'Characters')
-  backup_table_to_drive(backup_folder, app_tables.classes, 'Classes')
-  backup_table_to_drive(backup_folder, app_tables.events, 'Events')
-  backup_table_to_drive(backup_folder, app_tables.frosthaven, 'Frosthaven')
-  backup_table_to_drive(backup_folder, app_tables.gamestate, 'GameState')
-  backup_table_to_drive(backup_folder, app_tables.items, 'Items')
-  backup_table_to_drive(backup_folder, app_tables.pets, 'Pets')
-  backup_table_to_drive(backup_folder, app_tables.retired_characters, 'RetiredCharacters')
-  backup_table_to_drive(backup_folder, app_tables.scenario_info, 'ScenarioInfo')
-  backup_table_to_drive(backup_folder, app_tables.scenarios, 'Scenarios')
-  backup_table_to_drive(backup_folder, app_tables.treasures, 'Treasures')
-  return True
 
 def add_to_retired(character):
   player_name = character['Player']
@@ -408,52 +321,3 @@ def outpost_phase_finished(phase):
     return True
   return False
 
-def get_next_event(event_type):
-  event_entry = app_tables.events.get(Type=event_type)
-
-  if event_entry['CurrentEvent']:
-    return event_entry['CurrentEvent']
-  
-  active_list = event_entry['Active']
-  current_event = active_list.pop(0)
-  event_entry.update(Active=active_list, CurrentEvent=current_event)
-  return current_event
-
-def return_current_event(event_type):
-  event_entry = app_tables.events.get(Type=event_type)
-  
-  current_event = event_entry['CurrentEvent']
-  if not current_event:
-    return
-
-  active_list = event_entry['Active']
-  active_list.append(current_event)
-
-  previous_events = event_entry['PreviousEvents'] or list()
-  previous_events.insert(0, current_event)
-  
-  event_entry.update(
-    Active=active_list,
-    CurrentEvent=None,
-    PreviousEvents=previous_events
-  )
-  
-def remove_current_event(event_type):
-  event_entry = app_tables.events.get(Type=event_type)
-  
-  current_event = event_entry['CurrentEvent']
-  if not event_entry['CurrentEvent']:
-    return
-    
-  inactive_list = event_entry['Inactive']
-  inactive_list.append(current_event)
-  inactive_list.sort()
-
-  previous_events = event_entry['PreviousEvents'] or list()
-  previous_events.insert(0, current_event)
-
-  event_entry.update(
-    Inactive=inactive_list,
-    CurrentEvent=None,
-    PreviousEvents=previous_events
-  )
