@@ -54,5 +54,19 @@ components:
   name: flow_panel_1
   properties: {}
   type: FlowPanel
+- components:
+  - components:
+    - layout_properties: {grid_position: 'YQGNIS,VQESWW'}
+      name: rich_text_1
+      properties: {}
+      type: RichText
+    layout_properties: {width: 900}
+    name: card_2
+    properties: {role: elevated-card}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'STSMMI,VNXROC'}
+  name: flow_panel_2
+  properties: {}
+  type: FlowPanel
 container: {type: ColumnPanel}
 is_package: true

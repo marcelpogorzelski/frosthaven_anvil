@@ -11,6 +11,20 @@ from anvil.tables import app_tables
 from .. import Utilites
 from ..Utilites import Backup
 from .. import Frosthaven_info
+import re
+
+
+def extract_curly_brackets(text):
+  """Extracts all content within curly brackets from a string.
+
+    Args:
+        text: The input string.
+
+    Returns:
+        A list of strings, each containing the content of a curly bracket pair.
+    """
+  matches = re.findall(r'\{([^}]*)\}', text)
+  return matches
 
 class Settings(SettingsTemplate):
   def __init__(self, **properties):
@@ -19,10 +33,18 @@ class Settings(SettingsTemplate):
     Utilites.set_scenario_available()
 
 
-    #self.test()
+    self.sheet_test()
 
-  def test(self):
-    return
+  def sheet_test(self):
+    #https://github.com/any2cards/frosthaven/tree/master/images/art/frosthaven/icons
+    print(extract_curly_brackets("Replace one {-1_WHITE} card with one {1_WHITE} card"))
+    self.rich_text_1.content = "{Drop1}{Drop2} Replace one {-1_WHITE} card with one {1_WHITE} card"
+    self.rich_text_1.data = {
+      "-1_WHITE": Image(source='_/theme/perks/-1_black.webp', height=22),
+      "1_WHITE": Image(source='_/theme/perks/-1_black.webp', height=22),
+      "Drop1": CheckBox(text=''),
+      "Drop2": CheckBox(text='')
+    }
 
     
   def get_image(self, path):
