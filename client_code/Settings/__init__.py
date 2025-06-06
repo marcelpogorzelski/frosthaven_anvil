@@ -15,14 +15,6 @@ import re
 
 
 def extract_curly_brackets(text):
-  """Extracts all content within curly brackets from a string.
-
-    Args:
-        text: The input string.
-
-    Returns:
-        A list of strings, each containing the content of a curly bracket pair.
-    """
   matches = re.findall(r'\{([^}]*)\}', text)
   return matches
 
