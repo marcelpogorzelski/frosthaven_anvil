@@ -120,5 +120,16 @@ def get_backup_file(backup_name):
   backup_folder = newest_backup_folder()
 
   return backup_folder.get(backup_name)
+
+
+def restore_table(table_name):
+  return
+  #Get event!!!
+  table_backup = json.loads(get_backup_file(f"{table_name}.json").get_bytes())
+
+  for table_row in table_backup['Rows']:
+    current_event = app_tables.events.get(Type=table_row['Type'])
+    current_event.update(**table_row)
+
   
   

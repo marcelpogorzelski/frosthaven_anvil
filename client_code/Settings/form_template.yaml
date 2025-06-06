@@ -30,7 +30,7 @@ components:
     - event_bindings: {click: action_button_click}
       layout_properties: {grid_position: 'XUVFYW,QPPHVA'}
       name: action_button
-      properties: {enabled: false, role: filled-button, text: Action}
+      properties: {enabled: false, role: filled-button, text: Action, visible: true}
       type: Button
     layout_properties: {}
     name: outlined_card_1_copy
