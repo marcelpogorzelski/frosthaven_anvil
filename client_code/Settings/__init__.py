@@ -38,6 +38,8 @@ class Settings(SettingsTemplate):
       "Drop2": CheckBox(text='')
     }
 
+    self.rich_text_2.content = "Replace one {plus_1} card with two {plus_0} \u201cMove one of your character tokens backward one slot\u201d cards"
+
     
   def get_image(self, path):
     url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"

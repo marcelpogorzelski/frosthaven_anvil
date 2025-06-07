@@ -60,6 +60,10 @@ components:
       name: rich_text_1
       properties: {}
       type: RichText
+    - layout_properties: {grid_position: 'YIITXZ,SASAPF'}
+      name: rich_text_2
+      properties: {}
+      type: RichText
     layout_properties: {width: 900}
     name: card_2
     properties: {role: elevated-card}
