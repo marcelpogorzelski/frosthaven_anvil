@@ -13,8 +13,10 @@ from ..Utilites import Backup
 from .. import Frosthaven_info
 import re
 
+from .Form1 import Form1
 
-def extract_curly_brackets(text):
+
+def extract_slots(text):
   matches = re.findall(r'\{([^}]*)\}', text)
   return matches
 
@@ -25,18 +27,21 @@ class Settings(SettingsTemplate):
     Utilites.set_scenario_available()
 
 
+
     self.sheet_test()
 
+
   def sheet_test(self):
-    #https://github.com/any2cards/frosthaven/tree/master/images/art/frosthaven/icons
-    print(extract_curly_brackets("Replace one {-1_WHITE} card with one {1_WHITE} card"))
-    self.rich_text_1.content = "{Drop1}{Drop2} Replace one {-1_WHITE} card with one {1_WHITE} card"
-    self.rich_text_1.data = {
-      "-1_WHITE": Image(source='_/theme/perks/-1_black.webp', height=22),
-      "1_WHITE": Image(source='_/theme/perks/-1_black.webp', height=22),
-      "Drop1": CheckBox(text=''),
-      "Drop2": CheckBox(text='')
-    }
+
+    content = "Whenever you short rest, you may spend one unspent {spent.png} item for no effect to {recover.png} a different spent item"
+    
+    slots = extract_slots(content)
+    print(slots)
+    self.rich_text_1.content = content
+
+    for slot in slots:
+      self.rich_text_1.add_component(Form1(slot), slot=slot)
+
 
     self.rich_text_2.content = "Replace one {plus_1} card with two {plus_0} \u201cMove one of your character tokens backward one slot\u201d cards"
 
@@ -61,7 +66,7 @@ class Settings(SettingsTemplate):
         print('New: ', item['Number'])
 
   def import_multi_file_loader_change(self, files, **event_args):
-    self.layouts_upload(files, )
+    self.layouts_upload(files)
 
     
   def import_file_loader_change(self, file, **event_args):
