@@ -1,7 +1,14 @@
 components:
-- layout_properties: {grid_position: 'QWATFA,UEBQNH'}
+- data_bindings: []
+  layout_properties: {grid_position: 'QWATFA,UEBQNH'}
   name: perk_rich_text
-  properties: {font_size: 16}
+  properties:
+    font_size: 18
+    format: markdown
+    spacing:
+      padding: ['0', null, '0', null]
+    spacing_above: none
+    spacing_below: none
   type: RichText
 container: {type: ColumnPanel}
 is_package: true

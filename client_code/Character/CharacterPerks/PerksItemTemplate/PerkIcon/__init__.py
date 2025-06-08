@@ -1,5 +1,6 @@
 from ._anvil_designer import PerkIconTemplate
 from anvil import *
+import plotly.graph_objects as go
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
 import anvil.users
@@ -12,4 +13,5 @@ class PerkIcon(PerkIconTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.image_1.source = app_tables.files.get(path=f"perk_icons/{perk_file}")['file']
+    self.image_1.source = f"_/theme/perk_icons/{perk_file}"
+    print(self.image_1.spacing_above)

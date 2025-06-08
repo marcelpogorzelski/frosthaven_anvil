@@ -24,3 +24,8 @@ class PerksItemTemplate(PerksItemTemplateTemplate):
 
     for slot in slots:
       self.perk_rich_text.add_component(PerkIcon(slot), slot=slot)
+      #self.perk_rich_text.add_component(self.get_image(slot), slot=slot)
+
+
+  def get_image(self, image_name):
+    return Image(source=f"_/theme/perk_icons/{image_name}", height=22, display_mode='zoom_to_fill', spacing_above='none', spacing_below='none')
