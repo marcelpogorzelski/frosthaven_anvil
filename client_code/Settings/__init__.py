@@ -28,9 +28,14 @@ class Settings(SettingsTemplate):
     Utilites.set_scenario_available()
 
 
+    #self.sheet_test()
 
-    self.sheet_test()
+  def perks(self):
+    characters = json.loads(app_tables.files.get(path='characters_frosthaven.json')['file'].get_bytes())
 
+    for char_class in app_tables.classes.search():
+      character = characters[char_class['Id']]
+      char_class.update(Masteries=character['masteries'], Perks=character['perks'])
 
   def sheet_test(self):
 
