@@ -1,0 +1,12 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'JOMTLE,QSFYKV'}
+    name: perks_repeating_panel
+    properties: {item_template: Character.CharacterPerks.PerksItemTemplate}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'UYWCYK,BGLSIF'}
+  name: perks_card
+  properties: {role: elevated-card}
+  type: ColumnPanel
+container: {type: ColumnPanel}
+is_package: true

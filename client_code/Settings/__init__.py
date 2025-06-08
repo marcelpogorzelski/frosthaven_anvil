@@ -14,6 +14,7 @@ from .. import Frosthaven_info
 import re
 
 from .Form1 import Form1
+from ..Character.CharacterPerks import CharacterPerks
 
 
 def extract_slots(text):
@@ -36,7 +37,6 @@ class Settings(SettingsTemplate):
     content = "Whenever you short rest, you may spend one unspent {spent.png} item for no effect to {recover.png} a different spent item"
     
     slots = extract_slots(content)
-    print(slots)
     self.rich_text_1.content = content
 
     for slot in slots:
@@ -150,7 +150,10 @@ class Settings(SettingsTemplate):
     #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
   def action_button_click(self, **event_args):
-    return
+    main_form = get_open_form()
+    main_form.change_form(CharacterPerks('Marcel'))
+
+  def restore_events(self):
     if not confirm("Test?"):
       return
     events_backup = json.loads(Backup.get_backup_file('Events.json').get_bytes())

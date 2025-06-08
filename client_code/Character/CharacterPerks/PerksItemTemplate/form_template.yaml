@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'QWATFA,UEBQNH'}
+  name: perk_rich_text
+  properties: {font_size: 16}
+  type: RichText
+container: {type: ColumnPanel}
+is_package: true
