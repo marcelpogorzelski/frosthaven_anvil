@@ -10,5 +10,7 @@ components:
     spacing_above: none
     spacing_below: none
   type: RichText
-container: {type: ColumnPanel}
+container:
+  properties: {col_widths: '{"FGTLTT":5,"UEBQNH":55}'}
+  type: ColumnPanel
 is_package: true
