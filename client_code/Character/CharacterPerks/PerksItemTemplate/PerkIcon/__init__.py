@@ -12,8 +12,12 @@ class PerkIcon(PerkIconTemplate):
   def __init__(self, perk_file, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    #height = 22
-    #if perk_file == 'heal.png':
-      height = 20
-    self.image_1.source = f"_/theme/perk_icons/{perk_file}"
-    self.image_1.height = height
+    width = 22
+    height = 22
+    if perk_file == 'heal.png':
+      width = 16
+      height = 16
+
+    perk_image = Image(source=f"_/theme/perk_icons/{perk_file}", height=height, display_mode='fill_width')
+    self.flow_panel_1.add_component(perk_image, width=width)
+    
