@@ -168,6 +168,8 @@ unique_ids:
     Character.CharacterPerks: '1749361947226170664588480.98764'
     Character.CharacterPerks.PerksItemTemplate: '1749362050342357338576017.4465'
     Character.CharacterPerks.PerksItemTemplate.PerkIcon: '174936222854356003355774.859375'
+    Character.CharacterPerks.ThreeChecks: '1749530761964667295262905.0333'
+    Character.CharacterPerks.TwoChecks: '1749530682169856627574509.1666'
     Character.CharacterSheet: '1747052750265789406925217.5497'
     Event: '17484360214543683857998.288853'
     FinishScenario: '1745572905961434502213620.1313'
