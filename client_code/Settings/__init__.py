@@ -156,7 +156,7 @@ class Settings(SettingsTemplate):
 
   def action_button_click(self, **event_args):
     main_form = get_open_form()
-    main_form.change_form(CharacterPerks('Marcel'))
+    main_form.change_form(CharacterPerks('Håvard'))
 
   def restore_events(self):
     if not confirm("Test?"):
