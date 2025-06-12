@@ -27,6 +27,8 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
+          
+
 
     #self.sheet_test()
 
