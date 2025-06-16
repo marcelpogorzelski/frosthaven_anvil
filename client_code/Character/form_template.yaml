@@ -26,6 +26,29 @@ components:
       type: Link
     - components:
       - components:
+        - layout_properties: {grid_position: 'UMPAXG,TYLIAN'}
+          name: perks_label
+          properties:
+            align: center
+            spacing:
+              padding: ['0', null, '0', null]
+            spacing_above: none
+            spacing_below: none
+            text: Perks
+          type: Label
+        layout_properties: {grid_position: 'TYAOTZ,NHEFMR'}
+        name: perks_card
+        properties: {background: '', col_spacing: none, role: tonal-card, spacing_above: none, spacing_below: none, wrap_on: never}
+        type: ColumnPanel
+      data_bindings:
+      - {code: '''CharacterPerks''', property: tag, writeback: false}
+      event_bindings: {click: tab_click}
+      layout_properties: {grid_position: 'CJMJHV,QLGWRZ'}
+      name: perks_link
+      properties: {align: center, foreground: '', text: '', wrap_on: never}
+      type: Link
+    - components:
+      - components:
         - layout_properties: {grid_position: 'IUGBXD,LLMITT'}
           name: items_label
           properties:
@@ -96,7 +119,7 @@ components:
       type: Link
     layout_properties: {width: 900}
     name: tab_column_panel
-    properties: {col_spacing: tiny, col_widths: '{"MBXEOS":15,"JFVNBW":15,"EKPPFI":15,"CABVCC":15}', wrap_on: never}
+    properties: {col_spacing: tiny, col_widths: '{"MBXEOS":15,"JFVNBW":15,"EKPPFI":15,"CABVCC":12,"QLGWRZ":15}', wrap_on: never}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'AJQMKQ,TGNHUK'}
   name: tab_flow_panel

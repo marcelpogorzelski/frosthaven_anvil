@@ -11,6 +11,7 @@ from .CharacterSheet import CharacterSheet
 from .CharacterItems import CharacterItems
 from .CharacterCards import CharacterCards
 from .CharacterDetails import CharacterDetails
+from .CharacterPerks import CharacterPerks
 from ..Utilites import windowWidthWithMax
 
 
@@ -21,7 +22,8 @@ class Character(CharacterTemplate):
     self.player_name = player_name
 
     self.tabs = {
-      'CharacterSheet': {'OpenForm': self.open_sheet, 'Next': 'CharacterItems', 'Current': 'CharacterSheet'},
+      'CharacterSheet': {'OpenForm': self.open_sheet, 'Next': 'CharacterPerks', 'Current': 'CharacterSheet'},
+      'CharacterPerks': {'OpenForm': self.open_sheet, 'Next': 'CharacterItems', 'Current': 'CharacterPerks'},
       'CharacterItems': {'OpenForm': self.open_items, 'Next': 'CharacterCards', 'Current': 'CharacterItems'},
       'CharacterCards': {'OpenForm': self.open_cards, 'Next': 'CharacterDetails', 'Current': 'CharacterCards'},
       'CharacterDetails': {'OpenForm': self.open_details, 'Next': 'CharacterSheet', 'Current': 'CharacterDetails'},
