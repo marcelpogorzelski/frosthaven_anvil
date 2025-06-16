@@ -23,7 +23,7 @@ class Character(CharacterTemplate):
 
     self.tabs = {
       'CharacterSheet': {'OpenForm': self.open_sheet, 'Next': 'CharacterPerks', 'Current': 'CharacterSheet'},
-      'CharacterPerks': {'OpenForm': self.open_sheet, 'Next': 'CharacterItems', 'Current': 'CharacterPerks'},
+      'CharacterPerks': {'OpenForm': self.open_perks, 'Next': 'CharacterItems', 'Current': 'CharacterPerks'},
       'CharacterItems': {'OpenForm': self.open_items, 'Next': 'CharacterCards', 'Current': 'CharacterItems'},
       'CharacterCards': {'OpenForm': self.open_cards, 'Next': 'CharacterDetails', 'Current': 'CharacterCards'},
       'CharacterDetails': {'OpenForm': self.open_details, 'Next': 'CharacterSheet', 'Current': 'CharacterDetails'},
@@ -56,6 +56,10 @@ class Character(CharacterTemplate):
   def open_sheet(self):
     self.set_tab(self.sheet_label)
     self.open_tab(CharacterSheet(self.player_name), 900)
+
+  def open_perks(self):
+    self.set_tab(self.perks_label)
+    self.open_tab(CharacterPerks(self.player_name))
 
   def open_items(self):
     self.set_tab(self.items_label)

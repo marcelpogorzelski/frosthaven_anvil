@@ -1,16 +1,10 @@
 components:
 - components:
   - components:
-    - layout_properties: {grid_position: 'TAOCID,PMPVZF'}
-      name: class_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Class:'}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''Class'']', property: selected_value, writeback: true}
-      layout_properties: {grid_position: 'THRWQD,VTXHLI'}
-      name: class_drop_down
-      properties: {align: full, spacing_above: medium}
-      type: DropDown
+    - layout_properties: {grid_position: 'OYCVJX,AHSEKD'}
+      name: class_image
+      properties: {height: '94'}
+      type: Image
     layout_properties: {grid_position: 'YRVUVJ,NGQANB TPKWGT,VLLDNX'}
     name: class_outlined_card
     properties: {col_widths: '{}', role: elevated-card}
@@ -331,6 +325,11 @@ components:
     layout_properties: {grid_position: 'MSRQQQ,XLAGSE'}
     name: retire_button
     properties: {background: '', role: filled-button, text: Retire}
+    type: Button
+  - event_bindings: {click: change_class_button_click}
+    layout_properties: {grid_position: 'MSRQQQ,XRWCGB'}
+    name: change_class_button
+    properties: {role: filled-button, text: Change Class}
     type: Button
   layout_properties: {grid_position: 'KVQOET,PBZUYY'}
   name: content_column_panel

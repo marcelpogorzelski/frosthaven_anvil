@@ -7,6 +7,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .SelectClass import SelectClass
 from ... import Utilites
 from ... import navigation
 from anvil.js.window import window
@@ -21,7 +22,7 @@ class CharacterSheet(CharacterSheetTemplate):
     self.player_name = player
     self.item = app_tables.characters.get(Player=self.player_name)
 
-    self.populate_class_drop_down()
+    self.display_class_image()
 
   def adjust_width(self):
     width = 900
@@ -29,11 +30,9 @@ class CharacterSheet(CharacterSheetTemplate):
       width = window.innerWidth
     return width
 
-  def populate_class_drop_down(self):
-    item_list = []
-    for row in app_tables.classes.search(Available=True):
-      item_list.append((row["Name"], row))
-    self.class_drop_down.items = item_list
+  def display_class_image(self):######################
+    self.class_image.source = f"_/theme/class_icons/{self.item['Class']['Nickname'].lower()}.png"
+    
 
   def set_experience(self):
     experience = self.experience_text_box.text or 0
@@ -76,3 +75,6 @@ class CharacterSheet(CharacterSheetTemplate):
     text_box = event_args["sender"]
     Utilites.bounded_text_box(text_box, 0, 10000)
     self.item[text_box.tag] = text_box.text or 0
+
+  def change_class_button_click(self, **event_args):
+    alert(SelectClass())

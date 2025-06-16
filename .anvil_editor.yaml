@@ -90,6 +90,7 @@ unique_ids:
     perk_icons/minus_1.webp: BPDKQHUYMAZ2GM5YN3ESMOTW6VBY3JSM
     perk_icons/minus_1_2.webp: IIX2IDYRYUUFBTLHLKX65GHLRJUKKXHT
     perk_icons/minus_2.webp: QU5N7QIGN2NM2ASTPLE7SRNNPIDERCLU
+    perk_icons/minus_2_2.webp: '1750110128414135206963572.2245'
     perk_icons/move.png: 6SS5A3M5A2KNVI47ZTUCDBWNCXW3PCGK
     perk_icons/muddle.png: ISPYOVAGFB36CCM222G3UQOZJ4E4VPO2
     perk_icons/muddle_2.png: SGWVGZRBGSYSRBCDKJUSBSNLTCR3352I
@@ -172,6 +173,7 @@ unique_ids:
     Character.CharacterPerks.PerksItemTemplate.ThreeChecks: '1749530761964667295262905.0333'
     Character.CharacterPerks.PerksItemTemplate.TwoChecks: '1749530682169856627574509.1666'
     Character.CharacterSheet: '1747052750265789406925217.5497'
+    Character.CharacterSheet.SelectClass: '175011078090110817050185.613852'
     Event: '17484360214543683857998.288853'
     FinishScenario: '1745572905961434502213620.1313'
     FinishScenario.FinishScenarioRowTemplate: '1745573118297295789484542.7931'

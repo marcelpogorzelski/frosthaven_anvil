@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'RSOCUM,DQWOES'}
+  name: class_flow_panel
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true
