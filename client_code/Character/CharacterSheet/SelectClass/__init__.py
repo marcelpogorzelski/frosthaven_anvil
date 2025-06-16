@@ -25,6 +25,9 @@ class SelectClass(SelectClassTemplate):
       if char_class in active_classes:
         continue
       class_button = Button(icon=f"_/theme/class_icons/{char_class['Nickname'].lower()}.png", role='elevated-button', tag=char_class)
-      class_button.add_event_handler('click', self.add_class_button_click)
-      scale_up_icon(class_button, 6)
+      class_button.add_event_handler('click', self.change_class_button_click)
+      scale_up_icon(class_button, 3)
       self.class_flow_panel.add_component(class_button)
+
+  def change_class_button_click(self, **event_args):
+    self.raise_event("x-close-alert", value=event_args['sender'].tag)

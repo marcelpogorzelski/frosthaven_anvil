@@ -77,4 +77,6 @@ class CharacterSheet(CharacterSheetTemplate):
     self.item[text_box.tag] = text_box.text or 0
 
   def change_class_button_click(self, **event_args):
-    alert(SelectClass())
+    char_class = alert(SelectClass(), title="Select Class", dismissible=False, buttons=[('Cancel', None)])
+    if not char_class:
+      return
