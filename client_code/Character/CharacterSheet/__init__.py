@@ -80,9 +80,9 @@ class CharacterSheet(CharacterSheetTemplate):
     for perk in perks_info:
       count = perk['count']
       if perk['count'] == 0.5:
-        ...
+        count = 2
       elif perk['count'] == 0.3:
-        ...
+        count = 3
     
 
   def change_class_button_click(self, **event_args):
