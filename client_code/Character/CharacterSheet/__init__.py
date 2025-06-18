@@ -76,7 +76,22 @@ class CharacterSheet(CharacterSheetTemplate):
     Utilites.bounded_text_box(text_box, 0, 10000)
     self.item[text_box.tag] = text_box.text or 0
 
+  def add_dropboxes(self, perks_info):
+    for perk in perks_info:
+      count = perk['count']
+      if perk['count'] == 0.5:
+        ...
+      elif perk['count'] == 0.3:
+        ...
+    
+
   def change_class_button_click(self, **event_args):
     char_class = alert(SelectClass(), title="Select Class", dismissible=False, buttons=[('Cancel', None)])
     if not char_class:
       return
+
+    self.item['Class'] = char_class
+    self.display_class_image()
+    perks_info = self.item['Class']['PerksInfo']
+    self.add_dropboxes(perks_info)
+    self.item['PerksInfo'] = perks_info

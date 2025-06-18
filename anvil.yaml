@@ -181,6 +181,9 @@ db_schema:
       name: Items
       target: items
       type: link_multiple
+    - admin_ui: {order: 22, width: 200}
+      name: PerksInfo
+      type: simpleObject
     server: full
     title: Characters
   classcards:
@@ -229,10 +232,10 @@ db_schema:
       name: SheetImage
       type: media
     - admin_ui: {order: 8, width: 200}
-      name: Perks
+      name: PerksInfo
       type: simpleObject
     - admin_ui: {order: 9, width: 200}
-      name: Masteries
+      name: MasteriesInfo
       type: simpleObject
     server: full
     title: Classes
