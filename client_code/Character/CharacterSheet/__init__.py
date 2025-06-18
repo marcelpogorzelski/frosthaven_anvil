@@ -83,8 +83,8 @@ class CharacterSheet(CharacterSheetTemplate):
         count = 2
       elif perk['count'] == 0.3:
         count = 3
-    
-
+      perk['dropboxes'] = [False] * count
+      
   def change_class_button_click(self, **event_args):
     char_class = alert(SelectClass(), title="Select Class", dismissible=False, buttons=[('Cancel', None)])
     if not char_class:

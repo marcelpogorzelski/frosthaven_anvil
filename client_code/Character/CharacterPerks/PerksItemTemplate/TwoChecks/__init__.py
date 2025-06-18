@@ -8,8 +8,20 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class TwoChecks(TwoChecksTemplate):
-  def __init__(self, **properties):
+  def __init__(self, perk_info, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run before the form opens.
+    self.perk_info = perk_info
+    self.check_box_1.checked = perk_info['dropboxes'][0]
+    self.check_box_2.checked = perk_info['dropboxes'][1]
+
+  def check_box_1_change(self, **event_args):
+    self.perk_info['dropboxes'][0] = self.check_box_1.checked
+    self.raise_event('x-multi-checkbox-change')
+
+  def check_box_2_change(self, **event_args):
+    self.perk_info['dropboxes'][1] = self.check_box_2.checked
+    self.raise_event('x-multi-checkbox-change')
+
+

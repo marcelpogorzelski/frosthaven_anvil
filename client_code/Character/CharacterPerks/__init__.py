@@ -15,5 +15,10 @@ class CharacterPerks(CharacterPerksTemplate):
     self.player_name = player_name
     self.character = app_tables.characters.get(Player=player_name)
 
-    self.perks_repeating_panel.items = self.character['Class']['Perks']
+    self.perks_info = self.character['PerksInfo']
 
+    self.perks_repeating_panel.items = self.perks_info
+    self.perks_repeating_panel.set_event_handler('x-checkbox-change', self.checkbox_change)
+
+  def checkbox_change(self, **event_args):
+    self.character['PerksInfo'] = self.perks_info

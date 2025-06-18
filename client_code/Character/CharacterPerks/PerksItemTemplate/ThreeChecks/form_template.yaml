@@ -1,20 +1,23 @@
 components:
 - components:
-  - layout_properties: {width: null}
+  - event_bindings: {change: check_box_1_change}
+    layout_properties: {width: null}
     name: check_box_1
     properties:
       spacing:
         padding: [null, '0', null, '20']
       text: ''
     type: CheckBox
-  - layout_properties: {}
+  - event_bindings: {change: check_box_2_change}
+    layout_properties: {}
     name: check_box_2
     properties:
       spacing:
         padding: [null, '0', null, '0']
       text: ''
     type: CheckBox
-  - layout_properties: {}
+  - event_bindings: {change: check_box_3_change}
+    layout_properties: {}
     name: check_box_3
     properties:
       spacing:
