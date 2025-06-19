@@ -82,7 +82,7 @@ class Character(CharacterTemplate):
 
   def setup_label(self):
     name_label = Label(text=self.player_name, role='title', align='center')
-    name_card = ColumnPanel(role='elevated-card', wrap_on='naver')
+    name_card = ColumnPanel(role='elevated-card', wrap_on='naver', spacing_above='none', spacing_below='none')
     name_card.add_component(name_label)
     self.label_flow_panel.add_component(name_card, width=900)
 

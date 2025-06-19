@@ -1,4 +1,8 @@
 components:
+- layout_properties: {full_width_row: true, grid_position: 'EGVHOY,ATTPIN'}
+  name: label_flow_panel
+  properties: {}
+  type: FlowPanel
 - components:
   - components:
     - components:
@@ -117,17 +121,13 @@ components:
       name: details_link
       properties: {align: center, text: '', wrap_on: never}
       type: Link
-    layout_properties: {width: 900}
+    layout_properties: {expand: false, width: 900}
     name: tab_column_panel
     properties: {col_spacing: tiny, col_widths: '{"MBXEOS":15,"JFVNBW":15,"EKPPFI":15,"CABVCC":12,"QLGWRZ":15}', wrap_on: never}
     type: ColumnPanel
   layout_properties: {full_width_row: true, grid_position: 'AJQMKQ,TGNHUK'}
   name: tab_flow_panel
   properties: {gap: tiny, spacing_above: none, spacing_below: none, vertical_align: full}
-  type: FlowPanel
-- layout_properties: {full_width_row: true, grid_position: 'RPAWJN,ZJWTTM'}
-  name: label_flow_panel
-  properties: {}
   type: FlowPanel
 - layout_properties: {full_width_row: true, grid_position: 'UPBGQE,OZBZWG'}
   name: content_flow_panel
