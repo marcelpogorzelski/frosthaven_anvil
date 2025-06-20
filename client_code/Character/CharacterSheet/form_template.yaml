@@ -5,9 +5,25 @@ components:
       name: class_image
       properties: {height: '94'}
       type: Image
-    layout_properties: {grid_position: 'YRVUVJ,NGQANB TPKWGT,VLLDNX'}
+    layout_properties: {grid_position: 'PBOGTY,PDEWSU'}
     name: class_outlined_card
     properties: {col_widths: '{}', role: elevated-card}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'JZYWYM,OGQZJV'}
+      name: name_label
+      properties: {align: center, bold: true, role: input-prompt, text: 'Name:'}
+      type: Label
+    - data_bindings:
+      - {code: 'self.item[''Name'']', property: text, writeback: true}
+      event_bindings: {}
+      layout_properties: {grid_position: 'WHLADJ,KOYEVC'}
+      name: name_text_box
+      properties: {align: center}
+      type: TextBox
+    layout_properties: {grid_position: 'PBOGTY,OMOZOE'}
+    name: name_outlined_card
+    properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
     type: ColumnPanel
   - components:
     - layout_properties: {grid_position: 'YGFUJB,LMFYOW'}
@@ -94,37 +110,6 @@ components:
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
-    - layout_properties: {grid_position: 'IMJEUP,SPLCZR'}
-      name: retired_count_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Retired Count:'}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''RetiredCount'']', property: text, writeback: false}
-      layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
-      name: retired_count_text_box
-      properties: {align: center, enabled: false, type: number}
-      type: TextBox
-    layout_properties: {grid_position: 'YRVUVJ,NGQANB CKBVKB,MAAAVY'}
-    name: level_outlined_card_copy_copy
-    properties: {col_widths: '{"JYFFLE":10}', role: elevated-card}
-    type: ColumnPanel
-  - components:
-    - layout_properties: {grid_position: 'JZYWYM,OGQZJV'}
-      name: name_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Name:'}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''Name'']', property: text, writeback: true}
-      event_bindings: {}
-      layout_properties: {grid_position: 'WHLADJ,KOYEVC'}
-      name: name_text_box
-      properties: {align: center}
-      type: TextBox
-    layout_properties: {grid_position: 'YRVUVJ,LHPPZK IWAYCT,RHGXVZ'}
-    name: name_outlined_card
-    properties: {col_widths: '{"UELJKE":15}', role: elevated-card}
-    type: ColumnPanel
-  - components:
     - layout_properties: {grid_position: 'IMJEUP,PJIJSH'}
       name: level_image
       properties: {height: '50', source: _/theme/character/level.png}
@@ -207,29 +192,6 @@ components:
     properties: {role: elevated-card}
     type: ColumnPanel
   - components:
-    - layout_properties: {grid_position: 'PYBPTI,VRMKZY'}
-      name: mastery_label
-      properties: {align: center, bold: true, role: input-prompt, text: 'Masteries:', visible: true}
-      type: Label
-    - data_bindings:
-      - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
-      event_bindings: {change: mastery_check_box_change}
-      layout_properties: {grid_position: 'ISEMNX,SEADCC'}
-      name: mastery_check_box_1
-      properties: {align: center, bold: true, spacing_above: small, spacing_below: medium, text: '1'}
-      type: CheckBox
-    - data_bindings:
-      - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
-      event_bindings: {change: mastery_check_box_change}
-      layout_properties: {grid_position: 'ISEMNX,GRFKGR'}
-      name: mastery_check_box_2
-      properties: {align: center, bold: true, checked: false, spacing_below: medium, text: '2'}
-      type: CheckBox
-    layout_properties: {grid_position: 'YRVUVJ,TJTXUC ZRELWN,MQEAYZ'}
-    name: masteries_outlined_card
-    properties: {role: elevated-card, wrap_on: never}
-    type: ColumnPanel
-  - components:
     - layout_properties: {grid_position: 'IMJEUP,WHXUTK'}
       name: next_level_image
       properties: {height: '50', source: _/theme/character/level_next.png}
@@ -240,7 +202,7 @@ components:
       name: next_level_text_box
       properties: {align: center, enabled: false, type: number}
       type: TextBox
-    layout_properties: {grid_position: 'YRVUVJ,TJTXUC HLTPIM,YJLEHM'}
+    layout_properties: {grid_position: 'YRVUVJ,TJTXUC UIVEFV,EXXGAE'}
     name: level_outlined_card_copy_2
     properties: {col_widths: '{}', role: elevated-card, wrap_on: mobile}
     type: ColumnPanel
@@ -310,6 +272,52 @@ components:
     name: snowthistle_outlined_card
     properties: {role: elevated-card}
     type: ColumnPanel
+  - components:
+    - data_bindings:
+      - {code: 'self.item[''Mastery1'']', property: checked, writeback: false}
+      event_bindings: {change: mastery_check_box_change}
+      layout_properties: {grid_position: 'ZJKRMB,DFQAMV'}
+      name: mastery_check_box_1
+      properties: {align: center, bold: true, spacing_above: small, spacing_below: medium, text: ''}
+      type: CheckBox
+    - layout_properties: {grid_position: 'ISEMNX,SEADCC ZJKRMB,JJLFJZ'}
+      name: mastery_rich_text_1
+      properties: {font_size: 18, format: markdown, spacing_above: none, spacing_below: none}
+      type: RichText
+    - data_bindings:
+      - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
+      event_bindings: {change: mastery_check_box_change}
+      layout_properties: {grid_position: 'USYPKT,PQTBUI'}
+      name: mastery_check_box_2
+      properties: {align: center, bold: true, checked: false, spacing_below: medium, text: ''}
+      type: CheckBox
+    - layout_properties: {grid_position: 'USYPKT,ENMLBL'}
+      name: mastery_rich_text_2
+      properties: {font_size: 18}
+      type: RichText
+    layout_properties: {grid_position: 'BLYNPX,AAKHPX'}
+    name: masteries_outlined_card
+    properties: {col_widths: '{"DFQAMV":5,"JJLFJZ":55,"PQTBUI":5,"ENMLBL":55}', role: elevated-card, wrap_on: never}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'IMJEUP,SPLCZR'}
+      name: retired_count_label
+      properties: {align: center, bold: true, role: input-prompt, text: 'Retired Count:'}
+      type: Label
+    - data_bindings:
+      - {code: 'self.item[''RetiredCount'']', property: text, writeback: false}
+      layout_properties: {grid_position: 'AYDYPP,MQCQEZ'}
+      name: retired_count_text_box
+      properties: {align: center, enabled: false, type: number}
+      type: TextBox
+    layout_properties: {grid_position: 'GBCMZZ,CKDATO'}
+    name: level_outlined_card_copy_copy
+    properties: {col_widths: '{"JYFFLE":10}', role: elevated-card}
+    type: ColumnPanel
+  - layout_properties: {grid_position: 'GBCMZZ,RDNJOA'}
+    name: spacer_1
+    properties: {height: 32}
+    type: Spacer
   - layout_properties: {grid_position: 'BGTLKA,WVJNXD'}
     name: notes_label
     properties: {align: center, role: headline, text: Notes}
@@ -333,7 +341,7 @@ components:
     type: Button
   layout_properties: {grid_position: 'KVQOET,PBZUYY'}
   name: content_column_panel
-  properties: {wrap_on: never}
+  properties: {col_widths: '{"PDEWSU":20,"OMOZOE":40,"CKDATO":20,"RDNJOA":40}', wrap_on: never}
   type: ColumnPanel
 container:
   properties: {col_spacing: small, wrap_on: never}

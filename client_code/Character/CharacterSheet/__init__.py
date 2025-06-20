@@ -11,6 +11,12 @@ from .SelectClass import SelectClass
 from ... import Utilites
 from ... import navigation
 from anvil.js.window import window
+import re
+from ..CharacterPerks.PerksItemTemplate.PerkIcon import PerkIcon
+
+def extract_slots(text):
+  matches = re.findall(r'\{([^}]*)\}', text)
+  return matches
 
 
 class CharacterSheet(CharacterSheetTemplate):
@@ -23,6 +29,7 @@ class CharacterSheet(CharacterSheetTemplate):
     self.item = app_tables.characters.get(Player=self.player_name)
 
     self.display_class_image()
+    self.set_mastery_rich_text()
 
   def adjust_width(self):
     width = 900
@@ -32,7 +39,6 @@ class CharacterSheet(CharacterSheetTemplate):
 
   def display_class_image(self):######################
     self.class_image.source = f"_/theme/class_icons/{self.item['Class']['Nickname'].lower()}.png"
-    
 
   def set_experience(self):
     experience = self.experience_text_box.text or 0
@@ -95,3 +101,16 @@ class CharacterSheet(CharacterSheetTemplate):
     perks_info = self.item['Class']['PerksInfo']
     self.add_dropboxes(perks_info)
     self.item['PerksInfo'] = perks_info
+
+  def set_mastery_rich_text(self):
+    #self.mastery_rich_text_1.content ='asdfa <img src="_/theme/perk_icons/heal.png" width="14" height="20"> sasfd'
+    slots = extract_slots(self.item['Class']['MasteriesInfo'][0])
+    self.mastery_rich_text_1.content = self.item['Class']['MasteriesInfo'][0]
+    for slot in slots:
+      self.mastery_rich_text_1.add_component(PerkIcon(slot), slot=slot)
+
+    slots = extract_slots(self.item['Class']['MasteriesInfo'][1])
+    self.mastery_rich_text_2.content = self.item['Class']['MasteriesInfo'][1]
+    for slot in slots:
+      self.mastery_rich_text_2.add_component(PerkIcon(slot), slot=slot)
+    
