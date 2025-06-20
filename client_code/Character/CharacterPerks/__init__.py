@@ -14,6 +14,11 @@ class CharacterPerks(CharacterPerksTemplate):
 
     self.player_name = player_name
     self.character = app_tables.characters.get(Player=player_name)
+    count = 12
+    #self.perks_count_label.text = f"You have {count} out of {self.character['Perks']} Perks"
+    total_perks = f"<span style=\"color:OliveDrab\">{self.character['Perks']}</span>"
+    current_perks = f"<span style=\"color:OliveDrab\">{count}</span> Perks"
+    self.perks_rich_text.content =  f"You have selected {current_perks} out of {total_perks} Perks"
 
     self.perks_info = self.character['PerksInfo']
 
