@@ -156,26 +156,80 @@ class Settings(SettingsTemplate):
     anvil.users.change_password_with_form(require_old_password=False)
     #anvil.users.reset_password('aa_chill_meeting', 'Marcel_Frost')
 
+  def fix_mastery(self, mastery):
+    slots = extract_slots(mastery)
+    for slot in slots:
+      replace_text = '{' + slot + '}'
+      output_text = slot
+      if slot == 'again_2.png':
+        output_text = 'again.png'
+        
+      if slot == 'curse_2.png':
+        output_text = 'curse.png'
+        
+      if slot == 'damage_2.png':
+        output_text = 'damage.png'
+        
+      if slot == 'minus_1_2.webp':
+        output_text = 'minus_1.webp'
+        
+      if slot == 'minus_2_2.webp':
+        output_text = 'minus_2.webp'
+
+      if slot == 'muddle_2.png':
+        output_text = 'muddle.png'
+
+      if slot == 'plus_0_2.webp':
+        output_text = 'plus_0.webp'
+
+      if slot == 'plus_1_2.webp':
+        output_text = 'plus_1.webp'
+
+      if slot == 'range_2.png':
+        output_text = 'range.png'
+
+      if slot == 'resonance_icon_2.png':
+        output_text = 'resonance_icon.png'
+        
+      width = 20
+      height = 20
+      if slot == 'heal.png':
+        width = 14
+      if slot == 'item_minus_1.webp':
+        width = 35
+        height = 27
+
+        
+      mastery = mastery.replace(replace_text, f'<img src="_/theme/perk_icons/{output_text}" width="{width}" height="{height}">')
+    return mastery
+
+    
+
   def action_button_click(self, **event_args):
-    main_form = get_open_form()
-    main_form.change_form(CharacterPerks('Håvard'))
+    for char_class in app_tables.classes.search():
+      #<img src="_/theme/perk_icons/heal.png" width="14" height="20">
+      masteries = char_class['MasteriesInfo']
+      masteries[0] = self.fix_mastery(masteries[0])
+      masteries[1] = self.fix_mastery(masteries[1])
+      print(masteries)
+
 
   def restore_events(self):
     if not confirm("Test?"):
       return
     events_backup = json.loads(Backup.get_backup_file('Events.json').get_bytes())
 
-    for backuo_event in events_backup['Rows']:
-      current_event = app_tables.events.get(Type=backuo_event['Type'])
+    for backup_event in events_backup['Rows']:
+      current_event = app_tables.events.get(Type=backup_event['Type'])
       current_event.update(
-        Count=backuo_event['Count'],
-        Active=backuo_event['Active'],
-        Inactive=backuo_event['Inactive'],
-        CurrentEvent=backuo_event['CurrentEvent'],
-        PreviousEvents=backuo_event['PreviousEvents']
+        Count=backup_event['Count'],
+        Active=backup_event['Active'],
+        Inactive=backup_event['Inactive'],
+        CurrentEvent=backup_event['CurrentEvent'],
+        PreviousEvents=backup_event['PreviousEvents']
       )
       
-      print(f"Restored: {backuo_event['Type']}")
+      print(f"Restored: {backup_event['Type']}")
 
 
   def backup_button_click(self, **event_args):

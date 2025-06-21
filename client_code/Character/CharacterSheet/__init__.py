@@ -103,7 +103,9 @@ class CharacterSheet(CharacterSheetTemplate):
     self.item['PerksInfo'] = perks_info
 
   def set_mastery_rich_text(self):
-    #self.mastery_rich_text_1.content ='asdfa <img src="_/theme/perk_icons/heal.png" width="14" height="20"> sasfd'
+    #self.mastery_rich_text_1.content ='Declare <img src="_/theme/perk_icons/fast.png" width="20" height="20"> for seven consecutive rounds'
+    #self.mastery_rich_text_1.content ='asdfa <img src="_/theme/perk_icons/item_minus_1.webp" width="35" height="27"> sasfd'
+    
     slots = extract_slots(self.item['Class']['MasteriesInfo'][0])
     self.mastery_rich_text_1.content = self.item['Class']['MasteriesInfo'][0]
     for slot in slots:

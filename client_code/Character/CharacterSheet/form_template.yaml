@@ -282,7 +282,7 @@ components:
       type: CheckBox
     - layout_properties: {grid_position: 'ISEMNX,SEADCC ZJKRMB,JJLFJZ'}
       name: mastery_rich_text_1
-      properties: {font_size: 18, format: markdown, spacing_above: none, spacing_below: none}
+      properties: {font_size: 18, format: markdown, spacing_above: small, spacing_below: small}
       type: RichText
     - data_bindings:
       - {code: 'self.item[''Mastery2'']', property: checked, writeback: false}
