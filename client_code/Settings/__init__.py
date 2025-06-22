@@ -27,10 +27,8 @@ class Settings(SettingsTemplate):
     self.init_components(**properties)
     Utilites.set_scenario_available()
 
-          
+    self.rich_setup()
 
-
-    #self.sheet_test()
 
   def perks(self):
     characters = json.loads(app_tables.files.get(path='characters_frosthaven.json')['file'].get_bytes())
@@ -38,20 +36,6 @@ class Settings(SettingsTemplate):
     for char_class in app_tables.classes.search():
       character = characters[char_class['Id']]
       char_class.update(Masteries=character['masteries'], Perks=character['perks'])
-
-  def sheet_test(self):
-
-    content = "Whenever you short rest, you may spend one unspent {spent.png} item for no effect to {recover.png} a different spent item"
-    
-    slots = extract_slots(content)
-    self.rich_text_1.content = content
-
-    for slot in slots:
-      self.rich_text_1.add_component(Form1(slot), slot=slot)
-
-
-    self.rich_text_2.content = "Replace one {plus_1} card with two {plus_0} \u201cMove one of your character tokens backward one slot\u201d cards"
-
     
   def get_image(self, path):
     url = f"https://raw.githubusercontent.com/cmlenius/gloomhaven-card-browser/images/images/{path}"
@@ -191,28 +175,68 @@ class Settings(SettingsTemplate):
       if slot == 'resonance_icon_2.png':
         output_text = 'resonance_icon.png'
         
-      width = 20
-      height = 20
+      width = 22
+      height = 22
       if slot == 'heal.png':
-        width = 14
+        width = 17
+      if slot == 'range.png':
+        width = 30
+      if slot == 'transfer_icon.png':
+        width = 44
+      if slot == 'time_icon.png':
+        width = 17
+      if slot == 'boneshaper.png':
+        width = 20
       if slot == 'item_minus_1.webp':
-        width = 35
-        height = 27
+        width = 26
+      if slot == 'retaliate.png':
+        width = 20
+      if slot == 'shield.png':
+        width = 20
 
-        
       mastery = mastery.replace(replace_text, f'<img src="_/theme/perk_icons/{output_text}" width="{width}" height="{height}">')
     return mastery
 
     
 
   def action_button_click(self, **event_args):
+    return
     for char_class in app_tables.classes.search():
       #<img src="_/theme/perk_icons/heal.png" width="14" height="20">
       masteries = char_class['MasteriesInfo']
       masteries[0] = self.fix_mastery(masteries[0])
       masteries[1] = self.fix_mastery(masteries[1])
-      print(masteries)
+      char_class['MasteriesInfo2'] = masteries
 
+  def rich_setup(self):
+    all_slots = set()
+    for char_class in app_tables.classes.search():
+      for perk_info in char_class['PerksInfo']:
+        slots = extract_slots(perk_info['desc'])
+        all_slots.update(slots)
+    self.rich_drop_down.items = sorted(all_slots)
+    self.set_rich_text()
+
+  def set_rich_text(self):
+    perk_image = self.rich_drop_down.selected_value
+    width = self.width_text_box.text
+    height = self.height_text_box.text
+    perk_span = f'<img src="_/theme/perk_icons/{perk_image}" width="{width}" height="{height}">'
+    self.rich_text_1.content = "abc " + perk_span + " 123 " + perk_image
+
+  def rich_drop_down_change(self, **event_args):
+    self.set_rich_text()
+
+  def height_text_box_pressed_enter(self, **event_args):
+    self.set_rich_text()
+    
+  def width_text_box_pressed_enter(self, **event_args):
+    self.set_rich_text()
+
+
+  
+
+  
 
   def restore_events(self):
     if not confirm("Test?"):
@@ -239,6 +263,10 @@ class Settings(SettingsTemplate):
     if not Backup.backup_tables_to_drive():
       notification_text = "No backup. Reached the daily quota"
     Notification(notification_text, timeout=6).show()
+
+
+
+
 
 
 

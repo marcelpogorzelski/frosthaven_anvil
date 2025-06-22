@@ -56,42 +56,33 @@ components:
   type: FlowPanel
 - components:
   - components:
+    - event_bindings: {change: rich_drop_down_change}
+      layout_properties: {grid_position: 'YPYXTO,WSXREZ'}
+      name: rich_drop_down
+      properties: {}
+      type: DropDown
+    - layout_properties: {grid_position: 'ALKHQX,VBUHFR'}
+      name: h_label_2
+      properties: {align: center, text: Height}
+      type: Label
+    - layout_properties: {grid_position: 'ALKHQX,OWMDHY'}
+      name: w_label_1
+      properties: {align: center, text: Width}
+      type: Label
+    - event_bindings: {pressed_enter: height_text_box_pressed_enter}
+      layout_properties: {grid_position: 'VTYAVB,LKRPLV'}
+      name: height_text_box
+      properties: {text: '22', type: number}
+      type: TextBox
+    - event_bindings: {pressed_enter: width_text_box_pressed_enter}
+      layout_properties: {grid_position: 'VTYAVB,DJLUQA'}
+      name: width_text_box
+      properties: {text: '22', type: number}
+      type: TextBox
     - layout_properties: {grid_position: 'YQGNIS,VQESWW'}
       name: rich_text_1
-      properties: {content: '''Perform a Banner summon ability on your first turn, keep the banner alive and within <img src="_/theme/perk_icons/range.png" width="23" height="18">3 of you for the entire scenario''', font: '', font_size: 16, format: restricted_html, spacing_below: small}
+      properties: {content: '', font: '', font_size: 18, format: restricted_html, spacing_below: small}
       type: RichText
-    - layout_properties: {grid_position: 'YIITXZ,SASAPF'}
-      name: rich_text_2
-      properties: {}
-      type: RichText
-    - components:
-      - layout_properties: {width: null}
-        name: check_box_1
-        properties:
-          spacing:
-            padding: [null, '0', null, '20']
-          text: ''
-        type: CheckBox
-      - layout_properties: {}
-        name: check_box_2
-        properties:
-          spacing:
-            padding: [null, '0', null, '0']
-          text: ''
-        type: CheckBox
-      - layout_properties: {}
-        name: check_box_3
-        properties:
-          spacing:
-            padding: [null, null, null, '0']
-          text: ''
-        type: CheckBox
-      layout_properties: {grid_position: 'TWPTRC,BYRTAT'}
-      name: flow_panel_3
-      properties:
-        spacing:
-          padding: [null, null, null, '2']
-      type: FlowPanel
     layout_properties: {width: 900}
     name: card_2
     properties: {role: elevated-card}
