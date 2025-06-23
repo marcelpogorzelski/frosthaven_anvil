@@ -200,13 +200,36 @@ class Settings(SettingsTemplate):
     
 
   def action_button_click(self, **event_args):
+    for character in app_tables.characters.search():
+      character['PerksInfo']
     return
     for char_class in app_tables.classes.search():
       #<img src="_/theme/perk_icons/heal.png" width="14" height="20">
-      masteries = char_class['MasteriesInfo']
-      masteries[0] = self.fix_mastery(masteries[0])
-      masteries[1] = self.fix_mastery(masteries[1])
-      char_class['MasteriesInfo2'] = masteries
+      perk_info = char_class['PerksInfo']
+      for perk in perk_info:
+        perk['desc'] = self.fix_mastery(perk['desc'])
+
+        perk['two_check'] = False
+        perk['three_check'] = False
+        perk['single_check'] = False
+        
+        if perk['count'] == 0.5:
+          count = 2
+          perk['two_check'] = True
+        elif perk['count'] == 0.3:
+          count = 3
+          perk['three_check'] = True
+        else:
+          count = perk['count']
+          perk['single_check'] = True
+          
+        perk['dropboxes'] = [False] * count
+
+      char_class['PerkInfo2'] = perk_info
+
+      #masteries[0] = self.fix_mastery(masteries[0])
+      #masteries[1] = self.fix_mastery(masteries[1])
+      #char_class['MasteriesInfo2'] = masteries
 
   def rich_setup(self):
     all_slots = set()

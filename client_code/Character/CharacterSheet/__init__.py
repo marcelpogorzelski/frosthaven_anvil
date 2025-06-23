@@ -99,7 +99,7 @@ class CharacterSheet(CharacterSheetTemplate):
     self.item['Class'] = char_class
     self.display_class_image()
     perks_info = self.item['Class']['PerksInfo']
-    self.add_dropboxes(perks_info)
+    #self.add_dropboxes(perks_info)
     self.item['PerksInfo'] = perks_info
 
   def set_mastery_rich_text(self):
